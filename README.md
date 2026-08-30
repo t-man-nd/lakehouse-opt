@@ -92,12 +92,6 @@ project/
 │   │
 │   ├── raw/
 │   │   └── yellow_taxi/
-│   │       ├── yellow_tripdata_2024-10.parquet
-│   │       ├── yellow_tripdata_2024-11.parquet
-│   │       ├── yellow_tripdata_2024-12.parquet
-│   │       ├── yellow_tripdata_2025-01.parquet
-│   │       ├── yellow_tripdata_2025-02.parquet
-│   │       └── yellow_tripdata_2025-03.parquet
 │   │
 │   ├── cdc/
 │   │   ├── late_updates.parquet
