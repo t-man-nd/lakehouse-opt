@@ -1,0 +1,125 @@
+{
+ "type": "struct",
+ "fields": [
+  {
+   "name": "VendorID",
+   "type": "integer",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "tpep_pickup_datetime",
+   "type": "string",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "tpep_dropoff_datetime",
+   "type": "string",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "passenger_count",
+   "type": "integer",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "trip_distance",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "RatecodeID",
+   "type": "integer",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "store_and_fwd_flag",
+   "type": "string",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "PULocationID",
+   "type": "integer",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "DOLocationID",
+   "type": "integer",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "payment_type",
+   "type": "integer",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "fare_amount",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "extra",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "mta_tax",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "tip_amount",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "tolls_amount",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "improvement_surcharge",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "total_amount",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "congestion_surcharge",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "Airport_fee",
+   "type": "double",
+   "nullable": true,
+   "metadata": {}
+  },
+  {
+   "name": "trip_id",
+   "type": "string",
+   "nullable": true,
+   "metadata": {}
+  }
+ ]
+}
