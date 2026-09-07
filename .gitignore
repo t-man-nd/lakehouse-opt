@@ -14,3 +14,5 @@ data/
 *.parquet
 _delta_log/
 __pycache__/
+
+.vscode/
