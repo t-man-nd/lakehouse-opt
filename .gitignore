@@ -1,0 +1,11 @@
+# Ignore data files
+*.parquet
+*.csv
+data/raw/
+data/bronze/
+data/silver/
+data/gold/
+# Python cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
