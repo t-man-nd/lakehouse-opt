@@ -9,3 +9,8 @@ data/gold/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+data/
+*.parquet
+_delta_log/
+__pycache__/
