@@ -2,6 +2,10 @@
 
 A Delta Lakehouse pipeline built with Apache Spark and Delta Lake using the NYC Yellow Taxi Trip Records dataset.
 
+**B3 implementation:** See [Silver cleaning, B1/B2 review and run instructions](docs/B3_SILVER.md).
+The executable B3 entry point is `python -m src.silver`; runtime dependencies are
+pinned in `requirements.txt`. Later-stage examples below describe planned work.
+
 The project demonstrates the **Medallion Architecture (Bronze → Silver → Gold)** together with Delta Lake capabilities such as **ACID transactions, CDC/MERGE, Schema Evolution, Time Travel**, and performance optimization using **OPTIMIZE and Z-ORDER**.
 
 ---
@@ -68,18 +72,17 @@ Instead, the project uses a limited number of monthly files to provide enough da
 
 ### Selected Data
 
-Example:
+The current reproducible project slice is:
 
 ```text
-2024-10
-2024-11
-2024-12
 2025-01
 2025-02
 2025-03
 ```
 
-The raw dataset is kept unchanged in the `data/raw/` directory.
+The downloaded source Parquet files are kept in `data/raw/`. B1 then samples
+and injects the contract defects into `batch_01.json`, `batch_02.json`, and
+`batch_03.json` in the same directory; those generated files are the B2 input.
 
 ---
 
@@ -91,7 +94,10 @@ project/
 ├── data/
 │   │
 │   ├── raw/
-│   │   └── yellow_taxi/
+│   │   ├── yellow_tripdata_2025-01.parquet
+│   │   ├── yellow_tripdata_2025-02.parquet
+│   │   ├── yellow_tripdata_2025-03.parquet
+│   │   └── batch_01.json … batch_03.json
 │   │
 │   ├── cdc/
 │   │   ├── late_updates.parquet
@@ -110,7 +116,8 @@ project/
 │   ├── bronze.py
 │   ├── silver.py
 │   ├── gold.py
-│   └── pipeline.py
+│   ├── generator.py
+│   └── pipeline.py (planned integration)
 │
 ├── optimization_benchmark.py
 ├── REPORT.md
@@ -445,7 +452,7 @@ The benchmark records:
 ### Step 1 — Install dependencies
 
 ```bash
-pip install pyspark delta-spark
+python -m pip install -r requirements.txt
 ```
 
 ### Step 2 — Place the raw dataset
@@ -453,13 +460,22 @@ pip install pyspark delta-spark
 Place the downloaded NYC Yellow Taxi Parquet files in:
 
 ```text
-data/raw/yellow_taxi/
+data/raw/yellow_tripdata_2025-01.parquet
+data/raw/yellow_tripdata_2025-02.parquet
+data/raw/yellow_tripdata_2025-03.parquet
 ```
 
-### Step 3 — Run the pipeline
+### Step 3 — Generate the B1 JSON and run Bronze/Silver
 
 ```bash
-python src/pipeline.py
+python -m src.generator --output-dir data/raw
+python -m src.bronze
+python -m src.silver \
+  --bronze-dir data/bronze/taxi_trips \
+  --silver-dir data/silver/taxi_trips \
+  --rejected-dir data/silver/silver_rejected \
+  --manifest data/raw/error_manifest.json \
+  --output docs/b3_run.json
 ```
 
 The pipeline creates:

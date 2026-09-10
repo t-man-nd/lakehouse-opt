@@ -16,3 +16,11 @@ _delta_log/
 __pycache__/
 
 .vscode/
+
+.venv/
+.pytest_cache/
+artifacts/
+spark-warehouse/
+*.log
+docs/b3_fixture_run.json
+docs/b3_test_results.xml
