@@ -17,6 +17,8 @@ applies it.
 """
 
 import argparse
+import os
+import sys
 from pathlib import Path
 from typing import Optional
 
@@ -25,18 +27,25 @@ from pyspark.sql import SparkSession, DataFrame
 # DeltaTable is part of the ``delta`` package.  Import lazily so the script can be
 # imported without the package being present (useful for static analysis).
 try:
+    from delta import configure_spark_with_delta_pip
     from delta.tables import DeltaTable
 except ImportError:  # pragma: no cover
+    configure_spark_with_delta_pip = None  # type: ignore
     DeltaTable = None  # type: ignore
 
 
 def _init_spark(app_name: str = "cdc_merge") -> SparkSession:
     """Create a Spark session with Delta support.
 
-    The function mirrors the minimal configuration used elsewhere in the repo
-    (e.g. ``bronze.py``).  ``spark.sql.extensions`` and the Delta catalog are
-    enabled so that ``spark.read.format("delta")`` works out‑of‑the‑box.
+    The function mirrors the configuration used in ``bronze.py``,
+    ensuring delta-spark JAR packages and extensions are properly loaded.
     """
+    os.environ["PYSPARK_PYTHON"] = sys.executable
+    os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
+
+    # Ensure SPARK_HOME does not point to an external or mismatched Spark installation
+    os.environ.pop("SPARK_HOME", None)
+
     builder = (
         SparkSession.builder.appName(app_name)
         .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
@@ -44,7 +53,13 @@ def _init_spark(app_name: str = "cdc_merge") -> SparkSession:
             "spark.sql.catalog.spark_catalog",
             "org.apache.spark.sql.delta.catalog.DeltaCatalog",
         )
+        .config("spark.sql.shuffle.partitions", "2")
     )
+    if configure_spark_with_delta_pip is not None:
+        return configure_spark_with_delta_pip(
+            builder,
+            extra_packages=["io.delta:delta-spark_2.12:3.2.0"]
+        ).getOrCreate()
     return builder.getOrCreate()
 
 
@@ -109,7 +124,7 @@ def _perform_merge(silver_path: Path, cdc_path: Path, spark: SparkSession) -> No
         .execute()
     )
 
-    print(f"✅ MERGE completed – Silver table at {silver_path} updated.")
+    print(f"[SUCCESS] MERGE completed - Silver table at {silver_path} updated.")
 
 
 def parse_args() -> argparse.Namespace:
