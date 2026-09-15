@@ -74,18 +74,19 @@ if __name__ == "__main__":
     # 1. Khai báo Builder cấu hình SparkSession
     builder = SparkSession.builder \
         .appName("Bronze_Ingest_Pipeline") \
+        .master(os.environ.get("SPARK_MASTER", "local[2]")) \
         .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
         .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
         .config("spark.sql.shuffle.partitions", "2")
 
-    # 2. Khởi tạo phiên làm việc Spark cùng gói Delta Spark 3.2.0
-    spark = configure_spark_with_delta_pip(
-        builder, 
-        extra_packages=["io.delta:delta-spark_2.12:3.2.0"]
-    ).getOrCreate()
+    # Resolve the Delta JVM package matching the installed delta-spark version.
+    spark = configure_spark_with_delta_pip(builder).getOrCreate()
 
     # Giảm bớt mức độ log dư thừa trên console
     spark.sparkContext.setLogLevel("WARN")
 
     # 3. Thực thi tiến trình nạp dữ liệu Bronze
-    run_bronze(spark)
+    try:
+        run_bronze(spark)
+    finally:
+        spark.stop()

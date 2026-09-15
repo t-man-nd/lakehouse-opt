@@ -1,0 +1,12 @@
+{
+  "bronze_count": 3060,
+  "silver_count": 2880,
+  "rejected_count": 180,
+  "reject_reason_counts": {
+    "INVALID_PICKUP_DATETIME": 30,
+    "MISSING_LOCATION": 60,
+    "INVALID_FARE": 30,
+    "DUPLICATE_TRIP": 60
+  },
+  "bronze_version": 2
+}
