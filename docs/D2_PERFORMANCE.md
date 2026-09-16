@@ -21,7 +21,13 @@ Task **D2** thiết lập phòng lab thực nghiệm để kiểm chứng 4 tr�
 - **Condition 3 (OPTIMIZE + Z-ORDER 1 cột):** Sắp xếp dữ liệu theo đường cong Hilbert trên cột đơn `PULocationID`.
 - **Condition 4 (OPTIMIZE + Z-ORDER 2 cột):** Sắp xếp đa chiều trên cả không gian (`PULocationID`) và thời gian (`tpep_pickup_datetime`).
 
-### 1.2. Kỹ thuật chống lưu Cache (Anti-Caching Strategy)
+### 1.2. Cơ sở lựa chọn cột Z-ORDER (Column Selection Rationale)
+Nhóm lựa chọn 2 cột `PULocationID` và `tpep_pickup_datetime` làm khóa sắp xếp Z-ORDER dựa trên các nguyên tắc thiết kế Data Lakehouse:
+- **Tần suất lọc cao (Query Predicate Dominance):** Trong phân tích nghiệp vụ taxi thực tế, phần lớn các truy vấn phân tích và Dashboard báo cáo đều tập trung vào hai chiều: *Điểm đón khách ở đâu?* (`PULocationID`) và *Thời điểm phát sinh chuyến đi khi nào?* (`tpep_pickup_datetime`).
+- **Độ phân tán cao (High Cardinality):** `PULocationID` có 265 zone và `tpep_pickup_datetime` có độ phân giải đến từng giây. Đây là các cột có cardinality lý tưởng cho Z-ORDER, giúp phân tách các dải giá trị min/max hẹp giữa các file Parquet để tối đa hóa tỷ lệ loại trừ file (Data Skipping).
+- **Mẫu chỉ mục Không - Thời gian (Geo-Temporal Indexing):** Việc kết hợp 1 cột không gian (Spatial) và 1 cột thời gian (Temporal) là mô hình kinh điển trong tối ưu hóa Big Data, đảm bảo các truy vấn cắt lát dữ liệu (slicing & dicing) theo cả 2 chiều đều được tăng tốc tối ưu.
+
+### 1.3. Kỹ thuật chống lưu Cache (Anti-Caching Strategy)
 Để kết quả đo đạc phản ánh trung thực I/O đĩa và giải thuật Data Skipping thay vì đọc từ bộ nhớ đệm:
 1. **Spark Memory Cache Eviction:** Gọi `spark.catalog.clearCache()` và giải phóng bộ nhớ đệm trước mỗi lượt chạy.
 2. **Thực thi phân tán độc lập:** Không gọi `.cache()` hay `.persist()`, kích hoạt physical scan xuống đĩa bằng `.collect()`.
@@ -31,7 +37,7 @@ Task **D2** thiết lập phòng lab thực nghiệm để kiểm chứng 4 tr�
 
 ## 2. Kết quả thực nghiệm chi tiết (Benchmark Results)
 
-### 2.2. Q1: 1D Filter (PULocationID = 161) (1D)
+### 2.1. Q1: 1D Filter (PULocationID = 161) (1D)
 > *Mô tả:* Point query filtering on the primary Z-Order clustering column (Midtown Manhattan)
 
 | Điều kiện thực nghiệm | Số file | Dung lượng (bytes) | Files Quét / Bỏ qua | Thời gian Median (ms) | Cải thiện so với Baseline |
@@ -41,7 +47,7 @@ Task **D2** thiết lập phòng lab thực nghiệm để kiểm chứng 4 tr�
 | 3. Z-ORDER 1 Col (PULocationID) | 1 | 111,149 | 1 / 0 | 304.00 ms | **+2.81 %** |
 | 4. Z-ORDER 2 Cols (PU + Pickup_ts) | 1 | 111,149 | 1 / 0 | 249.21 ms | **+20.32 %** |
 
-### 2.3. Q2: 2D Filter (PULocationID = 161 AND Pickup in mid-Jan) (2D)
+### 2.2. Q2: 2D Filter (PULocationID = 161 AND Pickup in mid-Jan) (2D)
 > *Mô tả:* Compound query filtering on both spatial (PULocationID) and temporal (tpep_pickup_datetime) columns
 
 | Điều kiện thực nghiệm | Số file | Dung lượng (bytes) | Files Quét / Bỏ qua | Thời gian Median (ms) | Cải thiện so với Baseline |
@@ -100,7 +106,22 @@ Trong quá trình thực nghiệm Benchmark, nhóm đã nhận diện và kiểm
 
 ---
 
-## 5. Kết luận & Khuyến nghị
+## 5. Practical Insights & Đánh đổi kỹ thuật (Engineering Trade-offs)
+
+Từ quá trình thực nghiệm và đối chiếu với nguyên lý vận hành trong môi trường Big Data Production thực tế, nhóm đúc kết các bài học kỹ thuật quan trọng:
+
+1. **Hiệu năng trên Dataset nhỏ vs Quy mô Big Data thực tế:**
+   - Trong môi trường thực nghiệm với tập dữ liệu nhỏ (~3.200 dòng), Z-ORDER 2 cột cho hiệu năng tốt nhất (+20.32% thời gian truy vấn) vì dữ liệu được đóng gói gọn trong bộ nhớ đệm và Row Group Parquet.
+   - Tuy nhiên, trên quy mô **Big Data thực tế (hàng chục triệu - hàng tỷ dòng)**, chi phí tính toán và tài nguyên CPU để sắp xếp Z-Curve là rất lớn (CPU intensive, nặng về shuffle mạng và I/O đĩa - hiện tượng **Write Amplification**).
+2. **Cân nhắc Trade-off giữa Tốc độ Ghi (Write Latency) và Tốc độ Đọc (Read Throughput):**
+   - Nếu bảng dữ liệu có tần suất nạp liên tục (High-velocity streaming/micro-batch), việc chạy Z-ORDER quá thường xuyên sẽ gây nghẽn nghiêm trọng cho pipeline ghi.
+   - Do đó, trong thực tế cần áp dụng chiến lược chạy Z-ORDER định kỳ vào khung giờ thấp điểm (off-peak maintenance window) hoặc chuyển sang sử dụng tính năng **Liquid Clustering (`CLUSTER BY`)** của Delta Lake 3.x/4.x để giảm chi phí viết lại dữ liệu.
+3. **Lời nguyền số chiều (Curse of Dimensionality):**
+   - Không nên Z-ORDER quá nhiều cột (khuyến nghị của Databricks là $\le 2-4$ cột). Càng thêm nhiều chiều vào Z-Curve, tính co cụm cục bộ (locality) của từng cột càng bị loãng, dẫn đến việc Data Skipping kém hiệu quả hơn so với chỉ tập trung vào 1 hoặc 2 cột lọc chính.
+
+---
+
+## 6. Kết luận & Khuyến nghị
 - **OPTIMIZE (Bin-packing)** là bước bắt buộc đầu tiên để giải quyết bài toán Small Files, giảm Metadata footprint từ 16 file xuống còn 1-2 file.
 - **Z-ORDER** phát huy hiệu quả cao nhất trên các cột có độ phân tán cao (High Cardinality) thường xuyên dùng trong mệnh đề `WHERE`.
 - Bảng kết quả định lượng trên là cơ sở kỹ thuật vững chắc để bảo vệ phần kiến trúc Storage Optimization trong đồ án Medallion Lakehouse.
