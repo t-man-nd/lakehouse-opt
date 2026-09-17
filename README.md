@@ -1,584 +1,116 @@
-# SUBJECT: DELTA LAKEHOUSE ARCHITECTURE &amp; STORAGE OPTIMIZATION
+# Delta Lakehouse — NYC Yellow Taxi
 
-A Delta Lakehouse pipeline built with Apache Spark and Delta Lake using the NYC Yellow Taxi Trip Records dataset.
+Checkpoint hiện tại: **đến C3**. Code được tích hợp trên branch
+`feat/c3-time-travel-audit`, xuất phát từ `main@18ac8a0`.
+B1–B3, CDC/MERGE, schema evolution và time travel có runner kiểm chứng;
+Gold, performance benchmark và bài nộp cuối thuộc D1–F1 tiếp theo.
 
-**B3 implementation:** See [Silver cleaning, B1/B2 review and run instructions](docs/B3_SILVER.md).
-The executable B3 entry point is `python -m src.silver`; runtime dependencies are
-pinned in `requirements.txt`. Later-stage examples below describe planned work.
+## Chạy nhanh
 
-The project demonstrates the **Medallion Architecture (Bronze → Silver → Gold)** together with Delta Lake capabilities such as **ACID transactions, CDC/MERGE, Schema Evolution, Time Travel**, and performance optimization using **OPTIMIZE and Z-ORDER**.
-
----
-
-## 1. Project Overview
-
-This project implements a small-scale data lakehouse for NYC Yellow Taxi trip data.
-
-The pipeline transforms raw monthly Parquet files into progressively refined Delta tables:
-
-```text
-NYC Yellow Taxi Dataset
-          │
-          ▼
-        RAW
-          │
-          ▼
-       BRONZE
-   Raw Delta Table
-          │
-          ▼
-       SILVER
- Cleaning + Validation
- Deduplication + CDC
- Schema Evolution
-          │
-          ▼
-        GOLD
- Business Aggregations
-          │
-          ▼
- OPTIMIZE + Z-ORDER
-          │
-          ▼
-      Benchmark
-```
-
-The main objectives are:
-
-* Build a Bronze/Silver/Gold lakehouse pipeline.
-* Demonstrate data cleaning and validation.
-* Demonstrate CDC using Delta `MERGE`.
-* Demonstrate schema evolution.
-* Demonstrate Delta Lake Time Travel and transaction history.
-* Build an analytical Gold layer.
-* Optimize query performance using `OPTIMIZE` and `Z-ORDER`.
-* Compare query performance before and after optimization.
-
----
-
-## 2. Dataset
-
-This project uses the **NYC Yellow Taxi Trip Records** dataset published by the NYC Taxi & Limousine Commission (TLC).
-
-The original dataset is provided as monthly Parquet files. We do **not** use the entire historical dataset from 2009–2026 because that is unnecessary for demonstrating the required lakehouse concepts.
-
-Instead, the project uses a limited number of monthly files to provide enough data for:
-
-* Spark processing
-* Delta Lake operations
-* aggregation
-* small-file optimization
-* query benchmarking
-
-### Selected Data
-
-The current reproducible project slice is:
-
-```text
-2025-01
-2025-02
-2025-03
-```
-
-The downloaded source Parquet files are kept in `data/raw/`. B1 then samples
-and injects the contract defects into `batch_01.json`, `batch_02.json`, and
-`batch_03.json` in the same directory; those generated files are the B2 input.
-
----
-
-## 3. Project Structure
-
-```text
-project/
-│
-├── data/
-│   │
-│   ├── raw/
-│   │   ├── yellow_tripdata_2025-01.parquet
-│   │   ├── yellow_tripdata_2025-02.parquet
-│   │   ├── yellow_tripdata_2025-03.parquet
-│   │   └── batch_01.json … batch_03.json
-│   │
-│   ├── cdc/
-│   │   ├── late_updates.parquet
-│   │   └── schema_evolution.parquet
-│   │
-│   ├── bronze/
-│   │   └── taxi_trips/
-│   │
-│   ├── silver/
-│   │   └── taxi_trips/
-│   │
-│   └── gold/
-│       └── taxi_hourly_metrics/
-│
-├── src/
-│   ├── bronze.py
-│   ├── silver.py
-│   ├── gold.py
-│   ├── generator.py
-│   └── pipeline.py (planned integration)
-│
-├── optimization_benchmark.py
-├── REPORT.md
-├── presentation.pptx
-└── README.md
-```
-
----
-
-## 4. Architecture
-
-### Bronze Layer
-
-Bronze stores the raw data ingested from the source dataset.
-
-```text
-Raw Parquet
-     │
-     ▼
-Bronze Delta Table
-```
-
-Characteristics:
-
-* Raw data is preserved.
-* Data is stored in Delta format.
-* The Bronze layer is append-oriented.
-* Minimal transformation is performed.
-
-The purpose of Bronze is to maintain a reliable historical landing layer before applying business transformations.
-
----
-
-### Silver Layer
-
-Silver contains cleaned and validated trip records.
-
-```text
-Bronze
-   │
-   ├── Validation
-   ├── Data Cleaning
-   ├── Deduplication
-   └── CDC / MERGE
-          │
-          ▼
-       Silver
-```
-
-The Silver layer handles:
-
-* invalid fares
-* missing locations
-* malformed timestamps
-* duplicate records
-* late updates
-* schema changes
-
-Example validation rules:
-
-```text
-fare_amount > 0
-PULocationID IS NOT NULL
-DOLocationID IS NOT NULL
-pickup timestamp IS NOT NULL
-```
-
----
-
-### Gold Layer
-
-Gold contains business-oriented aggregated data.
-
-The main aggregation is performed by:
-
-```text
-PULocationID
-+
-Pickup Hour
-```
-
-Example metrics:
-
-* Average trip fare
-* Average tip percentage
-* Driver earnings
-
-Conceptually:
-
-```text
-Silver
-   │
-   ▼
-Group by PULocationID + Hour
-   │
-   ├── AVG(fare_amount)
-   ├── AVG(tip_percentage)
-   └── SUM(driver_earnings)
-   │
-   ▼
-Gold Delta Table
-```
-
-The Gold layer is intended for analytical queries and downstream reporting.
-
----
-
-## 5. CDC and Delta MERGE
-
-The NYC Taxi dataset is historical data rather than a native CDC stream.
-
-Therefore, a small separate CDC dataset is created to simulate incoming updates.
-
-```text
-data/cdc/
-├── late_updates.parquet
-└── schema_evolution.parquet
-```
-
-### Example
-
-Original Silver record:
-
-```text
-trip_id = 1001
-fare_amount = 15
-tip_amount = 2
-```
-
-Incoming update:
-
-```text
-trip_id = 1001
-fare_amount = 17
-tip_amount = 4
-```
-
-The Delta `MERGE` operation performs:
-
-```text
-IF trip_id exists
-        → UPDATE
-
-IF trip_id does not exist
-        → INSERT
-```
-
-This demonstrates an incremental data ingestion workflow.
-
----
-
-## 6. Schema Evolution
-
-The project also demonstrates schema evolution by introducing a new field:
-
-```text
-surcharge_fee
-```
-
-Initial schema:
-
-```text
-trip_id
-fare_amount
-tip_amount
-```
-
-New schema:
-
-```text
-trip_id
-fare_amount
-tip_amount
-surcharge_fee
-```
-
-Delta Lake schema evolution allows the Silver table to accommodate the new column without rebuilding the entire table.
-
----
-
-## 7. Delta Lake Time Travel
-
-Delta Lake maintains table history through its transaction log.
-
-The project demonstrates Time Travel using:
-
-```python
-.option("versionAsOf", version)
-```
-
-For example:
-
-```text
-Version 0
-    │
-    ├── Initial Silver data
-    │
-Version 1
-    │
-    ├── CDC / MERGE
-    │
-Version 2
-    │
-    └── Schema Evolution
-```
-
-A historical version can be queried to compare the previous state of the table with the current state.
-
-The project also examines:
-
-```text
-_delta_log/
-```
-
-and:
-
-```sql
-DESCRIBE HISTORY delta.`<silver_path>`;
-```
-
-This demonstrates Delta Lake transaction history and auditability.
-
----
-
-## 8. Performance Optimization
-
-The Gold table is optimized for queries filtering by:
-
-```text
-PULocationID
-```
-
-### OPTIMIZE
-
-`OPTIMIZE` is used to compact small files into fewer larger files.
-
-Conceptually:
-
-```text
-Many Small Files
-       │
-       ▼
-   OPTIMIZE
-       │
-       ▼
-Fewer Larger Files
-```
-
-This helps reduce file-management overhead during queries.
-
-### Z-ORDER
-
-The project then applies:
-
-```sql
-OPTIMIZE delta.`<gold_path>`
-ZORDER BY (PULocationID);
-```
-
-Z-ORDER organizes related data to improve data skipping for queries that filter on `PULocationID`.
-
----
-
-## 9. Benchmark
-
-Query performance is measured before and after optimization.
-
-Example query:
-
-```text
-Filter Gold data by PULocationID
-```
-
-The same query is executed multiple times in both conditions.
-
-```text
-BEFORE OPTIMIZATION
-        │
-        ▼
-   Run query N times
-        │
-        ▼
- Average execution time
-        │
-        ▼
- OPTIMIZE + Z-ORDER
-        │
-        ▼
-AFTER OPTIMIZATION
-        │
-        ▼
-   Run same query N times
-        │
-        ▼
- Average execution time
-```
-
-Performance improvement is calculated as:
-
-```text
-Improvement (%)
-=
-(Before - After)
-/
-Before
-× 100
-```
-
-The benchmark records:
-
-* query
-* number of runs
-* execution time for each run
-* average execution time
-* improvement percentage
-
----
-
-## 10. Technologies
-
-* **Python**
-* **Apache Spark / PySpark**
-* **Delta Lake**
-* **Parquet**
-* **SQL**
-* **Git**
-
----
-
-## 11. Running the Project
-
-### Step 1 — Install dependencies
+Môi trường: Python 3.11, Java 17, PySpark 4.0.1, Delta Lake 4.0.1.
 
 ```bash
-python -m pip install -r requirements.txt
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+export JAVA_HOME="/duong/dan/toi/jdk-17"
+export SPARK_LOCAL_IP=127.0.0.1
 ```
 
-### Step 2 — Place the raw dataset
-
-Place the downloaded NYC Yellow Taxi Parquet files in:
-
-```text
-data/raw/yellow_tripdata_2025-01.parquet
-data/raw/yellow_tripdata_2025-02.parquet
-data/raw/yellow_tripdata_2025-03.parquet
-```
-
-### Step 3 — Generate the B1 JSON and run Bronze/Silver
+Trên máy đang làm project, JDK đã có sẵn:
 
 ```bash
-python -m src.generator --output-dir data/raw
-python -m src.bronze
-python -m src.silver \
-  --bronze-dir data/bronze/taxi_trips \
-  --silver-dir data/silver/taxi_trips \
-  --rejected-dir data/silver/silver_rejected \
-  --manifest data/raw/error_manifest.json \
-  --output docs/b3_run.json
+export JAVA_HOME="$PWD/data/.runtime/jdk-17.0.20.1+1/Contents/Home"
+export SPARK_LOCAL_IP=127.0.0.1
 ```
 
-The pipeline creates:
-
-```text
-data/bronze/
-data/silver/
-data/gold/
-```
-
-### Step 4 — Run the benchmark
+Dữ liệu local đã được tải và B1 đã sinh batch. Khi clone repo sang máy mới,
+tải ba Parquet chính thức rồi sinh JSON (data không commit lên Git):
 
 ```bash
-python optimization_benchmark.py
+mkdir -p data/raw
+for month in 2025-01 2025-02 2025-03; do
+  curl --fail --location --output "data/raw/yellow_tripdata_${month}.parquet" \
+    "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_${month}.parquet"
+done
+.venv/bin/python -m src.generator --output-dir data/raw
 ```
 
----
+Đối chiếu [nguồn và checksums](docs/source_data_manifest.md). Generator lấy
+1.000 dòng sạch đầu tiên mỗi tháng và chèn lỗi có kiểm soát; các batch JSON
+được runner kiểm SHA-256 trước khi ingest. Spark lần đầu cần mạng để lấy JAR
+Delta tương ứng; runtime không trộn JAR Delta 3.x/Scala 2.12 với Spark 4.
 
-## 12. Expected Pipeline Output
+```bash
+.venv/bin/python lakehouse_pipeline.py
+```
 
-After successful execution:
+Mỗi lần gọi tạo một thư mục mới `data/c3_demo/<timestamp>/`. Có thể chỉ định
+`--run-dir data/c3_demo/my_run`; thư mục đó phải chưa tồn tại. Runner thực hiện:
+
+1. Kiểm B1 → Bronze 3.060 → Silver 2.880 + quarantine 180.
+2. Sinh CDC seed 42 → một MERGE cập nhật 5, thêm 3 → Silver 2.883.
+3. Append batch 04 có `surcharge_fee` vào hai tầng → Bronze 3.160, Silver 2.983.
+4. Kiểm replay C2, đọc Silver v0/v1/v2, history và JSON log.
+5. VACUUM trên bản copy mới, rồi xác nhận bảng gốc và các version cũ nguyên vẹn.
+
+Đầu vào Silver cho D1 tiếp theo nằm ở `paths.silver` trong `pipeline_run.json`
+của run mới. Run đã nghiệm thu dùng `data/c3_demo/official_20260915_final/silver`;
+đường dẫn `data/silver/taxi_trips` cũ vẫn chỉ là baseline B3.
+
+C3 chủ đích gây lỗi đọc version cũ **trên bản copy đã VACUUM** và lưu exception
+thiếu file. Lỗi này được kiểm tra; chỉ khi tất cả điều kiện đạt mới in `[PASS]`.
+Không chạy lại B3 trên một Silver đã có C1/C2. Bronze B2 là append-only;
+không gọi B2 lần hai trên cùng bảng để “kiểm idempotency”.
+
+## Kết quả và tài liệu
+
+- [REPORT.md](REPORT.md): lý thuyết, kiến trúc, C1–C3 và khung D1–F1.
+- [Demo C3](docs/C3_TIME_TRAVEL.md): lệnh đọc lịch sử và trình bày log/VACUUM.
+- [C1](docs/C1_CDC.md), [C2](docs/C2_SCHEMA_EVOLUTION.md), [B3](docs/B3_SILVER.md).
+- [Evidence tích hợp](docs/evidence/c3/pipeline_run.json), [audit](docs/evidence/c3/audit.json),
+  [VACUUM](docs/evidence/c3/vacuum.json).
+- [Ảnh kết quả](docs/evidence/c3/summary.png), [ảnh log có chú thích](docs/evidence/c3/delta_log.png).
+- [Khung slide A1](docs/SLIDE_OUTLINE.md); PowerPoint cuối làm ở F1.
+
+Evidence gắn với đúng lần chạy và phiên bản code trong
+`docs/evidence/c3/manifest.json`. Các đường dẫn tuyệt đối trong JSON ghi lại
+máy chạy; trên máy khác dùng thư mục run mới của mình.
+
+## Kiểm thử
+
+```bash
+.venv/bin/python -m pytest -q tests
+```
+
+Test dùng bảng tạm riêng: B3 contract/ANSI/quarantine; C1 update/insert/replay,
+schema thiếu cột, duplicate và invalid fare; C2 retry sau Bronze, replay,
+nội dung batch bị đổi, invalid date/fee; guard đường dẫn VACUUM.
+Kiểm chứng VACUUM thật và lịch sử xuyên C1/C2 nằm trong runner dữ liệu TLC.
+
+## Cấu trúc
 
 ```text
-RAW
- │
- └── Monthly NYC Taxi Parquet files
-          │
-          ▼
-BRONZE
- │
- └── Raw Delta table
-          │
-          ▼
-SILVER
- │
- ├── Cleaned records
- ├── Deduplicated records
- ├── CDC updates
- └── Evolved schema
-          │
-          ▼
-GOLD
- │
- └── Hourly location-level metrics
-          │
-          ▼
-OPTIMIZATION
- │
- ├── OPTIMIZE
- └── Z-ORDER(PULocationID)
-          │
-          ▼
-BENCHMARK
- │
- └── Before vs After performance
+config/pipeline.json       Các đường dẫn và kích thước demo
+lakehouse_pipeline.py      Runner đến C3
+src/generator.py           B1: Parquet -> dirty JSON
+src/bronze.py              B2: append raw + metadata
+src/silver.py              B3: typed Silver + quarantine
+src/cdc_merge.py           C1: fixture + MERGE
+src/schema_evolution.py    C2: append schema mới + replay checks
+src/time_travel.py         C3: snapshot/log audit + VACUUM copy
+src/delta_runtime.py       Spark/Delta runtime và helpers
+scripts/render_c3_evidence.py  Xuất evidence và trang minh họa từ kết quả thật
+tests/                    Regression tests
+REPORT.md                 Báo cáo qua C3, khung phần còn lại
+docs/                     Contracts, hướng dẫn, evidence
+data/                     Dữ liệu local, không commit
 ```
 
----
+## Quy ước làm việc
 
-## 13. Demonstration Checklist
-
-The final demonstration should cover:
-
-* [ ] Raw NYC Taxi data
-* [ ] Bronze Delta table
-* [ ] Silver cleaning and validation
-* [ ] Duplicate handling
-* [ ] CDC using `MERGE`
-* [ ] Matched record → UPDATE
-* [ ] Unmatched record → INSERT
-* [ ] Schema evolution with `surcharge_fee`
-* [ ] Delta `_delta_log`
-* [ ] `DESCRIBE HISTORY`
-* [ ] Time Travel using `versionAsOf`
-* [ ] Gold aggregation
-* [ ] `OPTIMIZE`
-* [ ] `ZORDER BY (PULocationID)`
-* [ ] Benchmark before optimization
-* [ ] Benchmark after optimization
-
----
-
-## 14. Learning Objectives
-
-By completing this project, we demonstrate an understanding of:
-
-1. Data Lakehouse architecture
-2. Medallion Architecture
-3. Delta Lake transaction logs
-4. ACID transactions
-5. CDC and `MERGE`
-6. Schema Evolution
-7. Time Travel
-8. Small File Problem
-9. `OPTIMIZE`
-10. Z-ORDER and data skipping
-11. Spark-based data processing
-12. Lakehouse performance benchmarking
-
----
-
-## 15. References
-
-* NYC Taxi & Limousine Commission — Trip Record Data
-* Apache Spark Documentation
-* Delta Lake Documentation
+Tạo branch từ main mới nhất: `feat/<milestone>-<description>`; commit dùng
+`feat(c3): ...`, `fix(c2): ...`, `docs: ...`. Ghi rõ command và evidence
+trong PR. Không commit .venv/Parquet/Delta tables, không đưa số liệu run cũ
+vào báo cáo như thể vừa xác minh. Các module trả dict để tiếp tục tích hợp E1;
+runner hiện chưa phải pipeline JSON → Gold hoàn chỉnh.

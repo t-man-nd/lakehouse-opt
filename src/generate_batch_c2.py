@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
+from datetime import datetime, timedelta
 from pathlib import Path
 
 
@@ -17,6 +17,8 @@ def generate_batch_04(
     num_records: int = 100
 ) -> str:
     """Sinh batch_04.json chua truong moi surcharge_fee."""
+    if num_records < 1:
+        raise ValueError("num_records must be positive")
     out_file = Path(output_path)
     out_file.parent.mkdir(parents=True, exist_ok=True)
 
@@ -25,12 +27,13 @@ def generate_batch_04(
         trip_id = f"trip_202504_{i:06d}"
         minute = (i * 7) % 60
         second = (i * 13) % 60
-        dropoff_min = (minute + 12) % 60
+        pickup = datetime(2025, 4, 1, 9, minute, second)
+        dropoff = pickup + timedelta(minutes=12)
 
         record = {
             "VendorID": 1 if i % 2 == 0 else 2,
-            "tpep_pickup_datetime": f"2025-04-01 09:{minute:02d}:{second:02d}",
-            "tpep_dropoff_datetime": f"2025-04-01 09:{dropoff_min:02d}:{second:02d}",
+            "tpep_pickup_datetime": pickup.strftime("%Y-%m-%d %H:%M:%S"),
+            "tpep_dropoff_datetime": dropoff.strftime("%Y-%m-%d %H:%M:%S"),
             "passenger_count": 1 + (i % 4),
             "trip_distance": round(1.25 * (i % 8 + 1), 2),
             "RatecodeID": 1,

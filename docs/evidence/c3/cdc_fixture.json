@@ -1,0 +1,76 @@
+{
+  "seed": 42,
+  "source_silver_version": 0,
+  "updates": [
+    {
+      "trip_id": "trip_202501_000027",
+      "before": {
+        "fare_amount": 17.7,
+        "tip_amount": 10.0,
+        "total_amount": 32.7
+      },
+      "after": {
+        "fare_amount": 18.95,
+        "tip_amount": 12.0,
+        "total_amount": 35.95
+      }
+    },
+    {
+      "trip_id": "trip_202502_000141",
+      "before": {
+        "fare_amount": 12.8,
+        "tip_amount": 3.71,
+        "total_amount": 22.26
+      },
+      "after": {
+        "fare_amount": 14.05,
+        "tip_amount": 5.71,
+        "total_amount": 25.51
+      }
+    },
+    {
+      "trip_id": "trip_202502_000726",
+      "before": {
+        "fare_amount": 24.7,
+        "tip_amount": 6.09,
+        "total_amount": 36.54
+      },
+      "after": {
+        "fare_amount": 25.95,
+        "tip_amount": 8.09,
+        "total_amount": 39.79
+      }
+    },
+    {
+      "trip_id": "trip_202503_000464",
+      "before": {
+        "fare_amount": 11.4,
+        "tip_amount": 3.43,
+        "total_amount": 20.58
+      },
+      "after": {
+        "fare_amount": 12.65,
+        "tip_amount": 5.43,
+        "total_amount": 23.83
+      }
+    },
+    {
+      "trip_id": "trip_202502_000214",
+      "before": {
+        "fare_amount": 3.7,
+        "tip_amount": 1.89,
+        "total_amount": 11.34
+      },
+      "after": {
+        "fare_amount": 4.95,
+        "tip_amount": 3.89,
+        "total_amount": 14.59
+      }
+    }
+  ],
+  "insert_ids": [
+    "cdc_42_0001",
+    "cdc_42_0002",
+    "cdc_42_0003"
+  ]
+}

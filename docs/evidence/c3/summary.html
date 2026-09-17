@@ -1,0 +1,27 @@
+<!doctype html><html lang="vi"><meta charset="utf-8"><title>Time Travel & Audit — kết quả kiểm chứng</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf2f7;color:#102435;font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1360px;margin:auto;padding:35px 42px}h1{font-size:34px;line-height:1.2;margin:8px 0}h2{font-size:21px;margin:0 0 10px}
+.eyebrow{font-size:13px;letter-spacing:2px;color:#176459;font-weight:700}.sub{color:#4c6274;margin:10px 0 24px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{background:white;padding:23px;border-radius:14px;border:1px solid #dce5ec;margin-bottom:20px;overflow-wrap:anywhere}
+.timeline{display:flex;align-items:center;gap:16px;margin:20px 0}.step{flex:1;background:#103949;color:white;padding:20px;border-radius:12px}.step b{font-size:32px;display:block}
+.arrow{color:#527884;font-size:30px}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #e1e8ec}th{font-size:14px;color:#436071}
+pre{background:#112532;color:#d8eeeb;border-radius:8px;padding:18px;font:13px/1.45 Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0}
+.good{color:#006951;font-weight:700}.note{background:#fff5df;border-left:4px solid #c68415;padding:14px;margin:12px 0}.small{font-size:13px;color:#516877}a{color:#176b8a}p{margin:9px 0}code{font-size:0.9em}
+</style><main><div class="eyebrow">NYC TLC · LAKEHOUSE MIDTERM · CHECKPOINT C3</div>
+<h1>Time Travel & Audit — kết quả kiểm chứng</h1><p class="sub">2026-09-15T15:54:55.980043+00:00</p><div class="timeline"><div class="step">Silver v0 · B3<b>2,880</b>dòng</div><div class="arrow">→</div><div class="step">Silver v1 · MERGE<b>2,883</b>dòng</div><div class="arrow">→</div><div class="step">Silver v2 · Schema evolution<b>2,983</b>dòng</div></div><div class="grid">
+<div class="card"><h2>B1 → B3: đối chiếu dữ liệu</h2><p>Bronze <b>3,060</b> = Silver <b>2,880</b> + quarantine <b>180</b>.</p>
+<p class="small">3 batch từ TLC Jan–Mar 2025; SHA-256 khớp B1 contract. 30 lỗi ngày · 60 location · 30 fare · 60 duplicate.</p>
+<h2>C1: 5 update + 3 insert</h2><p class="small">Trip thật: trip_202501_000027 · cùng một MERGE</p>
+<table><tr><th>Cột</th><th>v0</th><th>v1 / v2</th></tr><tr><td>fare_amount</td><td>17.7</td><td>18.95</td></tr><tr><td>tip_amount</td><td>10.0</td><td>12.0</td></tr><tr><td>total_amount</td><td>32.7</td><td>35.95</td></tr></table></div>
+<div class="card"><h2>C2: surcharge_fee mới</h2><table><tr><th>Bảng</th><th>Old NULL</th><th>New non-NULL</th></tr>
+<tr><td>Bronze v3</td><td>3,060</td><td>100</td></tr><tr><td>Silver v2</td><td>2,883</td><td>100</td></tr></table>
+<p>Append + mergeSchema, không rebuild. Replay cùng batch: 0 dòng mới, version giữ nguyên.</p>
+<h2>DESCRIBE HISTORY · Silver</h2><table><tr><th>Version</th><th>Operation</th><th>Timestamp UTC</th></tr><tr><td>2</td><td>WRITE</td><td>2026-09-15T15:55:10.515Z</td></tr><tr><td>1</td><td>MERGE</td><td>2026-09-15T15:55:06.481Z</td></tr><tr><td>0</td><td>WRITE</td><td>2026-09-15T15:55:02.579Z</td></tr></table>
+<p class="small">Schema change = WRITE + metaData.schemaString trong JSON v2.</p></div></div>
+<div class="card"><h2>C3: VACUUM chỉ trên bản sao vật lý</h2><div class="grid"><div>
+<p>Đã xóa <b>2 file Parquet obsolete</b>. Bản copy v0 lỗi thiếu file như dự kiến; current vẫn 2,983 dòng.</p>
+<div class="note">RETAIN 0 + retentionDurationCheck=false là hack demo-only. Cấu hình đã được khôi phục.</div></div><div>
+<p class="good">PASS · Bảng gốc v0, v1, v2 vẫn đọc đủ dữ liệu</p><p>Hash toàn bộ file gốc và fingerprint từng snapshot không đổi.</p>
+<p class="small">Audit đọc toàn bộ giá trị, không chỉ count từ metadata. Run: 41.897 giây; Spark 4.0.1, Delta 4.0.1.</p></div></div></div>
+<p class="small">Nguồn: <a href="pipeline_run.json">pipeline_run.json</a> · <a href="audit.json">audit.json</a> · <a href="vacuum.json">vacuum.json</a>. Bản trình bày từ run thật, không phải terminal giả. D1–F1 chưa thuộc checkpoint này.</p></main></html>
