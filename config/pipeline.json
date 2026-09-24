@@ -1,0 +1,11 @@
+{
+  "raw_dir": "data/raw",
+  "manifest": "docs/error_manifest.json",
+  "checksums": "docs/checksums.txt",
+  "run_root": "data/c3_demo",
+  "master": "local[2]",
+  "cdc_seed": 42,
+  "cdc_updates": 5,
+  "cdc_inserts": 3,
+  "evolution_rows": 100
+}

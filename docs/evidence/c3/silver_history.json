@@ -1,0 +1,97 @@
+[
+  {
+    "version": 2,
+    "timestamp": "2026-09-15T15:55:10.515Z",
+    "userId": null,
+    "userName": null,
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[]"
+    },
+    "job": null,
+    "notebook": null,
+    "clusterId": null,
+    "readVersion": 1,
+    "isolationLevel": "Serializable",
+    "isBlindAppend": true,
+    "operationMetrics": {
+      "numOutputRows": "100",
+      "numOutputBytes": "11465",
+      "numFiles": "1"
+    },
+    "userMetadata": null,
+    "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+  },
+  {
+    "version": 1,
+    "timestamp": "2026-09-15T15:55:06.481Z",
+    "userId": null,
+    "userName": null,
+    "operation": "MERGE",
+    "operationParameters": {
+      "matchedPredicates": "[{\"predicate\":\"((NOT (fare_amount#13083 <=> fare_amount#12373) OR NOT (tip_amount#13086 <=> tip_amount#12376)) OR NOT (total_amount#13089 <=> total_amount#12379))\",\"actionType\":\"update\"}]",
+      "predicate": "[\"(trip_id#13072 = trip_id#12362)\"]",
+      "notMatchedBySourcePredicates": "[]",
+      "notMatchedPredicates": "[{\"actionType\":\"insert\"}]"
+    },
+    "job": null,
+    "notebook": null,
+    "clusterId": null,
+    "readVersion": 0,
+    "isolationLevel": "Serializable",
+    "isBlindAppend": false,
+    "operationMetrics": {
+      "numOutputRows": "2883",
+      "numTargetBytesAdded": "97978",
+      "numTargetRowsInserted": "3",
+      "numTargetRowsMatchedDeleted": "0",
+      "numTargetFilesAdded": "1",
+      "materializeSourceTimeMs": "42",
+      "numTargetFilesRemoved": "2",
+      "numTargetRowsMatchedUpdated": "5",
+      "executionTimeMs": "531",
+      "numTargetDeletionVectorsUpdated": "0",
+      "numTargetRowsCopied": "2875",
+      "rewriteTimeMs": "273",
+      "numTargetRowsUpdated": "5",
+      "numTargetDeletionVectorsRemoved": "0",
+      "numTargetRowsDeleted": "0",
+      "scanTimeMs": "212",
+      "numSourceRows": "8",
+      "numTargetDeletionVectorsAdded": "0",
+      "numTargetChangeFilesAdded": "0",
+      "numTargetRowsNotMatchedBySourceUpdated": "0",
+      "numTargetRowsNotMatchedBySourceDeleted": "0",
+      "numTargetBytesRemoved": "113085"
+    },
+    "userMetadata": null,
+    "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+  },
+  {
+    "version": 0,
+    "timestamp": "2026-09-15T15:55:02.579Z",
+    "userId": null,
+    "userName": null,
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Overwrite",
+      "partitionBy": "[]"
+    },
+    "job": null,
+    "notebook": null,
+    "clusterId": null,
+    "readVersion": null,
+    "isolationLevel": "Serializable",
+    "isBlindAppend": false,
+    "operationMetrics": {
+      "numOutputRows": "2880",
+      "numRemovedBytes": "0",
+      "numRemovedFiles": "0",
+      "numOutputBytes": "113085",
+      "numFiles": "2"
+    },
+    "userMetadata": null,
+    "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+  }
+]

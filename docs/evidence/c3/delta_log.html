@@ -1,0 +1,61 @@
+<!doctype html><html lang="vi"><meta charset="utf-8"><title>Đọc một Delta commit — log thật, chú thích rõ</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf2f7;color:#102435;font:17px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:1360px;margin:auto;padding:35px 42px}h1{font-size:34px;line-height:1.2;margin:8px 0}h2{font-size:21px;margin:0 0 10px}
+.eyebrow{font-size:13px;letter-spacing:2px;color:#176459;font-weight:700}.sub{color:#4c6274;margin:10px 0 24px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{background:white;padding:23px;border-radius:14px;border:1px solid #dce5ec;margin-bottom:20px;overflow-wrap:anywhere}
+.timeline{display:flex;align-items:center;gap:16px;margin:20px 0}.step{flex:1;background:#103949;color:white;padding:20px;border-radius:12px}.step b{font-size:32px;display:block}
+.arrow{color:#527884;font-size:30px}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid #e1e8ec}th{font-size:14px;color:#436071}
+pre{background:#112532;color:#d8eeeb;border-radius:8px;padding:18px;font:13px/1.45 Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0}
+.good{color:#006951;font-weight:700}.note{background:#fff5df;border-left:4px solid #c68415;padding:14px;margin:12px 0}.small{font-size:13px;color:#516877}a{color:#176b8a}p{margin:9px 0}code{font-size:0.9em}
+</style><main><div class="eyebrow">NYC TLC · LAKEHOUSE MIDTERM · CHECKPOINT C3</div>
+<h1>Đọc một Delta commit — log thật, chú thích rõ</h1><p class="sub">MERGE v1 · Schema evolution v2 · Snapshot và data skipping</p><div class="grid"><div class="card"><h2>1 · MERGE tạo snapshot mới</h2><p class="small">Silver / 00000000000000000001.json</p><pre>{
+  &quot;commitInfo&quot;: {
+    &quot;operation&quot;: &quot;MERGE&quot;,
+    &quot;readVersion&quot;: 0,
+    &quot;isolationLevel&quot;: &quot;Serializable&quot;
+  },
+  &quot;action_counts&quot;: {
+    &quot;commitInfo&quot;: 1,
+    &quot;add&quot;: 1,
+    &quot;remove&quot;: 2
+  }
+}</pre>
+<p><b>add</b> đưa file mới vào snapshot; <b>remove</b> là tombstone, không xóa vật lý ngay. Xem số action thực tế trong khung trên.</p>
+<p class="small">SHA-256: 8efedbf80fd3cde187e5d7bfb05d6b504666141f0ab16257a71b1a99f34ae2d8</p></div>
+<div class="card"><h2>2 · C2 ghi schema cùng batch append</h2><p class="small">Silver / 00000000000000000002.json</p>
+<pre>{
+  &quot;metaData.schemaString.fields&quot;: [
+    {
+      &quot;name&quot;: &quot;surcharge_fee&quot;,
+      &quot;type&quot;: &quot;double&quot;,
+      &quot;nullable&quot;: true,
+      &quot;metadata&quot;: {}
+    }
+  ],
+  &quot;add.dataChange&quot;: true,
+  &quot;action_counts&quot;: {
+    &quot;commitInfo&quot;: 1,
+    &quot;metaData&quot;: 1,
+    &quot;add&quot;: 1
+  }
+}</pre>
+<p>History ghi <b>WRITE</b>; field mới trong <b>metaData</b> chứng minh schema evolution. Không có remove: file cũ giữ nguyên.</p>
+<p class="small">SHA-256: e6968aeb150ad2d9a75c918de7c6bbe443c1fdee9fec4f250ec46c59e533cfb1</p></div></div>
+<div class="card"><h2>3 · add.stats: min/max là cơ sở data skipping</h2><p class="small">File thật: part-00000-38f6c8db-da1c-45da-8bb3-169cc0bf22ec-c000.snappy.parquet</p><div class="grid"><pre>{
+  &quot;numRecords&quot;: 100,
+  &quot;minValues&quot;: {
+    &quot;PULocationID&quot;: 100
+  },
+  &quot;maxValues&quot;: {
+    &quot;PULocationID&quot;: 159
+  },
+  &quot;nullCount&quot;: {
+    &quot;PULocationID&quot;: 0
+  }
+}</pre><div>
+<p>Predicate minh họa: <b>PULocationID = 160</b>.</p>
+<p>160 nằm ngoài [100, 159], nên file này không thể chứa dòng khớp. Audit đã đọc Parquet tương ứng để kiểm tra.</p>
+<div class="note">Đây là bound cấp file, không phải B-tree. Chưa đo files_scanned, bytes_read hoặc tốc độ — các phép đo đó thuộc D2.</div>
+<p class="small">Trong log gốc, stats/schemaString là chuỗi JSON. Trang này parse và trích trường để chú thích; không sửa file gốc.</p></div></div></div>
+<p class="small">Xem nguyên bản: <a href="delta_log/silver/00000000000000000001.json">JSON v1</a> · <a href="delta_log/silver/00000000000000000002.json">JSON v2</a> · <a href="audit.json">audit.json</a>. Các số và hash lấy từ run đã PASS.</p></main></html>

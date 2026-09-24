@@ -1,0 +1,167 @@
+{
+  "scope": "A1-C3; D1-F1 pending",
+  "started_at_utc": "2026-09-15T15:54:55.980043+00:00",
+  "run_dir": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/c3_demo/official_20260915_final",
+  "paths": {
+    "bronze": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/c3_demo/official_20260915_final/bronze",
+    "silver": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/c3_demo/official_20260915_final/silver",
+    "rejected": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/c3_demo/official_20260915_final/silver_rejected"
+  },
+  "runtime": {
+    "spark": "4.0.1",
+    "delta_spark": "4.0.1",
+    "master": "local[2]",
+    "timezone": "UTC"
+  },
+  "b1": {
+    "batch_01.json": {
+      "sha256": "a405d7b2bf0f07cc9a80e4af5bc72accf731f97e46edf4f1a0785d17260fdc51",
+      "rows": 1020
+    },
+    "batch_02.json": {
+      "sha256": "9c7214c7f74a67388cd4d8009efc1a6d1229ce5c3ffe0f848b724f642a631410",
+      "rows": 1020
+    },
+    "batch_03.json": {
+      "sha256": "2d5033f0175b7328cc56c8c34e4b2d6fedeeb0eca8a7cea5289b3084c89c35f2",
+      "rows": 1020
+    }
+  },
+  "b2": {
+    "bronze_count": 3060
+  },
+  "b3": {
+    "bronze_count": 3060,
+    "silver_count": 2880,
+    "rejected_count": 180,
+    "reject_reason_counts": {
+      "INVALID_PICKUP_DATETIME": 30,
+      "MISSING_LOCATION": 60,
+      "INVALID_FARE": 30,
+      "DUPLICATE_TRIP": 60
+    },
+    "bronze_version": 2
+  },
+  "c1": {
+    "before_version": 0,
+    "after_version": 1,
+    "before_count": 2880,
+    "source_count": 8,
+    "matched_count": 5,
+    "updated_count": 5,
+    "inserted_count": 3,
+    "after_count": 2883,
+    "operation_metrics": {
+      "numOutputRows": "2883",
+      "numTargetBytesAdded": "97978",
+      "numTargetRowsInserted": "3",
+      "numTargetRowsMatchedDeleted": "0",
+      "numTargetFilesAdded": "1",
+      "materializeSourceTimeMs": "42",
+      "numTargetFilesRemoved": "2",
+      "numTargetRowsMatchedUpdated": "5",
+      "executionTimeMs": "531",
+      "numTargetDeletionVectorsUpdated": "0",
+      "numTargetRowsCopied": "2875",
+      "rewriteTimeMs": "273",
+      "numTargetRowsUpdated": "5",
+      "numTargetDeletionVectorsRemoved": "0",
+      "numTargetRowsDeleted": "0",
+      "scanTimeMs": "212",
+      "numSourceRows": "8",
+      "numTargetDeletionVectorsAdded": "0",
+      "numTargetChangeFilesAdded": "0",
+      "numTargetRowsNotMatchedBySourceUpdated": "0",
+      "numTargetRowsNotMatchedBySourceDeleted": "0",
+      "numTargetBytesRemoved": "113085"
+    }
+  },
+  "c2": {
+    "bronze": {
+      "before_version": 2,
+      "after_version": 3,
+      "bronze_count_before": 3060,
+      "bronze_count_after": 3160,
+      "new_rows": 100,
+      "replayed": false,
+      "has_col_before": false,
+      "has_col_after": true
+    },
+    "silver": {
+      "before_version": 1,
+      "after_version": 2,
+      "silver_count_before": 2883,
+      "silver_count_after": 2983,
+      "clean_new_rows": 100,
+      "replayed": false,
+      "has_col_before": false,
+      "has_col_after": true,
+      "bronze_version": 3
+    },
+    "evidence": {
+      "BRONZE": {
+        "total_rows": 3160,
+        "null_rows": 3060,
+        "not_null_rows": 100,
+        "latest_version": 3
+      },
+      "SILVER": {
+        "total_rows": 2983,
+        "null_rows": 2883,
+        "not_null_rows": 100,
+        "latest_version": 2
+      }
+    }
+  },
+  "c2_replay": {
+    "bronze": {
+      "before_version": 3,
+      "after_version": 3,
+      "bronze_count_before": 3160,
+      "bronze_count_after": 3160,
+      "new_rows": 0,
+      "replayed": true,
+      "has_col_before": true,
+      "has_col_after": true
+    },
+    "silver": {
+      "before_version": 2,
+      "after_version": 2,
+      "silver_count_before": 2983,
+      "silver_count_after": 2983,
+      "clean_new_rows": 0,
+      "replayed": true,
+      "has_col_before": true,
+      "has_col_after": true,
+      "bronze_version": 3
+    }
+  },
+  "c3_audit": {
+    "versions": {
+      "baseline": 0,
+      "merge": 1,
+      "evolution": 2,
+      "bronze_before_evolution": 2,
+      "bronze_evolution": 3
+    },
+    "snapshot_counts": {
+      "baseline": 2880,
+      "merge": 2883,
+      "evolution": 2983
+    },
+    "audit_file": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/c3_demo/official_20260915_final/evidence/audit.json"
+  },
+  "c3_vacuum": {
+    "deleted_data_file_count": 2,
+    "copy_old_read_failed_as_expected": true,
+    "original_versions_readable": [
+      "0",
+      "1",
+      "2"
+    ],
+    "original_files_unchanged": true,
+    "retention_check_restored": true
+  },
+  "elapsed_seconds": 41.897,
+  "status": "passed"
+}

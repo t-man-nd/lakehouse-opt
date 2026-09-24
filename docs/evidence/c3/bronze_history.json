@@ -1,0 +1,98 @@
+[
+  {
+    "version": 3,
+    "timestamp": "2026-09-15T15:55:08.829Z",
+    "userId": null,
+    "userName": null,
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[]"
+    },
+    "job": null,
+    "notebook": null,
+    "clusterId": null,
+    "readVersion": 2,
+    "isolationLevel": "Serializable",
+    "isBlindAppend": true,
+    "operationMetrics": {
+      "numOutputRows": "100",
+      "numOutputBytes": "12059",
+      "numFiles": "1"
+    },
+    "userMetadata": null,
+    "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+  },
+  {
+    "version": 2,
+    "timestamp": "2026-09-15T15:55:00.269Z",
+    "userId": null,
+    "userName": null,
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[]"
+    },
+    "job": null,
+    "notebook": null,
+    "clusterId": null,
+    "readVersion": 1,
+    "isolationLevel": "Serializable",
+    "isBlindAppend": true,
+    "operationMetrics": {
+      "numOutputRows": "1020",
+      "numOutputBytes": "40232",
+      "numFiles": "1"
+    },
+    "userMetadata": null,
+    "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+  },
+  {
+    "version": 1,
+    "timestamp": "2026-09-15T15:54:59.779Z",
+    "userId": null,
+    "userName": null,
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[]"
+    },
+    "job": null,
+    "notebook": null,
+    "clusterId": null,
+    "readVersion": 0,
+    "isolationLevel": "Serializable",
+    "isBlindAppend": true,
+    "operationMetrics": {
+      "numOutputRows": "1020",
+      "numOutputBytes": "39696",
+      "numFiles": "1"
+    },
+    "userMetadata": null,
+    "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+  },
+  {
+    "version": 0,
+    "timestamp": "2026-09-15T15:54:58.561Z",
+    "userId": null,
+    "userName": null,
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[]"
+    },
+    "job": null,
+    "notebook": null,
+    "clusterId": null,
+    "readVersion": null,
+    "isolationLevel": "Serializable",
+    "isBlindAppend": true,
+    "operationMetrics": {
+      "numOutputRows": "1020",
+      "numOutputBytes": "40371",
+      "numFiles": "1"
+    },
+    "userMetadata": null,
+    "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+  }
+]
