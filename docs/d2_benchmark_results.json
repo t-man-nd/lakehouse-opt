@@ -1,0 +1,312 @@
+{
+  "timestamp": "2026-09-16T07:02:47.541568+00:00",
+  "benchmark_metadata": {
+    "spark_version": "4.0.1",
+    "delta_version": "4.0.1",
+    "target_layer": "Silver (NYC Yellow Taxi)",
+    "iterations": 3,
+    "interleaving": "Enabled: (1,2,3,4) * N rounds",
+    "anti_cache": "Catalog cache clear + No DataFrame caching + Altered table paths"
+  },
+  "conditions": {
+    "cond1_baseline": {
+      "id": "cond1_baseline",
+      "name": "1. Baseline (Fragmented)",
+      "description": "Raw unoptimized Silver table fragmented into 16 files",
+      "table_path": "C:\\Users\\admin\\Downloads\\D2_final_submission\\data\\benchmark\\silver_baseline",
+      "num_files": 16,
+      "total_size_bytes": 275046,
+      "avg_file_size_bytes": 17190.38
+    },
+    "cond2_compacted": {
+      "id": "cond2_compacted",
+      "name": "2. OPTIMIZE (Compacted)",
+      "description": "Compacted via Delta OPTIMIZE bin-packing into 1 file(s)",
+      "table_path": "C:\\Users\\admin\\Downloads\\D2_final_submission\\data\\benchmark\\silver_compacted",
+      "num_files": 1,
+      "total_size_bytes": 111250,
+      "avg_file_size_bytes": 111250.0
+    },
+    "cond3_zorder_1col": {
+      "id": "cond3_zorder_1col",
+      "name": "3. Z-ORDER 1 Col (PULocationID)",
+      "description": "Clustered by PULocationID using Delta Z-ORDER across 1 files",
+      "table_path": "C:\\Users\\admin\\Downloads\\D2_final_submission\\data\\benchmark\\silver_zorder_1col",
+      "num_files": 1,
+      "total_size_bytes": 111149,
+      "avg_file_size_bytes": 111149.0
+    },
+    "cond4_zorder_2col": {
+      "id": "cond4_zorder_2col",
+      "name": "4. Z-ORDER 2 Cols (PU + Pickup_ts)",
+      "description": "Clustered multidimensionally on (PULocationID, tpep_pickup_datetime) into 1 files",
+      "table_path": "C:\\Users\\admin\\Downloads\\D2_final_submission\\data\\benchmark\\silver_zorder_2col",
+      "num_files": 1,
+      "total_size_bytes": 111149,
+      "avg_file_size_bytes": 111149.0
+    }
+  },
+  "results": {
+    "Q1_1D_PointLookup": {
+      "query_name": "Q1: 1D Filter (PULocationID = 161)",
+      "dimension": "1D",
+      "description": "Point query filtering on the primary Z-Order clustering column (Midtown Manhattan)",
+      "conditions": {
+        "cond1_baseline": {
+          "condition_name": "1. Baseline (Fragmented)",
+          "times_ms": [
+            688.08,
+            312.78,
+            294.2
+          ],
+          "median_ms": 312.78,
+          "mean_ms": 431.69,
+          "min_ms": 294.2,
+          "max_ms": 688.08,
+          "stdev_ms": 222.24,
+          "pct_improvement": 0.0,
+          "num_files": 16,
+          "total_size_bytes": 275046,
+          "files_scanned": 16,
+          "files_skipped": 0,
+          "bytes_read": 275046,
+          "bytes_skipped": 0
+        },
+        "cond2_compacted": {
+          "condition_name": "2. OPTIMIZE (Compacted)",
+          "times_ms": [
+            384.99,
+            269.4,
+            243.01
+          ],
+          "median_ms": 269.4,
+          "mean_ms": 299.13,
+          "min_ms": 243.01,
+          "max_ms": 384.99,
+          "stdev_ms": 75.52,
+          "pct_improvement": 13.87,
+          "num_files": 1,
+          "total_size_bytes": 111250,
+          "files_scanned": 1,
+          "files_skipped": 0,
+          "bytes_read": 111250,
+          "bytes_skipped": 0
+        },
+        "cond3_zorder_1col": {
+          "condition_name": "3. Z-ORDER 1 Col (PULocationID)",
+          "times_ms": [
+            407.35,
+            304.0,
+            244.78
+          ],
+          "median_ms": 304.0,
+          "mean_ms": 318.71,
+          "min_ms": 244.78,
+          "max_ms": 407.35,
+          "stdev_ms": 82.28,
+          "pct_improvement": 2.81,
+          "num_files": 1,
+          "total_size_bytes": 111149,
+          "files_scanned": 1,
+          "files_skipped": 0,
+          "bytes_read": 111149,
+          "bytes_skipped": 0
+        },
+        "cond4_zorder_2col": {
+          "condition_name": "4. Z-ORDER 2 Cols (PU + Pickup_ts)",
+          "times_ms": [
+            416.82,
+            245.54,
+            249.21
+          ],
+          "median_ms": 249.21,
+          "mean_ms": 303.86,
+          "min_ms": 245.54,
+          "max_ms": 416.82,
+          "stdev_ms": 97.85,
+          "pct_improvement": 20.32,
+          "num_files": 1,
+          "total_size_bytes": 111149,
+          "files_scanned": 1,
+          "files_skipped": 0,
+          "bytes_read": 111149,
+          "bytes_skipped": 0
+        }
+      }
+    },
+    "Q2_2D_LocationAndTime": {
+      "query_name": "Q2: 2D Filter (PULocationID = 161 AND Pickup in mid-Jan)",
+      "dimension": "2D",
+      "description": "Compound query filtering on both spatial (PULocationID) and temporal (tpep_pickup_datetime) columns",
+      "conditions": {
+        "cond1_baseline": {
+          "condition_name": "1. Baseline (Fragmented)",
+          "times_ms": [
+            449.02,
+            334.94,
+            320.82
+          ],
+          "median_ms": 334.94,
+          "mean_ms": 368.26,
+          "min_ms": 320.82,
+          "max_ms": 449.02,
+          "stdev_ms": 70.3,
+          "pct_improvement": 0.0,
+          "num_files": 16,
+          "total_size_bytes": 275046,
+          "files_scanned": 16,
+          "files_skipped": 0,
+          "bytes_read": 275046,
+          "bytes_skipped": 0
+        },
+        "cond2_compacted": {
+          "condition_name": "2. OPTIMIZE (Compacted)",
+          "times_ms": [
+            271.91,
+            259.35,
+            275.88
+          ],
+          "median_ms": 271.91,
+          "mean_ms": 269.05,
+          "min_ms": 259.35,
+          "max_ms": 275.88,
+          "stdev_ms": 8.63,
+          "pct_improvement": 18.82,
+          "num_files": 1,
+          "total_size_bytes": 111250,
+          "files_scanned": 1,
+          "files_skipped": 0,
+          "bytes_read": 111250,
+          "bytes_skipped": 0
+        },
+        "cond3_zorder_1col": {
+          "condition_name": "3. Z-ORDER 1 Col (PULocationID)",
+          "times_ms": [
+            279.53,
+            267.58,
+            301.74
+          ],
+          "median_ms": 279.53,
+          "mean_ms": 282.95,
+          "min_ms": 267.58,
+          "max_ms": 301.74,
+          "stdev_ms": 17.33,
+          "pct_improvement": 16.54,
+          "num_files": 1,
+          "total_size_bytes": 111149,
+          "files_scanned": 1,
+          "files_skipped": 0,
+          "bytes_read": 111149,
+          "bytes_skipped": 0
+        },
+        "cond4_zorder_2col": {
+          "condition_name": "4. Z-ORDER 2 Cols (PU + Pickup_ts)",
+          "times_ms": [
+            264.51,
+            276.0,
+            267.43
+          ],
+          "median_ms": 267.43,
+          "mean_ms": 269.31,
+          "min_ms": 264.51,
+          "max_ms": 276.0,
+          "stdev_ms": 5.97,
+          "pct_improvement": 20.16,
+          "num_files": 1,
+          "total_size_bytes": 111149,
+          "files_scanned": 1,
+          "files_skipped": 0,
+          "bytes_read": 111149,
+          "bytes_skipped": 0
+        }
+      }
+    },
+    "Q3_2D_RangeAggregation": {
+      "query_name": "Q3: 2D Range & GroupBy (PULocationID in [130..170] AND DOLocationID in [200..240])",
+      "dimension": "2D",
+      "description": "Spatial range query testing multi-zone aggregations and range skipping",
+      "conditions": {
+        "cond1_baseline": {
+          "condition_name": "1. Baseline (Fragmented)",
+          "times_ms": [
+            631.81,
+            346.24,
+            323.3
+          ],
+          "median_ms": 346.24,
+          "mean_ms": 433.78,
+          "min_ms": 323.3,
+          "max_ms": 631.81,
+          "stdev_ms": 171.88,
+          "pct_improvement": 0.0,
+          "num_files": 16,
+          "total_size_bytes": 275046,
+          "files_scanned": 16,
+          "files_skipped": 0,
+          "bytes_read": 275046,
+          "bytes_skipped": 0
+        },
+        "cond2_compacted": {
+          "condition_name": "2. OPTIMIZE (Compacted)",
+          "times_ms": [
+            320.5,
+            283.94,
+            276.28
+          ],
+          "median_ms": 283.94,
+          "mean_ms": 293.57,
+          "min_ms": 276.28,
+          "max_ms": 320.5,
+          "stdev_ms": 23.63,
+          "pct_improvement": 17.99,
+          "num_files": 1,
+          "total_size_bytes": 111250,
+          "files_scanned": 1,
+          "files_skipped": 0,
+          "bytes_read": 111250,
+          "bytes_skipped": 0
+        },
+        "cond3_zorder_1col": {
+          "condition_name": "3. Z-ORDER 1 Col (PULocationID)",
+          "times_ms": [
+            307.55,
+            297.22,
+            274.79
+          ],
+          "median_ms": 297.22,
+          "mean_ms": 293.19,
+          "min_ms": 274.79,
+          "max_ms": 307.55,
+          "stdev_ms": 16.75,
+          "pct_improvement": 14.16,
+          "num_files": 1,
+          "total_size_bytes": 111149,
+          "files_scanned": 1,
+          "files_skipped": 0,
+          "bytes_read": 111149,
+          "bytes_skipped": 0
+        },
+        "cond4_zorder_2col": {
+          "condition_name": "4. Z-ORDER 2 Cols (PU + Pickup_ts)",
+          "times_ms": [
+            281.83,
+            270.09,
+            288.46
+          ],
+          "median_ms": 281.83,
+          "mean_ms": 280.13,
+          "min_ms": 270.09,
+          "max_ms": 288.46,
+          "stdev_ms": 9.3,
+          "pct_improvement": 18.6,
+          "num_files": 1,
+          "total_size_bytes": 111149,
+          "files_scanned": 1,
+          "files_skipped": 0,
+          "bytes_read": 111149,
+          "bytes_skipped": 0
+        }
+      }
+    }
+  }
+}
