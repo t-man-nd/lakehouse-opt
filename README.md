@@ -1,9 +1,10 @@
 # Delta Lakehouse — NYC Yellow Taxi
 
-Checkpoint hiện tại: **đến C3**. Code được tích hợp trên branch
-`feat/c3-time-travel-audit`, xuất phát từ `main@18ac8a0`.
-B1–B3, CDC/MERGE, schema evolution và time travel có runner kiểm chứng;
-Gold, performance benchmark và bài nộp cuối thuộc D1–F1 tiếp theo.
+`main` đã tích hợp các branch B1–B3, C1–C3, Gold (D1) và Performance Lab (D2)
+ngày 24/09/2026. Runner `lakehouse_pipeline.py` vẫn kết thúc ở C3;
+Gold và benchmark có entry point riêng bên dưới. Việc merge không thay thế
+nghiệm thu E1/E2/F1 hoặc rà soát phương pháp benchmark.
+Xem [biên bản tích hợp và kiểm thử](docs/MERGE_VALIDATION.md).
 
 ## Chạy nhanh
 
@@ -54,7 +55,7 @@ Mỗi lần gọi tạo một thư mục mới `data/c3_demo/<timestamp>/`. Có 
 4. Kiểm replay C2, đọc Silver v0/v1/v2, history và JSON log.
 5. VACUUM trên bản copy mới, rồi xác nhận bảng gốc và các version cũ nguyên vẹn.
 
-Đầu vào Silver cho D1 tiếp theo nằm ở `paths.silver` trong `pipeline_run.json`
+Đầu vào Silver cho D1/D2 nằm ở `paths.silver` trong `pipeline_run.json`
 của run mới. Run đã nghiệm thu dùng `data/c3_demo/official_20260915_final/silver`;
 đường dẫn `data/silver/taxi_trips` cũ vẫn chỉ là baseline B3.
 
@@ -63,11 +64,38 @@ thiếu file. Lỗi này được kiểm tra; chỉ khi tất cả điều kiệ
 Không chạy lại B3 trên một Silver đã có C1/C2. Bronze B2 là append-only;
 không gọi B2 lần hai trên cùng bảng để “kiểm idempotency”.
 
+## Gold và Performance Lab sau C3
+
+Dùng đường dẫn Silver của run vừa tạo. Ví dụ dưới đây dùng run C3 đã có trên
+máy hiện tại; trên máy mới thay `--silver-dir` bằng `paths.silver` của mình:
+
+```bash
+.venv/bin/python -m src.gold \
+  --silver-dir data/c3_demo/official_20260915_final/silver \
+  --gold-dir data/gold/after_c3 \
+  --output data/gold/after_c3_run.json
+
+.venv/bin/python optimization_benchmark.py \
+  --silver-dir data/c3_demo/official_20260915_final/silver \
+  --benchmark-dir data/benchmark/after_c3 \
+  --iterations 3 \
+  --output data/benchmark/after_c3_results.json \
+  --report data/benchmark/after_c3_report.md
+```
+
+Benchmark hiện chuẩn bị bốn điều kiện: baseline, compaction, Z-ORDER một cột,
+Z-ORDER hai cột. Chưa có điều kiện `CLUSTER BY + OPTIMIZE FULL` trong code được
+merge. Các trường `files_scanned`/`bytes_read` hiện là ước lượng từ log, không
+phải số đo I/O của Spark. Dùng thư mục benchmark riêng: script tạo lại các bảng
+thí nghiệm ở thư mục đó. Không đặt đầu vào Silver trong thư mục benchmark.
+
 ## Kết quả và tài liệu
 
 - [REPORT.md](REPORT.md): lý thuyết, kiến trúc, C1–C3 và khung D1–F1.
 - [Demo C3](docs/C3_TIME_TRAVEL.md): lệnh đọc lịch sử và trình bày log/VACUUM.
 - [C1](docs/C1_CDC.md), [C2](docs/C2_SCHEMA_EVOLUTION.md), [B3](docs/B3_SILVER.md).
+- [Gold D1](docs/D1_GOLD.md), [Performance D2](docs/D2_PERFORMANCE.md).
+- [Khung report của nhóm](docs/REPORT.md) và [biên bản merge](docs/MERGE_VALIDATION.md).
 - [Evidence tích hợp](docs/evidence/c3/pipeline_run.json), [audit](docs/evidence/c3/audit.json),
   [VACUUM](docs/evidence/c3/vacuum.json).
 - [Ảnh kết quả](docs/evidence/c3/summary.png), [ảnh log có chú thích](docs/evidence/c3/delta_log.png).
@@ -86,6 +114,8 @@ máy chạy; trên máy khác dùng thư mục run mới của mình.
 Test dùng bảng tạm riêng: B3 contract/ANSI/quarantine; C1 update/insert/replay,
 schema thiếu cột, duplicate và invalid fare; C2 retry sau Bronze, replay,
 nội dung batch bị đổi, invalid date/fee; guard đường dẫn VACUUM.
+Các branch D1/D2 bổ sung test công thức Gold, rebuild, thống kê benchmark và
+ước lượng data skipping.
 Kiểm chứng VACUUM thật và lịch sử xuyên C1/C2 nằm trong runner dữ liệu TLC.
 
 ## Cấu trúc
@@ -100,6 +130,8 @@ src/cdc_merge.py           C1: fixture + MERGE
 src/schema_evolution.py    C2: append schema mới + replay checks
 src/time_travel.py         C3: snapshot/log audit + VACUUM copy
 src/delta_runtime.py       Spark/Delta runtime và helpers
+src/gold.py                D1: Gold aggregation từ Silver
+optimization_benchmark.py  D2: compaction, Z-ORDER và benchmark
 scripts/render_c3_evidence.py  Xuất evidence và trang minh họa từ kết quả thật
 tests/                    Regression tests
 REPORT.md                 Báo cáo qua C3, khung phần còn lại

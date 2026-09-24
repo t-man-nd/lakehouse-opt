@@ -1,5 +1,11 @@
 # Delta Lakehouse Architecture & Storage Optimization
 
+> Cập nhật tích hợp 24/09/2026: `main` đã nhận thêm code, tests và tài liệu
+> [D1](docs/D1_GOLD.md), [D2](docs/D2_PERFORMANCE.md). Các mục bên dưới ghi lại
+> checkpoint C3 ngày 15/09; số liệu lịch sử được giữ nguyên. Xem
+> [biên bản merge](docs/MERGE_VALIDATION.md) để biết kiểm chứng mới và giới hạn
+> còn lại; [docs/REPORT.md](docs/REPORT.md) là khung báo cáo tổng hợp do nhóm bổ sung.
+
 ## 1. Phạm vi và đối chiếu rubric
 
 Checkpoint này triển khai đến **C3** trên PySpark 4.0.1 / Delta Lake 4.0.1,

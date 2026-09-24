@@ -1,0 +1,84 @@
+{
+  "validated_merge_commit": "e75315e84904598b82c1a3dcca1502222280c3c2",
+  "note": "Product code and tests at this merge were validated. Later documentation-only commits may follow.",
+  "merged_remote_heads": {
+    "origin/feat/c1-cdc-merge": "8f52b733b3d5fe8f97b736679330251de7886b99",
+    "origin/feat/c3-time-travel-audit": "29b67684cd887049ab552c2c41d867d019251745",
+    "origin/feat/d1_gold": "3fdea78e6f51c66385fa46fde647d6266954fa18",
+    "origin/feat/d2_performance": "5df8609acb56cb344dd95d98dd84fd60a53f7695",
+    "origin/feature/b1-data-generator": "7e6895767956ca8a80b01544be894ac0ba0477cb",
+    "origin/main": "9d4a491d73494874be42e520f5aa61a7e94e4b57",
+    "origin/silver-b3": "3110c3f7a3d1cd77ba921b586addbd3b6dbd8948"
+  },
+  "tests": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pipeline_status": "passed",
+  "gold": {
+    "silver_rows": 2983,
+    "gold_trip_count_sum": 2983,
+    "tip_pct_per_trip_mean": 22.4792,
+    "tip_pct_ratio_of_sums": 19.7772,
+    "tip_pct_definition_gap_pp": 2.702,
+    "total_revenue": 74707.43,
+    "driver_earnings": 63373.46
+  },
+  "benchmark": {
+    "conditions": 4,
+    "queries": 3,
+    "iterations": 3,
+    "timed_executions": 36,
+    "all_layouts_preserve_silver_values": {
+      "cond1_baseline": {
+        "rows": 2983,
+        "same_values_as_silver": true,
+        "num_files": 16
+      },
+      "cond2_compacted": {
+        "rows": 2983,
+        "same_values_as_silver": true,
+        "num_files": 1
+      },
+      "cond3_zorder_1col": {
+        "rows": 2983,
+        "same_values_as_silver": true,
+        "num_files": 1
+      },
+      "cond4_zorder_2col": {
+        "rows": 2983,
+        "same_values_as_silver": true,
+        "num_files": 1
+      }
+    },
+    "scan_metrics_are_log_estimates": true
+  },
+  "source_sha256": {
+    "lakehouse_pipeline.py": "f51ffbdd6077eba8dcb679864c4168bc0611f46dd602d7eebe05b434c95d8e1a",
+    "optimization_benchmark.py": "d680e5e762a0cd7fc937ab77f8d4e09eb256e30cf3eff7a2fedb25e64cef0330",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/bronze.py": "5cc4358264bd654ac597a8da660b05dac3d98199f4d1b4b66320de0a01e5a905",
+    "src/cdc_merge.py": "612ed9155619f9ce117c8634d0328c97fd526680e012ba25bc431016739b3642",
+    "src/delta_runtime.py": "1a3bc273f864b514d096bcbb3bd6aa7321911b68e2f42115f474cdfd2e2219b5",
+    "src/generate_batch_c2.py": "8399bf5422197ab65646679458dd9f77920812467b8231f6593843fdd2d90955",
+    "src/generator.py": "f00a473668c6d405a7bcd88bc421bd97434a9dda59d652fd09559a88a66a0bef",
+    "src/gold.py": "550c39d3bf7c6cea90888f78fe9b52350d52ef15bc9dfe31292423837e0df0ab",
+    "src/schema_evolution.py": "1fcc520956e6a03d73b790b4d45ae8afc00d8dea7c791ed1852aa06aff5990b9",
+    "src/silver.py": "d7dcb49831feeb4c8b67b4a097d802b73c54d1eaa6de0b6134a66e1aadeed94d",
+    "src/time_travel.py": "4dc2878f35ba91ecaeefc0061239589a8e6dfc0c35fe9e4a7fcf7b297491dc2c",
+    "tests/test_benchmark.py": "7d3dcb5a7659c3748ff561424649ff7e8f53899a0ace6ab673718b81307957e7",
+    "tests/test_delta_core.py": "28332c578b14b42f76c66755ac854f51d76597fd69bcde75ae27f3595856ef4a",
+    "tests/test_gold.py": "b1afad9a552821d26975615caf359c572d02ab0ae9ca2738f47bceacd422926a",
+    "tests/test_silver.py": "2001730e37c3195cf08b98111547445b45d8da5de468d754c1f5534eccccfd81",
+    "requirements.txt": "50e43854e5b223747603a28f636d685a1b6cb0a9f03a5cce990ccc0897ee907d",
+    "requirements-dev.txt": "b2cf40cfde63ffcd654d233d12aebeb06ea2092d1cbd22aa25c34efacfcfd804"
+  },
+  "evidence_sha256": {
+    "benchmark_run.json": "61c880e1227acb0303e0fba5e94506771b565f9c9e0f315aad7284651fdaec35",
+    "gold_run.json": "18b955dcbbe539ba1db6d6ce27375d087e0a7023c2b83fd6992aba0ab283baf9",
+    "pipeline_run.json": "52beb84caa535446aff6c8ff5d162d9470b9296095164dd7f63caeaf2d6b53f4",
+    "tests.xml": "2f6aa25e8eddef045eb94b1654b4434c940a3183ad1070e1d2bd7f5e04377da2"
+  }
+}

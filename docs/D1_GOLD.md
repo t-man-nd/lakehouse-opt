@@ -1,5 +1,9 @@
 # D1 — Gold aggregates
 
+> Integration note (2026-09-24): the numbers below describe the B3 baseline
+> of 2,880 rows. They are not expected totals after C1/C2, where Silver has
+> 2,983 rows. Use `--silver-dir` explicitly and see [merge validation](MERGE_VALIDATION.md).
+
 **Depends on:** B3 (Silver). Re-run after C1 and C2.
 **Module:** `src/gold.py` · **Tests:** `tests/test_gold.py`
 

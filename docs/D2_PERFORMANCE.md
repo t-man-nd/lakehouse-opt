@@ -1,5 +1,12 @@
 # D2 — Performance Lab: Storage Optimization & Query Benchmarking
 
+> Ghi chú tích hợp 24/09/2026: giữ nguyên báo cáo và số đo từ branch D2 ngày 16/09.
+> Đây chưa phải kết quả chạy trên Silver sau C3 của lần merge. Các cột files/bytes
+> bên dưới được ước lượng từ min/max trong Delta log, không đo I/O thực tế của Spark.
+> Việc đổi đường dẫn và clearCache không xóa OS page cache; các diễn giải về lợi ích
+> Z-ORDER cần được rà soát khi mỗi bảng tối ưu chỉ còn một file. Xem
+> [biên bản merge](MERGE_VALIDATION.md) cho kết quả kiểm tra tích hợp và phần còn thiếu.
+
 **Milestone:** Performance  
 **Thành viên thực hiện (PIC):** Mai Anh, Ánh  
 **Đối tượng thực nghiệm:** Bảng **Silver (`data/silver/taxi_trips`)** — Tuyệt đối không benchmark trên Gold.  

@@ -1,5 +1,10 @@
 # Delta Lakehouse Architecture & Storage Optimization
 
+> Khung tổng hợp được giữ từ `main` của nhóm. Nội dung đã viết đến C3 nằm ở
+> [REPORT.md tại root](../REPORT.md); nội dung D1/D2 nằm ở [D1_GOLD.md](D1_GOLD.md)
+> và [D2_PERFORMANCE.md](D2_PERFORMANCE.md). Xem [biên bản merge](MERGE_VALIDATION.md)
+> trước khi hợp nhất số liệu các lần chạy vào bản nộp cuối.
+
 ## 1. Introduction
 ### 1.1. Context & Motivation
 ### 1.2. Objectives
