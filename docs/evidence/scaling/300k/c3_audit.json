@@ -1,0 +1,632 @@
+{
+  "versions": {
+    "baseline": 0,
+    "merge": 1,
+    "evolution": 2,
+    "bronze_before_evolution": 2,
+    "bronze_evolution": 3
+  },
+  "snapshots": {
+    "baseline": {
+      "version": 0,
+      "count": 288000,
+      "rows_sha256": "863c2c19b7746e1f49b3565bc31fa30409718e6ec9496a0a08e77f3af345c4d3",
+      "schema": {
+        "type": "struct",
+        "fields": [
+          {
+            "name": "trip_id",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "VendorID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tpep_pickup_datetime",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tpep_dropoff_datetime",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "passenger_count",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "trip_distance",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "RatecodeID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "store_and_fwd_flag",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "PULocationID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "DOLocationID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "payment_type",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "fare_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "extra",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "mta_tax",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tip_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tolls_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "improvement_surcharge",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "total_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "congestion_surcharge",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "Airport_fee",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_ingest_ts",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_source_file",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_batch_id",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          }
+        ]
+      },
+      "schema_sha256": "0fa645073c8f2aa8a96dcaeb4d501b687852cbc403a9e421b20c305e3aa51c92",
+      "fingerprint_algorithm": "spark-json-sha256-bucketed-multiset-v2",
+      "fingerprint_buckets": 256,
+      "updated_trip": {
+        "trip_id": "trip_202502_059981",
+        "fare_amount": 10.0,
+        "tip_amount": 3.15,
+        "total_amount": 18.9
+      },
+      "cdc_insert_count": 0
+    },
+    "merge": {
+      "version": 1,
+      "count": 288003,
+      "rows_sha256": "5e3e0637af587c1da709a8c5f5c7f663e08078cc8fd2956603f6ed72a1719ebb",
+      "schema": {
+        "type": "struct",
+        "fields": [
+          {
+            "name": "trip_id",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "VendorID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tpep_pickup_datetime",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tpep_dropoff_datetime",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "passenger_count",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "trip_distance",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "RatecodeID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "store_and_fwd_flag",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "PULocationID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "DOLocationID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "payment_type",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "fare_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "extra",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "mta_tax",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tip_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tolls_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "improvement_surcharge",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "total_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "congestion_surcharge",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "Airport_fee",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_ingest_ts",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_source_file",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_batch_id",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          }
+        ]
+      },
+      "schema_sha256": "0fa645073c8f2aa8a96dcaeb4d501b687852cbc403a9e421b20c305e3aa51c92",
+      "fingerprint_algorithm": "spark-json-sha256-bucketed-multiset-v2",
+      "fingerprint_buckets": 256,
+      "updated_trip": {
+        "trip_id": "trip_202502_059981",
+        "fare_amount": 11.25,
+        "tip_amount": 5.15,
+        "total_amount": 22.15
+      },
+      "cdc_insert_count": 3
+    },
+    "evolution": {
+      "version": 2,
+      "count": 288103,
+      "rows_sha256": "b8ecf888cc5bb73321e47cd734556ca5fd2127121c7cf5cbb67bb1f463928fb1",
+      "schema": {
+        "type": "struct",
+        "fields": [
+          {
+            "name": "trip_id",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "VendorID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tpep_pickup_datetime",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tpep_dropoff_datetime",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "passenger_count",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "trip_distance",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "RatecodeID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "store_and_fwd_flag",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "PULocationID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "DOLocationID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "payment_type",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "fare_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "extra",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "mta_tax",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tip_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tolls_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "improvement_surcharge",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "total_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "congestion_surcharge",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "Airport_fee",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_ingest_ts",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_source_file",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_batch_id",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "surcharge_fee",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          }
+        ]
+      },
+      "schema_sha256": "d1a2a3bcea24c3c218f70be00fc7c41cb2bd6d143bc1aee9e39a1b1ffd0cdcab",
+      "fingerprint_algorithm": "spark-json-sha256-bucketed-multiset-v2",
+      "fingerprint_buckets": 256,
+      "updated_trip": {
+        "trip_id": "trip_202502_059981",
+        "fare_amount": 11.25,
+        "tip_amount": 5.15,
+        "total_amount": 22.15
+      },
+      "cdc_insert_count": 3
+    }
+  },
+  "log_summary": {
+    "silver": [
+      {
+        "version": 0,
+        "file": "00000000000000000000.json",
+        "sha256": "601e5ce5afa566a5e1483c568157558eb0823b1583b625280e5007ae3cdbd4a0",
+        "action_counts": {
+          "commitInfo": 1,
+          "metaData": 1,
+          "protocol": 1,
+          "add": 16
+        }
+      },
+      {
+        "version": 1,
+        "file": "00000000000000000001.json",
+        "sha256": "47520d52123dda7911762e79eca8341a42a2e0a30c25516e18949cbd2a44d9c6",
+        "action_counts": {
+          "commitInfo": 1,
+          "add": 5,
+          "remove": 5
+        }
+      },
+      {
+        "version": 2,
+        "file": "00000000000000000002.json",
+        "sha256": "8f2977dd95076ad90c8f454ee9c759bec6976c4e473bd88df79ed0a7c94e5b07",
+        "action_counts": {
+          "commitInfo": 1,
+          "metaData": 1,
+          "add": 1
+        }
+      }
+    ],
+    "bronze": [
+      {
+        "version": 2,
+        "file": "00000000000000000002.json",
+        "sha256": "c5351cc0b546d9bc57dcab1bf95eb3806938bd8c285b7d9110c61f040e34a983",
+        "action_counts": {
+          "commitInfo": 1,
+          "add": 11
+        }
+      },
+      {
+        "version": 3,
+        "file": "00000000000000000003.json",
+        "sha256": "254046655c4bb688a19a37aa3689b09fade7dc9893de02370137ac2250f6bd09",
+        "action_counts": {
+          "commitInfo": 1,
+          "metaData": 1,
+          "add": 1
+        }
+      }
+    ]
+  },
+  "data_skipping": {
+    "file": "part-00000-610a383b-d3ac-45b5-a9e6-ff7b7ac29b88-c000.snappy.parquet",
+    "numRecords": 100,
+    "minValues": {
+      "trip_id": "trip_202504_000001",
+      "VendorID": 1,
+      "tpep_pickup_datetime": "2025-04-01T09:00:00.000Z",
+      "tpep_dropoff_datetime": "2025-04-01T09:12:00.000Z",
+      "passenger_count": 1,
+      "trip_distance": 1.25,
+      "RatecodeID": 1,
+      "store_and_fwd_flag": "N",
+      "PULocationID": 100,
+      "DOLocationID": 140,
+      "payment_type": 1,
+      "fare_amount": 12.5,
+      "extra": 1.0,
+      "mta_tax": 0.5,
+      "tip_amount": 2.0,
+      "tolls_amount": 0.0,
+      "improvement_surcharge": 1.0,
+      "total_amount": 20.0,
+      "congestion_surcharge": 2.5,
+      "Airport_fee": 0.0,
+      "_ingest_ts": "2026-09-24T12:40:23.407Z",
+      "_source_file": "file:///Users/haaminh109/Desktop",
+      "_batch_id": "batch_04",
+      "surcharge_fee": 2.75
+    },
+    "maxValues": {
+      "trip_id": "trip_202504_000100",
+      "VendorID": 2,
+      "tpep_pickup_datetime": "2025-04-01T09:59:41.000Z",
+      "tpep_dropoff_datetime": "2025-04-01T10:11:41.000Z",
+      "passenger_count": 4,
+      "trip_distance": 10.0,
+      "RatecodeID": 1,
+      "store_and_fwd_flag": "N",
+      "PULocationID": 159,
+      "DOLocationID": 199,
+      "payment_type": 2,
+      "fare_amount": 48.5,
+      "extra": 1.0,
+      "mta_tax": 0.5,
+      "tip_amount": 5.75,
+      "tolls_amount": 0.0,
+      "improvement_surcharge": 1.0,
+      "total_amount": 56.0,
+      "congestion_surcharge": 2.5,
+      "Airport_fee": 0.0,
+      "_ingest_ts": "2026-09-24T12:40:23.407Z",
+      "_source_file": "file:///Users/haaminh109/Desktop",
+      "_batch_id": "batch_04",
+      "surcharge_fee": 4.75
+    },
+    "nullCount": {
+      "trip_id": 0,
+      "VendorID": 0,
+      "tpep_pickup_datetime": 0,
+      "tpep_dropoff_datetime": 0,
+      "passenger_count": 0,
+      "trip_distance": 0,
+      "RatecodeID": 0,
+      "store_and_fwd_flag": 0,
+      "PULocationID": 0,
+      "DOLocationID": 0,
+      "payment_type": 0,
+      "fare_amount": 0,
+      "extra": 0,
+      "mta_tax": 0,
+      "tip_amount": 0,
+      "tolls_amount": 0,
+      "improvement_surcharge": 0,
+      "total_amount": 0,
+      "congestion_surcharge": 0,
+      "Airport_fee": 0,
+      "_ingest_ts": 0,
+      "_source_file": 0,
+      "_batch_id": 0,
+      "surcharge_fee": 0
+    },
+    "example_predicate": "PULocationID = 160",
+    "file_can_be_skipped": true,
+    "explanation": "160 is outside [100, 159]; this proves the bound, not measured scan savings."
+  }
+}

@@ -1,0 +1,1170 @@
+{
+  "scope": "B1-E1",
+  "status": "passed",
+  "started_at_utc": "2026-09-24T12:49:17.130498+00:00",
+  "run_dir": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01",
+  "paths": {
+    "bronze": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/bronze",
+    "silver": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/silver",
+    "silver_rejected": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/silver_rejected",
+    "gold": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/gold",
+    "benchmark": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/benchmark",
+    "evidence": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence",
+    "pipeline_manifest": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/pipeline_run.json",
+    "published_gold_summary": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/scaling/3000k/gold_run.json",
+    "published_benchmark_results": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/scaling/3000k/benchmark_run.json",
+    "published_benchmark_report": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/scaling/3000k/benchmark_report.md"
+  },
+  "published_manifest": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/scaling/3000k/pipeline_run.json",
+  "runtime": {
+    "spark": "4.0.1",
+    "delta_spark": "4.0.1",
+    "master": "local[4]",
+    "timezone": "UTC"
+  },
+  "stages": {
+    "b1": {
+      "status": "passed",
+      "elapsed_seconds": 5.403,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/b1.json"
+    },
+    "b2": {
+      "status": "passed",
+      "elapsed_seconds": 18.032,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/b2.json"
+    },
+    "b3": {
+      "status": "passed",
+      "elapsed_seconds": 41.333,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/b3.json"
+    },
+    "c1_fixture": {
+      "status": "passed",
+      "elapsed_seconds": 4.741,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/c1_fixture.json"
+    },
+    "c1": {
+      "status": "passed",
+      "elapsed_seconds": 16.868,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/c1.json"
+    },
+    "c2": {
+      "status": "passed",
+      "elapsed_seconds": 16.983,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/c2.json"
+    },
+    "c2_replay": {
+      "status": "passed",
+      "elapsed_seconds": 17.145,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/c2_replay.json"
+    },
+    "c3_audit": {
+      "status": "passed",
+      "elapsed_seconds": 22.64,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/c3_audit.json"
+    },
+    "c3_vacuum": {
+      "status": "passed",
+      "elapsed_seconds": 61.822,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/c3_vacuum.json"
+    },
+    "d1": {
+      "status": "passed",
+      "elapsed_seconds": 7.274,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/d1.json"
+    },
+    "d2": {
+      "status": "passed",
+      "elapsed_seconds": 130.867,
+      "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/d2.json"
+    }
+  },
+  "input_sampling": {
+    "manifest_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_inputs/3000k/error_manifest.json",
+    "sha256": "58542d39296223147030c5361cb33c486404dd48bbd0196894994934d5b74c10",
+    "batches": [
+      {
+        "batch": "batch_01",
+        "source": "data/raw/yellow_tripdata_2025-01.parquet",
+        "sampling": {
+          "method": "proportional_pickup_day_hour_without_replacement_v1",
+          "seed": 42,
+          "python_version": "3.11.15",
+          "pyarrow_version": "21.0.0",
+          "allocation": "Hamilton largest remainder; ties by ascending pickup hour",
+          "source_sha256": "9af277e4c0d3f9deb30644da822981e1e7df6af58313170fd3aa8a474485488a",
+          "source_rows": 3475226,
+          "eligible_rows": 3329688,
+          "excluded_rows": 145538,
+          "selected_rows": 1000000,
+          "selected_source_positions_sha256": "b951dbe6838b6046122708489e8a63b6616d447f084a7fd16ca39ecd0ce45a7c",
+          "position_digest_encoding": "source-order zero-based row positions as unsigned 64-bit big-endian integers",
+          "eligibility": "non-null pickup/dropoff, finite non-null locations, finite fare > 0; pickup inside source month when inferred",
+          "pickup_month": "2025-01"
+        },
+        "strata_summary": {
+          "eligible_strata": 744,
+          "sampled_strata": 744,
+          "selected_rows": 1000000
+        }
+      },
+      {
+        "batch": "batch_02",
+        "source": "data/raw/yellow_tripdata_2025-02.parquet",
+        "sampling": {
+          "method": "proportional_pickup_day_hour_without_replacement_v1",
+          "seed": 42,
+          "python_version": "3.11.15",
+          "pyarrow_version": "21.0.0",
+          "allocation": "Hamilton largest remainder; ties by ascending pickup hour",
+          "source_sha256": "037cba555a73663f3a51a2c27816e40e3feb364769942bdf122b9da31e377bd3",
+          "source_rows": 3577543,
+          "eligible_rows": 3393416,
+          "excluded_rows": 184127,
+          "selected_rows": 1000000,
+          "selected_source_positions_sha256": "993dd2c480b06ba1cf926b776f57350bb5c1136c470f7a699022dae1abdcbf3f",
+          "position_digest_encoding": "source-order zero-based row positions as unsigned 64-bit big-endian integers",
+          "eligibility": "non-null pickup/dropoff, finite non-null locations, finite fare > 0; pickup inside source month when inferred",
+          "pickup_month": "2025-02"
+        },
+        "strata_summary": {
+          "eligible_strata": 672,
+          "sampled_strata": 672,
+          "selected_rows": 1000000
+        }
+      },
+      {
+        "batch": "batch_03",
+        "source": "data/raw/yellow_tripdata_2025-03.parquet",
+        "sampling": {
+          "method": "proportional_pickup_day_hour_without_replacement_v1",
+          "seed": 42,
+          "python_version": "3.11.15",
+          "pyarrow_version": "21.0.0",
+          "allocation": "Hamilton largest remainder; ties by ascending pickup hour",
+          "source_sha256": "20c4b77cce457b7cfdae77c5069ca7dc91c167f876a41467f4502ab69487a186",
+          "source_rows": 4145257,
+          "eligible_rows": 3934846,
+          "excluded_rows": 210411,
+          "selected_rows": 1000000,
+          "selected_source_positions_sha256": "ec4f58e349253600bf24c52b221a8292e046edca06c7c61e75c462adddf53241",
+          "position_digest_encoding": "source-order zero-based row positions as unsigned 64-bit big-endian integers",
+          "eligibility": "non-null pickup/dropoff, finite non-null locations, finite fare > 0; pickup inside source month when inferred",
+          "pickup_month": "2025-03"
+        },
+        "strata_summary": {
+          "eligible_strata": 743,
+          "sampled_strata": 743,
+          "selected_rows": 1000000
+        }
+      }
+    ],
+    "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/input_sampling.json"
+  },
+  "b1": {
+    "batch_01.json": {
+      "sha256": "9945d42d18ad230b22a8425e4e4b1696463aadf340763b23a117808acd7f0d84",
+      "rows": 1020000,
+      "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_inputs/3000k/batch_01.json"
+    },
+    "batch_02.json": {
+      "sha256": "c5d81343833d6cec2028da45ae4ad2f00b206da71d8d73e47b71b2dff93124d3",
+      "rows": 1020000,
+      "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_inputs/3000k/batch_02.json"
+    },
+    "batch_03.json": {
+      "sha256": "9b553112b79708aa7568bd48bfd9cd11eb12f43b81335c6bb8ae3a12dad8bbe6",
+      "rows": 1020000,
+      "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_inputs/3000k/batch_03.json"
+    }
+  },
+  "elapsed_seconds": 343.958,
+  "b2": {
+    "bronze_count": 3060000,
+    "before_count": 0,
+    "appended_count": 3060000,
+    "missing_metadata_count": 0,
+    "batch_files": [
+      "batch_01.json",
+      "batch_02.json",
+      "batch_03.json"
+    ],
+    "bronze_dir": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/bronze"
+  },
+  "b3": {
+    "bronze_count": 3060000,
+    "silver_count": 2880000,
+    "rejected_count": 180000,
+    "reject_reason_counts": {
+      "INVALID_PICKUP_DATETIME": 30000,
+      "MISSING_LOCATION": 60000,
+      "INVALID_FARE": 30000,
+      "DUPLICATE_TRIP": 60000
+    },
+    "bronze_version": 2
+  },
+  "c1_fixture": {
+    "seed": 42,
+    "source_silver_version": 0,
+    "updates": [
+      {
+        "trip_id": "trip_202502_059981",
+        "before": {
+          "fare_amount": 20.5,
+          "tip_amount": 0.0,
+          "total_amount": 21.0
+        },
+        "after": {
+          "fare_amount": 21.75,
+          "tip_amount": 2.0,
+          "total_amount": 24.25
+        }
+      },
+      {
+        "trip_id": "trip_202501_746797",
+        "before": {
+          "fare_amount": 10.7,
+          "tip_amount": 3.09,
+          "total_amount": 18.54
+        },
+        "after": {
+          "fare_amount": 11.95,
+          "tip_amount": 5.09,
+          "total_amount": 21.79
+        }
+      },
+      {
+        "trip_id": "trip_202502_643647",
+        "before": {
+          "fare_amount": 11.4,
+          "tip_amount": 3.08,
+          "total_amount": 18.48
+        },
+        "after": {
+          "fare_amount": 12.65,
+          "tip_amount": 5.08,
+          "total_amount": 21.73
+        }
+      },
+      {
+        "trip_id": "trip_202501_216003",
+        "before": {
+          "fare_amount": 34.5,
+          "tip_amount": 8.35,
+          "total_amount": 50.1
+        },
+        "after": {
+          "fare_amount": 35.75,
+          "tip_amount": 10.35,
+          "total_amount": 53.35
+        }
+      },
+      {
+        "trip_id": "trip_202503_871432",
+        "before": {
+          "fare_amount": 15.57,
+          "tip_amount": 0.0,
+          "total_amount": 20.32
+        },
+        "after": {
+          "fare_amount": 16.82,
+          "tip_amount": 2.0,
+          "total_amount": 23.57
+        }
+      }
+    ],
+    "insert_ids": [
+      "cdc_42_0001",
+      "cdc_42_0002",
+      "cdc_42_0003"
+    ]
+  },
+  "c1": {
+    "before_version": 0,
+    "after_version": 1,
+    "before_count": 2880000,
+    "source_count": 8,
+    "matched_count": 5,
+    "updated_count": 5,
+    "inserted_count": 3,
+    "after_count": 2880003,
+    "operation_metrics": {
+      "numOutputRows": "900003",
+      "numTargetBytesAdded": "28204819",
+      "numTargetRowsInserted": "3",
+      "numTargetRowsMatchedDeleted": "0",
+      "numTargetFilesAdded": "5",
+      "materializeSourceTimeMs": "60",
+      "numTargetFilesRemoved": "5",
+      "numTargetRowsMatchedUpdated": "5",
+      "executionTimeMs": "2800",
+      "numTargetDeletionVectorsUpdated": "0",
+      "numTargetRowsCopied": "899995",
+      "rewriteTimeMs": "2271",
+      "numTargetRowsUpdated": "5",
+      "numTargetDeletionVectorsRemoved": "0",
+      "numTargetRowsDeleted": "0",
+      "scanTimeMs": "465",
+      "numSourceRows": "8",
+      "numTargetDeletionVectorsAdded": "0",
+      "numTargetChangeFilesAdded": "0",
+      "numTargetRowsNotMatchedBySourceUpdated": "0",
+      "numTargetRowsNotMatchedBySourceDeleted": "0",
+      "numTargetBytesRemoved": "28205618"
+    }
+  },
+  "c2": {
+    "bronze": {
+      "before_version": 2,
+      "after_version": 3,
+      "bronze_count_before": 3060000,
+      "bronze_count_after": 3060100,
+      "new_rows": 100,
+      "replayed": false,
+      "has_col_before": false,
+      "has_col_after": true
+    },
+    "silver": {
+      "before_version": 1,
+      "after_version": 2,
+      "silver_count_before": 2880003,
+      "silver_count_after": 2880103,
+      "clean_new_rows": 100,
+      "replayed": false,
+      "has_col_before": false,
+      "has_col_after": true,
+      "bronze_version": 3
+    },
+    "evidence": {
+      "BRONZE": {
+        "total_rows": 3060100,
+        "null_rows": 3060000,
+        "not_null_rows": 100,
+        "latest_version": 3
+      },
+      "SILVER": {
+        "total_rows": 2880103,
+        "null_rows": 2880003,
+        "not_null_rows": 100,
+        "latest_version": 2
+      }
+    }
+  },
+  "c2_replay": {
+    "bronze": {
+      "before_version": 3,
+      "after_version": 3,
+      "bronze_count_before": 3060100,
+      "bronze_count_after": 3060100,
+      "new_rows": 0,
+      "replayed": true,
+      "has_col_before": true,
+      "has_col_after": true
+    },
+    "silver": {
+      "before_version": 2,
+      "after_version": 2,
+      "silver_count_before": 2880103,
+      "silver_count_after": 2880103,
+      "clean_new_rows": 0,
+      "replayed": true,
+      "has_col_before": true,
+      "has_col_after": true,
+      "bronze_version": 3
+    }
+  },
+  "c3_audit": {
+    "versions": {
+      "baseline": 0,
+      "merge": 1,
+      "evolution": 2,
+      "bronze_before_evolution": 2,
+      "bronze_evolution": 3
+    },
+    "snapshot_counts": {
+      "baseline": 2880000,
+      "merge": 2880003,
+      "evolution": 2880103
+    },
+    "audit_file": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/audit.json"
+  },
+  "c3_vacuum": {
+    "deleted_data_file_count": 5,
+    "copy_old_read_failed_as_expected": true,
+    "original_versions_readable": [
+      "0",
+      "1",
+      "2"
+    ],
+    "original_files_unchanged": true,
+    "retention_check_restored": true
+  },
+  "d1": {
+    "grain": "zone_hourofday",
+    "gold_dir": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/gold",
+    "source_silver_version": 2,
+    "timezone": "UTC",
+    "rows_written": 5680,
+    "files": 16,
+    "checks": {
+      "independent_sql_passed": true,
+      "sql_checked_buckets": 5680,
+      "silver_rows": 2880103,
+      "gold_trip_count_sum": 2880103,
+      "tip_pct_per_trip_mean": 19.1533,
+      "tip_pct_ratio_of_sums": 16.1863,
+      "tip_pct_definition_gap_pp": 2.967,
+      "total_revenue": 78220594.16,
+      "driver_earnings": 65720855.44
+    },
+    "profile": {
+      "grain": "zone_hourofday",
+      "silver_rows": 2880103,
+      "gold_buckets": 5680,
+      "trips_per_bucket_median": 32.0,
+      "trips_per_bucket_max": 13172,
+      "singleton_buckets": 250,
+      "singleton_pct": 4.4,
+      "distinct_zones": 263,
+      "distinct_dates": 91,
+      "dates": [
+        "2025-01-01",
+        "2025-01-02",
+        "2025-01-03",
+        "2025-01-04",
+        "2025-01-05",
+        "2025-01-06",
+        "2025-01-07",
+        "2025-01-08",
+        "2025-01-09",
+        "2025-01-10",
+        "2025-01-11",
+        "2025-01-12",
+        "2025-01-13",
+        "2025-01-14",
+        "2025-01-15",
+        "2025-01-16",
+        "2025-01-17",
+        "2025-01-18",
+        "2025-01-19",
+        "2025-01-20",
+        "2025-01-21",
+        "2025-01-22",
+        "2025-01-23",
+        "2025-01-24",
+        "2025-01-25",
+        "2025-01-26",
+        "2025-01-27",
+        "2025-01-28",
+        "2025-01-29",
+        "2025-01-30",
+        "2025-01-31",
+        "2025-02-01",
+        "2025-02-02",
+        "2025-02-03",
+        "2025-02-04",
+        "2025-02-05",
+        "2025-02-06",
+        "2025-02-07",
+        "2025-02-08",
+        "2025-02-09",
+        "2025-02-10",
+        "2025-02-11",
+        "2025-02-12",
+        "2025-02-13",
+        "2025-02-14",
+        "2025-02-15",
+        "2025-02-16",
+        "2025-02-17",
+        "2025-02-18",
+        "2025-02-19",
+        "2025-02-20",
+        "2025-02-21",
+        "2025-02-22",
+        "2025-02-23",
+        "2025-02-24",
+        "2025-02-25",
+        "2025-02-26",
+        "2025-02-27",
+        "2025-02-28",
+        "2025-03-01",
+        "2025-03-02",
+        "2025-03-03",
+        "2025-03-04",
+        "2025-03-05",
+        "2025-03-06",
+        "2025-03-07",
+        "2025-03-08",
+        "2025-03-09",
+        "2025-03-10",
+        "2025-03-11",
+        "2025-03-12",
+        "2025-03-13",
+        "2025-03-14",
+        "2025-03-15",
+        "2025-03-16",
+        "2025-03-17",
+        "2025-03-18",
+        "2025-03-19",
+        "2025-03-20",
+        "2025-03-21",
+        "2025-03-22",
+        "2025-03-23",
+        "2025-03-24",
+        "2025-03-25",
+        "2025-03-26",
+        "2025-03-27",
+        "2025-03-28",
+        "2025-03-29",
+        "2025-03-30",
+        "2025-03-31",
+        "2025-04-01"
+      ],
+      "hour_of_day_distribution": {
+        "0": 84684,
+        "1": 56443,
+        "2": 36657,
+        "3": 25293,
+        "4": 18985,
+        "5": 20044,
+        "6": 41273,
+        "7": 81583,
+        "8": 113192,
+        "9": 118006,
+        "10": 121658,
+        "11": 130337,
+        "12": 142232,
+        "13": 150005,
+        "14": 161072,
+        "15": 169461,
+        "16": 174065,
+        "17": 199545,
+        "18": 215199,
+        "19": 188719,
+        "20": 173624,
+        "21": 176509,
+        "22": 160157,
+        "23": 121360
+      }
+    },
+    "definitions": {
+      "avg_tip_pct": "100 * AVG(CASE WHEN fare_amount > 0 THEN tip_amount / fare_amount END)",
+      "driver_earnings": "SUM(COALESCE(fare_amount, 0) + COALESCE(tip_amount, 0) + COALESCE(extra, 0))",
+      "total_revenue": "SUM(total_amount), not the sum of components"
+    }
+  },
+  "d2": {
+    "source": {
+      "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/silver",
+      "version": 2,
+      "rows": 2880103,
+      "schema": {
+        "type": "struct",
+        "fields": [
+          {
+            "name": "trip_id",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "VendorID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tpep_pickup_datetime",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tpep_dropoff_datetime",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "passenger_count",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "trip_distance",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "RatecodeID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "store_and_fwd_flag",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "PULocationID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "DOLocationID",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "payment_type",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "fare_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "extra",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "mta_tax",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tip_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "tolls_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "improvement_surcharge",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "total_amount",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "congestion_surcharge",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "Airport_fee",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_ingest_ts",
+            "type": "timestamp",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_source_file",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "_batch_id",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "surcharge_fee",
+            "type": "double",
+            "nullable": true,
+            "metadata": {}
+          }
+        ]
+      },
+      "sampling": {
+        "manifest_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_inputs/3000k/error_manifest.json",
+        "sha256": "58542d39296223147030c5361cb33c486404dd48bbd0196894994934d5b74c10",
+        "batches": [
+          {
+            "batch": "batch_01",
+            "source": "data/raw/yellow_tripdata_2025-01.parquet",
+            "sampling": {
+              "method": "proportional_pickup_day_hour_without_replacement_v1",
+              "seed": 42,
+              "python_version": "3.11.15",
+              "pyarrow_version": "21.0.0",
+              "allocation": "Hamilton largest remainder; ties by ascending pickup hour",
+              "source_sha256": "9af277e4c0d3f9deb30644da822981e1e7df6af58313170fd3aa8a474485488a",
+              "source_rows": 3475226,
+              "eligible_rows": 3329688,
+              "excluded_rows": 145538,
+              "selected_rows": 1000000,
+              "selected_source_positions_sha256": "b951dbe6838b6046122708489e8a63b6616d447f084a7fd16ca39ecd0ce45a7c",
+              "position_digest_encoding": "source-order zero-based row positions as unsigned 64-bit big-endian integers",
+              "eligibility": "non-null pickup/dropoff, finite non-null locations, finite fare > 0; pickup inside source month when inferred",
+              "pickup_month": "2025-01"
+            },
+            "strata_summary": {
+              "eligible_strata": 744,
+              "sampled_strata": 744,
+              "selected_rows": 1000000
+            }
+          },
+          {
+            "batch": "batch_02",
+            "source": "data/raw/yellow_tripdata_2025-02.parquet",
+            "sampling": {
+              "method": "proportional_pickup_day_hour_without_replacement_v1",
+              "seed": 42,
+              "python_version": "3.11.15",
+              "pyarrow_version": "21.0.0",
+              "allocation": "Hamilton largest remainder; ties by ascending pickup hour",
+              "source_sha256": "037cba555a73663f3a51a2c27816e40e3feb364769942bdf122b9da31e377bd3",
+              "source_rows": 3577543,
+              "eligible_rows": 3393416,
+              "excluded_rows": 184127,
+              "selected_rows": 1000000,
+              "selected_source_positions_sha256": "993dd2c480b06ba1cf926b776f57350bb5c1136c470f7a699022dae1abdcbf3f",
+              "position_digest_encoding": "source-order zero-based row positions as unsigned 64-bit big-endian integers",
+              "eligibility": "non-null pickup/dropoff, finite non-null locations, finite fare > 0; pickup inside source month when inferred",
+              "pickup_month": "2025-02"
+            },
+            "strata_summary": {
+              "eligible_strata": 672,
+              "sampled_strata": 672,
+              "selected_rows": 1000000
+            }
+          },
+          {
+            "batch": "batch_03",
+            "source": "data/raw/yellow_tripdata_2025-03.parquet",
+            "sampling": {
+              "method": "proportional_pickup_day_hour_without_replacement_v1",
+              "seed": 42,
+              "python_version": "3.11.15",
+              "pyarrow_version": "21.0.0",
+              "allocation": "Hamilton largest remainder; ties by ascending pickup hour",
+              "source_sha256": "20c4b77cce457b7cfdae77c5069ca7dc91c167f876a41467f4502ab69487a186",
+              "source_rows": 4145257,
+              "eligible_rows": 3934846,
+              "excluded_rows": 210411,
+              "selected_rows": 1000000,
+              "selected_source_positions_sha256": "ec4f58e349253600bf24c52b221a8292e046edca06c7c61e75c462adddf53241",
+              "position_digest_encoding": "source-order zero-based row positions as unsigned 64-bit big-endian integers",
+              "eligibility": "non-null pickup/dropoff, finite non-null locations, finite fare > 0; pickup inside source month when inferred",
+              "pickup_month": "2025-03"
+            },
+            "strata_summary": {
+              "eligible_strata": 743,
+              "sampled_strata": 743,
+              "selected_rows": 1000000
+            }
+          }
+        ],
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/evidence/input_sampling.json"
+      }
+    },
+    "validation": {
+      "all_layouts_preserve_source_rows": true,
+      "all_query_results_equal_source": true,
+      "all_queries_nonempty": true,
+      "required_timed_executions": 60,
+      "control_timed_executions": 30
+    },
+    "conditions": {
+      "baseline": {
+        "id": "baseline",
+        "name": "Baseline",
+        "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/benchmark/tables/baseline",
+        "columns": [],
+        "before": {
+          "version": 0,
+          "num_files": 256,
+          "size_bytes": 123734051,
+          "format": "delta",
+          "clustering_columns": [],
+          "partition_columns": []
+        },
+        "after": {
+          "version": 0,
+          "num_files": 256,
+          "size_bytes": 123734051,
+          "format": "delta",
+          "clustering_columns": [],
+          "partition_columns": []
+        },
+        "same_rows_as_source": true,
+        "optimization_seconds": 2e-06,
+        "target_file_size_bytes": 1048576,
+        "history": [
+          {
+            "version": 0,
+            "timestamp": "2026-09-24 19:52:54.963000",
+            "userId": null,
+            "userName": null,
+            "operation": "WRITE",
+            "operationParameters": {
+              "mode": "ErrorIfExists",
+              "partitionBy": "[]"
+            },
+            "job": null,
+            "notebook": null,
+            "clusterId": null,
+            "readVersion": null,
+            "isolationLevel": "Serializable",
+            "isBlindAppend": true,
+            "operationMetrics": {
+              "numOutputRows": "2880103",
+              "numOutputBytes": "123734051",
+              "numFiles": "256"
+            },
+            "userMetadata": null,
+            "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+          }
+        ]
+      },
+      "zorder_1col": {
+        "id": "zorder_1col",
+        "name": "Z-ORDER 1 column",
+        "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/benchmark/tables/zorder_1col",
+        "columns": [
+          "PULocationID"
+        ],
+        "before": {
+          "version": 0,
+          "num_files": 256,
+          "size_bytes": 123734051,
+          "format": "delta",
+          "clustering_columns": [],
+          "partition_columns": []
+        },
+        "after": {
+          "version": 1,
+          "num_files": 118,
+          "size_bytes": 115275068,
+          "format": "delta",
+          "clustering_columns": [],
+          "partition_columns": []
+        },
+        "same_rows_as_source": true,
+        "optimization_seconds": 9.779371,
+        "target_file_size_bytes": 1048576,
+        "history": [
+          {
+            "version": 1,
+            "timestamp": "2026-09-24 19:53:19.781000",
+            "userId": null,
+            "userName": null,
+            "operation": "OPTIMIZE",
+            "operationParameters": {
+              "predicate": "[]",
+              "auto": "false",
+              "zOrderBy": "[\"PULocationID\"]",
+              "clusterBy": "[]"
+            },
+            "job": null,
+            "notebook": null,
+            "clusterId": null,
+            "readVersion": 0,
+            "isolationLevel": "SnapshotIsolation",
+            "isBlindAppend": false,
+            "operationMetrics": {
+              "numRemovedBytes": "123734051",
+              "p50FileSize": "975739",
+              "p25FileSize": "944223",
+              "numAddedFiles": "118",
+              "minFileSize": "865847",
+              "p75FileSize": "1008756",
+              "numDeletionVectorsRemoved": "0",
+              "numAddedBytes": "115275068",
+              "maxFileSize": "1100078",
+              "numRemovedFiles": "256"
+            },
+            "userMetadata": null,
+            "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+          },
+          {
+            "version": 0,
+            "timestamp": "2026-09-24 19:52:54.963000",
+            "userId": null,
+            "userName": null,
+            "operation": "WRITE",
+            "operationParameters": {
+              "mode": "ErrorIfExists",
+              "partitionBy": "[]"
+            },
+            "job": null,
+            "notebook": null,
+            "clusterId": null,
+            "readVersion": null,
+            "isolationLevel": "Serializable",
+            "isBlindAppend": true,
+            "operationMetrics": {
+              "numOutputRows": "2880103",
+              "numOutputBytes": "123734051",
+              "numFiles": "256"
+            },
+            "userMetadata": null,
+            "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+          }
+        ]
+      },
+      "zorder_2col": {
+        "id": "zorder_2col",
+        "name": "Z-ORDER 2 columns",
+        "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/benchmark/tables/zorder_2col",
+        "columns": [
+          "PULocationID",
+          "tpep_pickup_datetime"
+        ],
+        "before": {
+          "version": 0,
+          "num_files": 256,
+          "size_bytes": 123734051,
+          "format": "delta",
+          "clustering_columns": [],
+          "partition_columns": []
+        },
+        "after": {
+          "version": 1,
+          "num_files": 118,
+          "size_bytes": 107846383,
+          "format": "delta",
+          "clustering_columns": [],
+          "partition_columns": []
+        },
+        "same_rows_as_source": true,
+        "optimization_seconds": 8.046252,
+        "target_file_size_bytes": 1048576,
+        "history": [
+          {
+            "version": 1,
+            "timestamp": "2026-09-24 19:53:37.023000",
+            "userId": null,
+            "userName": null,
+            "operation": "OPTIMIZE",
+            "operationParameters": {
+              "predicate": "[]",
+              "auto": "false",
+              "zOrderBy": "[\"PULocationID\",\"tpep_pickup_datetime\"]",
+              "clusterBy": "[]"
+            },
+            "job": null,
+            "notebook": null,
+            "clusterId": null,
+            "readVersion": 0,
+            "isolationLevel": "SnapshotIsolation",
+            "isBlindAppend": false,
+            "operationMetrics": {
+              "numRemovedBytes": "123734051",
+              "p50FileSize": "907025",
+              "p25FileSize": "874317",
+              "numAddedFiles": "118",
+              "minFileSize": "745043",
+              "p75FileSize": "962597",
+              "numDeletionVectorsRemoved": "0",
+              "numAddedBytes": "107846383",
+              "maxFileSize": "1035282",
+              "numRemovedFiles": "256"
+            },
+            "userMetadata": null,
+            "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+          },
+          {
+            "version": 0,
+            "timestamp": "2026-09-24 19:52:54.963000",
+            "userId": null,
+            "userName": null,
+            "operation": "WRITE",
+            "operationParameters": {
+              "mode": "ErrorIfExists",
+              "partitionBy": "[]"
+            },
+            "job": null,
+            "notebook": null,
+            "clusterId": null,
+            "readVersion": null,
+            "isolationLevel": "Serializable",
+            "isBlindAppend": true,
+            "operationMetrics": {
+              "numOutputRows": "2880103",
+              "numOutputBytes": "123734051",
+              "numFiles": "256"
+            },
+            "userMetadata": null,
+            "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+          }
+        ]
+      },
+      "liquid_full": {
+        "id": "liquid_full",
+        "name": "CLUSTER BY + OPTIMIZE FULL",
+        "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/benchmark/tables/liquid_full",
+        "columns": [
+          "PULocationID",
+          "tpep_pickup_datetime"
+        ],
+        "before": {
+          "version": 0,
+          "num_files": 256,
+          "size_bytes": 123734051,
+          "format": "delta",
+          "clustering_columns": [],
+          "partition_columns": []
+        },
+        "after": {
+          "version": 2,
+          "num_files": 118,
+          "size_bytes": 106439874,
+          "format": "delta",
+          "clustering_columns": [
+            "PULocationID",
+            "tpep_pickup_datetime"
+          ],
+          "partition_columns": []
+        },
+        "same_rows_as_source": true,
+        "optimization_seconds": 7.677131,
+        "target_file_size_bytes": 1048576,
+        "history": [
+          {
+            "version": 2,
+            "timestamp": "2026-09-24 19:53:54.027000",
+            "userId": null,
+            "userName": null,
+            "operation": "OPTIMIZE",
+            "operationParameters": {
+              "predicate": "[]",
+              "auto": "false",
+              "isFull": "true",
+              "clusterBy": "[\"PULocationID\",\"tpep_pickup_datetime\"]",
+              "zOrderBy": "[]"
+            },
+            "job": null,
+            "notebook": null,
+            "clusterId": null,
+            "readVersion": 1,
+            "isolationLevel": "SnapshotIsolation",
+            "isBlindAppend": false,
+            "operationMetrics": {
+              "numRemovedBytes": "123734051",
+              "p50FileSize": "895051",
+              "p25FileSize": "865148",
+              "numAddedFiles": "118",
+              "minFileSize": "757053",
+              "p75FileSize": "937951",
+              "numDeletionVectorsRemoved": "0",
+              "numAddedBytes": "106439874",
+              "maxFileSize": "1020668",
+              "numRemovedFiles": "256"
+            },
+            "userMetadata": null,
+            "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+          },
+          {
+            "version": 1,
+            "timestamp": "2026-09-24 19:53:46.541000",
+            "userId": null,
+            "userName": null,
+            "operation": "CLUSTER BY",
+            "operationParameters": {
+              "oldClusteringColumns": "",
+              "newClusteringColumns": "PULocationID,tpep_pickup_datetime"
+            },
+            "job": null,
+            "notebook": null,
+            "clusterId": null,
+            "readVersion": 0,
+            "isolationLevel": "Serializable",
+            "isBlindAppend": true,
+            "operationMetrics": {},
+            "userMetadata": null,
+            "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+          },
+          {
+            "version": 0,
+            "timestamp": "2026-09-24 19:52:54.963000",
+            "userId": null,
+            "userName": null,
+            "operation": "WRITE",
+            "operationParameters": {
+              "mode": "ErrorIfExists",
+              "partitionBy": "[]"
+            },
+            "job": null,
+            "notebook": null,
+            "clusterId": null,
+            "readVersion": null,
+            "isolationLevel": "Serializable",
+            "isBlindAppend": true,
+            "operationMetrics": {
+              "numOutputRows": "2880103",
+              "numOutputBytes": "123734051",
+              "numFiles": "256"
+            },
+            "userMetadata": null,
+            "engineInfo": "Apache-Spark/4.0.1 Delta-Lake/4.0.1"
+          }
+        ]
+      }
+    },
+    "metadata": {
+      "spark_version": "4.0.1",
+      "delta_version": "4.0.1",
+      "master": "local[4]",
+      "platform": "macOS-27.0-arm64-arm-64bit",
+      "iterations": 5,
+      "warmups_per_query_condition": 1,
+      "condition_order": [
+        "baseline",
+        "zorder_1col",
+        "zorder_2col",
+        "liquid_full"
+      ],
+      "target_file_size_bytes": 1048576,
+      "baseline_partitions": 256,
+      "cache_policy": "warm OS cache; Spark catalog cleared; no persisted dataframes",
+      "timing_scope": "collect only after executed-plan preparation",
+      "source_selection": "pinned Silver snapshot; no synthetic replication"
+    },
+    "results_file": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/benchmark/results.json",
+    "report_file": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/benchmark/report.md"
+  },
+  "counts": {
+    "b1_raw": 3060000,
+    "b2_bronze": 3060000,
+    "b3_silver": 2880000,
+    "b3_rejected": 180000,
+    "final_bronze": 3060100,
+    "final_silver": 2880103,
+    "gold_buckets": 5680,
+    "gold_trip_count_sum": 2880103
+  },
+  "completed_at_utc": "2026-09-24T12:54:55.687348+00:00"
+}

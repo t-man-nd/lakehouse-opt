@@ -1,92 +1,90 @@
-import os
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import current_timestamp, input_file_name, lit
-from delta import configure_spark_with_delta_pip
+"""B2 append-only ingestion and the E1 public entry point."""
 
-def run_bronze(
-    spark: SparkSession, 
-    raw_dir: str = "data/raw", 
-    bronze_dir: str = "data/bronze/taxi_trips"
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Sequence
+
+from delta import DeltaTable
+from pyspark.sql import SparkSession, functions as F
+
+MONTH_BATCHES = {f"2025-{month:02d}": f"batch_{month:02d}.json" for month in range(1, 4)}
+
+
+def _batch_files(months: Sequence[str] | None) -> list[str]:
+    """The fixed B1 contract maps Jan/Feb/Mar 2025 to batches 01/02/03."""
+    selected = list(MONTH_BATCHES) if months is None else list(months)
+    if not selected or len(set(selected)) != len(selected):
+        raise ValueError("months must contain distinct B1 months")
+    unknown = set(selected) - set(MONTH_BATCHES)
+    if unknown:
+        raise ValueError(f"B1 months must be YYYY-MM in {sorted(MONTH_BATCHES)}; got {sorted(unknown)}")
+    return [MONTH_BATCHES[month] for month in selected]
+
+
+def run(
+    spark: SparkSession,
+    months: Sequence[str] | None = None,
+    overwrite: bool = False,
+    *,
+    raw_dir: str = "data/raw",
+    bronze_dir: str = "data/bronze/taxi_trips",
 ) -> dict:
+    """Append all raw records, including defects, and return reconciled counts.
+
+    ``overwrite=True`` is rejected: Bronze is append-only. Repeating this call
+    intentionally appends the input again. The E1 runner uses a fresh directory
+    for each run; use that entry point for a reproducible complete pipeline.
     """
-    Nhiệm vụ B2: Đọc dữ liệu JSON thô, thêm 3 cột metadata và ghi vào Delta Bronze Table.
-    Giữ nguyên 100% bản ghi lỗi (tuyệt đối không filter).
-
-    Tham số:
-        spark (SparkSession): Phiên làm việc Spark đang chạy.
-        raw_dir (str): Đường dẫn thư mục chứa dữ liệu JSON thô.
-        bronze_dir (str): Đường dẫn lưu trữ bảng Delta Bronze.
-
-    Trả về:
-        dict: Tóm tắt kết quả nghiệm thu {"bronze_count": int}
-    """
-    print("=== [TASK B2] BẮT ĐẦU TIẾN TRÌNH BRONZE INGEST ===")
-
-    # Danh sách 3 batch dữ liệu thô
-    batch_files = ["batch_01.json", "batch_02.json", "batch_03.json"]
-
-    # Lặp qua từng batch file để nạp vào Bronze
-    for batch_file in batch_files:
-        file_path = os.path.join(raw_dir, batch_file)
-        batch_id = os.path.splitext(batch_file)[0]  # Trích xuất 'batch_01' từ 'batch_01.json'
-        
-        print(f"--> Đang nạp file nguồn: {file_path} (Batch ID: {batch_id})...")
-
-        # Đọc dữ liệu Line-delimited JSON (Mỗi dòng là 1 record -> KHÔNG dùng multiline=true)
-        df_raw = spark.read.json(file_path)
-
-        # Bổ sung 3 cột Metadata bắt buộc
-        df_bronze_batch = df_raw \
-            .withColumn("_ingest_ts", current_timestamp()) \
-            .withColumn("_source_file", input_file_name()) \
-            .withColumn("_batch_id", lit(batch_id))
-
-        # Ghi Append-only vào Delta Table và bật mergeSchema cho phép mở rộng schema sau này
-        df_bronze_batch.write \
-            .format("delta") \
-            .mode("append") \
-            .option("mergeSchema", "true") \
-            .save(bronze_dir)
-
-    # Đọc lại bảng Delta Bronze vừa tạo để kiểm tra và nghiệm thu
-    print("\n=== ĐANG KIỂM TRA VÀ NGHIỆM THU BẢNG BRONZE ===")
-    df_bronze_result = spark.read.format("delta").load(bronze_dir)
-    bronze_count = df_bronze_result.count()
-
-    # Kiểm tra số lượng bản ghi bị khuyết (NULL) ở các cột Metadata
-    null_metadata_count = df_bronze_result.filter(
-        "_ingest_ts IS NULL OR _source_file IS NULL OR _batch_id IS NULL"
+    if overwrite:
+        raise ValueError("Bronze is append-only; choose a fresh run directory instead of overwrite=True")
+    files = [Path(raw_dir) / name for name in _batch_files(months)]
+    target = Path(bronze_dir).resolve()
+    source = Path(raw_dir).resolve()
+    if target == source or target in source.parents or source in target.parents:
+        raise ValueError("Raw and Bronze directories must not overlap")
+    for path in files:
+        if not path.is_file():
+            raise FileNotFoundError(f"Missing raw B1 input: {path}")
+    if target.exists() and not DeltaTable.isDeltaTable(spark, bronze_dir):
+        raise FileExistsError(f"Bronze destination exists but is not a Delta table: {target}")
+    before = spark.read.format("delta").load(bronze_dir).count() if target.exists() else 0
+    appended = 0
+    for path in files:
+        raw = spark.read.option("mode", "FAILFAST").json(str(path))
+        if {"_ingest_ts", "_source_file", "_batch_id"}.intersection(raw.columns):
+            raise ValueError("Raw source must not supply B2 ingestion metadata")
+        batch_count = raw.count()
+        (raw.withColumn("_ingest_ts", F.current_timestamp())
+         .withColumn("_source_file", F.input_file_name())
+         .withColumn("_batch_id", F.lit(path.stem))
+         .write.format("delta").mode("append").option("mergeSchema", "true").save(bronze_dir))
+        appended += batch_count
+        print(f"[B2] Appended {path.name}: {batch_count} rows", flush=True)
+    written = spark.read.format("delta").load(bronze_dir)
+    count = written.count()
+    missing_metadata = written.filter(
+        "_ingest_ts IS NULL OR _source_file IS NULL OR _source_file = '' "
+        "OR _batch_id IS NULL OR _batch_id = ''"
     ).count()
+    if count != before + appended or missing_metadata:
+        raise RuntimeError("Bronze row conservation or required metadata validation failed")
+    return {"bronze_count": count, "before_count": before, "appended_count": appended,
+            "missing_metadata_count": missing_metadata,
+            "batch_files": [path.name for path in files], "bronze_dir": str(target)}
 
-    print(f"-> Tổng số bản ghi (bronze_count): {bronze_count}")
-    print(f"-> Số bản ghi bị thiếu thông tin metadata: {null_metadata_count}")
 
-    # Đánh giá tiêu chuẩn nghiệm thu B2
-    if bronze_count == 3060 and null_metadata_count == 0:
-        print("\n[SUCCESS] NGHIỆM THU THÀNH CÔNG (B2): Đạt đủ 3060 bản ghi và 3 cột metadata có giá trị ở mọi dòng!")
-    else:
-        print(f"\n[WARNING] Kết quả chưa đạt mục tiêu (Kỳ vọng: 3060 dòng, Thực tế: {bronze_count} dòng).")
-
-    return {"bronze_count": bronze_count}
+def run_bronze(spark: SparkSession, raw_dir: str = "data/raw",
+               bronze_dir: str = "data/bronze/taxi_trips") -> dict:
+    """Compatibility entry point used by the B2/B3 exercises."""
+    result = run(spark, raw_dir=raw_dir, bronze_dir=bronze_dir)
+    return {"bronze_count": result["bronze_count"]}
 
 
 if __name__ == "__main__":
-    # 1. Khai báo Builder cấu hình SparkSession
-    builder = SparkSession.builder \
-        .appName("Bronze_Ingest_Pipeline") \
-        .master(os.environ.get("SPARK_MASTER", "local[2]")) \
-        .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension") \
-        .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog") \
-        .config("spark.sql.shuffle.partitions", "2")
-
-    # Resolve the Delta JVM package matching the installed delta-spark version.
-    spark = configure_spark_with_delta_pip(builder).getOrCreate()
-
-    # Giảm bớt mức độ log dư thừa trên console
-    spark.sparkContext.setLogLevel("WARN")
-
-    # 3. Thực thi tiến trình nạp dữ liệu Bronze
+    from src.delta_runtime import get_spark
+    spark = get_spark(app_name="BronzeIngest")
     try:
-        run_bronze(spark)
+        print(run(spark))
     finally:
         spark.stop()

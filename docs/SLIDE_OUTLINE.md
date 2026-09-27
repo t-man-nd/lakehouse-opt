@@ -14,9 +14,10 @@
 | 8 | Time travel | Silver v0 → v1 → v2; history thật |
 | 9 | Delta log / ACID / skipping | JSON có annotate và sơ đồ OCC |
 | 10 | VACUUM bản sao | Copy old read fail; original read pass |
-| 11 | Gold — bổ sung sau D1 | Chỉ số và kiểm tra tay |
-| 12 | Performance — bổ sung sau D2 | Thiết kế đo, median, files/bytes |
+| 11 | Gold D1 | Chỉ số và kiểm tra tay |
+| 12 | Performance D2 | Thiết kế đo, median, files/bytes |
 | 13 | Giới hạn và kết luận | Dữ liệu mẫu, scale, retention, replay |
 
 Phần demo C3 có thể trình bày bằng evidence đã chạy; rehearsal 10–15 phút của
-toàn bài chỉ chốt sau khi có Gold và benchmark.
+toàn bài là nghiệm thu F1 riêng. Khi đưa số liệu Gold/benchmark vào slide, dùng
+manifest E1 mới và ghi rõ run; không trộn evidence baseline B3 với sau C1/C2.

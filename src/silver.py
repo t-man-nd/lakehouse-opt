@@ -112,16 +112,27 @@ def build(
     rejected_dir: str = "data/silver/silver_rejected",
     *,
     manifest_path: str | None = None,
+    overwrite: bool = False,
 ) -> dict:
     """Rebuild the B3 snapshot and return counts, without modifying Bronze.
 
     Invoke before C1/C2: overwrite replaces the *current* Silver snapshot and
-    would replace later CDC updates. Delta history remains available.
+    would replace later CDC updates. Such a reset requires overwrite=True.
+    Rebuilding a B3-only table remains supported. Delta history stays available.
     The two output tables are separate Delta transactions, not one transaction.
     """
-    paths = [str(Path(p).resolve()) for p in (bronze_dir, silver_dir, rejected_dir)]
-    if len(set(paths)) != 3:
-        raise ValueError("Bronze, Silver and rejected paths must be distinct")
+    paths = [Path(p).resolve() for p in (bronze_dir, silver_dir, rejected_dir)]
+    if any(a == b or a in b.parents or b in a.parents
+           for index, a in enumerate(paths) for b in paths[index + 1:]):
+        raise ValueError("Bronze, Silver and rejected paths must be distinct and non-overlapping")
+    for path in (silver_dir, rejected_dir):
+        if Path(path).exists() and not DeltaTable.isDeltaTable(spark, path):
+            raise FileExistsError(f"B3 destination exists but is not a Delta table: {path}")
+    if not overwrite and DeltaTable.isDeltaTable(spark, silver_dir):
+        current = spark.read.format("delta").load(silver_dir)
+        merged = DeltaTable.forPath(spark, silver_dir).history().filter("operation = 'MERGE'").limit(1).count()
+        if merged or "surcharge_fee" in current.columns:
+            raise ValueError("B3 rebuild would replace CDC/evolution state; use a fresh run directory or explicit overwrite=True")
 
     # Pin one input version so a concurrent Bronze append cannot change counts.
     version = DeltaTable.forPath(spark, bronze_dir).history(1).first()["version"]
@@ -185,6 +196,33 @@ def build(
         if kept is not None:
             kept.unpersist()
         classified.unpersist()
+
+
+def apply_cdc(
+    spark: SparkSession, silver_dir: str = "data/silver/taxi_trips",
+    cdc_path: str = "data/cdc/late_updates.parquet", *, seed: int = 42,
+    updates: int = 5, inserts: int = 3,
+) -> dict:
+    """E1 C1 entry point: create a missing fixture, then apply its keyed MERGE."""
+    from src.cdc_merge import apply_cdc as merge, generate_fixture
+    if not Path(cdc_path).exists():
+        generate_fixture(spark, silver_dir, cdc_path, seed=seed, updates=updates, inserts=inserts)
+    return merge(spark, silver_dir, cdc_path)
+
+
+def apply_evolution(
+    spark: SparkSession, bronze_dir: str = "data/bronze/taxi_trips",
+    silver_dir: str = "data/silver/taxi_trips", *,
+    batch_path: str = "data/raw/batch_04.json", rows: int = 100,
+) -> dict:
+    """E1 C2 entry point; existing identical batches replay without new writes."""
+    from src.generate_batch_c2 import generate_batch_04
+    from src.schema_evolution import evolve_bronze, evolve_silver, verify_evidence
+    if not Path(batch_path).exists():
+        generate_batch_04(batch_path, rows)
+    return {"bronze": evolve_bronze(spark, batch_path, bronze_dir),
+            "silver": evolve_silver(spark, bronze_dir, silver_dir),
+            "evidence": verify_evidence(spark, bronze_dir, silver_dir)}
 
 
 def main() -> None:

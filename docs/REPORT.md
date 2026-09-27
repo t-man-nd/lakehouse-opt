@@ -1,74 +1,26 @@
-# Delta Lakehouse Architecture & Storage Optimization
+# Báo cáo kỹ thuật của nhóm
 
-> Khung tổng hợp được giữ từ `main` của nhóm. Nội dung đã viết đến C3 nằm ở
-> [REPORT.md tại root](../REPORT.md); nội dung D1/D2 nằm ở [D1_GOLD.md](D1_GOLD.md)
-> và [D2_PERFORMANCE.md](D2_PERFORMANCE.md). Xem [biên bản merge](MERGE_VALIDATION.md)
-> trước khi hợp nhất số liệu các lần chạy vào bản nộp cuối.
+Bản báo cáo chính được duy trì tại **[REPORT.md ở root](../REPORT.md)** để
+tránh hai bản có số liệu và trạng thái khác nhau. File này là mục lục dẫn đến
+bản đó; khung đề mục ban đầu của nhóm đã được hợp nhất vào các phần dưới đây.
 
-## 1. Introduction
-### 1.1. Context & Motivation
-### 1.2. Objectives
-### 1.3. Dataset
-### 1.4. Overall Architecture
+| Yêu cầu | Phần trong báo cáo chính | Evidence / tài liệu chi tiết |
+|---|---|---|
+| Bối cảnh, mục tiêu, rubric | 1 | [Milestone status](MILESTONE_STATUS.md) |
+| Warehouse / Lake / Lakehouse, Delta | 2 | Armbrust et al., CIDR 2021 được dẫn trong report |
+| Medallion và phản biện | 3 | [Architecture](architecture.md) |
+| Nguồn, contract, Bronze/Silver | 4 | [Manifest](source_data_manifest.md), [B3](B3_SILVER.md) |
+| CDC / MERGE | 5 | [C1](C1_CDC.md) |
+| Schema evolution | 6 | [C2](C2_SCHEMA_EVOLUTION.md) |
+| Delta log, ACID/OCC/snapshot, time travel, VACUUM | 7 | [C3](C3_TIME_TRAVEL.md) |
+| Tái lập và provenance | 8 | [E1 runbook](E1_RUNBOOK.md) |
+| Lấy mẫu phân tầng và benchmark nhiều quy mô | 8 và phần mở rộng riêng | [Scaling](SCALING.md) |
+| Gold aggregation | 9 | [D1](D1_GOLD.md) |
+| OPTIMIZE, Z-ORDER, liquid clustering, benchmark, threats | 10 | [D2](D2_PERFORMANCE.md) |
+| Tích hợp E1 và ranh giới E2 | 11 | [pipeline_run.json](pipeline_run.json) |
+| Slides / rehearsal F1 | 12 | [Khung A1](SLIDE_OUTLINE.md) |
+| Nguồn tham khảo | 13 và citation tại đoạn sử dụng | CIDR, Delta Lake, TLC |
 
-## 2. Part A: Theoretical & Architectural Foundations
-### 2.1. Data Warehouse vs. Data Lake vs. Data Lakehouse
-#### 2.1.1. Comparison
-#### 2.1.2. Key Features of Delta Lake
-### 2.2. Delta Transaction Log (`_delta_log/`)
-#### 2.2.1. Structure
-#### 2.2.2. Action Types
-#### 2.2.3. How the Log Guarantees ACID
-#### 2.2.4. Optimistic Concurrency Control
-#### 2.2.5. Snapshot Isolation
-### 2.3. Change Data Capture (CDC)
-#### 2.3.1. Concept
-#### 2.3.2. CDC Approaches
-#### 2.3.3. CDC in the Delta Lakehouse
-### 2.4. Medallion Architecture
-#### 2.4.1. Bronze (Raw Zone)
-#### 2.4.2. Silver (Cleansed/Enriched Zone)
-#### 2.4.3. Gold (Curated Business Zone)
-### 2.5. Delta Lake Performance Engineering
-#### 2.5.1. Small File Problem
-#### 2.5.2. Compaction (OPTIMIZE)
-#### 2.5.3. Z-Ordering & Data Skipping
-
-## 3. Part B: Design & Implementation
-### 3.1. Environment & Dataset Preparation
-### 3.2. Pipeline Design & Repository Structure
-### 3.3. Task 1: Bronze Layer Ingestion
-### 3.4. Task 2: Silver Layer (Cleansing, MERGE INTO, Schema Evolution)
-#### 3.4.1. Data Cleansing Rules
-#### 3.4.2. Generating trip_id
-#### 3.4.3. MERGE INTO (CDC Upsert)
-#### 3.4.4. Schema Evolution (mergeSchema)
-### 3.5. Task 3: Time Travel & Audit
-#### 3.5.1. Table History
-#### 3.5.2. Querying Past Versions
-#### 3.5.3. Restore
-### 3.6. Task 4: Gold Layer Aggregations
-
-## 4. Transaction Log Analysis
-### 4.1. Log Inventory per Operation
-### 4.2. Annotated Log Excerpts
-### 4.3. Checkpoint Observation
-
-## 5. Optimization Benchmark
-### 5.1. Experimental Setup
-### 5.2. Test Queries
-### 5.3. Table Variants
-### 5.4. Results
-### 5.5. Analysis
-### 5.6. Threats to Validity
-
-## 6. Challenges, Limitations & Lessons Learned
-
-## 7. Conclusion
-### 7.1. Summary of Achievements
-### 7.2. Future Work
-
-## 8. Appendix
-### 8.1. How to Reproduce
-### 8.2. Additional Screenshots / Outputs
-### 8.3. References
+Các output và ảnh của run cũ được giữ nguyên tên và ngày. Khi trình bày một
+con số, dẫn đúng manifest của run tạo ra con số đó, không trộn baseline B3
+2.880 dòng với Silver sau C1/C2 2.983 dòng.

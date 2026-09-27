@@ -138,3 +138,36 @@ def test_profile_reports_singleton_buckets(spark):
     stats = profile(df, gold, "zone_hour")
     assert stats["gold_buckets"] == 5
     assert stats["singleton_pct"] == 100.0
+
+
+def test_verify_null_tip_values_uses_sql_average_semantics(spark):
+    from datetime import datetime
+    t = datetime(2025, 1, 1, 0)
+    frame = _df(spark, [("a", t, 79, 1, 1.0, 10.0, 2.0, None, 12.0),
+                        ("b", t, 79, 1, 1.0, 10.0, None, 1.0, 11.0),
+                        ("c", t, 80, 1, 1.0, 20.0, 2.0, 0.0, 22.0)])
+    checks = verify(frame, compute(frame))
+    assert checks["independent_sql_passed"]
+    assert checks["tip_pct_per_trip_mean"] == 15.0
+    assert checks["driver_earnings"] == 45.0
+
+
+def test_verify_empty_and_all_null_ratios(spark):
+    from datetime import datetime
+    empty = _df(spark, [])
+    checks = verify(empty, compute(empty))
+    assert checks["gold_trip_count_sum"] == 0
+    assert checks["tip_pct_per_trip_mean"] is None
+    null_ratios = _df(spark, [("a", datetime(2025, 1, 1), 79, 1, 1.0, 0.0, None, None, None)])
+    checks = verify(null_ratios, compute(null_ratios))
+    assert checks["tip_pct_per_trip_mean"] is None
+    assert checks["tip_pct_ratio_of_sums"] is None
+
+
+@pytest.mark.parametrize("metric", ["driver_earnings", "total_revenue", "avg_fare"])
+def test_independent_sql_rejects_changed_bucket_metrics(spark, metric):
+    from datetime import datetime
+    frame = _df(spark, [("a", datetime(2025, 1, 1), 79, 1, 1.0, 10.0, 2.0, 1.0, 13.0)])
+    bad_gold = compute(frame).withColumn(metric, F.col(metric) + 1)
+    with pytest.raises(RuntimeError, match="independent SQL"):
+        verify(frame, bad_gold)

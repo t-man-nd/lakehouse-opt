@@ -1,0 +1,52 @@
+{
+  "grain": "zone_hourofday",
+  "gold_dir": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/e1_runs/official_20260924_verified/gold",
+  "source_silver_version": 2,
+  "timezone": "UTC",
+  "rows_written": 152,
+  "files": 2,
+  "checks": {
+    "independent_sql_passed": true,
+    "sql_checked_buckets": 152,
+    "silver_rows": 2983,
+    "gold_trip_count_sum": 2983,
+    "tip_pct_per_trip_mean": 22.4792,
+    "tip_pct_ratio_of_sums": 19.7772,
+    "tip_pct_definition_gap_pp": 2.702,
+    "total_revenue": 74707.43,
+    "driver_earnings": 63373.46
+  },
+  "profile": {
+    "grain": "zone_hourofday",
+    "silver_rows": 2983,
+    "gold_buckets": 152,
+    "trips_per_bucket_median": 2.0,
+    "trips_per_bucket_max": 230,
+    "singleton_buckets": 45,
+    "singleton_pct": 29.61,
+    "distinct_zones": 120,
+    "distinct_dates": 9,
+    "dates": [
+      "2024-12-31",
+      "2025-01-01",
+      "2025-01-02",
+      "2025-01-31",
+      "2025-02-01",
+      "2025-02-28",
+      "2025-03-01",
+      "2025-03-02",
+      "2025-04-01"
+    ],
+    "hour_of_day_distribution": {
+      "0": 2863,
+      "1": 2,
+      "9": 100,
+      "23": 18
+    }
+  },
+  "definitions": {
+    "avg_tip_pct": "100 * AVG(CASE WHEN fare_amount > 0 THEN tip_amount / fare_amount END)",
+    "driver_earnings": "SUM(COALESCE(fare_amount, 0) + COALESCE(tip_amount, 0) + COALESCE(extra, 0))",
+    "total_revenue": "SUM(total_amount), not the sum of components"
+  }
+}

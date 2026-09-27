@@ -14,7 +14,7 @@ from src.delta_runtime import get_spark, latest_version, snapshot
 from src.generate_batch_c2 import generate_batch_04
 from src.schema_evolution import evolve_bronze, evolve_silver, verify_evidence
 from src.silver import build
-from src.time_travel import fingerprint, vacuum_copy_demo
+from src.time_travel import FINGERPRINT_ALGORITHM, fingerprint, vacuum_copy_demo
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -136,3 +136,63 @@ def test_c2_generator_timestamps_cross_hour(tmp_path):
     path = generate_batch_04(str(tmp_path / "batch.json"), 100)
     for row in map(json.loads, Path(path).read_text().splitlines()):
         assert (datetime.fromisoformat(row["tpep_dropoff_datetime"]) - datetime.fromisoformat(row["tpep_pickup_datetime"])).total_seconds() == 720
+
+
+def test_fingerprint_is_order_partition_and_timezone_invariant(spark):
+    rows = [(i, None if i % 3 else "Địa điểm", datetime(2025, 1, 10, 12, 30, 1, 123456), i / 10)
+            for i in range(16)]
+    frame = spark.createDataFrame(rows, "id long, label string, at timestamp, amount double")
+    expected = fingerprint(frame)
+    assert expected["fingerprint_algorithm"] == FINGERPRINT_ALGORITHM
+    assert expected["count"] == len(rows)
+    assert len(expected["schema_sha256"]) == len(expected["rows_sha256"]) == 64
+    old_timezone = spark.conf.get("spark.sql.session.timeZone")
+    old_partitions = spark.conf.get("spark.sql.shuffle.partitions")
+    try:
+        spark.conf.set("spark.sql.session.timeZone", "Asia/Ho_Chi_Minh")
+        spark.conf.set("spark.sql.shuffle.partitions", "3")
+        assert fingerprint(frame.orderBy(F.desc("id")).repartition(4)) == expected
+    finally:
+        spark.conf.set("spark.sql.session.timeZone", old_timezone)
+        spark.conf.set("spark.sql.shuffle.partitions", old_partitions)
+
+
+def test_fingerprint_preserves_duplicate_multiplicity_nulls_values_and_schema(spark):
+    schema = "id long, label string"
+    expected = fingerprint(spark.createDataFrame([(1, None), (1, None), (2, "")], schema))
+    for rows in ([(1, None), (2, ""), (2, "")],  # Same distinct set and count; different multiplicities.
+                 [(1, ""), (1, ""), (2, "")],  # Nulls must not vanish from row serialization.
+                 [(1, None), (1, None), (2, "changed")]):
+        actual = fingerprint(spark.createDataFrame(rows, schema))
+        assert actual["count"] == expected["count"]
+        assert actual["schema_sha256"] == expected["schema_sha256"]
+        assert actual["rows_sha256"] != expected["rows_sha256"]
+    empty = fingerprint(spark.createDataFrame([], schema))
+    assert empty["count"] == 0
+    assert empty == fingerprint(spark.createDataFrame([], schema).repartition(3))
+    changed_schema = fingerprint(spark.createDataFrame([], "id string, label string"))
+    assert empty["schema_sha256"] != changed_schema["schema_sha256"]
+
+
+def test_fingerprint_collects_only_bounded_bucket_summaries(spark, monkeypatch):
+    from pyspark.core.rdd import RDD
+    from pyspark.sql.classic.dataframe import DataFrame
+
+    real_collect = RDD.collect
+    observed = []
+
+    def summaries_only(rdd):
+        rows = real_collect(rdd)
+        assert len(rows) <= 256
+        assert all(len(row) == 3 and len(row[0]) == 2 and len(row[2]) == 64 for row in rows)
+        observed.append(sum(row[1] for row in rows))
+        return rows
+
+    def forbid_frame_collect(*args, **kwargs):
+        raise AssertionError("Fingerprint must not collect full table rows to the driver")
+
+    monkeypatch.setattr(DataFrame, "collect", forbid_frame_collect)
+    monkeypatch.setattr(RDD, "collect", summaries_only)
+    result = fingerprint(spark.range(2000).withColumn("nullable", F.lit(None).cast("string")))
+    assert result["count"] == 2000
+    assert observed == [2000]

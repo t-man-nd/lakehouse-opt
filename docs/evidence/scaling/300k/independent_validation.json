@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "method": "Independent PyArrow and Python Decimal; no Spark or production imports",
+  "timestamp": "2026-09-24T12:55:37.714423+00:00",
+  "validator_sha256": "1db56855fca2e007676abb9b2d7c9864384306b70ce28ac5d1e47788e4e111c7",
+  "benchmark_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/scaling/300k/benchmark_run.json",
+  "benchmark_sha256": "dae930d94f968c6db88c89d489dd5c71d137138255e161f2668b551067c1b97f",
+  "source": {
+    "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/silver",
+    "version": 2,
+    "rows": 288103
+  },
+  "json_history": [
+    {
+      "version": 0,
+      "sha256": "601e5ce5afa566a5e1483c568157558eb0823b1583b625280e5007ae3cdbd4a0"
+    },
+    {
+      "version": 1,
+      "sha256": "47520d52123dda7911762e79eca8341a42a2e0a30c25516e18949cbd2a44d9c6"
+    },
+    {
+      "version": 2,
+      "sha256": "8f2977dd95076ad90c8f454ee9c759bec6976c4e473bd88df79ed0a7c94e5b07"
+    }
+  ],
+  "active_files": [
+    {
+      "path": "part-00000-048f0b4e-57b6-4733-825c-b82fd3da4752-c000.snappy.parquet",
+      "size_bytes": 660419,
+      "rows": 18256,
+      "sha256": "299738b8cb8ac48b4fdba80b9bcac41f911425bfecf8350b0c880a3813529b6b"
+    },
+    {
+      "path": "part-00000-610a383b-d3ac-45b5-a9e6-ff7b7ac29b88-c000.snappy.parquet",
+      "size_bytes": 11420,
+      "rows": 100,
+      "sha256": "e86081f4e5094122ff87d327b3f62d49fd45ca53884cf9f14bf7b40c7c18d3f9"
+    },
+    {
+      "path": "part-00001-58ef26b6-ddab-4c02-b96f-e479ce28f322-c000.snappy.parquet",
+      "size_bytes": 652915,
+      "rows": 18008,
+      "sha256": "59f3b239242c4e09b2b4cc7e213d72709d0e18ad8e40965afc63c036d26386cc"
+    },
+    {
+      "path": "part-00001-f3657761-1b12-41e1-8b85-3f79b4b44a06-c000.snappy.parquet",
+      "size_bytes": 656229,
+      "rows": 18119,
+      "sha256": "76b73acdffc4bfca4b504283152006062dba0ec5bf6329ec8d3c3d9ac857c26b"
+    },
+    {
+      "path": "part-00002-07cd51dc-622f-487d-877b-50e3420714f7-c000.snappy.parquet",
+      "size_bytes": 650320,
+      "rows": 17920,
+      "sha256": "b37963221c466b143aa61abc9fba5114834e53e769a7b2779a0810a3f66d2815"
+    },
+    {
+      "path": "part-00002-44adce58-ba34-404d-9d9b-3f579e3b8154-c000.snappy.parquet",
+      "size_bytes": 651532,
+      "rows": 17950,
+      "sha256": "a71be6a369592e40127b1b6f249f94ebd527b88f333940553e1faed27af86363"
+    },
+    {
+      "path": "part-00003-bbd96186-a509-4ac1-952f-e418985b036e-c000.snappy.parquet",
+      "size_bytes": 647357,
+      "rows": 17818,
+      "sha256": "9fc2faec5568a761af042f6e9efb3ec2137f39ca263cb62d3e4a637a25334416"
+    },
+    {
+      "path": "part-00003-c5bafd5a-cf4b-42ad-8c54-740488b9677c-c000.snappy.parquet",
+      "size_bytes": 657097,
+      "rows": 18136,
+      "sha256": "135dfffda697f3b6ae0d0245eed4450bf3e5f72dd5240bf7016e5498ace16a23"
+    },
+    {
+      "path": "part-00004-39593bc7-d61d-4ef2-968d-cc585624ecbe-c000.snappy.parquet",
+      "size_bytes": 653980,
+      "rows": 18042,
+      "sha256": "19f9c5de7ea9a9e3d3db4c9626d77cfa823a8b862c2f39aa0819dbfca41a0d00"
+    },
+    {
+      "path": "part-00004-d255e4ce-6115-4ee2-a373-640527e8a7c8-c000.snappy.parquet",
+      "size_bytes": 651667,
+      "rows": 17995,
+      "sha256": "c28b98d1fd64555eddca8fe03da66b457a9b375c7ac87baa60fe8664e65e48bb"
+    },
+    {
+      "path": "part-00006-082964f6-caf3-4b3c-ac51-1ac3fa78b455-c000.snappy.parquet",
+      "size_bytes": 646568,
+      "rows": 17816,
+      "sha256": "4e2690ecbd0ac7f4efbfeff2a13a3d4aacfcf657b86c50b43a59920927de63e8"
+    },
+    {
+      "path": "part-00007-33240c97-7f22-4d82-970c-0f50447e3023-c000.snappy.parquet",
+      "size_bytes": 656513,
+      "rows": 18062,
+      "sha256": "b62db51e2402633b0f9019dee90e81e9990fea83e128d79e253fdef2a77748ec"
+    },
+    {
+      "path": "part-00008-f92c48b7-596f-45c8-94db-038a9ffe7fd7-c000.snappy.parquet",
+      "size_bytes": 652032,
+      "rows": 17942,
+      "sha256": "bb6a6c9d0c507c38799bfb68c347086ae992f0cb41a5b0d77e8ded7b0a51e147"
+    },
+    {
+      "path": "part-00010-28df85e3-cf0d-4b78-bd4f-d2935ee3c830-c000.snappy.parquet",
+      "size_bytes": 646051,
+      "rows": 17844,
+      "sha256": "dd43ee855575e5153d781170cd40db8e726c78e01fcd02f3ba09d8e36dc56079"
+    },
+    {
+      "path": "part-00011-87f24c97-ba09-4a31-a184-59ce482ef3a3-c000.snappy.parquet",
+      "size_bytes": 657238,
+      "rows": 18141,
+      "sha256": "a65202bca7250240448bef4d6ee30817dcd8d8a6bb5a4d714f622a51ca9c1ac2"
+    },
+    {
+      "path": "part-00012-719ec686-d58a-438d-8ed0-f8a75f5af8de-c000.snappy.parquet",
+      "size_bytes": 654272,
+      "rows": 18062,
+      "sha256": "75485812d10ae9e305b40c3b08ce74fa6e4171d2f69b322d5e1bd7ed48c43b53"
+    },
+    {
+      "path": "part-00015-3b019a6a-b803-4ccc-8b94-556a33367f0f-c000.snappy.parquet",
+      "size_bytes": 647844,
+      "rows": 17892,
+      "sha256": "a800ba337efb4574cda215359807174bac46f4e5ad09b34ea9940647f97b6f6f"
+    }
+  ],
+  "active_files_sha256": "2269014fe78eff6b447d2efa1166bc46eb5722823e7e371aab054610a26eeb84",
+  "decimal_semantics": "String-form finite double to DECIMAL(18,4), HALF_UP; exact sum and average rounded HALF_UP to scale8 with precision60",
+  "expected_query_results": {
+    "Q1_1D_PointLookup": [
+      {
+        "trip_count": 13265,
+        "avg_fare": "15.76394798",
+        "total_tip": "40922.35"
+      }
+    ],
+    "Q2_2D_LocationAndTime": [
+      {
+        "trip_count": 243,
+        "avg_fare": "15.10728395",
+        "total_tip": "690.43"
+      }
+    ],
+    "Q3_2D_RangeAggregation": [
+      {
+        "trip_count": 17462,
+        "avg_fare": "13.75397663",
+        "total_tip": "44582.37"
+      }
+    ]
+  },
+  "phases": {
+    "required": {
+      "timed_results_verified": 60,
+      "warmup_digests_verified": 12
+    },
+    "compaction": {
+      "timed_results_verified": 30,
+      "warmup_digests_verified": 6
+    }
+  },
+  "pyarrow_version": "21.0.0"
+}

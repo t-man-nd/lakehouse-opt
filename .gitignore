@@ -1,6 +1,7 @@
 # Ignore data files
 *.parquet
 *.csv
+!docs/evidence/scaling/**/*.samples.csv
 data/raw/
 data/bronze/
 data/silver/

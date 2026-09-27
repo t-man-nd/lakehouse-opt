@@ -1,0 +1,18 @@
+{
+  "batch_01.json": {
+    "sha256": "a405d7b2bf0f07cc9a80e4af5bc72accf731f97e46edf4f1a0785d17260fdc51",
+    "matches": true
+  },
+  "batch_02.json": {
+    "sha256": "9c7214c7f74a67388cd4d8009efc1a6d1229ce5c3ffe0f848b724f642a631410",
+    "matches": true
+  },
+  "batch_03.json": {
+    "sha256": "2d5033f0175b7328cc56c8c34e4b2d6fedeeb0eca8a7cea5289b3084c89c35f2",
+    "matches": true
+  },
+  "error_manifest.json": {
+    "sha256": "4f07f91d3d12ba179df11fc44af38fb4ac7b8ad47df148898eaa8259e073c6d1",
+    "matches": true
+  }
+}

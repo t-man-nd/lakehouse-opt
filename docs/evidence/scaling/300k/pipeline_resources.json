@@ -1,0 +1,112 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-09-24T12:39:52.963517+00:00",
+  "command": [
+    ".venv/bin/python",
+    "lakehouse_pipeline.py",
+    "--config",
+    "config/scale_300k.json",
+    "--run-dir",
+    "data/scale_runs/300k/run_01"
+  ],
+  "cwd": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt",
+  "log": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_work/pipeline_300k.log",
+  "samples": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/scaling/300k/pipeline_resources.samples.csv",
+  "measurement": {
+    "memory": "Sampled sum of RSS for child PID and live descendant PIDs from ps; includes JVM",
+    "memory_unit": "bytes",
+    "sampling_interval_seconds": 1.0,
+    "limitations": "Sampled peak can miss brief spikes; shared pages may be counted more than once; RSS is not heap usage or unique physical memory. Limits are sampled guards, not OS reservations.",
+    "disk_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt"
+  },
+  "limits": {
+    "timeout_seconds": 1800.0,
+    "max_rss_gib": 12.0,
+    "min_free_gib": 12.0
+  },
+  "disk_free_before_bytes": 52345790464,
+  "disk_free_min_bytes": 51961860096,
+  "peak_process_tree_rss_bytes": 2929688576,
+  "peak_process_count": 7,
+  "sample_count": 89,
+  "sampling_error_count": 0,
+  "pid": 88875,
+  "returncode": 0,
+  "completed_at_utc": "2026-09-24T12:41:23.905481+00:00",
+  "wall_seconds": 90.942,
+  "disk_free_after_bytes": 52158992384,
+  "disk_used_delta_bytes": 186798080,
+  "pipeline_manifest": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/scaling/300k/pipeline_run.json",
+  "pipeline": {
+    "status": "passed",
+    "scope": "B1-E1",
+    "stages": {
+      "b1": {
+        "status": "passed",
+        "elapsed_seconds": 0.449,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/b1.json"
+      },
+      "b2": {
+        "status": "passed",
+        "elapsed_seconds": 7.676,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/b2.json"
+      },
+      "b3": {
+        "status": "passed",
+        "elapsed_seconds": 9.322,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/b3.json"
+      },
+      "c1_fixture": {
+        "status": "passed",
+        "elapsed_seconds": 2.088,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/c1_fixture.json"
+      },
+      "c1": {
+        "status": "passed",
+        "elapsed_seconds": 6.066,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/c1.json"
+      },
+      "c2": {
+        "status": "passed",
+        "elapsed_seconds": 7.479,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/c2.json"
+      },
+      "c2_replay": {
+        "status": "passed",
+        "elapsed_seconds": 5.62,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/c2_replay.json"
+      },
+      "c3_audit": {
+        "status": "passed",
+        "elapsed_seconds": 4.3,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/c3_audit.json"
+      },
+      "c3_vacuum": {
+        "status": "passed",
+        "elapsed_seconds": 9.431,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/c3_vacuum.json"
+      },
+      "d1": {
+        "status": "passed",
+        "elapsed_seconds": 2.797,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/d1.json"
+      },
+      "d2": {
+        "status": "passed",
+        "elapsed_seconds": 30.879,
+        "evidence_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/300k/run_01/evidence/d2.json"
+      }
+    },
+    "counts": {
+      "b1_raw": 306000,
+      "b2_bronze": 306000,
+      "b3_silver": 288000,
+      "b3_rejected": 18000,
+      "final_bronze": 306100,
+      "final_silver": 288103,
+      "gold_buckets": 4599,
+      "gold_trip_count_sum": 288103
+    },
+    "elapsed_seconds": 86.837
+  }
+}

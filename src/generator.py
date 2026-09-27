@@ -438,11 +438,26 @@ def generate_one_batch(
     missing_do: int,
     invalid_fares: int,
     duplicates: int,
+    sampling: str = "first",
+    sampling_seed: Optional[int] = None,
 ) -> Dict[str, Any]:
-    clean = load_clean_rows_from_parquet(source_file, base_rows)
+    batch_path = output_dir / f"batch_{batch_no:02d}.json"
+    sampling_metadata = None
+    if sampling == "stratified":
+        from src.sampling import stratified_parquet_sample
+        if batch_path.exists():
+            raise FileExistsError(f"Choose a fresh output directory; preserving {batch_path}")
+        clean, sampling_metadata = stratified_parquet_sample(
+            source_file, base_rows, seed if sampling_seed is None else sampling_seed,
+            SOURCE_COLUMNS, normalize_source_record,
+        )
+    elif sampling == "first":
+        clean = load_clean_rows_from_parquet(source_file, base_rows)
+        clean = [deepcopy(r) for r in clean[:base_rows]]
+    else:
+        raise ValueError(f"Unknown sampling method: {sampling}")
     source_mode = source_file.as_posix()
 
-    clean = [deepcopy(r) for r in clean[:base_rows]]
     assign_trip_ids(clean, batch_no)
 
     output = inject_defects(
@@ -467,15 +482,17 @@ def generate_one_batch(
         duplicates=duplicates,
     )
 
-    batch_path = output_dir / f"batch_{batch_no:02d}.json"
     write_jsonl(batch_path, output)
 
-    return {
+    result = {
         "batch": f"batch_{batch_no:02d}",
         "source": source_mode,
         "file": batch_path.name,
         **manifest,
     }
+    if sampling_metadata is not None:
+        result["sampling"] = sampling_metadata
+    return result
 
 
 def parse_args() -> argparse.Namespace:
@@ -499,6 +516,10 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--base-rows", type=int, default=DEFAULT_BASE_ROWS)
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
+    parser.add_argument("--sampling", choices=("first", "stratified"), default="first",
+                        help="Keep the original first-N demo or sample proportionally across pickup day/hour")
+    parser.add_argument("--sampling-seed", type=int, default=None,
+                        help="Selection seed for stratified sampling; defaults to --seed")
     parser.add_argument("--duplicates", type=int, default=DEFAULT_DUPLICATES)
     parser.add_argument("--malformed-dates", type=int, default=DEFAULT_MALFORMED_DATES)
     parser.add_argument("--missing-pu", type=int, default=DEFAULT_MISSING_PU)
@@ -509,6 +530,18 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
+    if args.base_rows <= 0 or any(value < 0 for value in (
+        args.duplicates, args.malformed_dates, args.missing_pu, args.missing_do, args.invalid_fares,
+    )):
+        raise ValueError("base-rows must be positive and defect counts non-negative")
+    if sum((args.duplicates, args.malformed_dates, args.missing_pu, args.missing_do, args.invalid_fares)) > args.base_rows:
+        raise ValueError("Disjoint defect counts must not exceed base-rows")
+    if args.sampling == "stratified":
+        protected = [args.output_dir / name for name in (
+            "batch_01.json", "batch_02.json", "batch_03.json", "error_manifest.json", "checksums.txt",
+        )]
+        if any(path.exists() for path in protected):
+            raise FileExistsError("Stratified generation requires fresh outputs; existing files are preserved")
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     source_files = resolve_source_files(args.source_files)
@@ -527,6 +560,8 @@ def main() -> None:
                 missing_do=args.missing_do,
                 invalid_fares=args.invalid_fares,
                 duplicates=args.duplicates,
+                sampling=args.sampling,
+                sampling_seed=args.sampling_seed,
             )
         )
 
@@ -565,6 +600,13 @@ def main() -> None:
         json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
     )
+    if args.sampling == "stratified":
+        from src.sampling import file_sha256
+        (args.output_dir / "checksums.txt").write_text(
+            "".join(f"{file_sha256(args.output_dir / name)}  {name}\n"
+                    for name in [batch["file"] for batch in batches] + ["error_manifest.json"]),
+            encoding="utf-8",
+        )
 
     print("B1 generation completed")
     print("-" * 72)

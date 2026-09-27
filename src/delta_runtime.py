@@ -1,4 +1,4 @@
-"""Shared local Spark runtime and snapshot checks for the C1-C3 demos."""
+"""Shared Spark/Delta runtime and snapshot checks for the classroom pipeline."""
 
 from __future__ import annotations
 
@@ -11,19 +11,26 @@ from delta import DeltaTable, configure_spark_with_delta_pip
 from pyspark.sql import DataFrame, SparkSession, functions as F
 
 
-def get_spark(master: str = "local[2]", app_name: str = "LakehouseThroughC3") -> SparkSession:
+def get_spark(master: str = "local[2]", app_name: str = "LakehouseThroughE1") -> SparkSession:
     if master.startswith("local"):
         # Python-created CDC rows start workers: they must use the driver venv.
         os.environ["PYSPARK_PYTHON"] = sys.executable
         os.environ["PYSPARK_DRIVER_PYTHON"] = sys.executable
+    # Keep the small demo defaults; scale trials explicitly set these variables.
+    partitions = int(os.environ.get("LAKEHOUSE_SHUFFLE_PARTITIONS", "2"))
+    if partitions < 1:
+        raise ValueError("LAKEHOUSE_SHUFFLE_PARTITIONS must be positive")
     builder = (
         SparkSession.builder.appName(app_name).master(master)
         .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
         .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
         .config("spark.ui.enabled", "false")
-        .config("spark.driver.memory", "1g")
-        .config("spark.sql.shuffle.partitions", "2")
-        .config("spark.default.parallelism", "2")
+        .config("spark.driver.memory", os.environ.get("LAKEHOUSE_DRIVER_MEMORY", "1g"))
+        .config("spark.sql.shuffle.partitions", str(partitions))
+        .config("spark.default.parallelism", str(partitions))
+        # VACUUM uses this bound for file discovery; the Spark default 10,000
+        # launches thousands of empty tasks for the few local demo files.
+        .config("spark.sql.sources.parallelPartitionDiscovery.parallelism", str(partitions))
         .config("spark.databricks.delta.snapshotPartitions", "2")
         .config("spark.sql.ansi.enabled", "true")
         .config("spark.sql.session.timeZone", "UTC")

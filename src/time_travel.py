@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import codecs
 import hashlib
 import json
 import shutil
@@ -14,15 +15,96 @@ from pyspark.sql import SparkSession, functions as F
 from src.delta_runtime import latest_version, snapshot, write_json
 
 
+FINGERPRINT_ALGORITHM = "spark-json-sha256-bucketed-multiset-v2"
+FINGERPRINT_BUCKETS = 256
+
+
+def _digest_partition(rows):
+    """Hash sorted, fixed-width row digests while holding only one bucket state."""
+    bucket, count, digest = None, 0, None
+    for row in rows:
+        current = row["_bucket"]
+        if current != bucket:
+            if bucket is not None:
+                yield bucket, count, digest.hexdigest()
+            bucket, count = current, 0
+            digest = hashlib.sha256(b"lakehouse-row-bucket-v2\0")
+        # Repeated row hashes are retained: this is a multiset, not a set/XOR.
+        digest.update(bytes.fromhex(row["_row_sha256"]))
+        count += 1
+    if bucket is not None:
+        yield bucket, count, digest.hexdigest()
+
+
 def fingerprint(frame) -> dict:
-    """Read every value, not a metadata-only count; bounded classroom dataset."""
-    rows = sorted(json.dumps(row.asDict(recursive=True), sort_keys=True, default=str) for row in frame.collect())
-    return {"count": len(rows), "rows_sha256": hashlib.sha256("\n".join(rows).encode()).hexdigest(),
-            "schema": frame.schema.jsonValue()}
+    """Versioned full-value multiset fingerprint with bounded driver memory.
+
+    Spark serializes each row with explicit nulls and UTC microsecond timestamps,
+    then externally sorts its SHA-256 hashes by a fixed 256-bucket prefix. Worker
+    iterators hash every row, including duplicates; only at most 256 bucket
+    summaries reach the driver. Spark's sort can spill instead of collecting the
+    table in Python. Row/partition order never affects this digest.
+
+    The schema is separately fingerprinted, including field order and metadata.
+    v2 hashes intentionally differ from historical collect-and-sort v1 evidence.
+    """
+    schema = frame.schema.jsonValue()
+    schema_bytes = json.dumps(schema, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    columns = [F.col("`" + name.replace("`", "``") + "`").alias(name) for name in frame.columns]
+    encoded = F.to_json(F.struct(*columns), options={
+        "ignoreNullFields": "false", "timeZone": "UTC",
+        "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'",
+        "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss.SSSSSS",
+    })
+    hashes = frame.select(F.sha2(encoded, 256).alias("_row_sha256"))
+    hashes = hashes.withColumn("_bucket", F.substring("_row_sha256", 1, 2))
+    # Partition count controls throughput only; stable hash-prefix buckets keep
+    # the result independent of this value and of the source's partitioning.
+    partitions = max(1, min(FINGERPRINT_BUCKETS, int(frame.sparkSession.conf.get("spark.sql.shuffle.partitions"))))
+    summaries = (hashes.repartition(partitions, "_bucket")
+                 .sortWithinPartitions("_bucket", "_row_sha256")
+                 .rdd.mapPartitions(_digest_partition).collect())
+    digest = hashlib.sha256((FINGERPRINT_ALGORITHM + "\0").encode("ascii"))
+    count = 0
+    for bucket, bucket_count, bucket_digest in sorted(summaries):
+        digest.update(bytes.fromhex(bucket))
+        digest.update(str(bucket_count).encode("ascii") + b"\0")
+        digest.update(bytes.fromhex(bucket_digest))
+        count += bucket_count
+    return {"count": count, "rows_sha256": digest.hexdigest(), "schema": schema,
+            "schema_sha256": hashlib.sha256(schema_bytes).hexdigest(),
+            "fingerprint_algorithm": FINGERPRINT_ALGORITHM, "fingerprint_buckets": FINGERPRINT_BUCKETS}
+
+
+def stream_file_signature(path: Path, *, count_lines: bool = False) -> tuple[str, int | None]:
+    """SHA-256 in 1 MiB blocks, optionally preserving UTF-8 splitlines counts."""
+    digest = hashlib.sha256()
+    decoder = codecs.getincrementaldecoder("utf-8")() if count_lines else None
+    separators = ("\n", "\r", "\v", "\f", "\x1c", "\x1d", "\x1e", "\x85", "\u2028", "\u2029")
+    lines, last_character = 0, ""
+
+    def tally(text):
+        nonlocal lines, last_character
+        if text:
+            lines += sum(text.count(separator) for separator in separators) - text.count("\r\n")
+            if last_character == "\r" and text.startswith("\n"):
+                lines -= 1
+            last_character = text[-1]
+
+    with Path(path).open("rb") as handle:
+        while block := handle.read(1024 * 1024):
+            digest.update(block)
+            if decoder is not None:
+                tally(decoder.decode(block))
+    if decoder is not None:
+        tally(decoder.decode(b"", final=True))
+        if last_character and last_character not in separators:
+            lines += 1
+    return digest.hexdigest(), lines if count_lines else None
 
 
 def file_hashes(root: Path) -> dict:
-    return {str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
+    return {str(path.relative_to(root)): stream_file_signature(path)[0]
             for path in sorted(root.rglob("*")) if path.is_file()}
 
 

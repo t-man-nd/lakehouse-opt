@@ -1,0 +1,69 @@
+{
+  "base_commit": "5ed090bcb7835c95a6df6cabbb733f8929d7e7d0",
+  "branch": "main",
+  "note": "Working-tree source hashes identify the code tested; base_commit is not a claim these edits were committed.",
+  "source_evidence": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/e1_runs/official_20260924_verified/evidence",
+  "tests": {
+    "tests": 90,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "source_sha256": {
+    "lakehouse_pipeline.py": "f2ca9a6f0aa71ef9edba096108a1b8e0aeef9bb3736c86c20853ce3b1564ba7e",
+    "optimization_benchmark.py": "12187a4d489b732f8da5a1bcdf893a307f586474402e0955f274c55e477663c9",
+    "config/pipeline.json": "0a3c9943bc72ad8265d81eee3e650049f9c61d42fc4bfefa70c2fa34d1de30a8",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/benchmark_metrics.py": "0a2d9e7d3473a50c93aff8e32b6978634989326e3279095a756ffb166ecfc1f9",
+    "src/bronze.py": "44bf1eaf695e05282c0abf65ccc611af935704f21479d0d4133d67e6916710d2",
+    "src/cdc_merge.py": "612ed9155619f9ce117c8634d0328c97fd526680e012ba25bc431016739b3642",
+    "src/delta_runtime.py": "67d4ae8be3d6350a4432b9435de515a27ffb0591d058fd35a10dc4b5b3817400",
+    "src/generate_batch_c2.py": "8399bf5422197ab65646679458dd9f77920812467b8231f6593843fdd2d90955",
+    "src/generator.py": "f00a473668c6d405a7bcd88bc421bd97434a9dda59d652fd09559a88a66a0bef",
+    "src/gold.py": "c7c2a9ad56655953f52cdc18d8ef89f3b05948cc44090966d4a928a3ed019231",
+    "src/schema_evolution.py": "1fcc520956e6a03d73b790b4d45ae8afc00d8dea7c791ed1852aa06aff5990b9",
+    "src/silver.py": "7e6cfb8b68216d09b1ccd51ef2c33a47006aeed400881255f8d73ee598df6f22",
+    "src/time_travel.py": "4dc2878f35ba91ecaeefc0061239589a8e6dfc0c35fe9e4a7fcf7b297491dc2c",
+    "tests/test_benchmark.py": "153c9fb50fb5a86ad7bd0d92c7e58294a637f1ea8c9430c94bbeeca210d152a7",
+    "tests/test_benchmark_metrics.py": "62e65cbcad974b4dbe5c605e4f6b6ffa64c34800a7cba597bab7aa8b03e83db9",
+    "tests/test_delta_core.py": "28332c578b14b42f76c66755ac854f51d76597fd69bcde75ae27f3595856ef4a",
+    "tests/test_gold.py": "c95d4e1ebfa2f10574cc21b297ce368d2b59824e47840399d5f13930a03a7bb6",
+    "tests/test_pipeline.py": "16e0ea26dd58c4930f9bd80703df9fcf34ad95af436f2c62c4eb791a78ffa7ff",
+    "tests/test_silver.py": "2001730e37c3195cf08b98111547445b45d8da5de468d754c1f5534eccccfd81",
+    "scripts/render_c3_evidence.py": "495b4013491ab46ac5261d6a9f90f8051615c67f20e183d1562f95405ab53ae5",
+    "requirements.txt": "50e43854e5b223747603a28f636d685a1b6cb0a9f03a5cce990ccc0897ee907d",
+    "requirements-dev.txt": "b2cf40cfde63ffcd654d233d12aebeb06ea2092d1cbd22aa25c34efacfcfd804"
+  },
+  "evidence_sha256": {
+    "audit.json": "45d296befb5179b742e403598a7cbb657737d9f0fdaf33dd9d254bda8e3e3a1d",
+    "bronze_history.json": "2537f9e1b7802877fbb9d55e97145b9f1ead22f2cd386667740d16b86bb7cf36",
+    "cdc_fixture.json": "13c54f3d99f4aa0cac56d37126b6f822469a360434626d427059db66b5f93cca",
+    "delta_log/bronze/00000000000000000002.json": "8678b7bc15eddbff6c57fa0c3d06679e7e4685a1e5bf1e6e29afced87f17e2ae",
+    "delta_log/bronze/00000000000000000003.json": "e8a83ceba9e6be19c192e5dfedac296a39bcbc89413ba69a26f158ea4cc70089",
+    "delta_log/silver/00000000000000000000.json": "9db89e9da4f32492ab88b2f10b0b581f2f704edddcc3c75f71601d857dfb0435",
+    "delta_log/silver/00000000000000000001.json": "c419d86d230b26ac220955d060ad03a35260fb0e81d2a01c8b437089ce946149",
+    "delta_log/silver/00000000000000000002.json": "2faee47080a7b058caa52f2093c8ad18d01b4cdcc066b0264dcb5c5418d64431",
+    "delta_log.html": "211d528ed8e6ac41c6ae8fa42fe533e3f755193352e8817ec9f39fc97122bab0",
+    "pipeline_run.json": "256a4ac15b77c67140280801293031f2eaa2d31fbe6e9134ab053166687cf071",
+    "silver_history.json": "97e1fa32da30438be790c3ca201b191297a4be732932c2e87b2a59a886748bf6",
+    "summary.html": "cb3b6efb7979a3f7c4f41f94af627f6ee01a833aec9f6f03b2c63f7984e0ca67",
+    "tests.xml": "979a3c758534228356f82118b856a4d0f1e4f9b10770d10bf31f651926bd1db4",
+    "vacuum.json": "8794a6700c6fc952a821094f94e8fd858db132d7264868cfb16aa52a9a015a74",
+    "summary.png": "15e9e38c210a95f782792b05e5224500d7b221c1514cba81cc499e46526d53e5",
+    "delta_log.png": "3ebb420aa67012270084194b78ab1225244eaacc8ab2a087714d594ad7f59c50"
+  },
+  "visual_capture": {
+    "method": "Headless Google Chrome, isolated temporary user-data-dir, device scale 1",
+    "screenshots": {
+      "summary.png": {
+        "width": 1440,
+        "height": 1300
+      },
+      "delta_log.png": {
+        "width": 1440,
+        "height": 1400
+      }
+    },
+    "visual_qa": "Both screenshots inspected; all text and final content visible."
+  }
+}

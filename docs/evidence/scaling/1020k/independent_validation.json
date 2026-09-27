@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "method": "Independent PyArrow and Python Decimal; no Spark or production imports",
+  "timestamp": "2026-09-24T12:55:38.033459+00:00",
+  "validator_sha256": "1db56855fca2e007676abb9b2d7c9864384306b70ce28ac5d1e47788e4e111c7",
+  "benchmark_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/scaling/1020k/benchmark_run.json",
+  "benchmark_sha256": "ea8f1c90f50c87a8605778e5c5b8097c2caa1a6fe868c855c77fbc911781844e",
+  "source": {
+    "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/1020k/run_01/silver",
+    "version": 2,
+    "rows": 979303
+  },
+  "json_history": [
+    {
+      "version": 0,
+      "sha256": "1f183461f9438cf91ef2cb7372a89f5c661fd62e2aa3b10779d4970a1a1afd1b"
+    },
+    {
+      "version": 1,
+      "sha256": "0012f47ddcb1cc2a8c0929d1d4234f43c7d8e7d1566f2e57315c9cdbdce7097a"
+    },
+    {
+      "version": 2,
+      "sha256": "77f79b996dc8c04d528bae69fa19809116d1ef235d489956c1f5c2d5bfd050e2"
+    }
+  ],
+  "active_files": [
+    {
+      "path": "part-00000-0b4a86f9-f213-4644-91cd-847fc4cf2709-c000.snappy.parquet",
+      "size_bytes": 11425,
+      "rows": 100,
+      "sha256": "a7e8fbfc3bb22494d3f3c6eafe0be020596f1fdd9199b6ff1cd5e8755ac3e04b"
+    },
+    {
+      "path": "part-00000-a5d9b08a-bab6-4fbb-a85b-63c49eb59b04-c000.snappy.parquet",
+      "size_bytes": 2115815,
+      "rows": 61478,
+      "sha256": "8ec142a8beeff7f33618eed3527bbfd580fc097e17c33ef0e6342088307e1ce5"
+    },
+    {
+      "path": "part-00000-d80773e2-acda-4e4e-b67e-f890d2da6968-c000.snappy.parquet",
+      "size_bytes": 2114583,
+      "rows": 61423,
+      "sha256": "e8db3fc5f3842c29a1ccf4314ec9b733817a9e7d64ab774e9cf35cb134dce5cb"
+    },
+    {
+      "path": "part-00001-0a96225a-af7d-4554-88b9-6fc9c0ccb746-c000.snappy.parquet",
+      "size_bytes": 2092998,
+      "rows": 60782,
+      "sha256": "9853b23a1bd22e34f9f024345a1208e93e48da24dcd0b509b7486fb4a464c3cf"
+    },
+    {
+      "path": "part-00001-508ed629-bd1c-43f9-8611-c4e84b1db0d6-c000.snappy.parquet",
+      "size_bytes": 2110899,
+      "rows": 61296,
+      "sha256": "59e00e95f29616374765972f471244dcc3113ef0ca332effd93512ad8afcbbce"
+    },
+    {
+      "path": "part-00002-62097546-ac8a-4431-aade-1a0444a509d2-c000.snappy.parquet",
+      "size_bytes": 2099414,
+      "rows": 61009,
+      "sha256": "1e0c011ed9fe1536e4d92b213f8fcf1fdd8a5c834f48425f6695c288ed1935c9"
+    },
+    {
+      "path": "part-00002-7fe6b58a-9e1b-4711-9332-f37a321b23c8-c000.snappy.parquet",
+      "size_bytes": 2110191,
+      "rows": 61303,
+      "sha256": "608a1c68f1fdd6e9ade7c74e46b1af716a66220425b9dbd56853c13e7831a54d"
+    },
+    {
+      "path": "part-00003-171c89d9-c51f-46cf-a8ff-5c86c55f4f2a-c000.snappy.parquet",
+      "size_bytes": 2106039,
+      "rows": 61211,
+      "sha256": "663c97b0e419017795cb54a1de80986972d3f3bc146aa0b4689a35f80d7cce62"
+    },
+    {
+      "path": "part-00003-ebf2e26a-159f-4e3e-96c1-c323a29cf56f-c000.snappy.parquet",
+      "size_bytes": 2092830,
+      "rows": 60716,
+      "sha256": "f7ff06d51ca46d02707dcd37d6a73e9c69b5d74aa671f72a3afa56eb105d0ab3"
+    },
+    {
+      "path": "part-00004-5bf08f41-df9d-4ac8-a4ac-9760b2bafd15-c000.snappy.parquet",
+      "size_bytes": 2100302,
+      "rows": 61066,
+      "sha256": "400ab8778740f3a77271daa2cd38263446cdbe6e5b232e5785fe8b2d83848806"
+    },
+    {
+      "path": "part-00004-9bca87dd-147e-4b11-9dd0-deb9a182e2dd-c000.snappy.parquet",
+      "size_bytes": 2115361,
+      "rows": 61510,
+      "sha256": "54aaf933ea0ce74c72ee503d31bdc718333f9137427c745c44bfa88f760a8d8b"
+    },
+    {
+      "path": "part-00005-40032210-6784-43a5-a259-ef564ba30f2b-c000.snappy.parquet",
+      "size_bytes": 2116506,
+      "rows": 61567,
+      "sha256": "27ec63ef552ccfde58134283cdf9f8860530a1800dbd1495f56b910711c6de11"
+    },
+    {
+      "path": "part-00006-147595dd-251e-4484-9d6b-15c6376cf0aa-c000.snappy.parquet",
+      "size_bytes": 2109475,
+      "rows": 61302,
+      "sha256": "fe4a5f4fd8d9506c93963915cd28a91f6d588f505ae879b00e880e1f2dd57be8"
+    },
+    {
+      "path": "part-00007-4b912131-14b6-416b-a2bb-454ced00829e-c000.snappy.parquet",
+      "size_bytes": 2102922,
+      "rows": 61075,
+      "sha256": "7aa539747e8ab7cc410ea1a89f88c6b367b551b5a0e619d327d8a2a42cc316bf"
+    },
+    {
+      "path": "part-00008-798f4be8-07b1-4826-b6d6-21022e94558b-c000.snappy.parquet",
+      "size_bytes": 2104457,
+      "rows": 61180,
+      "sha256": "ca9cd4e5a94ff7aece8d05e1a234774dc6f7399eece98b360ac0efa070302048"
+    },
+    {
+      "path": "part-00011-55f18b10-1a4c-4bfb-af4b-9c87050d073c-c000.snappy.parquet",
+      "size_bytes": 2102026,
+      "rows": 61116,
+      "sha256": "d0a81b04b889649528be600a1b3496181e420ea64d9d472fd9b6348e367c7f12"
+    },
+    {
+      "path": "part-00015-91b9f09e-1bfd-4107-ab17-c24e3d645a0f-c000.snappy.parquet",
+      "size_bytes": 2104643,
+      "rows": 61169,
+      "sha256": "ffc8def5659666b8b12b6001e1e71b844ac898798486096dbd59e439e6d70156"
+    }
+  ],
+  "active_files_sha256": "8eec6ffec85bd2b9ea5174e24838adab55c19366d3f662b64e61492e9dfa8db1",
+  "decimal_semantics": "String-form finite double to DECIMAL(18,4), HALF_UP; exact sum and average rounded HALF_UP to scale8 with precision60",
+  "expected_query_results": {
+    "Q1_1D_PointLookup": [
+      {
+        "trip_count": 45411,
+        "avg_fare": "15.60502235",
+        "total_tip": "138949.33"
+      }
+    ],
+    "Q2_2D_LocationAndTime": [
+      {
+        "trip_count": 804,
+        "avg_fare": "15.82297264",
+        "total_tip": "2393.94"
+      }
+    ],
+    "Q3_2D_RangeAggregation": [
+      {
+        "trip_count": 59602,
+        "avg_fare": "13.65181336",
+        "total_tip": "152234.18"
+      }
+    ]
+  },
+  "phases": {
+    "required": {
+      "timed_results_verified": 60,
+      "warmup_digests_verified": 12
+    },
+    "compaction": {
+      "timed_results_verified": 30,
+      "warmup_digests_verified": 6
+    }
+  },
+  "pyarrow_version": "21.0.0"
+}

@@ -1,0 +1,33 @@
+{
+  "scales_base_rows": [
+    300000,
+    1020000,
+    3000000
+  ],
+  "per_month": [
+    100000,
+    340000,
+    1000000
+  ],
+  "sampling": "proportional pickup day/hour without replacement",
+  "seed": 42,
+  "defects_per_base_rows": {
+    "duplicates": 0.02,
+    "malformed_dates": 0.01,
+    "missing_pu": 0.01,
+    "missing_do": 0.01,
+    "invalid_fares": 0.01
+  },
+  "master": "local[4]",
+  "driver_heap": "4g",
+  "shuffle_partitions": 16,
+  "baseline_partitions": 256,
+  "target_file_bytes": 1048576,
+  "timed_iterations": 5,
+  "resource_limits": {
+    "peak_process_tree_rss_gib": 12,
+    "minimum_free_disk_gib": 12,
+    "command_timeout_seconds": 1800
+  },
+  "escalation": "Only proceed after correctness passes, completed resource measurements and no resource limit exceeded. Retain all results including slowdowns."
+}

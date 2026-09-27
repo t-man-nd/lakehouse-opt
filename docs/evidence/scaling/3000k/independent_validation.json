@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "method": "Independent PyArrow and Python Decimal; no Spark or production imports",
+  "timestamp": "2026-09-24T12:55:38.715589+00:00",
+  "validator_sha256": "1db56855fca2e007676abb9b2d7c9864384306b70ce28ac5d1e47788e4e111c7",
+  "benchmark_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/scaling/3000k/benchmark_run.json",
+  "benchmark_sha256": "3daa7b455965fb32b61608963a0db29317ad59229d64f788397e1f0bd5c53452",
+  "source": {
+    "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/scale_runs/3000k/run_01/silver",
+    "version": 2,
+    "rows": 2880103
+  },
+  "json_history": [
+    {
+      "version": 0,
+      "sha256": "9b4c24c857dfbae5640f657143e07836793fb53e37ce0a8017a1c4983dbaf5f0"
+    },
+    {
+      "version": 1,
+      "sha256": "11eb2934bb868471fd54ee0168a0cce90649daa5bd2aad7600797aeeedadbceb"
+    },
+    {
+      "version": 2,
+      "sha256": "7d7091d715f0208f705a2d7861aac68fba9483535e8e3fe2f6040bdc402727dd"
+    }
+  ],
+  "active_files": [
+    {
+      "path": "part-00000-094b3f66-d81e-4a04-8f53-748dac08742e-c000.snappy.parquet",
+      "size_bytes": 5622300,
+      "rows": 179471,
+      "sha256": "71f9b34daad6cc644e84ae826640e409e33caa57c83d6df609e639272ed7ea8a"
+    },
+    {
+      "path": "part-00000-1f432b8e-6d5b-4b5e-b269-20ccd6baf2a4-c000.snappy.parquet",
+      "size_bytes": 11425,
+      "rows": 100,
+      "sha256": "b40a0bfa1c9e0fd51d79bb049e29f312b8c917ff249f7e88f14f110b3d109c85"
+    },
+    {
+      "path": "part-00000-b7af177b-6f0f-40d0-b7ef-0c4fd136af5e-c000.snappy.parquet",
+      "size_bytes": 5646398,
+      "rows": 180221,
+      "sha256": "f09e29137f889f98a849c824d39a8a17bad77d7605cf21b0fe5594e7490ea27d"
+    },
+    {
+      "path": "part-00001-07f50448-32e6-4515-bd31-2e16d139234e-c000.snappy.parquet",
+      "size_bytes": 5630896,
+      "rows": 179727,
+      "sha256": "260048914cc33e0018d64667a306d24b8dca1a22c79a59e89a551e21a6b7b830"
+    },
+    {
+      "path": "part-00001-0c0616ec-20e2-4f6c-8cfc-fe16f48f1e85-c000.snappy.parquet",
+      "size_bytes": 5670950,
+      "rows": 180804,
+      "sha256": "9dee7edbdff7c544b196a5aa210b73d784d2fb5382a84077b99207c7d6a35c9c"
+    },
+    {
+      "path": "part-00002-94054c02-ea7b-4bb6-86af-5d52225167cb-c000.snappy.parquet",
+      "size_bytes": 5631940,
+      "rows": 179717,
+      "sha256": "d9062f23e2d0c79a247abe68755336a7fbc3ccab38635ecc82385eb6e3232e06"
+    },
+    {
+      "path": "part-00002-c29fbec8-179f-46e7-9069-c50ea9d3fe93-c000.snappy.parquet",
+      "size_bytes": 5617500,
+      "rows": 179308,
+      "sha256": "d9515840bddc96ae65f8c1ec083f3052983780147247becfae26d98854d0e783"
+    },
+    {
+      "path": "part-00003-3247df1d-0337-489e-8585-18f9b6619632-c000.snappy.parquet",
+      "size_bytes": 5627004,
+      "rows": 179590,
+      "sha256": "c7f14f6198ae0319f507e249215a7db3663cdf001c3803466c1da23e8496884b"
+    },
+    {
+      "path": "part-00003-a07138b9-ca93-4730-8e86-a3f1b5727464-c000.snappy.parquet",
+      "size_bytes": 5642637,
+      "rows": 180026,
+      "sha256": "b523f3ce66fa87f88aeccb90184c6401886ea95242536baf11b1c0d1c43fdeda"
+    },
+    {
+      "path": "part-00004-b30b0c92-9010-4876-99da-4e95fb25bdff-c000.snappy.parquet",
+      "size_bytes": 5636992,
+      "rows": 179985,
+      "sha256": "79bcc949672d488b660c0a50ed28856270ce07e72b7f5c005c355fc6b419f4e5"
+    },
+    {
+      "path": "part-00006-a849e475-d79c-4ec8-961c-3ab83560e764-c000.snappy.parquet",
+      "size_bytes": 5624610,
+      "rows": 179603,
+      "sha256": "5d20634a410f765631483cb781e68465c46e441cb2c527f120b54f401eac74a4"
+    },
+    {
+      "path": "part-00008-75ce0c54-07e6-4cb1-b227-1295562e5b70-c000.snappy.parquet",
+      "size_bytes": 5654297,
+      "rows": 180301,
+      "sha256": "df6ec50d06e38322518429f7df8ad4560c1df9db8ba1a91d4866612fa4f3f5ed"
+    },
+    {
+      "path": "part-00009-1bfdaf55-9972-4250-aed9-b1c01c6f42e0-c000.snappy.parquet",
+      "size_bytes": 5664269,
+      "rows": 180793,
+      "sha256": "2d32605f3b5c0b4b9364d1b3a8703b655d1939f47a478e086502712e16a3918e"
+    },
+    {
+      "path": "part-00010-70e839e6-0bc6-4931-9394-6fd6382cd815-c000.snappy.parquet",
+      "size_bytes": 5620424,
+      "rows": 179375,
+      "sha256": "31becb89ddba7d4353815f379803f59152da75f272e0e39878a4781b7a990986"
+    },
+    {
+      "path": "part-00011-4cb19147-e178-471a-8fcd-0d87e342fea6-c000.snappy.parquet",
+      "size_bytes": 5658424,
+      "rows": 180758,
+      "sha256": "7be216ba8795f34918fdc69d770738472d6599c8510d19733a01ee45df8d24ab"
+    },
+    {
+      "path": "part-00014-3b80ad87-f877-45ae-8c16-18e5fc002656-c000.snappy.parquet",
+      "size_bytes": 5652413,
+      "rows": 180380,
+      "sha256": "60cf23b7e36aac79a7cfae6b05912856941bf4e318d7549321f6d865caf46eab"
+    },
+    {
+      "path": "part-00015-b658148b-5f41-4e0e-a594-7d594c79b2ee-c000.snappy.parquet",
+      "size_bytes": 5641767,
+      "rows": 179944,
+      "sha256": "e0d6324bd547028e290e8bd8d996fe4203f91682c5b7569fb2bfad99eb9ec047"
+    }
+  ],
+  "active_files_sha256": "7aca3ec133cba87ee2ce0223a3e02b3e4cd243ec71548a8e24507618051705b2",
+  "decimal_semantics": "String-form finite double to DECIMAL(18,4), HALF_UP; exact sum and average rounded HALF_UP to scale8 with precision60",
+  "expected_query_results": {
+    "Q1_1D_PointLookup": [
+      {
+        "trip_count": 134289,
+        "avg_fare": "15.51586399",
+        "total_tip": "408494.91"
+      }
+    ],
+    "Q2_2D_LocationAndTime": [
+      {
+        "trip_count": 2309,
+        "avg_fare": "15.82210481",
+        "total_tip": "7156.2"
+      }
+    ],
+    "Q3_2D_RangeAggregation": [
+      {
+        "trip_count": 176001,
+        "avg_fare": "13.65399486",
+        "total_tip": "450510.41"
+      }
+    ]
+  },
+  "phases": {
+    "required": {
+      "timed_results_verified": 60,
+      "warmup_digests_verified": 12
+    },
+    "compaction": {
+      "timed_results_verified": 30,
+      "warmup_digests_verified": 6
+    }
+  },
+  "pyarrow_version": "21.0.0"
+}

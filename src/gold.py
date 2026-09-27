@@ -1,41 +1,14 @@
-"""D1: Gold aggregates built from Silver.
+"""D1: rebuild zone/hour-of-day Gold metrics from a pinned Silver snapshot.
 
-Grain: PULocationID x pickup hour.
-Metrics: trip_count, avg_fare, avg_tip_pct, driver_earnings, avg_distance,
-total_revenue.
+avg_tip_pct is 100 * AVG(tip_amount / fare_amount) over trips with fare > 0;
+SQL AVG excludes null ratios. driver_earnings follows the assignment's gross
+fare + tip + extra definition (null components count as zero), not net income.
+Other receipt charges are excluded by this project metric. total_revenue is
+SUM(total_amount); discrepancies against sums of individual components require
+separate reconciliation and are not attributed to any omitted fee here.
 
-Gold is derived, never a source. It is rebuilt from Silver in one command, so
-re-run it after C1 (CDC) and C2 (schema evolution) or it will describe a stale
-snapshot.
-
-Three definitions a grader will ask about
------------------------------------------
-1. avg_tip_pct is AVG(tip/fare) PER TRIP, not SUM(tip)/SUM(fare) over the
-   group. On this dataset the two differ by 2.49 percentage points
-   (22.71% vs 20.23%). The per-trip mean answers "what does a typical
-   passenger tip"; the ratio of sums is dominated by a few expensive trips.
-
-2. driver_earnings = fare + tip + extra. Tolls, mta_tax, improvement_surcharge
-   and congestion_surcharge are pass-through to other parties, so the driver
-   does not keep them.
-
-3. total_revenue comes from total_amount, NOT from summing components. Those
-   two disagree on this dataset: B1's contract omits cbd_congestion_fee while
-   total_amount still includes it, so sum(components) exceeds sum(total_amount)
-   by 823.50 across 2880 rows -- exactly 1098 trips x $0.75. Mixing the bases
-   inside one table would be a silent error, so each metric names its basis.
-
-What this data can and cannot support
--------------------------------------
-B1's generator streams Parquet row groups in file order and keeps the first
-clean rows, and TLC files are sorted by pickup time. The result is ~1.5 hours
-around three month boundaries: 6 distinct dates, 78 zones, and 99.3% of trips
-in hour 0. batch_01 is New Year's Eve midnight.
-
-So the aggregates are arithmetically correct and demonstrate the Gold layer
-properly, but they describe three atypical midnights, not NYC taxi demand.
-`profile()` measures this and writes it into the run summary so the report can
-state it rather than imply otherwise.
+Gold describes the selected B1 sample, not representative NYC-wide demand.
+The profile reports its dates, hours and sparse aggregation buckets.
 """
 
 from __future__ import annotations
@@ -43,20 +16,19 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import statistics
+from uuid import uuid4
 
-from delta import configure_spark_with_delta_pip
+from delta import DeltaTable, configure_spark_with_delta_pip
 from pyspark.sql import DataFrame, SparkSession, functions as F
 
-# Columns the driver actually keeps. Everything else on the receipt is
-# pass-through: tolls to the bridge authority, mta_tax and
-# improvement_surcharge and congestion_surcharge to the state and the MTA.
+# Assignment-defined gross earnings components; operating expenses are unknown.
 DRIVER_COLUMNS = ("fare_amount", "tip_amount", "extra")
 
 GRAINS = {
-    # The specified grain. One bucket per zone per calendar hour.
+    # Optional detailed grain. One bucket per zone per calendar hour.
     "zone_hour": ["PULocationID", "pickup_hour"],
-    # Pools across days. Useful on wider data; near-useless here, since
-    # almost every trip is in hour 0.
+    # Assignment grain: pools the same hour-of-day across calendar dates.
     "zone_hourofday": ["PULocationID", "hour_of_day"],
     # Coarsest. Survives sparse data best.
     "zone_date": ["PULocationID", "pickup_date"],
@@ -69,6 +41,7 @@ def with_derived_columns(silver: DataFrame) -> DataFrame:
     Kept separate from the aggregation so tests can check a single row's
     tip_pct and driver_earnings without grouping anything.
     """
+    silver.sparkSession.conf.set("spark.sql.session.timeZone", "UTC")
     return (
         silver
         .withColumn("pickup_hour", F.date_trunc("hour", "tpep_pickup_datetime"))
@@ -132,7 +105,7 @@ def profile(silver: DataFrame, gold: DataFrame, grain: str) -> dict:
         "grain": grain,
         "silver_rows": silver.count(),
         "gold_buckets": n,
-        "trips_per_bucket_median": counts[n // 2] if n else 0,
+        "trips_per_bucket_median": statistics.median(counts) if n else 0,
         "trips_per_bucket_max": counts[-1] if n else 0,
         "singleton_buckets": counts.count(1),
         "singleton_pct": round(100 * counts.count(1) / n, 2) if n else 0.0,
@@ -143,48 +116,85 @@ def profile(silver: DataFrame, gold: DataFrame, grain: str) -> dict:
     }
 
 
-def verify(silver: DataFrame, gold: DataFrame) -> dict:
-    """Checks that make the aggregates trustworthy. Raise rather than warn."""
-    silver_rows = silver.count()
-    gold_trips = gold.agg(F.sum("trip_count")).first()[0] or 0
-    if gold_trips != silver_rows:
-        raise RuntimeError(
-            f"Gold covers {gold_trips} trips but Silver has {silver_rows}; "
-            "a grouping key is null and rows were dropped")
+def verify(silver: DataFrame, gold: DataFrame, grain: str = "zone_hour") -> dict:
+    """Compare every bucket against SQL written independently of compute().
 
-    derived = with_derived_columns(silver)
-
-    # Weighted mean over buckets must equal the global per-trip mean.
-    # A plain AVG over bucket averages would NOT -- that is the classic
-    # aggregate-of-averages error, and this assertion is what rules it out.
-    weighted = gold.agg(
-        F.sum(F.col("avg_tip_pct") * F.col("trip_count")) / F.sum("trip_count")
-    ).first()[0]
-    global_mean = derived.agg(F.avg("tip_pct")).first()[0]
-    if abs(weighted - global_mean) > 0.01:
-        raise RuntimeError(
-            f"Weighted bucket tip% {weighted:.4f} != global per-trip mean "
-            f"{global_mean:.4f}; avg_tip_pct is not a per-trip average")
-
-    ratio_of_sums = derived.agg(
-        100 * F.sum("tip_amount") / F.sum("fare_amount")).first()[0]
-
-    revenue_gold = gold.agg(F.sum("total_revenue")).first()[0]
-    revenue_silver = derived.agg(F.sum("total_amount")).first()[0]
-    if abs(revenue_gold - revenue_silver) > 0.05:
-        raise RuntimeError(
-            f"Gold revenue {revenue_gold} != Silver total {revenue_silver}")
-
-    return {
-        "silver_rows": silver_rows,
-        "gold_trip_count_sum": int(gold_trips),
-        "tip_pct_per_trip_mean": round(global_mean, 4),
-        "tip_pct_ratio_of_sums": round(ratio_of_sums, 4),
-        "tip_pct_definition_gap_pp": round(global_mean - ratio_of_sums, 4),
-        "total_revenue": round(revenue_silver, 2),
-        "driver_earnings": round(
-            derived.agg(F.sum("driver_earnings")).first()[0], 2),
+    Weighting rounded bucket averages by total trip count is invalid when a
+    bucket contains null tip ratios. Checking SQL AVG per bucket preserves its
+    null semantics and also handles empty/all-null inputs.
+    """
+    if grain not in GRAINS:
+        raise ValueError(f"grain must be one of {sorted(GRAINS)}")
+    spark = silver.sparkSession
+    spark.conf.set("spark.sql.session.timeZone", "UTC")
+    view = "gold_verification_" + uuid4().hex
+    silver.createOrReplaceTempView(view)
+    dimensions = {
+        "zone_hour": "PULocationID, date_trunc('hour', tpep_pickup_datetime) AS pickup_hour",
+        "zone_hourofday": "PULocationID, hour(tpep_pickup_datetime) AS hour_of_day",
+        "zone_date": "PULocationID, to_date(tpep_pickup_datetime) AS pickup_date",
     }
+    keys = GRAINS[grain]
+    try:
+        expected = spark.sql(f"""
+            SELECT {dimensions[grain]}, COUNT(*) AS trip_count,
+                   ROUND(AVG(fare_amount), 4) AS avg_fare,
+                   ROUND(AVG(CASE WHEN fare_amount > 0
+                                  THEN 100 * tip_amount / fare_amount END), 4) AS avg_tip_pct,
+                   ROUND(SUM(COALESCE(fare_amount, 0.0) + COALESCE(tip_amount, 0.0)
+                             + COALESCE(extra, 0.0)), 2) AS driver_earnings,
+                   ROUND(AVG(trip_distance), 4) AS avg_distance,
+                   ROUND(SUM(total_amount), 2) AS total_revenue,
+                   ROUND(AVG(passenger_count), 4) AS avg_passengers
+            FROM {view} GROUP BY {', '.join(keys)}
+        """)
+        if set(expected.columns) != set(gold.columns):
+            raise RuntimeError("Gold columns do not match the independent SQL contract")
+        if gold.groupBy(*keys).count().filter("count > 1").limit(1).count():
+            raise RuntimeError("Gold contains duplicate aggregation buckets")
+        actual = gold.withColumn("__present", F.lit(True)).alias("actual")
+        wanted = expected.withColumn("__present", F.lit(True)).alias("expected")
+        equal_keys = F.lit(True)
+        for name in keys:
+            equal_keys = equal_keys & F.col(f"actual.{name}").eqNullSafe(F.col(f"expected.{name}"))
+        joined = actual.join(wanted, equal_keys, "full")
+        mismatch = F.col("actual.__present").isNull() | F.col("expected.__present").isNull()
+        for name in set(expected.columns) - set(keys):
+            left, right = F.col(f"actual.{name}"), F.col(f"expected.{name}")
+            tolerance = 0 if name == "trip_count" else 0.00011
+            mismatch = mismatch | (left.isNull() != right.isNull()) | (F.abs(left - right) > tolerance)
+        if joined.filter(mismatch).limit(1).count():
+            raise RuntimeError("Gold differs from independent SQL: per-trip average, earnings or bucket metrics")
+        summary = spark.sql(f"""
+            SELECT COUNT(*) AS silver_rows,
+                   AVG(CASE WHEN fare_amount > 0
+                            THEN 100 * tip_amount / fare_amount END) AS per_trip,
+                   CASE WHEN SUM(fare_amount) > 0
+                        THEN 100 * SUM(tip_amount) / SUM(fare_amount) END AS ratio_of_sums,
+                   SUM(total_amount) AS revenue,
+                   SUM(COALESCE(fare_amount, 0.0) + COALESCE(tip_amount, 0.0)
+                       + COALESCE(extra, 0.0)) AS earnings
+            FROM {view}
+        """).first()
+        gold_trips = gold.agg(F.sum("trip_count")).first()[0] or 0
+        if gold_trips != summary.silver_rows:
+            raise RuntimeError("Gold trip count does not reconcile with Silver")
+        def rounded(value, digits):
+            return None if value is None else round(value, digits)
+        gap = None if summary.per_trip is None or summary.ratio_of_sums is None else summary.per_trip - summary.ratio_of_sums
+        return {
+            "independent_sql_passed": True,
+            "sql_checked_buckets": expected.count(),
+            "silver_rows": summary.silver_rows,
+            "gold_trip_count_sum": int(gold_trips),
+            "tip_pct_per_trip_mean": rounded(summary.per_trip, 4),
+            "tip_pct_ratio_of_sums": rounded(summary.ratio_of_sums, 4),
+            "tip_pct_definition_gap_pp": rounded(gap, 4),
+            "total_revenue": rounded(summary.revenue, 2),
+            "driver_earnings": rounded(summary.earnings, 2),
+        }
+    finally:
+        spark.catalog.dropTempView(view)
 
 
 def build(
@@ -193,13 +203,20 @@ def build(
     gold_dir: str = "data/gold/taxi_hourly_metrics",
     *,
     grain: str = "zone_hour",
+    source_version: int | None = None,
 ) -> dict:
     """Rebuild Gold from Silver. Overwrite is correct here: Gold is derived."""
-    silver = spark.read.format("delta").load(silver_dir).persist()
+    spark.conf.set("spark.sql.session.timeZone", "UTC")
+    source, destination = Path(silver_dir).resolve(), Path(gold_dir).resolve()
+    if source == destination or source in destination.parents or destination in source.parents:
+        raise ValueError("Silver and Gold directories must not overlap")
+    if source_version is None:
+        source_version = int(DeltaTable.forPath(spark, silver_dir).history(1).first()["version"])
+    silver = spark.read.format("delta").option("versionAsOf", source_version).load(silver_dir).persist()
     try:
         gold = compute(silver, grain).persist()
         try:
-            checks = verify(silver, gold)
+            checks = verify(silver, gold, grain)
             stats = profile(silver, gold, grain)
 
             (gold.write.format("delta").mode("overwrite")
@@ -208,14 +225,16 @@ def build(
             written = spark.read.format("delta").load(gold_dir)
             return {
                 "grain": grain,
-                "gold_dir": gold_dir,
+                "gold_dir": str(destination),
+                "source_silver_version": source_version,
+                "timezone": "UTC",
                 "rows_written": written.count(),
                 "files": len(written.inputFiles()),
                 "checks": checks,
                 "profile": stats,
                 "definitions": {
-                    "avg_tip_pct": "AVG(tip_amount / fare_amount) per trip",
-                    "driver_earnings": "fare_amount + tip_amount + extra",
+                    "avg_tip_pct": "100 * AVG(CASE WHEN fare_amount > 0 THEN tip_amount / fare_amount END)",
+                    "driver_earnings": "SUM(COALESCE(fare_amount, 0) + COALESCE(tip_amount, 0) + COALESCE(extra, 0))",
                     "total_revenue": "SUM(total_amount), not the sum of components",
                 },
             }
@@ -225,11 +244,22 @@ def build(
         silver.unpersist()
 
 
+def run(
+    spark: SparkSession, silver_dir: str = "data/silver/taxi_trips",
+    gold_dir: str = "data/gold/taxi_hourly_metrics", *, grain: str = "zone_hourofday",
+    overwrite: bool = False, source_version: int | None = None,
+) -> dict:
+    """E1 entry point; replacing an existing derived table must be explicit."""
+    if Path(gold_dir).exists() and not overwrite:
+        raise FileExistsError("Gold destination already exists; choose a fresh directory or overwrite=True")
+    return build(spark, silver_dir, gold_dir, grain=grain, source_version=source_version)
+
+
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--silver-dir", default="data/silver/taxi_trips")
     p.add_argument("--gold-dir", default="data/gold/taxi_hourly_metrics")
-    p.add_argument("--grain", default="zone_hour", choices=sorted(GRAINS))
+    p.add_argument("--grain", default="zone_hourofday", choices=sorted(GRAINS))
     p.add_argument("--show", type=int, default=10,
                    help="Print the busiest N buckets")
     p.add_argument("--output", help="Write the summary as JSON")

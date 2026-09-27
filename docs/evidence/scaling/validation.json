@@ -1,0 +1,245 @@
+{
+  "status": "passed",
+  "scope": "B1-E1 progressively larger stratified samples; A1/A2 documentation retained; E2/F1 not separately accepted",
+  "timestamp": "2026-09-24T12:58:25.049569+00:00",
+  "base_commit": "5ed090bcb7835c95a6df6cabbb733f8929d7e7d0",
+  "note": "Uncommitted working-tree hashes identify this validation. Historical small-fixture evidence retains its original hashes. RSS is a sampled process-tree sum, not unique physical memory or heap. Benchmarks are local warm-cache, with all original trials retained.",
+  "tests": {
+    "tests": 118,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "test_suite_seconds": 77.321,
+  "runtime_settings": {
+    "master": "local[4]",
+    "LAKEHOUSE_DRIVER_MEMORY": "4g",
+    "LAKEHOUSE_SHUFFLE_PARTITIONS": "16",
+    "resource_sampling_interval_seconds": 1.0
+  },
+  "source_parquets_freshly_verified": {
+    "data/raw/yellow_tripdata_2025-01.parquet": {
+      "sha256": "9af277e4c0d3f9deb30644da822981e1e7df6af58313170fd3aa8a474485488a",
+      "bytes": 59158238,
+      "matches_download_manifest": true
+    },
+    "data/raw/yellow_tripdata_2025-02.parquet": {
+      "sha256": "037cba555a73663f3a51a2c27816e40e3feb364769942bdf122b9da31e377bd3",
+      "bytes": 60343086,
+      "matches_download_manifest": true
+    },
+    "data/raw/yellow_tripdata_2025-03.parquet": {
+      "sha256": "20c4b77cce457b7cfdae77c5069ca7dc91c167f876a41467f4502ab69487a186",
+      "bytes": 69964745,
+      "matches_download_manifest": true
+    }
+  },
+  "default_fixture_reproduced_byte_identically": {
+    "batch_01.json": {
+      "sha256": "a405d7b2bf0f07cc9a80e4af5bc72accf731f97e46edf4f1a0785d17260fdc51",
+      "matches": true
+    },
+    "batch_02.json": {
+      "sha256": "9c7214c7f74a67388cd4d8009efc1a6d1229ce5c3ffe0f848b724f642a631410",
+      "matches": true
+    },
+    "batch_03.json": {
+      "sha256": "2d5033f0175b7328cc56c8c34e4b2d6fedeeb0eca8a7cea5289b3084c89c35f2",
+      "matches": true
+    },
+    "error_manifest.json": {
+      "sha256": "4f07f91d3d12ba179df11fc44af38fb4ac7b8ad47df148898eaa8259e073c6d1",
+      "matches": true
+    }
+  },
+  "trials": {
+    "300k": {
+      "status": "passed",
+      "base_rows": 300000,
+      "counts": {
+        "b1_raw": 306000,
+        "b2_bronze": 306000,
+        "b3_silver": 288000,
+        "b3_rejected": 18000,
+        "final_bronze": 306100,
+        "final_silver": 288103,
+        "gold_buckets": 4599,
+        "gold_trip_count_sum": 288103
+      },
+      "pipeline_wall_seconds": 90.942,
+      "pipeline_peak_rss_bytes": 2929688576,
+      "generator_wall_seconds": 9.304,
+      "generator_peak_rss_bytes": 902365184,
+      "sampling_coverage": {
+        "observed_days": 90,
+        "observed_pickup_hours": 2159
+      },
+      "benchmark": {
+        "all_layouts_preserve_source_rows": true,
+        "all_query_results_equal_source": true,
+        "all_queries_nonempty": true,
+        "required_timed_executions": 60,
+        "control_timed_executions": 30
+      },
+      "independent_validation": "docs/evidence/scaling/300k/independent_validation.json",
+      "resource_measurement_errors": 0,
+      "active_files_after": {
+        "baseline": 256,
+        "zorder_1col": 14,
+        "zorder_2col": 14,
+        "liquid_full": 14
+      },
+      "pipeline_manifest": "docs/evidence/scaling/300k/pipeline_run.json"
+    },
+    "1020k": {
+      "status": "passed",
+      "base_rows": 1020000,
+      "counts": {
+        "b1_raw": 1040400,
+        "b2_bronze": 1040400,
+        "b3_silver": 979200,
+        "b3_rejected": 61200,
+        "final_bronze": 1040500,
+        "final_silver": 979303,
+        "gold_buckets": 5342,
+        "gold_trip_count_sum": 979303
+      },
+      "pipeline_wall_seconds": 140.845,
+      "pipeline_peak_rss_bytes": 3181117440,
+      "generator_wall_seconds": 18.483,
+      "generator_peak_rss_bytes": 1208614912,
+      "sampling_coverage": {
+        "observed_days": 90,
+        "observed_pickup_hours": 2159
+      },
+      "benchmark": {
+        "all_layouts_preserve_source_rows": true,
+        "all_query_results_equal_source": true,
+        "all_queries_nonempty": true,
+        "required_timed_executions": 60,
+        "control_timed_executions": 30
+      },
+      "independent_validation": "docs/evidence/scaling/1020k/independent_validation.json",
+      "resource_measurement_errors": 0,
+      "active_files_after": {
+        "baseline": 256,
+        "zorder_1col": 42,
+        "zorder_2col": 42,
+        "liquid_full": 42
+      },
+      "pipeline_manifest": "docs/evidence/scaling/1020k/pipeline_run.json"
+    },
+    "3000k": {
+      "status": "passed",
+      "base_rows": 3000000,
+      "counts": {
+        "b1_raw": 3060000,
+        "b2_bronze": 3060000,
+        "b3_silver": 2880000,
+        "b3_rejected": 180000,
+        "final_bronze": 3060100,
+        "final_silver": 2880103,
+        "gold_buckets": 5680,
+        "gold_trip_count_sum": 2880103
+      },
+      "pipeline_wall_seconds": 353.568,
+      "pipeline_peak_rss_bytes": 3479060480,
+      "generator_wall_seconds": 73.274,
+      "generator_peak_rss_bytes": 1297203200,
+      "sampling_coverage": {
+        "observed_days": 90,
+        "observed_pickup_hours": 2159
+      },
+      "benchmark": {
+        "all_layouts_preserve_source_rows": true,
+        "all_query_results_equal_source": true,
+        "all_queries_nonempty": true,
+        "required_timed_executions": 60,
+        "control_timed_executions": 30
+      },
+      "independent_validation": "docs/evidence/scaling/3000k/independent_validation.json",
+      "resource_measurement_errors": 0,
+      "active_files_after": {
+        "baseline": 256,
+        "zorder_1col": 118,
+        "zorder_2col": 118,
+        "liquid_full": 118
+      },
+      "pipeline_manifest": "docs/evidence/scaling/3000k/pipeline_run.json"
+    }
+  },
+  "total_independent_timed_results": 270,
+  "total_independent_warmup_digests": 54,
+  "source_sha256": {
+    "lakehouse_pipeline.py": "bef21ef44a7475e282106e2342863cb39007f10fed3bc5f0d9ba9ea889a78b2c",
+    "optimization_benchmark.py": "8b7865a738831eb2d029b854c2626cbdd449f972213a90d0f4bacf3487bc251a",
+    "scripts/run_scale_trial.py": "5603598ae952b323d3af1d080411ef3686305fa476d164a3e55ca8b78e9add8f",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/benchmark_metrics.py": "0a2d9e7d3473a50c93aff8e32b6978634989326e3279095a756ffb166ecfc1f9",
+    "src/bronze.py": "44bf1eaf695e05282c0abf65ccc611af935704f21479d0d4133d67e6916710d2",
+    "src/cdc_merge.py": "612ed9155619f9ce117c8634d0328c97fd526680e012ba25bc431016739b3642",
+    "src/delta_runtime.py": "4b1f6855b12d8f960d5f5daf31613435c0b77021ce5078e57e5bef36ee1f6942",
+    "src/generate_batch_c2.py": "8399bf5422197ab65646679458dd9f77920812467b8231f6593843fdd2d90955",
+    "src/generator.py": "70eafbb1ca620ff6cc7d92d47ddc54aa56bb189ebddba4c5af0f94dcc3021720",
+    "src/gold.py": "c7c2a9ad56655953f52cdc18d8ef89f3b05948cc44090966d4a928a3ed019231",
+    "src/sampling.py": "9f37a39f0cc93364f67f33e48bcc0ad6e8972c75f7969c8dabcbeaae8807106c",
+    "src/schema_evolution.py": "1fcc520956e6a03d73b790b4d45ae8afc00d8dea7c791ed1852aa06aff5990b9",
+    "src/silver.py": "7e6cfb8b68216d09b1ccd51ef2c33a47006aeed400881255f8d73ee598df6f22",
+    "src/time_travel.py": "99c4451cdb758142ed9b52d4ac5e2725dd52c09d668e2f77029cd2411ab2b733",
+    "config/pipeline.json": "0a3c9943bc72ad8265d81eee3e650049f9c61d42fc4bfefa70c2fa34d1de30a8",
+    "config/scale_1020k.json": "923aeef73f8a2cec8bd0c647f33b4bbded3c8a4023413f5e0de76f444772f253",
+    "config/scale_3000k.json": "e55b018c708b20efc7a7812fdaa0a35a6d489037fbcc6463fcff2c25d7503912",
+    "config/scale_300k.json": "e4880f4cedc8d4c399ff07ca989e9ff84c14c35925705b14548c952ec6310d29",
+    "tests/test_benchmark.py": "153c9fb50fb5a86ad7bd0d92c7e58294a637f1ea8c9430c94bbeeca210d152a7",
+    "tests/test_benchmark_metrics.py": "62e65cbcad974b4dbe5c605e4f6b6ffa64c34800a7cba597bab7aa8b03e83db9",
+    "tests/test_delta_core.py": "a0d72c32b1fe37b8866e13ec5335f4104d38f62820cdaaa5f6079db49cca0e70",
+    "tests/test_generator_sampling.py": "8cb0ce5ccb50b49ec71b4a502148a84ac886f6591f286f7b8b8e50c670c589f4",
+    "tests/test_gold.py": "c95d4e1ebfa2f10574cc21b297ce368d2b59824e47840399d5f13930a03a7bb6",
+    "tests/test_pipeline.py": "1233860f5e1b5c2013d5055951d36a39dc9e24cfe217ceb7da79f3ebfdff4ff7",
+    "tests/test_scale_trial.py": "fd131214472feb8b6c5442710c0e4cec223ef3788fef825f15ded6d740856533",
+    "tests/test_silver.py": "2001730e37c3195cf08b98111547445b45d8da5de468d754c1f5534eccccfd81",
+    "requirements.txt": "50e43854e5b223747603a28f636d685a1b6cb0a9f03a5cce990ccc0897ee907d",
+    "requirements-dev.txt": "b2cf40cfde63ffcd654d233d12aebeb06ea2092d1cbd22aa25c34efacfcfd804"
+  },
+  "evidence_sha256": {
+    "1020k/benchmark_report.md": "31cfbe07044e7b212048cfbcf31d217ee4210fee59e5bf48cee1d96ba37f5d73",
+    "1020k/benchmark_run.json": "ea8f1c90f50c87a8605778e5c5b8097c2caa1a6fe868c855c77fbc911781844e",
+    "1020k/c3_audit.json": "3a701a25d92ac1d22b086ecb66cd16888c1f6d74ed92f7f9e1fab6d2b71935af",
+    "1020k/c3_vacuum.json": "11fecaa71dd739429939f8da2767994c530364c16dcba5e1078a8b3557adf080",
+    "1020k/generator_resources.json": "8f804d6173b591e232d8e8bee97de0b3587d725436e2180e8e4f048a29649c07",
+    "1020k/generator_resources.samples.csv": "bcb2259ec5058273088fc5ffe0477fadf4432d3ac8ed14c941ce61565b7d11da",
+    "1020k/gold_run.json": "d1a8634aded46661b0998622ea6265f15243356bf39deed688dc821077c7fbee",
+    "1020k/independent_validation.json": "2380e6ad1bb31b49fcdef50ff9ea87a927cacad256c4c64ec1c1f20836338513",
+    "1020k/input_sampling.json": "0c919af9ddfd8afb2885a600e1b7f8d94c6c04c9f377553ca0a3f2f3b2e6ea5f",
+    "1020k/pipeline_resources.json": "eb0eecb8bcba3e791b768267008f9a9806156e3df72bb485e09cae65799548dd",
+    "1020k/pipeline_resources.samples.csv": "c28572ff09b17b9b42376d447cb6ee1b32e4de9eed2679ee9b4ff83c9aa05edf",
+    "1020k/pipeline_run.json": "766d07cb49c2dfc653edae560709530820f4a6aadb50228071d8a8bd243d1485",
+    "3000k/benchmark_report.md": "820cfdb5bd2fbcc137274eb4688efcabb3f3e4a4f481bf389e3ce75b2b5b8cea",
+    "3000k/benchmark_run.json": "3daa7b455965fb32b61608963a0db29317ad59229d64f788397e1f0bd5c53452",
+    "3000k/c3_audit.json": "9bb7164f20ca65045fbe73b27aae5446cd756bc2362a3f629301bd646d1cd120",
+    "3000k/c3_vacuum.json": "e3e5434c0fec74c258175b6a6390a4b393eb63741736e02ddc99018517470315",
+    "3000k/generator_resources.json": "76fa07128b562eb1df0038743a4238c314491085625b3ebc668e5f4e3f5581ca",
+    "3000k/generator_resources.samples.csv": "b29806d22117a5dfa1442b8295ad1e893c49472bb54b9f3eb43490b62fe64b89",
+    "3000k/gold_run.json": "c9d15ba1d2b1c89d69cc525e0128ce13b2d634c415fde33ac27f32b099123983",
+    "3000k/independent_validation.json": "56b598601c61a262019109dd558c4ed9e3f890e0d599b1ba5e51e20cb0f876a6",
+    "3000k/input_sampling.json": "58542d39296223147030c5361cb33c486404dd48bbd0196894994934d5b74c10",
+    "3000k/pipeline_resources.json": "49a61e07e1c6c057185170c4ff10c00b5495835fedf5e444101af09e311870fc",
+    "3000k/pipeline_resources.samples.csv": "929c12bb990f36bb1a138e6e9cae2ca490f1fe14a34899319c66dd4befe4a2f8",
+    "3000k/pipeline_run.json": "fbf4c16606771fba93e6e4ccff43946e66f1a907b5176c5d4c91e0e46f3f8eec",
+    "300k/benchmark_report.md": "3794b570cacdb7e714cfc1161659c2e13434aff2744960332de26531002ba55d",
+    "300k/benchmark_run.json": "dae930d94f968c6db88c89d489dd5c71d137138255e161f2668b551067c1b97f",
+    "300k/c3_audit.json": "0d33bb8fa47e7a734bfc6ba4f6f6be74de1c4823ca5b2008cf0ed294f4269e22",
+    "300k/c3_vacuum.json": "f34ca92908244323ad51ce3c8788abad8657db96e3829a7f62d1e2e5f500fb44",
+    "300k/generator_resources.json": "920a9ccdd42cdc87458b76042a6497ac5d2548a925439dacc79c5fffd5542dad",
+    "300k/generator_resources.samples.csv": "d926efafd717cbd13424635ea71ac401ec8c7a1c5174fce61399f684a74e2180",
+    "300k/gold_run.json": "53867571f4df186ac427591ecb6caacae8014d5415042a116b7c767f6b47886c",
+    "300k/independent_validation.json": "81051d21c828a2fc852870b0e7e4b543ddfe8a7f3b3d000b924c53e398c782e6",
+    "300k/input_sampling.json": "1cb56b795445a908a6ef2a3b54d017953ed790877799f761516bd20a2b9ed4c1",
+    "300k/pipeline_resources.json": "3cdfcf305ec490d0144d884cdfd54594a3dcfbfdf3db628418f357cad94e7d0c",
+    "300k/pipeline_resources.samples.csv": "5bf36a80d555e29dcb564d4427b6885e4ac388ef36b61830baa19f3afb3ddb44",
+    "300k/pipeline_run.json": "1c3027db68a702bda8594a365f31a2e164f33a6ec0fef9c1de2b7659137fd13e",
+    "protocol.json": "60f22a91904b51d3c09ba384d11581d71683ae16767141405d3fcf44a8a0f7ef",
+    "tests.xml": "c31d08cc51cb52ca930d3e54235e1c0f7c576785957f07cdb96faf16507fad52",
+    "validate_scale_results.py": "1db56855fca2e007676abb9b2d7c9864384306b70ce28ac5d1e47788e4e111c7"
+  }
+}

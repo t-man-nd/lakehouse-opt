@@ -59,6 +59,7 @@ def main():
     audit, fixture = read(output / "audit.json"), read(output / "cdc_fixture.json")
     history = read(output / "silver_history.json")
     vacuum = read(output / "vacuum.json")
+    run_scope = html.escape(run.get("scope", "C3"))
     stages = [(key, audit["snapshots"][key]) for key in ("baseline", "merge", "evolution")]
     timeline = '<div class="arrow">→</div>'.join(
         f'<div class="step">Silver v{snap["version"]} · {label}<b>{snap["count"]:,}</b>dòng</div>'
@@ -83,8 +84,8 @@ def main():
 <p>Đã xóa <b>{len(vacuum["deleted_data_files"])} file Parquet obsolete</b>. Bản copy v{vacuum["copy_old_version"]} lỗi thiếu file như dự kiến; current vẫn {vacuum["copy_latest_count"]:,} dòng.</p>
 <div class="note">RETAIN 0 + retentionDurationCheck=false là hack demo-only. Cấu hình đã được khôi phục.</div></div><div>
 <p class="good">PASS · Bảng gốc v0, v1, v2 vẫn đọc đủ dữ liệu</p><p>Hash toàn bộ file gốc và fingerprint từng snapshot không đổi.</p>
-<p class="small">Audit đọc toàn bộ giá trị, không chỉ count từ metadata. Run: {run["elapsed_seconds"]} giây; Spark {run["runtime"]["spark"]}, Delta {run["runtime"]["delta_spark"]}.</p></div></div></div>
-<p class="small">Nguồn: <a href="pipeline_run.json">pipeline_run.json</a> · <a href="audit.json">audit.json</a> · <a href="vacuum.json">vacuum.json</a>. Bản trình bày từ run thật, không phải terminal giả. D1–F1 chưa thuộc checkpoint này.</p>'''
+<p class="small">Audit đọc toàn bộ giá trị, không chỉ count từ metadata. Toàn run nguồn: {run["elapsed_seconds"]} giây; Spark {run["runtime"]["spark"]}, Delta {run["runtime"]["delta_spark"]}.</p></div></div></div>
+<p class="small">Nguồn: <a href="pipeline_run.json">pipeline_run.json</a> · <a href="audit.json">audit.json</a> · <a href="vacuum.json">vacuum.json</a>. Bản trình bày từ run thật, không phải terminal giả. Trang này chỉ trình bày C3; scope của run nguồn: {run_scope}. Các kết quả Gold/D2, nếu có, nằm trong manifest.</p>'''
     (output / "summary.html").write_text(page("Time Travel & Audit — kết quả kiểm chứng", run["started_at_utc"], content), encoding="utf-8")
     merge_version, evolution_version = audit["versions"]["merge"], audit["versions"]["evolution"]
     merge_path = output / "delta_log" / "silver" / f"{merge_version:020d}.json"
@@ -115,7 +116,7 @@ def main():
 <p class="small">Xem nguyên bản: <a href="delta_log/silver/{merge_path.name}">JSON v{merge_version}</a> · <a href="delta_log/silver/{evolution_path.name}">JSON v{evolution_version}</a> · <a href="audit.json">audit.json</a>. Các số và hash lấy từ run đã PASS.</p>'''
     (output / "delta_log.html").write_text(page("Đọc một Delta commit — log thật, chú thích rõ", "MERGE v1 · Schema evolution v2 · Snapshot và data skipping", log_content), encoding="utf-8")
     repo = Path(__file__).resolve().parents[1]
-    code_paths = [repo / "lakehouse_pipeline.py", repo / "config/pipeline.json", *sorted((repo / "src").glob("*.py")),
+    code_paths = [repo / "lakehouse_pipeline.py", repo / "optimization_benchmark.py", repo / "config/pipeline.json", *sorted((repo / "src").glob("*.py")),
                   *sorted((repo / "tests").glob("*.py")), Path(__file__).resolve(), repo / "requirements.txt", repo / "requirements-dev.txt"]
     test_summary = None
     if args.tests:

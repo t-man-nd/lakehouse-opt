@@ -1,0 +1,21 @@
+{
+  "raw_dir": "data/scale_inputs/1020k",
+  "manifest": "data/scale_inputs/1020k/error_manifest.json",
+  "checksums": "data/scale_inputs/1020k/checksums.txt",
+  "run_root": "data/scale_runs/1020k",
+  "master": "local[4]",
+  "cdc_seed": 42,
+  "cdc_updates": 5,
+  "cdc_inserts": 3,
+  "evolution_rows": 100,
+  "manifest_output": "docs/evidence/scaling/1020k/pipeline_run.json",
+  "gold_grain": "zone_hourofday",
+  "benchmark_enabled": true,
+  "benchmark_iterations": 5,
+  "benchmark_target_file_size": 1048576,
+  "sampling_manifest": "data/scale_inputs/1020k/error_manifest.json",
+  "gold_summary_output": "docs/evidence/scaling/1020k/gold_run.json",
+  "benchmark_summary_output": "docs/evidence/scaling/1020k/benchmark_run.json",
+  "benchmark_report_output": "docs/evidence/scaling/1020k/benchmark_report.md",
+  "benchmark_baseline_files": 256
+}
