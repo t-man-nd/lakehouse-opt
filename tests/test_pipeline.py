@@ -170,7 +170,19 @@ def test_published_manifest_cannot_replace_sources_or_run_outputs(tmp_path, publ
         "evidence": run_dir / "evidence" / "pipeline_run.json",
     }
     alias = tmp_path / "raw_alias.json"
-    alias.symlink_to(targets["raw_json"])
+    try:
+        alias.symlink_to(targets["raw_json"])
+    except OSError:
+        if sys.platform == "win32":
+            import subprocess
+            junc_dir = tmp_path / "_junc_raw"
+            subprocess.run(
+                ["cmd", "/c", "mklink", "/J", str(junc_dir), str(Path(config["raw_dir"]).resolve())],
+                check=True, capture_output=True, text=True,
+            )
+            alias = junc_dir / "batch_01.json"
+        else:
+            raise
     targets["raw_symlink"] = alias
     originals = {path: path.read_bytes() for path in (targets["raw_json"], targets["checksums"], targets["manifest"], config_file)}
     with pytest.raises(ValueError, match="must not overlap"):
@@ -202,7 +214,19 @@ def test_publication_artifacts_cannot_alias_each_other(tmp_path, publication_con
         second = shared / "nested.json"
     else:
         second = tmp_path / "shared_alias.json"
-        second.symlink_to(shared)
+        try:
+            second.symlink_to(shared)
+        except OSError:
+            if sys.platform == "win32":
+                import subprocess
+                junc_dir = tmp_path / "_junc_shared"
+                subprocess.run(
+                    ["cmd", "/c", "mklink", "/J", str(junc_dir), str(shared.parent.resolve())],
+                    check=True, capture_output=True, text=True,
+                )
+                second = junc_dir / shared.name
+            else:
+                raise
     config["manifest_output"] = str(shared)
     config["benchmark_summary_output"] = str(second)
     with pytest.raises(ValueError, match="distinct and non-overlapping"):

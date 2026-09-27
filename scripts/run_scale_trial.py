@@ -18,49 +18,73 @@ import subprocess
 import time
 
 
+import psutil
+
+
 def process_tree_rss(root_pid: int, process_listing: str | None = None) -> tuple[int, int]:
-    """Return (sum RSS bytes, process count) from one macOS/Linux ps snapshot."""
-    if process_listing is None:
-        process_listing = subprocess.check_output(
-            ["ps", "-axo", "pid=,ppid=,rss="], text=True, timeout=5
-        )
-    rows = {}
-    for line in process_listing.splitlines():
-        fields = line.split()
-        if len(fields) != 3:
-            continue
+    """Return (sum RSS bytes, process count) from psutil or simulated ps snapshot."""
+    if process_listing is not None:
+        rows = {}
+        for line in process_listing.splitlines():
+            fields = line.split()
+            if len(fields) != 3:
+                continue
+            try:
+                pid, parent, rss_kib = map(int, fields)
+            except ValueError:
+                continue
+            rows[pid] = (parent, rss_kib * 1024)
+        selected = {root_pid}
+        while True:
+            children = {pid for pid, (parent, _) in rows.items() if parent in selected}
+            updated = selected | children
+            if updated == selected:
+                break
+            selected = updated
+        present = selected & rows.keys()
+        return sum(rows[pid][1] for pid in present), len(present)
+
+    try:
+        root = psutil.Process(root_pid)
+        procs = [root] + root.children(recursive=True)
+    except (psutil.NoSuchProcess, psutil.ZombieProcess):
+        return 0, 0
+
+    total_rss = 0
+    count = 0
+    for p in procs:
         try:
-            pid, parent, rss_kib = map(int, fields)
-        except ValueError:
+            total_rss += p.memory_info().rss
+            count += 1
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             continue
-        rows[pid] = (parent, rss_kib * 1024)
-    selected = {root_pid}
-    while True:
-        children = {pid for pid, (parent, _) in rows.items() if parent in selected}
-        updated = selected | children
-        if updated == selected:
-            break
-        selected = updated
-    present = selected & rows.keys()
-    return sum(rows[pid][1] for pid in present), len(present)
+    return total_rss, count
 
 
 def _stop_process_group(process: subprocess.Popen) -> None:
-    """Stop only the new session created for this trial, including its JVM."""
+    """Stop the process and all descendants across Windows and Linux."""
     try:
-        os.killpg(process.pid, signal.SIGTERM)
-    except ProcessLookupError:
+        root = psutil.Process(process.pid)
+        procs = root.children(recursive=True) + [root]
+    except (psutil.NoSuchProcess, psutil.ZombieProcess):
         return
+
+    for p in procs:
+        try:
+            p.terminate()
+        except (psutil.NoSuchProcess, psutil.ZombieProcess):
+            pass
+
+    gone, alive = psutil.wait_procs(procs, timeout=5.0)
+    for p in alive:
+        try:
+            p.kill()
+        except (psutil.NoSuchProcess, psutil.ZombieProcess):
+            pass
     try:
-        process.wait(timeout=10)
-    except subprocess.TimeoutExpired:
+        process.wait(timeout=5.0)
+    except (subprocess.TimeoutExpired, Exception):
         pass
-    # The leader can exit before descendants have handled SIGTERM.
-    try:
-        os.killpg(process.pid, signal.SIGKILL)
-    except ProcessLookupError:
-        pass
-    process.wait()
 
 
 def _write_json(path: Path, value: dict) -> None:

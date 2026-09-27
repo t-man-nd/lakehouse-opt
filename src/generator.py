@@ -422,7 +422,7 @@ def validate_manifest(
 
 
 def write_jsonl(path: Path, records: Iterable[Dict[str, Any]]) -> None:
-    with path.open("w", encoding="utf-8") as f:
+    with path.open("w", encoding="utf-8", newline="\n") as f:
         for record in records:
             f.write(json.dumps(record, ensure_ascii=False, separators=(",", ":")) + "\n")
 

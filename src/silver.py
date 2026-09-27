@@ -152,8 +152,26 @@ def build(
         if missing_metadata_count:
             raise ValueError(f"B2 metadata is missing in {missing_metadata_count} rows")
 
+        from pyspark.sql.window import Window
+
         candidates = classified.filter(F.col("reject_reason").isNull()).drop("reject_reason")
-        kept = candidates.dropDuplicates(["trip_id"]).persist()
+        cols_sorted = sorted(name for name in candidates.columns if name != _TYPED)
+        json_repr = F.to_json(
+            F.struct(*[_column(c) for c in cols_sorted]),
+            options={"ignoreNullFields": "false", "timeZone": "UTC"},
+        )
+        candidates = candidates.withColumn("__row_hash", F.sha2(json_repr, 256))
+        w = Window.partitionBy("trip_id").orderBy(
+            F.col("_ingest_ts").asc(),
+            F.col("_source_file").asc(),
+            F.col("__row_hash").asc(),
+        )
+        kept = (
+            candidates.withColumn("__rn", F.row_number().over(w))
+            .filter(F.col("__rn") == 1)
+            .drop("__rn", "__row_hash")
+            .persist()
+        )
         silver_count = kept.count()
         raw_columns = [_column(name) for name in bronze.columns]
         invalid = classified.filter(F.col("reject_reason").isNotNull()).select(
@@ -161,7 +179,7 @@ def build(
         )
         # Multiset subtraction preserves N-1 copies even when rows are identical.
         # Cache the actual survivor used for BOTH Silver and subtraction.
-        duplicates = candidates.exceptAll(kept).select(*raw_columns).withColumn(
+        duplicates = candidates.drop("__row_hash").exceptAll(kept).select(*raw_columns).withColumn(
             "reject_reason", F.lit("DUPLICATE_TRIP"),
         )
         rejected = invalid.unionByName(duplicates)

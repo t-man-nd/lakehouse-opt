@@ -51,7 +51,17 @@ def test_source_and_output_must_not_overlap(source_dir, tmp_path, relationship):
     output = {'same': source_dir, 'child': source_dir / 'bench',
               'parent': tmp_path, 'symlink': tmp_path / 'linked-silver'}[relationship]
     if relationship == 'symlink':
-        output.symlink_to(source_dir, target_is_directory=True)
+        try:
+            output.symlink_to(source_dir, target_is_directory=True)
+        except OSError:
+            if sys.platform == 'win32':
+                import subprocess
+                subprocess.run(
+                    ['cmd', '/c', 'mklink', '/J', str(output), str(source_dir)],
+                    check=True, capture_output=True, text=True,
+                )
+            else:
+                raise
     marker = source_dir / 'keep.txt'
     marker.write_text('original Silver')
     with pytest.raises(ValueError, match='must not overlap'):

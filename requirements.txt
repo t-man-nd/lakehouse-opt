@@ -1,3 +1,4 @@
 pyspark==4.0.1
 delta-spark==4.0.1
 pyarrow>=18,<22
+psutil>=5.9,<8.0
