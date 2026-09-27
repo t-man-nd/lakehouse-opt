@@ -24,3 +24,11 @@ spark-warehouse/
 *.log
 docs/b3_fixture_run.json
 docs/b3_test_results.xml
+# Lakehouse tables and generated scratch (real TLC lane)
+data/lakehouse/
+data/lakehouse-dev/
+spark-warehouse/
+metastore_db/
+derby.log
+.pytest_cache/
+data/spark-tmp/

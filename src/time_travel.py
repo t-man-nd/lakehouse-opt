@@ -1,182 +1,189 @@
-"""C3: materialized historical reads, transaction-log audit and isolated VACUUM."""
+"""C3 — Time travel, table history and the transaction log, as evidence files.
+
+Produces (under docs/evidence/):
+  silver_history.json        DESCRIBE HISTORY of Silver (every batch MERGE, the CDC MERGE, schema change)
+  bronze_history.json        DESCRIBE HISTORY of Bronze (one append per source file)
+  time_travel.json           row counts at every Silver version + before/after CDC comparison
+  vacuum_demo.json           VACUUM on a *copy*: what breaks and what still works
+  delta_log_annotated.md     one real commit file, with the data-skipping statistics explained
+
+The VACUUM demo sets spark.databricks.delta.retentionDurationCheck.enabled=false.
+That is a demo-only hack: it disables the safety check that stops you from
+deleting files still needed by readers or by time travel. It is applied to a
+throw-away copy and restored immediately.
+"""
 
 from __future__ import annotations
 
-import hashlib
 import json
+import os
 import shutil
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from typing import Any, Dict, List, Optional
 
-from delta import DeltaTable
-from pyspark.sql import SparkSession, functions as F
+from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
 
-from src.delta_runtime import latest_version, snapshot, write_json
-
-
-def fingerprint(frame) -> dict:
-    """Read every value, not a metadata-only count; bounded classroom dataset."""
-    rows = sorted(json.dumps(row.asDict(recursive=True), sort_keys=True, default=str) for row in frame.collect())
-    return {"count": len(rows), "rows_sha256": hashlib.sha256("\n".join(rows).encode()).hexdigest(),
-            "schema": frame.schema.jsonValue()}
+from src.config import LakehousePaths, get_paths
+from src.delta_utils import (
+    history_records, latest_version, list_commit_versions, summarize_add_actions,
+    temporary_conf, write_json,
+)
 
 
-def file_hashes(root: Path) -> dict:
-    return {str(path.relative_to(root)): hashlib.sha256(path.read_bytes()).hexdigest()
-            for path in sorted(root.rglob("*")) if path.is_file()}
+def count_per_version(spark: SparkSession, path: str) -> List[Dict[str, Any]]:
+    rows = []
+    for record in history_records(spark, path):
+        version = int(record["version"])
+        df = spark.read.format("delta").option("versionAsOf", version).load(path)
+        rows.append({"version": version, "operation": record["operation"], "rows": df.count(),
+                     "columns": len(df.columns), "userMetadata": record.get("userMetadata")})
+    return rows
 
 
-def inspect_log(table: str, version: int) -> dict:
-    path = Path(table) / "_delta_log" / f"{version:020d}.json"
-    actions = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
-    counts = {}
-    for action in actions:
-        for kind in action:
-            counts[kind] = counts.get(kind, 0) + 1
-    return {"version": version, "file": path.name, "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-            "action_counts": counts, "actions": actions}
+def compare_versions(spark: SparkSession, path: str, before: int, after: int, key: str = "trip_key",
+                     columns: tuple = ("fare_amount", "tip_amount", "total_amount")) -> Dict[str, Any]:
+    """Rows whose tracked columns differ between two versions (the MERGE's footprint)."""
+    old = spark.read.format("delta").option("versionAsOf", before).load(path)
+    new = spark.read.format("delta").option("versionAsOf", after).load(path)
+    cols = [c for c in columns if c in old.columns and c in new.columns]
+    joined = old.select(key, *[F.col(c).alias(f"old_{c}") for c in cols]).join(
+        new.select(key, *[F.col(c).alias(f"new_{c}") for c in cols]), key, "full_outer")
+    changed = joined.filter(" OR ".join(f"NOT (old_{c} <=> new_{c})" for c in cols))
+    only_new = joined.filter(f"old_{cols[0]} IS NULL AND new_{cols[0]} IS NOT NULL")
+    return {
+        "before_version": before, "after_version": after,
+        "rows_before": old.count(), "rows_after": new.count(),
+        "rows_changed_or_added": changed.count(), "rows_added": only_new.count(),
+        "sample": [r.asDict() for r in changed.limit(5).collect()],
+    }
 
 
-def audit_history(
-    spark: SparkSession, bronze_dir: str, silver_dir: str, versions: dict, fixture: dict, evidence_dir: str,
-) -> dict:
-    output = Path(evidence_dir)
-    snapshots = {}
-    probe_id = fixture["updates"][0]["trip_id"]
-    latest = latest_version(spark, silver_dir)
-    if len({versions["baseline"], versions["merge"]} - {latest}) < 2:
-        raise ValueError("C3 requires at least two distinct old Silver versions")
-    history = {}
-    for layer, table in (("bronze", bronze_dir), ("silver", silver_dir)):
-        escaped = table.replace("`", "``")
-        # Format in Spark's UTC session before collect: Python otherwise creates
-        # naive datetimes in the host timezone, which would mislabel the audit.
-        history_frame = spark.sql(f"DESCRIBE HISTORY delta.`{escaped}`").withColumn(
-            "timestamp", F.date_format("timestamp", "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"),
-        )
-        history[layer] = [row.asDict(recursive=True) for row in history_frame.collect()]
-        write_json(output / f"{layer}_history.json", history[layer])
-    if next(row for row in history["silver"] if row["version"] == versions["merge"])["operation"] != "MERGE":
-        raise AssertionError("Expected a real MERGE history entry")
-    for stage in ("baseline", "merge", "evolution"):
-        version = versions[stage]
-        frame = snapshot(spark, silver_dir, version)
-        probe = frame.filter(F.col("trip_id") == probe_id).select("trip_id", "fare_amount", "tip_amount", "total_amount").first().asDict()
-        expected = fixture["updates"][0]["before" if stage == "baseline" else "after"]
-        if any(probe[name] != value for name, value in expected.items()):
-            raise AssertionError(f"Incorrect historical CDC values at {stage}")
-        insert_count = frame.filter(F.col("trip_id").isin(fixture["insert_ids"])).count()
-        if insert_count != (0 if stage == "baseline" else len(fixture["insert_ids"])):
-            raise AssertionError("Historical insert visibility is wrong")
-        if ("surcharge_fee" in frame.columns) != (stage == "evolution"):
-            raise AssertionError("Historical schema does not match its version")
-        snapshots[stage] = {"version": version, **fingerprint(frame), "updated_trip": probe,
-                            "cdc_insert_count": insert_count}
+def run_vacuum_demo(spark: SparkSession, source_path: str, scratch_dir: Path) -> Dict[str, Any]:
+    """Show the VACUUM / time-travel interaction on a copy, never on the real table."""
+    from delta import DeltaTable
 
-    logs = {}
-    for layer, table, selected in (
-        ("silver", silver_dir, [versions[k] for k in ("baseline", "merge", "evolution")]),
-        ("bronze", bronze_dir, [versions["bronze_before_evolution"], versions["bronze_evolution"]]),
-    ):
-        logs[layer] = [inspect_log(table, version) for version in selected]
-        destination = output / "delta_log" / layer
-        destination.mkdir(parents=True, exist_ok=True)
-        for entry in logs[layer]:
-            shutil.copy2(Path(table) / "_delta_log" / entry["file"], destination / entry["file"])
-        evolved = logs[layer][-1]
-        metadata = [action["metaData"] for action in evolved["actions"] if "metaData" in action]
-        if len(metadata) != 1:
-            raise AssertionError(f"{layer} evolution commit must contain a metaData action")
-        fields = json.loads(metadata[0]["schemaString"])["fields"]
-        if not any(field["name"] == "surcharge_fee" and field["type"] == "double" for field in fields):
-            raise AssertionError("New surcharge_fee double missing in transaction metadata")
-        if evolved["action_counts"].get("remove", 0):
-            raise AssertionError("C2 must append without replacing old files")
-    merge_log = logs["silver"][1]
-    if not merge_log["action_counts"].get("add") or not merge_log["action_counts"].get("remove"):
-        raise AssertionError("Expected MERGE add/remove actions in this non-DV demo")
+    copy_path = scratch_dir / "silver_vacuum_copy"
+    if copy_path.exists():
+        shutil.rmtree(copy_path)
+    shutil.copytree(source_path, copy_path)
+    copy = str(copy_path)
+    versions = [int(r["version"]) for r in history_records(spark, copy)]
+    oldest, newest = versions[0], versions[-1]
 
-    addition = next(action["add"] for action in logs["silver"][-1]["actions"] if "add" in action)
-    stats = json.loads(addition["stats"])
-    low, high = stats["minValues"]["PULocationID"], stats["maxValues"]["PULocationID"]
-    outside = high + 1
-    actual = spark.read.parquet(str(Path(silver_dir) / unquote(addition["path"])))
-    if actual.filter(F.col("PULocationID") == outside).count() != 0:
-        raise AssertionError("File min/max bounds do not match its values")
-    skipping = {"file": addition["path"], "numRecords": stats["numRecords"], "minValues": stats["minValues"],
-                "maxValues": stats["maxValues"], "nullCount": stats["nullCount"],
-                "example_predicate": f"PULocationID = {outside}", "file_can_be_skipped": True,
-                "explanation": f"{outside} is outside [{low}, {high}]; this proves the bound, not measured scan savings."}
-    result = {"versions": versions, "snapshots": snapshots, "log_summary": {
-        layer: [{k: v for k, v in entry.items() if k != "actions"} for entry in entries]
-        for layer, entries in logs.items()}, "data_skipping": skipping}
-    write_json(output / "audit.json", result)
+    with temporary_conf(spark, {"spark.databricks.delta.retentionDurationCheck.enabled": "false"}):
+        dry_run = spark.sql(f"VACUUM delta.`{copy}` RETAIN 0 HOURS DRY RUN").count()
+        DeltaTable.forPath(spark, copy).vacuum(0.0)
+
+    result: Dict[str, Any] = {"copy_path": copy, "files_listed_by_dry_run": dry_run,
+                              "oldest_version": oldest, "newest_version": newest}
+    try:
+        result["latest_version_rows_after_vacuum"] = spark.read.format("delta").load(copy).count()
+    except Exception as exc:  # noqa: BLE001
+        result["latest_version_error"] = str(exc)[:300]
+    # Probe every old version: versions whose files were later removed (rewritten by an
+    # UPDATE/MERGE or OPTIMIZE) break; versions made only of still-live files survive.
+    per_version = {}
+    # Reading a vacuumed version is *expected* to fail; keep Spark from printing the stack trace.
+    spark.sparkContext.setLogLevel("OFF")
+    for version in versions:
+        try:
+            # count() alone is served from log statistics and never opens a data file.
+            snapshot = spark.read.format("delta").option("versionAsOf", version).load(copy)
+            snapshot.agg(F.sum(F.crc32(F.col("trip_key")))).collect()
+            per_version[version] = "readable"
+        except Exception as exc:  # noqa: BLE001
+            per_version[version] = f"FAILED: {type(exc).__name__}: {str(exc).splitlines()[0][:160]}"
+    spark.sparkContext.setLogLevel(os.environ.get("SPARK_LOG_LEVEL", "WARN"))
+    result["versions_after_vacuum"] = per_version
+    result["broken_versions"] = [v for v, s in per_version.items() if s != "readable"]
+    result["explanation"] = (
+        "VACUUM deleted data files no longer referenced by the latest version. Any older version "
+        "that still pointed at those files can no longer be read; this is why the default 7-day "
+        "retention exists and why the real table was never vacuumed with 0 hours."
+    )
     return result
 
 
-def vacuum_copy_demo(spark: SparkSession, original: str, copy_path: str, versions: list[int]) -> dict:
-    """Physically copy all local data/log files; NEVER vacuum the source or a shallow clone."""
-    source, destination = Path(original).resolve(), Path(copy_path).resolve()
-    if source == destination or source in destination.parents or destination in source.parents:
-        raise ValueError("VACUUM copy must be separate from the source and its ancestors")
-    if not versions:
-        raise ValueError("Provide historical versions to verify")
-    if destination.exists():
-        raise FileExistsError("VACUUM destination must be a new directory owned by this demo")
-    if not (source / "_delta_log").is_dir():
-        raise ValueError("VACUUM demo supports only an existing local Delta source")
-    if any(path.is_symlink() for path in source.rglob("*")):
-        raise ValueError("VACUUM source must not contain symlinks")
-    for path in (source / "_delta_log").glob("*.json"):
-        for line in path.read_text().splitlines():
-            action = json.loads(line)
-            for kind in ("add", "remove"):
-                if kind in action:
-                    relative = unquote(action[kind]["path"])
-                    parsed = urlparse(relative)
-                    if parsed.scheme or Path(relative).is_absolute() or ".." in Path(relative).parts:
-                        raise ValueError("Copy demo requires all Delta data paths to be relative and internal")
-    original_files = file_hashes(source)
-    signatures = {str(version): fingerprint(snapshot(spark, original, version)) for version in versions}
-    original_latest = latest_version(spark, original)
-    current_signature = fingerprint(snapshot(spark, original, original_latest))
-    shutil.copytree(source, destination, copy_function=shutil.copy2)
-    if file_hashes(destination) != original_files:
-        raise AssertionError("Physical copy differs before VACUUM")
-    old_version = min(versions)
-    if fingerprint(snapshot(spark, str(destination), old_version)) != signatures[str(old_version)]:
-        raise AssertionError("Copied history was not readable before VACUUM")
-    before_files = {str(path.relative_to(destination)) for path in destination.rglob("*.parquet")}
-    setting = "spark.databricks.delta.retentionDurationCheck.enabled"
-    saved = spark.conf.get(setting, "true")
-    try:
-        # DEMO-ONLY HACK. This new physical copy has no other readers/writers.
-        spark.conf.set(setting, "false")
-        escaped = str(destination).replace("`", "``")
-        dry_run = [row.asDict() for row in spark.sql(f"VACUUM delta.`{escaped}` RETAIN 0 HOURS DRY RUN").collect()]
-        DeltaTable.forPath(spark, str(destination)).vacuum(0)
-    finally:
-        spark.conf.set(setting, saved)
-    deleted = sorted(before_files - {str(path.relative_to(destination)) for path in destination.rglob("*.parquet")})
-    if not deleted:
-        raise AssertionError("VACUUM demonstration deleted no obsolete data files")
-    if fingerprint(snapshot(spark, str(destination))) != current_signature:
-        raise AssertionError("VACUUM changed the copy's current snapshot")
-    try:
-        fingerprint(snapshot(spark, str(destination), old_version))
-    except Exception as error:
-        message = str(error)
-        if not any(marker in message for marker in ("DELTA_FILE_NOT_FOUND", "FileNotFoundException", "FAILED_READ_FILE.FILE_NOT_EXIST")):
-            raise
-        failure = {"exception_type": type(error).__name__, "expected_missing_data_file": True,
-                   "message_excerpt": message[:900]}
-    else:
-        raise AssertionError("Old copy version unexpectedly remained readable after deleting its files")
-    after = {str(version): fingerprint(snapshot(spark, original, version)) for version in versions}
-    if after != signatures or file_hashes(source) != original_files or latest_version(spark, original) != original_latest:
-        raise AssertionError("Original table/history changed during the copy-only VACUUM demo")
-    return {"source": str(source), "copy": str(destination), "retention_hours": 0, "demo_only": True,
-            "retention_check_restored": spark.conf.get(setting) == saved, "dry_run": dry_run,
-            "deleted_data_files": deleted, "copy_latest_count": current_signature["count"],
-            "copy_old_version": old_version, "copy_old_read_failure": failure,
-            "original_files_unchanged": True, "original_versions_after_vacuum": after}
+def annotate_delta_log(table_path: str, version: int, out_file: Path, title: str) -> Dict[str, Any]:
+    """Write one real commit with a short explanation of each action type."""
+    summary = summarize_add_actions(table_path, version)
+    raw = (Path(table_path) / "_delta_log" / f"{version:020d}.json").read_text(encoding="utf-8").splitlines()
+    first_add = next((json.loads(line) for line in raw if '"add"' in line), None)
+    lines = [
+        f"# Annotated `_delta_log` commit: {title}",
+        "",
+        f"File: `{Path(table_path).name}/_delta_log/{version:020d}.json`  ",
+        f"Actions: {summary['action_counts']}",
+        "",
+        "Each line of a commit file is one action. Readers replay these actions (from the latest",
+        "checkpoint forward) to know exactly which Parquet files form a version; that replay is",
+        "what gives atomicity (a commit file either exists or not) and snapshot isolation",
+        "(a reader pins one version number).",
+        "",
+        "## commitInfo",
+        "",
+        "Audit record behind `DESCRIBE HISTORY`: operation, parameters, metrics, and our",
+        "`userMetadata` (batch id and source file hash).",
+        "",
+        "```json",
+        json.dumps(summary["commitInfo"], indent=2)[:4000],
+        "```",
+        "",
+        "## One `add` action",
+        "",
+        "`path` is a Parquet file now part of the table. `stats` holds `numRecords`, and per-column",
+        "`minValues`, `maxValues`, `nullCount`. A query such as `WHERE PULocationID = 132` compares",
+        "132 with each file's min/max and skips files that cannot contain it: this is data",
+        "skipping. Z-ORDER and liquid clustering work by making these min/max ranges narrow.",
+        "",
+        "```json",
+        json.dumps(first_add, indent=2)[:4000] if first_add else "(no add action in this commit)",
+        "```",
+    ]
+    out_file.parent.mkdir(parents=True, exist_ok=True)
+    out_file.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return {"file": str(out_file), "version": version, "action_counts": summary["action_counts"]}
+
+
+def run(spark: SparkSession, paths: Optional[LakehousePaths] = None) -> Dict[str, Any]:
+    paths = paths or get_paths()
+    evidence = paths.evidence_dir
+    silver_history = history_records(spark, paths.silver_trips)
+    bronze_history = history_records(spark, paths.bronze_trips)
+    write_json(evidence / "silver_history.json", silver_history)
+    write_json(evidence / "bronze_history.json", bronze_history)
+
+    per_version = count_per_version(spark, paths.silver_trips)
+    cdc_file = evidence / "cdc_merge.json"
+    comparison = None
+    if cdc_file.exists():
+        cdc = json.loads(cdc_file.read_text(encoding="utf-8"))
+        if "silver_version_before" in cdc:
+            comparison = compare_versions(spark, paths.silver_trips,
+                                          cdc["silver_version_before"], cdc["silver_version_after"])
+    time_travel = {"silver_rows_per_version": per_version, "cdc_version_comparison": comparison,
+                   "old_versions_queried": len([v for v in per_version if v["version"] < per_version[-1]["version"]])}
+    write_json(evidence / "time_travel.json", time_travel)
+
+    vacuum = run_vacuum_demo(spark, paths.silver_trips, paths.scratch_dir)
+    # The real table was never vacuumed, so its history is intact:
+    vacuum["real_table_oldest_version_rows"] = spark.read.format("delta").option(
+        "versionAsOf", per_version[0]["version"]).load(paths.silver_trips).count()
+    write_json(evidence / "vacuum_demo.json", vacuum)
+
+    bronze_versions = list_commit_versions(paths.bronze_trips)
+    annotated = annotate_delta_log(paths.bronze_trips, bronze_versions[-1],
+                                   evidence / "delta_log_annotated.md", "latest Bronze append")
+    checkpoints = sorted(p.name for p in (Path(paths.silver_trips) / "_delta_log").glob("*.checkpoint*.parquet"))
+    merge_ops = [h for h in silver_history if h["operation"] == "MERGE"]
+    return {
+        "silver_versions": len(silver_history),
+        "silver_latest_version": latest_version(spark, paths.silver_trips),
+        "merge_commits": len(merge_ops),
+        "old_versions_queried": time_travel["old_versions_queried"],
+        "cdc_rows_changed_or_added": comparison["rows_changed_or_added"] if comparison else None,
+        "vacuum_demo": {k: vacuum[k] for k in ("broken_versions", "real_table_oldest_version_rows") if k in vacuum},
+        "delta_log_annotation": annotated,
+        "silver_checkpoints": checkpoints,
+    }

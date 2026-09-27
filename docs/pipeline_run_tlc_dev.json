@@ -1,0 +1,822 @@
+{
+  "started_at": "2026-09-24T15:24:33+00:00",
+  "source": "tlc",
+  "months": [
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2025-01",
+    "2025-02",
+    "2025-03"
+  ],
+  "lake": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse-dev",
+  "spark": "4.0.1",
+  "steps": [
+    {
+      "step": "reference",
+      "result": {
+        "zones": 265,
+        "cbd_zones": 0,
+        "unknown_zones": 2,
+        "cbd_reference_available": false,
+        "dim_zone_version": 1
+      },
+      "status": "OK",
+      "seconds": 7.2
+    },
+    {
+      "step": "bronze",
+      "result": {
+        "bronze_count": 207456,
+        "bronze_version": 5,
+        "rows_per_batch": {
+          "yellow_2024-01_c4d59da7": 29554,
+          "yellow_2024-02_c76c43c1": 30052,
+          "yellow_2024-03_2d4cdc8f": 35611,
+          "yellow_2025-01_9af277e4": 34611,
+          "yellow_2025-02_037cba55": 36241,
+          "yellow_2025-03_20c4b77c": 41387
+        },
+        "ingested": [
+          {
+            "batch_id": "yellow_2024-01_c4d59da7",
+            "source_file": "yellow_tripdata_2024-01.parquet",
+            "rows": 29554,
+            "bronze_version": 0,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2024-02_c76c43c1",
+            "source_file": "yellow_tripdata_2024-02.parquet",
+            "rows": 30052,
+            "bronze_version": 1,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2024-03_2d4cdc8f",
+            "source_file": "yellow_tripdata_2024-03.parquet",
+            "rows": 35611,
+            "bronze_version": 2,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2025-01_9af277e4",
+            "source_file": "yellow_tripdata_2025-01.parquet",
+            "rows": 34611,
+            "bronze_version": 3,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2025-02_037cba55",
+            "source_file": "yellow_tripdata_2025-02.parquet",
+            "rows": 36241,
+            "bronze_version": 4,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2025-03_20c4b77c",
+            "source_file": "yellow_tripdata_2025-03.parquet",
+            "rows": 41387,
+            "bronze_version": 5,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          }
+        ],
+        "skipped": [],
+        "null_metadata_rows": 0,
+        "dev_sample_pct": 1.0
+      },
+      "status": "OK",
+      "seconds": 10.9
+    },
+    {
+      "step": "profile",
+      "result": {
+        "bronze_version": 5,
+        "months": [
+          "2024-01",
+          "2024-02",
+          "2024-03",
+          "2025-01",
+          "2025-02",
+          "2025-03"
+        ],
+        "report": "/home/lam/Bigdata/lakehouse-opt/docs/profile/bronze_profile.md",
+        "keys_seen_in_more_than_one_file": 0
+      },
+      "status": "OK",
+      "seconds": 6.8
+    },
+    {
+      "step": "silver",
+      "result": {
+        "bronze_count": 207456,
+        "silver_count": 200603,
+        "rejected_count": 6853,
+        "totals": {
+          "bronze_rows": 207456,
+          "accepted_rows": 200603,
+          "rejected_rows": 6853,
+          "expected_inserts": 200603,
+          "expected_updates": 0,
+          "expected_noop": 0
+        },
+        "reject_reason_counts": {
+          "INVALID_FARE": 6850,
+          "NEGATIVE_DURATION": 3
+        },
+        "late_arrivals_in_silver": 1,
+        "silver_version": 5,
+        "batches": [
+          {
+            "batch_id": "yellow_2024-01_c4d59da7",
+            "source_month": "2024-01",
+            "bronze_version": 0,
+            "bronze_rows": 29554,
+            "accepted_rows": 29150,
+            "rejected_rows": 404,
+            "expected_inserts": 29150,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 29150,
+            "updated": 0,
+            "silver_version": 0,
+            "reject_reason_counts": "{\"INVALID_FARE\": 403, \"NEGATIVE_DURATION\": 1}",
+            "flag_counts": "{\"LONG_DURATION\": 16, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 1635, \"REVERSED\": 3, \"TOTAL_MISMATCH\": 7443, \"UNKNOWN_RATECODE\": 1623, \"UNKNOWN_ZONE\": 325, \"ZERO_DISTANCE\": 549, \"ZERO_DURATION\": 2}",
+            "processed_ts": "2026-09-24T22:25:02.438366"
+          },
+          {
+            "batch_id": "yellow_2024-02_c76c43c1",
+            "source_month": "2024-02",
+            "bronze_version": 1,
+            "bronze_rows": 30052,
+            "accepted_rows": 29632,
+            "rejected_rows": 420,
+            "expected_inserts": 29632,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 29632,
+            "updated": 0,
+            "silver_version": 1,
+            "reject_reason_counts": "{\"INVALID_FARE\": 420}",
+            "flag_counts": "{\"IMPLAUSIBLE_SPEED\": 1, \"LONG_DURATION\": 20, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 2174, \"REVERSED\": 3, \"TOTAL_MISMATCH\": 7970, \"UNKNOWN_RATECODE\": 2137, \"UNKNOWN_ZONE\": 266, \"ZERO_DISTANCE\": 696, \"ZERO_DURATION\": 6}",
+            "processed_ts": "2026-09-24T22:25:07.477067"
+          },
+          {
+            "batch_id": "yellow_2024-03_2d4cdc8f",
+            "source_month": "2024-03",
+            "bronze_version": 2,
+            "bronze_rows": 35611,
+            "accepted_rows": 35004,
+            "rejected_rows": 607,
+            "expected_inserts": 35004,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 35004,
+            "updated": 0,
+            "silver_version": 2,
+            "reject_reason_counts": "{\"INVALID_FARE\": 607}",
+            "flag_counts": "{\"EXTREME_DISTANCE\": 4, \"IMPLAUSIBLE_SPEED\": 5, \"LATE_ARRIVAL\": 1, \"LONG_DURATION\": 18, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 4491, \"REVERSED\": 4, \"TOTAL_MISMATCH\": 10727, \"UNKNOWN_RATECODE\": 4465, \"UNKNOWN_ZONE\": 349, \"ZERO_DISTANCE\": 847, \"ZERO_DURATION\": 7}",
+            "processed_ts": "2026-09-24T22:25:12.435457"
+          },
+          {
+            "batch_id": "yellow_2025-01_9af277e4",
+            "source_month": "2025-01",
+            "bronze_version": 3,
+            "bronze_rows": 34611,
+            "accepted_rows": 33122,
+            "rejected_rows": 1489,
+            "expected_inserts": 33122,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 33122,
+            "updated": 0,
+            "silver_version": 3,
+            "reject_reason_counts": "{\"INVALID_FARE\": 1487, \"NEGATIVE_DURATION\": 2}",
+            "flag_counts": "{\"EXTREME_DISTANCE\": 1, \"IMPLAUSIBLE_SPEED\": 4, \"LONG_DURATION\": 8, \"NEGATIVE_COMPONENT\": 5, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 4741, \"REVERSED\": 3, \"TOTAL_MISMATCH\": 9937, \"UNKNOWN_RATECODE\": 4930, \"UNKNOWN_ZONE\": 270, \"ZERO_DISTANCE\": 674, \"ZERO_DURATION\": 16}",
+            "processed_ts": "2026-09-24T22:25:16.761710"
+          },
+          {
+            "batch_id": "yellow_2025-02_037cba55",
+            "source_month": "2025-02",
+            "bronze_version": 4,
+            "bronze_rows": 36241,
+            "accepted_rows": 34399,
+            "rejected_rows": 1842,
+            "expected_inserts": 34399,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 34399,
+            "updated": 0,
+            "silver_version": 4,
+            "reject_reason_counts": "{\"INVALID_FARE\": 1842}",
+            "flag_counts": "{\"EXTREME_DISTANCE\": 2, \"IMPLAUSIBLE_SPEED\": 5, \"LONG_DURATION\": 14, \"NEGATIVE_COMPONENT\": 1, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 7162, \"REVERSED\": 3, \"TOTAL_MISMATCH\": 11688, \"UNKNOWN_RATECODE\": 7276, \"UNKNOWN_ZONE\": 251, \"ZERO_DISTANCE\": 849, \"ZERO_DURATION\": 36}",
+            "processed_ts": "2026-09-24T22:25:21.827895"
+          },
+          {
+            "batch_id": "yellow_2025-03_20c4b77c",
+            "source_month": "2025-03",
+            "bronze_version": 5,
+            "bronze_rows": 41387,
+            "accepted_rows": 39296,
+            "rejected_rows": 2091,
+            "expected_inserts": 39296,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 39296,
+            "updated": 0,
+            "silver_version": 5,
+            "reject_reason_counts": "{\"INVALID_FARE\": 2091}",
+            "flag_counts": "{\"EXTREME_DISTANCE\": 1, \"IMPLAUSIBLE_SPEED\": 4, \"LONG_DURATION\": 15, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 7910, \"REVERSED\": 8, \"TOTAL_MISMATCH\": 12378, \"UNKNOWN_RATECODE\": 8115, \"UNKNOWN_ZONE\": 265, \"ZERO_DISTANCE\": 858, \"ZERO_DURATION\": 222}",
+            "processed_ts": "2026-09-24T22:25:26.480847"
+          }
+        ],
+        "conservation": {
+          "bronze_rows_processed == bronze_count": true,
+          "bronze == rejected + inserts + updates + noop": true,
+          "silver_count == total inserts": true,
+          "rejected_count == total rejected": true,
+          "trip_key unique in silver": true,
+          "every rejected row has a reason": true
+        },
+        "conservation_ok": true,
+        "processed_this_run": [
+          "yellow_2024-01_c4d59da7",
+          "yellow_2024-02_c76c43c1",
+          "yellow_2024-03_2d4cdc8f",
+          "yellow_2025-01_9af277e4",
+          "yellow_2025-02_037cba55",
+          "yellow_2025-03_20c4b77c"
+        ]
+      },
+      "status": "OK",
+      "seconds": 29.7
+    },
+    {
+      "step": "cdc",
+      "result": {
+        "batch_id": "cdc_corrections_seed42",
+        "seed": 42,
+        "target_month": "2025-03",
+        "feed_file": "/home/lam/Bigdata/lakehouse-opt/data/raw/cdc/cdc_corrections_seed42.parquet",
+        "silver_version_before": 5,
+        "silver_version_after": 6,
+        "count_before": 200603,
+        "count_after": 200608,
+        "planned": {
+          "inserts": 5,
+          "updates": 25,
+          "noop": 0
+        },
+        "merge_metrics": {
+          "inserted": 5,
+          "updated": 25
+        },
+        "checks": {
+          "matched rows were updated (updated > 0)": true,
+          "updated == n_updates": true,
+          "inserted == n_inserts": true,
+          "after == before + inserted": true
+        },
+        "checks_ok": true,
+        "samples": [
+          {
+            "trip_key": "d61d48fef53536f29b44dd0bbec9489959f14543ebddc399f1fe9b5f61ac81fe",
+            "before": {
+              "trip_key": "d61d48fef53536f29b44dd0bbec9489959f14543ebddc399f1fe9b5f61ac81fe",
+              "fare_amount": 6.5,
+              "tip_amount": 3.0,
+              "total_amount": 15.25,
+              "_batch_id": "yellow_2025-03_20c4b77c"
+            },
+            "after": {
+              "trip_key": "d61d48fef53536f29b44dd0bbec9489959f14543ebddc399f1fe9b5f61ac81fe",
+              "fare_amount": 6.5,
+              "tip_amount": 5.0,
+              "total_amount": 17.25,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          },
+          {
+            "trip_key": "f8ae519b9ab56b2d51cb7db59a4b7d83bfa7afa38eb95bbb8bf4103ab1470df0",
+            "before": {
+              "trip_key": "f8ae519b9ab56b2d51cb7db59a4b7d83bfa7afa38eb95bbb8bf4103ab1470df0",
+              "fare_amount": 17.7,
+              "tip_amount": 2.0,
+              "total_amount": 24.45,
+              "_batch_id": "yellow_2025-03_20c4b77c"
+            },
+            "after": {
+              "trip_key": "f8ae519b9ab56b2d51cb7db59a4b7d83bfa7afa38eb95bbb8bf4103ab1470df0",
+              "fare_amount": 19.2,
+              "tip_amount": 4.0,
+              "total_amount": 27.95,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          },
+          {
+            "trip_key": "082d417d4a655c736d2a171f8727b46b5869914032d0222566907f0733d05eac",
+            "before": {
+              "trip_key": "082d417d4a655c736d2a171f8727b46b5869914032d0222566907f0733d05eac",
+              "fare_amount": 12.8,
+              "tip_amount": 4.64,
+              "total_amount": 23.19,
+              "_batch_id": "yellow_2025-03_20c4b77c"
+            },
+            "after": {
+              "trip_key": "082d417d4a655c736d2a171f8727b46b5869914032d0222566907f0733d05eac",
+              "fare_amount": 14.3,
+              "tip_amount": 6.64,
+              "total_amount": 26.69,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          },
+          {
+            "trip_key": "21f4f500467c3a90c96134c9018d9b5d50e858031ddab1fab6d567521bfeb1ee",
+            "before": {
+              "trip_key": "21f4f500467c3a90c96134c9018d9b5d50e858031ddab1fab6d567521bfeb1ee",
+              "fare_amount": 21.2,
+              "tip_amount": 8.54,
+              "total_amount": 36.99,
+              "_batch_id": "yellow_2025-03_20c4b77c"
+            },
+            "after": {
+              "trip_key": "21f4f500467c3a90c96134c9018d9b5d50e858031ddab1fab6d567521bfeb1ee",
+              "fare_amount": 21.2,
+              "tip_amount": 10.54,
+              "total_amount": 38.99,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          },
+          {
+            "trip_key": "739f52d1fbc0f8de3c4020c501cc3f47179198cfae6b92aef253f6539d3d6757",
+            "before": {
+              "trip_key": "739f52d1fbc0f8de3c4020c501cc3f47179198cfae6b92aef253f6539d3d6757",
+              "fare_amount": 9.3,
+              "tip_amount": 0.0,
+              "total_amount": 14.05,
+              "_batch_id": "yellow_2025-03_20c4b77c"
+            },
+            "after": {
+              "trip_key": "739f52d1fbc0f8de3c4020c501cc3f47179198cfae6b92aef253f6539d3d6757",
+              "fare_amount": 9.3,
+              "tip_amount": 2.0,
+              "total_amount": 16.05,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          }
+        ],
+        "real_cdc_from_monthly_files": {
+          "cross_file_updates": 0,
+          "cross_file_noop_resubmissions": 0,
+          "late_arrivals_inserted": 1
+        }
+      },
+      "status": "OK",
+      "seconds": 7.6
+    },
+    {
+      "step": "evolution",
+      "result": {
+        "column": "cbd_congestion_fee",
+        "bronze": {
+          "schema_changes": [
+            {
+              "version": 0,
+              "operation": "WRITE",
+              "event": "CREATE",
+              "columns": [
+                "VendorID",
+                "tpep_pickup_datetime",
+                "tpep_dropoff_datetime",
+                "passenger_count",
+                "trip_distance",
+                "RatecodeID",
+                "store_and_fwd_flag",
+                "PULocationID",
+                "DOLocationID",
+                "payment_type",
+                "fare_amount",
+                "extra",
+                "mta_tax",
+                "tip_amount",
+                "tolls_amount",
+                "improvement_surcharge",
+                "total_amount",
+                "congestion_surcharge",
+                "Airport_fee",
+                "_ingest_ts",
+                "_source_file",
+                "_batch_id",
+                "_source_month",
+                "_file_sha256"
+              ]
+            },
+            {
+              "version": 3,
+              "operation": "WRITE",
+              "event": "SCHEMA_CHANGE",
+              "added": [
+                "cbd_congestion_fee"
+              ],
+              "removed": [],
+              "retyped": []
+            }
+          ],
+          "evolution_event": {
+            "version": 3,
+            "operation": "WRITE",
+            "event": "SCHEMA_CHANGE",
+            "added": [
+              "cbd_congestion_fee"
+            ],
+            "removed": [],
+            "retyped": []
+          },
+          "column_absent_before": true,
+          "column_present_after": true,
+          "operation": "WRITE",
+          "not_a_rebuild": true
+        },
+        "silver": {
+          "schema_changes": [
+            {
+              "version": 0,
+              "operation": "WRITE",
+              "event": "CREATE",
+              "columns": [
+                "trip_key",
+                "VendorID",
+                "tpep_pickup_datetime",
+                "tpep_dropoff_datetime",
+                "passenger_count",
+                "trip_distance",
+                "RatecodeID",
+                "store_and_fwd_flag",
+                "PULocationID",
+                "DOLocationID",
+                "payment_type",
+                "fare_amount",
+                "extra",
+                "mta_tax",
+                "tip_amount",
+                "tolls_amount",
+                "improvement_surcharge",
+                "total_amount",
+                "congestion_surcharge",
+                "Airport_fee",
+                "trip_duration_sec",
+                "dq_flags",
+                "row_hash",
+                "_ingest_ts",
+                "_source_file",
+                "_batch_id",
+                "_source_month",
+                "_file_sha256",
+                "pickup_date",
+                "pickup_hour",
+                "pickup_month",
+                "is_late_arrival",
+                "_silver_ts"
+              ]
+            },
+            {
+              "version": 3,
+              "operation": "MERGE",
+              "event": "SCHEMA_CHANGE",
+              "added": [
+                "cbd_congestion_fee"
+              ],
+              "removed": [],
+              "retyped": []
+            }
+          ],
+          "evolution_event": {
+            "version": 3,
+            "operation": "MERGE",
+            "event": "SCHEMA_CHANGE",
+            "added": [
+              "cbd_congestion_fee"
+            ],
+            "removed": [],
+            "retyped": []
+          },
+          "column_absent_before": true,
+          "column_present_after": true,
+          "operation": "MERGE",
+          "not_a_rebuild": true
+        },
+        "silver_rejected": {
+          "schema_changes": [
+            {
+              "version": 0,
+              "operation": "WRITE",
+              "event": "CREATE",
+              "columns": [
+                "VendorID",
+                "tpep_pickup_datetime",
+                "tpep_dropoff_datetime",
+                "passenger_count",
+                "trip_distance",
+                "RatecodeID",
+                "store_and_fwd_flag",
+                "PULocationID",
+                "DOLocationID",
+                "payment_type",
+                "fare_amount",
+                "extra",
+                "mta_tax",
+                "tip_amount",
+                "tolls_amount",
+                "improvement_surcharge",
+                "total_amount",
+                "congestion_surcharge",
+                "Airport_fee",
+                "_ingest_ts",
+                "_source_file",
+                "_batch_id",
+                "_source_month",
+                "_file_sha256",
+                "trip_key",
+                "reject_reason",
+                "reject_detail",
+                "_rejected_ts"
+              ]
+            },
+            {
+              "version": 3,
+              "operation": "WRITE",
+              "event": "SCHEMA_CHANGE",
+              "added": [
+                "cbd_congestion_fee"
+              ],
+              "removed": [],
+              "retyped": []
+            }
+          ],
+          "evolution_event": {
+            "version": 3,
+            "operation": "WRITE",
+            "event": "SCHEMA_CHANGE",
+            "added": [
+              "cbd_congestion_fee"
+            ],
+            "removed": [],
+            "retyped": []
+          },
+          "column_absent_before": true,
+          "column_present_after": true,
+          "operation": "WRITE",
+          "not_a_rebuild": true
+        },
+        "silver_null_check": {
+          "2025-03": {
+            "rows": 39301,
+            "null": 0
+          },
+          "2024-03": {
+            "rows": 35004,
+            "null": 35004
+          },
+          "2025-02": {
+            "rows": 34399,
+            "null": 0
+          },
+          "2025-01": {
+            "rows": 33122,
+            "null": 0
+          },
+          "2024-02": {
+            "rows": 29632,
+            "null": 29632
+          },
+          "2024-01": {
+            "rows": 29150,
+            "null": 29150
+          }
+        },
+        "old_rows_null": true,
+        "status": "SCHEMA_EVOLVED"
+      },
+      "status": "OK",
+      "seconds": 0.3
+    },
+    {
+      "step": "time_travel",
+      "result": {
+        "silver_versions": 7,
+        "silver_latest_version": 6,
+        "merge_commits": 6,
+        "old_versions_queried": 6,
+        "cdc_rows_changed_or_added": 30,
+        "vacuum_demo": {
+          "broken_versions": [
+            5
+          ],
+          "real_table_oldest_version_rows": 29150
+        },
+        "delta_log_annotation": {
+          "file": "/home/lam/Bigdata/lakehouse-opt/docs/evidence/delta_log_annotated.md",
+          "version": 6,
+          "action_counts": {
+            "add": 1,
+            "remove": 0,
+            "metaData": 0,
+            "protocol": 0
+          }
+        },
+        "silver_checkpoints": []
+      },
+      "status": "OK",
+      "seconds": 13.6
+    },
+    {
+      "step": "gold",
+      "result": {
+        "silver_version_used": 6,
+        "table_versions": {
+          "zone_hourly_metrics": 0,
+          "cbd_flow_monthly": 0,
+          "cbd_flow_yoy": 0,
+          "dq_monthly": 0
+        },
+        "zone_hourly_rows": 107562,
+        "gold_trips": 200563,
+        "verification": {
+          "cells": [
+            {
+              "cell": {
+                "pickup_date": "2025-02-16",
+                "pickup_hour": 1,
+                "PULocationID": 79
+              },
+              "gold": {
+                "trips": 17,
+                "avg_fare": 12.1894,
+                "avg_tip_pct": 20.8974,
+                "total_driver_earnings": 275.51
+              },
+              "manual_sql": {
+                "trips": 17,
+                "avg_fare": 12.1894,
+                "avg_tip_pct": 20.8974,
+                "total_driver_earnings": 275.51
+              },
+              "match": true
+            },
+            {
+              "cell": {
+                "pickup_date": "2024-02-24",
+                "pickup_hour": 1,
+                "PULocationID": 79
+              },
+              "gold": {
+                "trips": 16,
+                "avg_fare": 13.6744,
+                "avg_tip_pct": 20.7125,
+                "total_driver_earnings": 276.92
+              },
+              "manual_sql": {
+                "trips": 16,
+                "avg_fare": 13.6744,
+                "avg_tip_pct": 20.7125,
+                "total_driver_earnings": 276.92
+              },
+              "match": true
+            },
+            {
+              "cell": {
+                "pickup_date": "2025-01-16",
+                "pickup_hour": 17,
+                "PULocationID": 162
+              },
+              "gold": {
+                "trips": 14,
+                "avg_fare": 14.7893,
+                "avg_tip_pct": 24.4091,
+                "total_driver_earnings": 284.25
+              },
+              "manual_sql": {
+                "trips": 14,
+                "avg_fare": 14.7893,
+                "avg_tip_pct": 24.4091,
+                "total_driver_earnings": 284.25
+              },
+              "match": true
+            }
+          ],
+          "totals": {
+            "gold_trips": 200563,
+            "manual_trips": 200563,
+            "gold_earnings": 4652320.59,
+            "manual_earnings": 4652320.59,
+            "match": true
+          },
+          "all_match": true
+        },
+        "external_reconciliation": {
+          "status": "SKIPPED",
+          "reason": "tlc_zone_monthly_raw.csv not downloaded (--with-tlc-aggregates)"
+        },
+        "cbd_yoy": [
+          {
+            "year": 2025,
+            "month_of_year": 1,
+            "cbd_flow": "CBD_UNAVAILABLE",
+            "trips_per_day_prev": 940.23,
+            "trips_per_day": 1068.23,
+            "yoy_trips_per_day_pct": 13.614,
+            "non_cbd_yoy_pct": null,
+            "relative_to_non_cbd_pp": null,
+            "avg_duration_min_prev": 15.423,
+            "avg_duration_min": 14.845,
+            "yoy_duration_pct": -3.747
+          },
+          {
+            "year": 2025,
+            "month_of_year": 2,
+            "cbd_flow": "CBD_UNAVAILABLE",
+            "trips_per_day_prev": 1021.69,
+            "trips_per_day": 1228.21,
+            "yoy_trips_per_day_pct": 20.214,
+            "non_cbd_yoy_pct": null,
+            "relative_to_non_cbd_pp": null,
+            "avg_duration_min_prev": 16.048,
+            "avg_duration_min": 15.353,
+            "yoy_duration_pct": -4.335
+          },
+          {
+            "year": 2025,
+            "month_of_year": 3,
+            "cbd_flow": "CBD_UNAVAILABLE",
+            "trips_per_day_prev": 1128.81,
+            "trips_per_day": 1267.39,
+            "yoy_trips_per_day_pct": 12.277,
+            "non_cbd_yoy_pct": null,
+            "relative_to_non_cbd_pp": null,
+            "avg_duration_min_prev": 16.67,
+            "avg_duration_min": 16.011,
+            "yoy_duration_pct": -3.952
+          }
+        ]
+      },
+      "status": "OK",
+      "seconds": 5.9
+    }
+  ],
+  "status": "SUCCESS",
+  "finished_at": "2026-09-24T15:25:55+00:00"
+}

@@ -1,115 +1,204 @@
-"""Reproducible B1 verification -> B2 -> B3 -> C1 -> C2 -> C3 (Gold follows in D1)."""
+#!/usr/bin/env python3
+"""E1 — Run the whole lakehouse with one command.
+
+Real data (default):
+    python scripts/download_sources.py            # once: 6 months + reference files
+    python lakehouse_pipeline.py                   # reference -> bronze -> profile -> silver
+                                                   # -> cdc -> evolution -> time travel -> gold
+    python lakehouse_pipeline.py --with-benchmark  # + D2 performance lab
+
+Synthetic fixture (B1-v1.0 contract, exact 3,060 / 2,880 / 180 reconciliation):
+    python lakehouse_pipeline.py --source fixture
+
+Useful flags:
+    --steps silver gold      run only some steps (each step is idempotent)
+    --rebuild                drop Silver/Gold state first (Bronze is never dropped)
+    --dev-sample 1           deterministic 1% sample, written to data/lakehouse-dev
+
+Every run writes docs/pipeline_run.json (step results, timings, counts) and
+docs/RESULTS.md (the numbers the report quotes).
+"""
 
 from __future__ import annotations
 
 import argparse
-from datetime import datetime, timezone
-import hashlib
-from importlib.metadata import version as package_version
 import json
-from pathlib import Path
+import os
+import sys
 import time
+import traceback
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Callable, Dict, List, Optional
 
-from src.bronze import run_bronze
-from src.cdc_merge import apply_cdc, generate_fixture
-from src.delta_runtime import get_spark, latest_version, require_same_rows, snapshot, write_json
-from src.generate_batch_c2 import generate_batch_04
-from src.schema_evolution import evolve_bronze, evolve_silver, verify_evidence
-from src.silver import build
-from src.time_travel import audit_history, vacuum_copy_demo
+from src.config import DEFAULT_MONTHS, LakehousePaths, get_paths
+from src.delta_utils import to_jsonable, write_json
+
+TLC_STEPS = ["reference", "bronze", "profile", "silver", "cdc", "evolution", "time_travel", "gold", "benchmark"]
 
 
-def verify_inputs(raw_dir: str, checksum_file: str) -> dict:
-    expected = {line.split()[1]: line.split()[0] for line in Path(checksum_file).read_text().splitlines() if line.strip()}
-    result = {}
-    for index in range(1, 4):
-        name = f"batch_{index:02d}.json"
-        path = Path(raw_dir) / name
-        if not path.is_file():
-            raise FileNotFoundError(f"Missing {path}. Download the TLC Parquets and run python -m src.generator first.")
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        if digest != expected[name]:
-            raise ValueError(f"B1 input checksum differs: {path}")
-        result[name] = {"sha256": digest, "rows": len(path.read_text().splitlines())}
+def log(message: str) -> None:
+    print(f"{datetime.now().strftime('%H:%M:%S')} | {message}", flush=True)
+
+
+def build_tlc_steps(spark, paths: LakehousePaths, args: argparse.Namespace) -> Dict[str, Callable[[], Dict[str, Any]]]:
+    import optimization_benchmark
+    from src import gold, reference_data, time_travel, tlc_bronze, tlc_profile, tlc_silver
+
+    return {
+        "reference": lambda: reference_data.run(spark, paths),
+        "bronze": lambda: tlc_bronze.run(spark, args.months, overwrite=False, paths=paths,
+                                         dev_sample_pct=args.dev_sample),
+        "profile": lambda: tlc_profile.run(spark, paths),
+        "silver": lambda: tlc_silver.build(spark, paths, rebuild=args.rebuild),
+        "cdc": lambda: tlc_silver.apply_cdc(spark, paths),
+        "evolution": lambda: tlc_silver.apply_evolution(spark, paths),
+        "time_travel": lambda: time_travel.run(spark, paths),
+        "gold": lambda: gold.run(spark, paths, args.months),
+        "benchmark": lambda: optimization_benchmark.run(spark, paths, rounds=args.bench_rounds,
+                                                        target_file_mb=args.target_file_mb),
+    }
+
+
+def run_fixture(spark, paths: LakehousePaths) -> Dict[str, Any]:
+    """B1-v1.0 lane: existing, verified B2/B3 code on the synthetic dirty JSON."""
+    from src.bronze import run_bronze
+    from src.silver import build as build_b1_silver
+
+    lake = paths.lake
+    raw_dir = paths.root / "data" / "raw"
+    manifest = paths.docs_dir / "error_manifest.json"   # B1-v1.0 contract (team file)
+    if not (raw_dir / "batch_01.json").exists():
+        raise FileNotFoundError("data/raw/batch_0{1,2,3}.json missing; run `python -m src.generator --output-dir data/raw`")
+    bronze = str(lake / "bronze" / "fixture_trips")
+    import shutil
+    if Path(bronze).exists():
+        shutil.rmtree(bronze)  # fixture Bronze is rebuilt so the exact 3,060 check is repeatable
+    result = {"bronze": run_bronze(spark, str(raw_dir), bronze)}
+    result["silver"] = build_b1_silver(
+        spark, bronze, str(lake / "silver" / "fixture_trips"), str(lake / "silver" / "fixture_trips_rejected"),
+        manifest_path=str(manifest) if manifest.exists() else None)
     return result
 
 
-def run(spark, config: dict, run_dir: str) -> dict:
-    start = time.monotonic()
-    inputs = verify_inputs(config["raw_dir"], config["checksums"])
-    root = Path(run_dir).resolve()
-    root.mkdir(parents=True, exist_ok=False)  # A fresh run never overwrites downstream state.
-    bronze, silver, rejected = (str(root / name) for name in ("bronze", "silver", "silver_rejected"))
-    evidence = root / "evidence"
-    result = {"scope": "A1-C3; D1-F1 pending", "started_at_utc": datetime.now(timezone.utc).isoformat(),
-              "run_dir": str(root), "paths": {"bronze": bronze, "silver": silver, "rejected": rejected},
-              "runtime": {"spark": spark.version, "delta_spark": package_version("delta-spark"),
-                          "master": spark.sparkContext.master, "timezone": spark.conf.get("spark.sql.session.timeZone")},
-              "b1": inputs}
+def render_results(run: Dict[str, Any], paths: LakehousePaths) -> str:
+    steps = {s["step"]: s for s in run["steps"]}
+    lines = ["# Pipeline results (auto-generated)", "",
+             f"Run started {run['started_at']} · status **{run['status']}** · source `{run['source']}` · "
+             f"months {', '.join(run['months'])}", "",
+             "| Step | Status | Seconds | Key result |", "|---|---|---:|---|"]
+    key_fields = {
+        "reference": ("zones", "cbd_zones"), "bronze": ("bronze_count", "bronze_version"),
+        "profile": ("keys_seen_in_more_than_one_file",), "silver": ("silver_count", "rejected_count", "conservation_ok"),
+        "cdc": ("checks_ok",), "evolution": ("status",), "time_travel": ("silver_versions", "merge_commits"),
+        "gold": ("gold_trips", "zone_hourly_rows"), "benchmark": ("rows",),
+    }
+    for step in run["steps"]:
+        res = step.get("result") or {}
+        key = ", ".join(f"{k}={res.get(k)}" for k in key_fields.get(step["step"], ()) if k in res)
+        lines.append(f"| {step['step']} | {step['status']} | {step['seconds']} | {key or step.get('error', '')[:80]} |")
 
-    def record(name, value):
-        result[name] = value
-        write_json(evidence / "pipeline_progress.json", result)
-        print(f"[{name.upper()}] {json.dumps(value, default=str, ensure_ascii=False)}", flush=True)
-
-    record("b2", run_bronze(spark, config["raw_dir"], bronze))
-    record("b3", build(spark, bronze, silver, rejected, manifest_path=config["manifest"]))
-    baseline = latest_version(spark, silver)
-    fixture_path = str(root / "cdc" / "late_updates.parquet")
-    fixture = generate_fixture(spark, silver, fixture_path, seed=config["cdc_seed"],
-                               updates=config["cdc_updates"], inserts=config["cdc_inserts"])
-    write_json(evidence / "cdc_fixture.json", fixture)
-    record("c1", apply_cdc(spark, silver, fixture_path))
-    if result["c1"]["updated_count"] != config["cdc_updates"] or result["c1"]["inserted_count"] != config["cdc_inserts"]:
-        raise AssertionError("Fresh C1 demo did not update and insert the requested rows")
-    merge_version = latest_version(spark, silver)
-    batch_file = generate_batch_04(str(root / "raw" / "batch_04.json"), config["evolution_rows"])
-    bronze_before = latest_version(spark, bronze)
-    record("c2", {"bronze": evolve_bronze(spark, batch_file, bronze),
-                  "silver": evolve_silver(spark, bronze, silver), "evidence": verify_evidence(spark, bronze, silver)})
-    versions = {"baseline": baseline, "merge": merge_version, "evolution": latest_version(spark, silver),
-                "bronze_before_evolution": bronze_before, "bronze_evolution": latest_version(spark, bronze)}
-    # Replays are checked without introducing extra Silver commits into C3's timeline.
-    replay = {"bronze": evolve_bronze(spark, batch_file, bronze), "silver": evolve_silver(spark, bronze, silver)}
-    if not all(item["replayed"] and item["before_version"] == item["after_version"] for item in replay.values()):
-        raise AssertionError("Identical C2 replay should be a no-op in both layers")
-    record("c2_replay", replay)
-    old_bronze = snapshot(spark, bronze, bronze_before)
-    require_same_rows(old_bronze, snapshot(spark, bronze).filter("_batch_id <> 'batch_04'").select(old_bronze.columns),
-                      "C2 preserves every raw Bronze value")
-    audit = audit_history(spark, bronze, silver, versions, fixture, str(evidence))
-    record("c3_audit", {"versions": versions, "snapshot_counts": {key: value["count"] for key, value in audit["snapshots"].items()},
-                        "audit_file": str(evidence / "audit.json")})
-    vacuum = vacuum_copy_demo(spark, silver, str(root / "vacuum_copy"), [baseline, merge_version, versions["evolution"]])
-    write_json(evidence / "vacuum.json", vacuum)
-    record("c3_vacuum", {"deleted_data_file_count": len(vacuum["deleted_data_files"]),
-                        "copy_old_read_failed_as_expected": vacuum["copy_old_read_failure"]["expected_missing_data_file"],
-                        "original_versions_readable": list(vacuum["original_versions_after_vacuum"]),
-                        "original_files_unchanged": vacuum["original_files_unchanged"],
-                        "retention_check_restored": vacuum["retention_check_restored"]})
-    result["elapsed_seconds"] = round(time.monotonic() - start, 3)
-    result["status"] = "passed"
-    write_json(evidence / "pipeline_run.json", result)
-    print(f"[PASS] Through C3: {evidence / 'pipeline_run.json'}", flush=True)
-    return result
+    silver = steps.get("silver", {}).get("result")
+    if silver:
+        lines += ["", "## Silver reconciliation", "",
+                  f"Bronze {silver['bronze_count']:,} = rejected {silver['totals']['rejected_rows']:,} + inserted "
+                  f"{silver['totals']['expected_inserts']:,} + updated {silver['totals']['expected_updates']:,} + "
+                  f"no-op {silver['totals']['expected_noop']:,}", "",
+                  "| Batch | Bronze rows | Rejected | Inserted | Updated | No-op | Silver version |",
+                  "|---|---:|---:|---:|---:|---:|---:|"]
+        for b in silver["batches"]:
+            lines.append(f"| {b['batch_id']} | {b['bronze_rows']:,} | {b['rejected_rows']:,} | {b['expected_inserts']:,} | "
+                         f"{b['expected_updates']:,} | {b['expected_noop']:,} | {b['silver_version']} |")
+        lines += ["", "Reject reasons: " + ", ".join(f"{k} {v:,}" for k, v in silver["reject_reason_counts"].items())]
+    cdc = steps.get("cdc", {}).get("result")
+    if cdc and "merge_metrics" in cdc:
+        lines += ["", "## CDC MERGE (C1)", "",
+                  f"Silver v{cdc['silver_version_before']} -> v{cdc['silver_version_after']}: planned {cdc['planned']}, "
+                  f"Delta metrics {cdc['merge_metrics']}, rows {cdc['count_before']:,} -> {cdc['count_after']:,}. "
+                  f"Checks: {cdc['checks']}"]
+    gold = steps.get("gold", {}).get("result")
+    if gold:
+        lines += ["", "## CBD flows, 2025 vs 2024 (trips per calendar day)", "",
+                  "| Month | Flow | 2024/day | 2025/day | YoY % | vs non-CBD (pp) |", "|---:|---|---:|---:|---:|---:|"]
+        for r in gold.get("cbd_yoy", []):
+            lines.append(f"| {r['month_of_year']} | {r['cbd_flow']} | {r['trips_per_day_prev']} | {r['trips_per_day']} | "
+                         f"{r['yoy_trips_per_day_pct']} | {r['relative_to_non_cbd_pp']} |")
+        lines += ["", f"Gold vs manual SQL on Silver: all_match = {gold['verification']['all_match']}. "
+                  f"External reconciliation: {gold['external_reconciliation'].get('status')}."]
+    lines += ["", "Evidence files: docs/evidence/, docs/profile/, docs/benchmark/."]
+    return "\n".join(lines) + "\n"
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", default="config/pipeline.json")
-    parser.add_argument("--run-dir", help="New output directory; existing directories are refused")
-    args = parser.parse_args()
-    config = json.loads(Path(args.config).read_text())
-    run_dir = args.run_dir or str(Path(config["run_root"]) / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ"))
-    verify_inputs(config["raw_dir"], config["checksums"])
-    if Path(run_dir).exists():
-        raise FileExistsError("Choose a new --run-dir; existing runs are preserved")
-    spark = get_spark(config["master"])
+def main(argv: Optional[List[str]] = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--source", choices=["tlc", "fixture"], default="tlc")
+    parser.add_argument("--months", nargs="+", default=DEFAULT_MONTHS)
+    parser.add_argument("--steps", nargs="+", choices=TLC_STEPS, help="subset of steps (default: all except benchmark)")
+    parser.add_argument("--with-benchmark", action="store_true")
+    parser.add_argument("--bench-rounds", type=int, default=5)
+    parser.add_argument("--target-file-mb", type=int, default=32)
+    parser.add_argument("--rebuild", action="store_true", help="drop Silver state before building (Bronze is kept)")
+    parser.add_argument("--dev-sample", type=float, default=None, help="percent of rows to keep, e.g. 1 for 1%%")
+    parser.add_argument("--master", default=None)
+    args = parser.parse_args(argv)
+
+    if args.dev_sample and "LAKEHOUSE_DIR" not in os.environ:
+        os.environ["LAKEHOUSE_DIR"] = str(Path(get_paths().root) / "data" / "lakehouse-dev")
+    paths = get_paths()
+
+    from src.spark_session import create_spark
+    spark = create_spark("lakehouse-pipeline", master=args.master)
+    run: Dict[str, Any] = {"started_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                           "source": args.source, "months": sorted(args.months), "lake": str(paths.lake),
+                           "spark": spark.version, "steps": [], "status": "RUNNING"}
+    exit_code = 0
     try:
-        run(spark, config, run_dir)
+        if args.source == "fixture":
+            steps = {"fixture": lambda: run_fixture(spark, paths)}
+            selected = ["fixture"]
+        else:
+            steps = build_tlc_steps(spark, paths, args)
+            selected = args.steps or [s for s in TLC_STEPS if s != "benchmark"]
+            if args.with_benchmark and "benchmark" not in selected:
+                selected.append("benchmark")
+        for name in selected:
+            log(f"▶ {name}")
+            started = time.perf_counter()
+            entry: Dict[str, Any] = {"step": name}
+            try:
+                entry["result"] = steps[name]()
+                entry["status"] = "OK"
+            except Exception as exc:  # noqa: BLE001 - record, then stop the run
+                entry["status"] = "FAILED"
+                entry["error"] = f"{type(exc).__name__}: {exc}"
+                entry["traceback"] = traceback.format_exc()
+                raise
+            finally:
+                entry["seconds"] = round(time.perf_counter() - started, 1)
+                run["steps"].append(entry)
+                log(f"{'✔' if entry.get('status') == 'OK' else '✖'} {name} ({entry['seconds']} s)")
+                if entry.get("status") == "FAILED":
+                    log(f"  error: {entry['error']}")
+        run["status"] = "SUCCESS"
+    except Exception:  # noqa: BLE001
+        run["status"] = "FAILED"
+        exit_code = 1
     finally:
-        spark.stop()
+        run["finished_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        suffix = "" if args.source == "tlc" and not args.dev_sample else f"_{args.source}{'_dev' if args.dev_sample else ''}"
+        write_json(paths.docs_dir / f"pipeline_run{suffix}.json", run)
+        (paths.docs_dir / f"RESULTS{suffix}.md").write_text(render_results(to_jsonable(run), paths), encoding="utf-8")
+        log(f"run {run['status']} -> docs/pipeline_run{suffix}.json")
+        try:
+            spark.stop()
+        except Exception as exc:  # noqa: BLE001
+            # The JVM may already be gone (e.g. killed by the OS out-of-memory killer).
+            # Never let shutdown noise hide the real failure above.
+            log(f"note: Spark shutdown failed ({type(exc).__name__}); the JVM had already exited. "
+                "If no step error is shown above, the JVM was killed externally - check "
+                "`dmesg -T | tail` for an out-of-memory kill and lower SPARK_DRIVER_MEMORY.")
+    return exit_code
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

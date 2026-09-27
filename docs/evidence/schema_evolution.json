@@ -1,0 +1,221 @@
+{
+  "column": "cbd_congestion_fee",
+  "bronze": {
+    "schema_changes": [
+      {
+        "version": 0,
+        "operation": "WRITE",
+        "event": "CREATE",
+        "columns": [
+          "VendorID",
+          "tpep_pickup_datetime",
+          "tpep_dropoff_datetime",
+          "passenger_count",
+          "trip_distance",
+          "RatecodeID",
+          "store_and_fwd_flag",
+          "PULocationID",
+          "DOLocationID",
+          "payment_type",
+          "fare_amount",
+          "extra",
+          "mta_tax",
+          "tip_amount",
+          "tolls_amount",
+          "improvement_surcharge",
+          "total_amount",
+          "congestion_surcharge",
+          "Airport_fee",
+          "_ingest_ts",
+          "_source_file",
+          "_batch_id",
+          "_source_month",
+          "_file_sha256"
+        ]
+      },
+      {
+        "version": 3,
+        "operation": "WRITE",
+        "event": "SCHEMA_CHANGE",
+        "added": [
+          "cbd_congestion_fee"
+        ],
+        "removed": [],
+        "retyped": []
+      }
+    ],
+    "evolution_event": {
+      "version": 3,
+      "operation": "WRITE",
+      "event": "SCHEMA_CHANGE",
+      "added": [
+        "cbd_congestion_fee"
+      ],
+      "removed": [],
+      "retyped": []
+    },
+    "column_absent_before": true,
+    "column_present_after": true,
+    "operation": "WRITE",
+    "not_a_rebuild": true
+  },
+  "silver": {
+    "schema_changes": [
+      {
+        "version": 0,
+        "operation": "WRITE",
+        "event": "CREATE",
+        "columns": [
+          "trip_key",
+          "VendorID",
+          "tpep_pickup_datetime",
+          "tpep_dropoff_datetime",
+          "passenger_count",
+          "trip_distance",
+          "RatecodeID",
+          "store_and_fwd_flag",
+          "PULocationID",
+          "DOLocationID",
+          "payment_type",
+          "fare_amount",
+          "extra",
+          "mta_tax",
+          "tip_amount",
+          "tolls_amount",
+          "improvement_surcharge",
+          "total_amount",
+          "congestion_surcharge",
+          "Airport_fee",
+          "trip_duration_sec",
+          "dq_flags",
+          "row_hash",
+          "_ingest_ts",
+          "_source_file",
+          "_batch_id",
+          "_source_month",
+          "_file_sha256",
+          "pickup_date",
+          "pickup_hour",
+          "pickup_month",
+          "is_late_arrival",
+          "_silver_ts"
+        ]
+      },
+      {
+        "version": 3,
+        "operation": "MERGE",
+        "event": "SCHEMA_CHANGE",
+        "added": [
+          "cbd_congestion_fee"
+        ],
+        "removed": [],
+        "retyped": []
+      }
+    ],
+    "evolution_event": {
+      "version": 3,
+      "operation": "MERGE",
+      "event": "SCHEMA_CHANGE",
+      "added": [
+        "cbd_congestion_fee"
+      ],
+      "removed": [],
+      "retyped": []
+    },
+    "column_absent_before": true,
+    "column_present_after": true,
+    "operation": "MERGE",
+    "not_a_rebuild": true
+  },
+  "silver_rejected": {
+    "schema_changes": [
+      {
+        "version": 0,
+        "operation": "WRITE",
+        "event": "CREATE",
+        "columns": [
+          "VendorID",
+          "tpep_pickup_datetime",
+          "tpep_dropoff_datetime",
+          "passenger_count",
+          "trip_distance",
+          "RatecodeID",
+          "store_and_fwd_flag",
+          "PULocationID",
+          "DOLocationID",
+          "payment_type",
+          "fare_amount",
+          "extra",
+          "mta_tax",
+          "tip_amount",
+          "tolls_amount",
+          "improvement_surcharge",
+          "total_amount",
+          "congestion_surcharge",
+          "Airport_fee",
+          "_ingest_ts",
+          "_source_file",
+          "_batch_id",
+          "_source_month",
+          "_file_sha256",
+          "trip_key",
+          "reject_reason",
+          "reject_detail",
+          "_rejected_ts"
+        ]
+      },
+      {
+        "version": 3,
+        "operation": "WRITE",
+        "event": "SCHEMA_CHANGE",
+        "added": [
+          "cbd_congestion_fee"
+        ],
+        "removed": [],
+        "retyped": []
+      }
+    ],
+    "evolution_event": {
+      "version": 3,
+      "operation": "WRITE",
+      "event": "SCHEMA_CHANGE",
+      "added": [
+        "cbd_congestion_fee"
+      ],
+      "removed": [],
+      "retyped": []
+    },
+    "column_absent_before": true,
+    "column_present_after": true,
+    "operation": "WRITE",
+    "not_a_rebuild": true
+  },
+  "silver_null_check": {
+    "2024-03": {
+      "rows": 3522748,
+      "null": 3522748
+    },
+    "2025-02": {
+      "rows": 3393348,
+      "null": 0
+    },
+    "2025-01": {
+      "rows": 3329582,
+      "null": 0
+    },
+    "2024-02": {
+      "rows": 2966014,
+      "null": 2966014
+    },
+    "2025-03": {
+      "rows": 3934790,
+      "null": 0
+    },
+    "2024-01": {
+      "rows": 2926215,
+      "null": 2926215
+    }
+  },
+  "old_rows_null": true,
+  "status": "SCHEMA_EVOLVED"
+}

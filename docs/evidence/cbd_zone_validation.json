@@ -1,0 +1,2612 @@
+[
+  {
+    "PULocationID": 38,
+    "pickups": 803,
+    "fee_share": 0.0448,
+    "zone": "Cambria Heights",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 146,
+    "pickups": 7302,
+    "fee_share": 0.3728,
+    "zone": "Long Island City/Queens Plaza",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 94,
+    "pickups": 886,
+    "fee_share": 0.0576,
+    "zone": "Fordham South",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 64,
+    "pickups": 300,
+    "fee_share": 0.06,
+    "zone": "Douglaston",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 77,
+    "pickups": 2841,
+    "fee_share": 0.025,
+    "zone": "East New York/Pennsylvania Avenue",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 57,
+    "pickups": 157,
+    "fee_share": 0.0573,
+    "zone": "Corona",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 176,
+    "pickups": 11,
+    "fee_share": 0.1818,
+    "zone": "Oakwood",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 111,
+    "pickups": 20,
+    "fee_share": 0.15,
+    "zone": "Green-Wood Cemetery",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 80,
+    "pickups": 7925,
+    "fee_share": 0.2592,
+    "zone": "East Williamsburg",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 178,
+    "pickups": 595,
+    "fee_share": 0.0706,
+    "zone": "Ocean Parkway South",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 85,
+    "pickups": 3223,
+    "fee_share": 0.0605,
+    "zone": "Erasmus",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 37,
+    "pickups": 8336,
+    "fee_share": 0.1625,
+    "zone": "Bushwick South",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 135,
+    "pickups": 1356,
+    "fee_share": 0.0428,
+    "zone": "Kew Gardens Hills",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 260,
+    "pickups": 5979,
+    "fee_share": 0.1657,
+    "zone": "Woodside",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 164,
+    "pickups": 225103,
+    "fee_share": 0.9953,
+    "zone": "Midtown South",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 255,
+    "pickups": 12879,
+    "fee_share": 0.3614,
+    "zone": "Williamsburg (North Side)",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 159,
+    "pickups": 3022,
+    "fee_share": 0.0675,
+    "zone": "Melrose South",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 29,
+    "pickups": 1011,
+    "fee_share": 0.0277,
+    "zone": "Brighton Beach",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 264,
+    "pickups": 22025,
+    "fee_share": 0.617,
+    "zone": "N/A",
+    "borough": "Unknown",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 90,
+    "pickups": 163920,
+    "fee_share": 0.9934,
+    "zone": "Flatiron",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 32,
+    "pickups": 957,
+    "fee_share": 0.0449,
+    "zone": "Bronxdale",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 247,
+    "pickups": 3802,
+    "fee_share": 0.0939,
+    "zone": "West Concourse",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 201,
+    "pickups": 470,
+    "fee_share": 0.0319,
+    "zone": "Rockaway Park",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 153,
+    "pickups": 360,
+    "fee_share": 0.0806,
+    "zone": "Marble Hill",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 128,
+    "pickups": 143,
+    "fee_share": 0.2657,
+    "zone": "Inwood Hill Park",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 170,
+    "pickups": 281620,
+    "fee_share": 0.9921,
+    "zone": "Murray Hill",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 100,
+    "pickups": 147741,
+    "fee_share": 0.9924,
+    "zone": "Garment District",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 35,
+    "pickups": 6248,
+    "fee_share": 0.0232,
+    "zone": "Brownsville",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 78,
+    "pickups": 1750,
+    "fee_share": 0.0691,
+    "zone": "East Tremont",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 241,
+    "pickups": 1448,
+    "fee_share": 0.0628,
+    "zone": "Van Cortlandt Village",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 122,
+    "pickups": 850,
+    "fee_share": 0.0224,
+    "zone": "Hollis",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 214,
+    "pickups": 88,
+    "fee_share": 0.0909,
+    "zone": "South Beach/Dongan Hills",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 13,
+    "pickups": 62535,
+    "fee_share": 0.9745,
+    "zone": "Battery Park City",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 14,
+    "pickups": 3307,
+    "fee_share": 0.0774,
+    "zone": "Bay Ridge",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 157,
+    "pickups": 3965,
+    "fee_share": 0.228,
+    "zone": "Maspeth",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 221,
+    "pickups": 119,
+    "fee_share": 0.1933,
+    "zone": "Stapleton",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 46,
+    "pickups": 114,
+    "fee_share": 0.0614,
+    "zone": "City Island",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 227,
+    "pickups": 1345,
+    "fee_share": 0.0796,
+    "zone": "Sunset Park East",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 62,
+    "pickups": 4017,
+    "fee_share": 0.0839,
+    "zone": "Crown Heights South",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 191,
+    "pickups": 1955,
+    "fee_share": 0.0189,
+    "zone": "Queens Village",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 134,
+    "pickups": 2553,
+    "fee_share": 0.0552,
+    "zone": "Kew Gardens",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 7,
+    "pickups": 13925,
+    "fee_share": 0.2192,
+    "zone": "Astoria",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 91,
+    "pickups": 4800,
+    "fee_share": 0.03,
+    "zone": "Flatlands",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 26,
+    "pickups": 2724,
+    "fee_share": 0.0448,
+    "zone": "Borough Park",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 11,
+    "pickups": 626,
+    "fee_share": 0.0463,
+    "zone": "Bath Beach",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 219,
+    "pickups": 2402,
+    "fee_share": 0.1311,
+    "zone": "Springfield Gardens South",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 238,
+    "pickups": 194806,
+    "fee_share": 0.242,
+    "zone": "Upper West Side North",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 177,
+    "pickups": 4961,
+    "fee_share": 0.0603,
+    "zone": "Ocean Hill",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 245,
+    "pickups": 16,
+    "fee_share": 0.3125,
+    "zone": "West Brighton",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 252,
+    "pickups": 644,
+    "fee_share": 0.0606,
+    "zone": "Whitestone",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 192,
+    "pickups": 558,
+    "fee_share": 0.0556,
+    "zone": "Queensboro Hill",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 79,
+    "pickups": 263897,
+    "fee_share": 0.9956,
+    "zone": "East Village",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 88,
+    "pickups": 29789,
+    "fee_share": 0.9615,
+    "zone": "Financial District South",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 28,
+    "pickups": 2728,
+    "fee_share": 0.0997,
+    "zone": "Briarwood/Jamaica Hills",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 184,
+    "pickups": 55,
+    "fee_share": 0.0545,
+    "zone": "Pelham Bay Park",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 8,
+    "pickups": 62,
+    "fee_share": 0.2097,
+    "zone": "Astoria Park",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 161,
+    "pickups": 479186,
+    "fee_share": 0.9959,
+    "zone": "Midtown Center",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 67,
+    "pickups": 849,
+    "fee_share": 0.1013,
+    "zone": "Dyker Heights",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 249,
+    "pickups": 243450,
+    "fee_share": 0.996,
+    "zone": "West Village",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "inferred_geography",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 74,
+    "pickups": 32218,
+    "fee_share": 0.1986,
+    "zone": "East Harlem North",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 194,
+    "pickups": 473,
+    "fee_share": 0.2156,
+    "zone": "Randalls Island",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 196,
+    "pickups": 2486,
+    "fee_share": 0.1215,
+    "zone": "Rego Park",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 167,
+    "pickups": 2292,
+    "fee_share": 0.0689,
+    "zone": "Morrisania/Melrose",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 123,
+    "pickups": 1570,
+    "fee_share": 0.0217,
+    "zone": "Homecrest",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 168,
+    "pickups": 6399,
+    "fee_share": 0.1439,
+    "zone": "Mott Haven/Port Morris",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 108,
+    "pickups": 915,
+    "fee_share": 0.0186,
+    "zone": "Gravesend",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 31,
+    "pickups": 159,
+    "fee_share": 0.1195,
+    "zone": "Bronx Park",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 143,
+    "pickups": 114707,
+    "fee_share": 0.5135,
+    "zone": "Lincoln Square West",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 211,
+    "pickups": 89268,
+    "fee_share": 0.9965,
+    "zone": "SoHo",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 154,
+    "pickups": 146,
+    "fee_share": 0.0479,
+    "zone": "Marine Park/Floyd Bennett Field",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 65,
+    "pickups": 9861,
+    "fee_share": 0.3686,
+    "zone": "Downtown Brooklyn/MetroTech",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 126,
+    "pickups": 1645,
+    "fee_share": 0.0711,
+    "zone": "Hunts Point",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 68,
+    "pickups": 272588,
+    "fee_share": 0.9939,
+    "zone": "East Chelsea",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 71,
+    "pickups": 4548,
+    "fee_share": 0.0431,
+    "zone": "East Flatbush/Farragut",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 212,
+    "pickups": 1823,
+    "fee_share": 0.0987,
+    "zone": "Soundview/Bruckner",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 175,
+    "pickups": 432,
+    "fee_share": 0.0579,
+    "zone": "Oakland Gardens",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 209,
+    "pickups": 19245,
+    "fee_share": 0.9689,
+    "zone": "Seaport",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 185,
+    "pickups": 887,
+    "fee_share": 0.0485,
+    "zone": "Pelham Parkway",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 59,
+    "pickups": 49,
+    "fee_share": 0.0816,
+    "zone": "Crotona Park",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 112,
+    "pickups": 8281,
+    "fee_share": 0.2914,
+    "zone": "Greenpoint",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 75,
+    "pickups": 70562,
+    "fee_share": 0.2226,
+    "zone": "East Harlem South",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 131,
+    "pickups": 1443,
+    "fee_share": 0.0423,
+    "zone": "Jamaica Estates",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 147,
+    "pickups": 1176,
+    "fee_share": 0.057,
+    "zone": "Longwood",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 139,
+    "pickups": 1063,
+    "fee_share": 0.016,
+    "zone": "Laurelton",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 148,
+    "pickups": 121722,
+    "fee_share": 0.9945,
+    "zone": "Lower East Side",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 171,
+    "pickups": 679,
+    "fee_share": 0.0353,
+    "zone": "Murray Hill-Queens",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 125,
+    "pickups": 53807,
+    "fee_share": 0.9923,
+    "zone": "Hudson Sq",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 246,
+    "pickups": 188886,
+    "fee_share": 0.9836,
+    "zone": "West Chelsea/Hudson Yards",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "inferred_geography",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 17,
+    "pickups": 6984,
+    "fee_share": 0.1651,
+    "zone": "Bedford",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 86,
+    "pickups": 1567,
+    "fee_share": 0.0108,
+    "zone": "Far Rockaway",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 155,
+    "pickups": 2305,
+    "fee_share": 0.0174,
+    "zone": "Marine Park/Mill Basin",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 76,
+    "pickups": 11101,
+    "fee_share": 0.0174,
+    "zone": "East New York",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 41,
+    "pickups": 37695,
+    "fee_share": 0.1966,
+    "zone": "Central Harlem",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 47,
+    "pickups": 1590,
+    "fee_share": 0.0566,
+    "zone": "Claremont/Bathgate",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 217,
+    "pickups": 1526,
+    "fee_share": 0.1468,
+    "zone": "South Williamsburg",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 179,
+    "pickups": 5359,
+    "fee_share": 0.2403,
+    "zone": "Old Astoria",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 240,
+    "pickups": 194,
+    "fee_share": 0.0722,
+    "zone": "Van Cortlandt Park",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 25,
+    "pickups": 8985,
+    "fee_share": 0.2592,
+    "zone": "Boerum Hill",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 40,
+    "pickups": 2716,
+    "fee_share": 0.3704,
+    "zone": "Carroll Gardens",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 19,
+    "pickups": 811,
+    "fee_share": 0.0296,
+    "zone": "Bellerose",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 15,
+    "pickups": 307,
+    "fee_share": 0.0651,
+    "zone": "Bay Terrace/Fort Totten",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 120,
+    "pickups": 122,
+    "fee_share": 0.1639,
+    "zone": "Highbridge Park",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 239,
+    "pickups": 272114,
+    "fee_share": 0.3345,
+    "zone": "Upper West Side South",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 230,
+    "pickups": 344229,
+    "fee_share": 0.9941,
+    "zone": "Times Sq/Theatre District",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 116,
+    "pickups": 14074,
+    "fee_share": 0.2397,
+    "zone": "Hamilton Heights",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 235,
+    "pickups": 2163,
+    "fee_share": 0.0749,
+    "zone": "University Heights/Morris Heights",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 70,
+    "pickups": 28668,
+    "fee_share": 0.5129,
+    "zone": "East Elmhurst",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 190,
+    "pickups": 539,
+    "fee_share": 0.1688,
+    "zone": "Prospect Park",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 18,
+    "pickups": 1705,
+    "fee_share": 0.0516,
+    "zone": "Bedford Park",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 12,
+    "pickups": 2561,
+    "fee_share": 0.9832,
+    "zone": "Battery Park",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 218,
+    "pickups": 2050,
+    "fee_share": 0.0107,
+    "zone": "Springfield Gardens North",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 93,
+    "pickups": 1372,
+    "fee_share": 0.3017,
+    "zone": "Flushing Meadows-Corona Park",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 138,
+    "pickups": 265111,
+    "fee_share": 0.5136,
+    "zone": "LaGuardia Airport",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 151,
+    "pickups": 80237,
+    "fee_share": 0.2052,
+    "zone": "Manhattan Valley",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 10,
+    "pickups": 4279,
+    "fee_share": 0.2145,
+    "zone": "Baisley Park",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 195,
+    "pickups": 2833,
+    "fee_share": 0.2782,
+    "zone": "Red Hook",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 180,
+    "pickups": 1423,
+    "fee_share": 0.0295,
+    "zone": "Ozone Park",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 259,
+    "pickups": 1438,
+    "fee_share": 0.0355,
+    "zone": "Woodlawn/Wakefield",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 162,
+    "pickups": 338944,
+    "fee_share": 0.9951,
+    "zone": "Midtown East",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 166,
+    "pickups": 56269,
+    "fee_share": 0.22,
+    "zone": "Morningside Heights",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 158,
+    "pickups": 103454,
+    "fee_share": 0.9915,
+    "zone": "Meatpacking/West Village West",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 193,
+    "pickups": 5059,
+    "fee_share": 0.1429,
+    "zone": "Queensbridge/Ravenswood",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 215,
+    "pickups": 3818,
+    "fee_share": 0.1019,
+    "zone": "South Jamaica",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 1,
+    "pickups": 931,
+    "fee_share": 0.0344,
+    "zone": "Newark Airport",
+    "borough": "EWR",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 3,
+    "pickups": 736,
+    "fee_share": 0.0476,
+    "zone": "Allerton/Pelham Gardens",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 34,
+    "pickups": 1279,
+    "fee_share": 0.3729,
+    "zone": "Brooklyn Navy Yard",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 27,
+    "pickups": 28,
+    "fee_share": 0.0357,
+    "zone": "Breezy Point/Fort Tilden/Riis Beach",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 244,
+    "pickups": 13785,
+    "fee_share": 0.2368,
+    "zone": "Washington Heights South",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 50,
+    "pickups": 59419,
+    "fee_share": 0.979,
+    "zone": "Clinton West",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 97,
+    "pickups": 9922,
+    "fee_share": 0.2819,
+    "zone": "Fort Greene",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 56,
+    "pickups": 2374,
+    "fee_share": 0.1365,
+    "zone": "Corona",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 172,
+    "pickups": 51,
+    "fee_share": 0.1569,
+    "zone": "New Dorp/Midland Beach",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 115,
+    "pickups": 63,
+    "fee_share": 0.1587,
+    "zone": "Grymes Hill/Clifton",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 220,
+    "pickups": 1263,
+    "fee_share": 0.0934,
+    "zone": "Spuyten Duyvil/Kingsbridge",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 61,
+    "pickups": 13430,
+    "fee_share": 0.0926,
+    "zone": "Crown Heights North",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 20,
+    "pickups": 971,
+    "fee_share": 0.0566,
+    "zone": "Belmont",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 53,
+    "pickups": 791,
+    "fee_share": 0.0796,
+    "zone": "College Point",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 183,
+    "pickups": 433,
+    "fee_share": 0.0485,
+    "zone": "Pelham Bay",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 236,
+    "pickups": 430097,
+    "fee_share": 0.3175,
+    "zone": "Upper East Side North",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 216,
+    "pickups": 8065,
+    "fee_share": 0.0289,
+    "zone": "South Ozone Park",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 107,
+    "pickups": 206303,
+    "fee_share": 0.9921,
+    "zone": "Gramercy",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 232,
+    "pickups": 20676,
+    "fee_share": 0.9483,
+    "zone": "Two Bridges/Seward Park",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 202,
+    "pickups": 724,
+    "fee_share": 0.1837,
+    "zone": "Roosevelt Island",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 48,
+    "pickups": 248611,
+    "fee_share": 0.9941,
+    "zone": "Clinton East",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 181,
+    "pickups": 8783,
+    "fee_share": 0.2005,
+    "zone": "Park Slope",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 243,
+    "pickups": 5317,
+    "fee_share": 0.2349,
+    "zone": "Washington Heights North",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 82,
+    "pickups": 6609,
+    "fee_share": 0.0946,
+    "zone": "Elmhurst",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 223,
+    "pickups": 4522,
+    "fee_share": 0.1384,
+    "zone": "Steinway",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 117,
+    "pickups": 1356,
+    "fee_share": 0.0111,
+    "zone": "Hammels/Arverne",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 6,
+    "pickups": 251,
+    "fee_share": 0.0717,
+    "zone": "Arrochar/Fort Wadsworth",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 9,
+    "pickups": 331,
+    "fee_share": 0.0242,
+    "zone": "Auburndale",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 23,
+    "pickups": 61,
+    "fee_share": 0.082,
+    "zone": "Bloomfield/Emerson Hill",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 118,
+    "pickups": 48,
+    "fee_share": 0.1458,
+    "zone": "Heartland Village/Todt Hill",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 98,
+    "pickups": 552,
+    "fee_share": 0.0272,
+    "zone": "Fresh Meadows",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 189,
+    "pickups": 3309,
+    "fee_share": 0.2118,
+    "zone": "Prospect Heights",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 95,
+    "pickups": 5795,
+    "fee_share": 0.0818,
+    "zone": "Forest Hills",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 83,
+    "pickups": 2345,
+    "fee_share": 0.1228,
+    "zone": "Elmhurst/Maspeth",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 248,
+    "pickups": 1512,
+    "fee_share": 0.1171,
+    "zone": "West Farms/Bronx River",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 254,
+    "pickups": 2399,
+    "fee_share": 0.0279,
+    "zone": "Williamsbridge/Olinville",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 73,
+    "pickups": 293,
+    "fee_share": 0.0205,
+    "zone": "East Flushing",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 237,
+    "pickups": 464825,
+    "fee_share": 0.5197,
+    "zone": "Upper East Side South",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 226,
+    "pickups": 15010,
+    "fee_share": 0.246,
+    "zone": "Sunnyside",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 42,
+    "pickups": 22751,
+    "fee_share": 0.2071,
+    "zone": "Central Harlem North",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 127,
+    "pickups": 2231,
+    "fee_share": 0.1703,
+    "zone": "Inwood",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 222,
+    "pickups": 1913,
+    "fee_share": 0.0089,
+    "zone": "Starrett City",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 119,
+    "pickups": 1818,
+    "fee_share": 0.1205,
+    "zone": "Highbridge",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 30,
+    "pickups": 49,
+    "fee_share": 0.0204,
+    "zone": "Broad Channel",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 144,
+    "pickups": 115270,
+    "fee_share": 0.9955,
+    "zone": "Little Italy/NoLiTa",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 36,
+    "pickups": 5548,
+    "fee_share": 0.1476,
+    "zone": "Bushwick North",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 197,
+    "pickups": 7268,
+    "fee_share": 0.0267,
+    "zone": "Richmond Hill",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 55,
+    "pickups": 2282,
+    "fee_share": 0.0206,
+    "zone": "Coney Island",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 92,
+    "pickups": 2502,
+    "fee_share": 0.0679,
+    "zone": "Flushing",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 24,
+    "pickups": 26655,
+    "fee_share": 0.2213,
+    "zone": "Bloomingdale",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 63,
+    "pickups": 2897,
+    "fee_share": 0.0269,
+    "zone": "Cypress Hills",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 182,
+    "pickups": 2253,
+    "fee_share": 0.0999,
+    "zone": "Parkchester",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 96,
+    "pickups": 138,
+    "fee_share": 0.0652,
+    "zone": "Forest Park/Highland Park",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 160,
+    "pickups": 1671,
+    "fee_share": 0.1053,
+    "zone": "Middle Village",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 261,
+    "pickups": 47533,
+    "fee_share": 0.972,
+    "zone": "World Trade Center",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "inferred_geography",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 263,
+    "pickups": 191642,
+    "fee_share": 0.3155,
+    "zone": "Yorkville West",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 186,
+    "pickups": 339854,
+    "fee_share": 0.9938,
+    "zone": "Penn Station/Madison Sq West",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 225,
+    "pickups": 6868,
+    "fee_share": 0.1345,
+    "zone": "Stuyvesant Heights",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 257,
+    "pickups": 987,
+    "fee_share": 0.1986,
+    "zone": "Windsor Terrace",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 141,
+    "pickups": 231663,
+    "fee_share": 0.4784,
+    "zone": "Lenox Hill West",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 231,
+    "pickups": 142222,
+    "fee_share": 0.9842,
+    "zone": "TriBeCa/Civic Center",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 165,
+    "pickups": 2049,
+    "fee_share": 0.0342,
+    "zone": "Midwood",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 250,
+    "pickups": 1610,
+    "fee_share": 0.0789,
+    "zone": "Westchester Village/Unionport",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 121,
+    "pickups": 1440,
+    "fee_share": 0.0458,
+    "zone": "Hillcrest/Pomonok",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 16,
+    "pickups": 566,
+    "fee_share": 0.0565,
+    "zone": "Bayside",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 205,
+    "pickups": 2800,
+    "fee_share": 0.0154,
+    "zone": "Saint Albans",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 137,
+    "pickups": 115334,
+    "fee_share": 0.9794,
+    "zone": "Kips Bay",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 145,
+    "pickups": 16458,
+    "fee_share": 0.2056,
+    "zone": "Long Island City/Hunters Point",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 69,
+    "pickups": 3434,
+    "fee_share": 0.0778,
+    "zone": "East Concourse/Concourse Village",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 129,
+    "pickups": 8976,
+    "fee_share": 0.0875,
+    "zone": "Jackson Heights",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 72,
+    "pickups": 5778,
+    "fee_share": 0.0301,
+    "zone": "East Flatbush/Remsen Village",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 242,
+    "pickups": 1603,
+    "fee_share": 0.0362,
+    "zone": "Van Nest/Morris Park",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 124,
+    "pickups": 1234,
+    "fee_share": 0.0373,
+    "zone": "Howard Beach",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 251,
+    "pickups": 28,
+    "fee_share": 0.3929,
+    "zone": "Westerleigh",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 140,
+    "pickups": 208413,
+    "fee_share": 0.4377,
+    "zone": "Lenox Hill East",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 229,
+    "pickups": 167645,
+    "fee_share": 0.9942,
+    "zone": "Sutton Place/Turtle Bay North",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 132,
+    "pickups": 386302,
+    "fee_share": 0.4071,
+    "zone": "JFK Airport",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 106,
+    "pickups": 2083,
+    "fee_share": 0.1762,
+    "zone": "Gowanus",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 114,
+    "pickups": 164022,
+    "fee_share": 0.9961,
+    "zone": "Greenwich Village South",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 152,
+    "pickups": 10536,
+    "fee_share": 0.253,
+    "zone": "Manhattanville",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 173,
+    "pickups": 1592,
+    "fee_share": 0.0546,
+    "zone": "North Corona",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 228,
+    "pickups": 3635,
+    "fee_share": 0.1373,
+    "zone": "Sunset Park West",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 54,
+    "pickups": 724,
+    "fee_share": 0.3881,
+    "zone": "Columbia Street",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 262,
+    "pickups": 139873,
+    "fee_share": 0.3473,
+    "zone": "Yorkville East",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 210,
+    "pickups": 1757,
+    "fee_share": 0.0165,
+    "zone": "Sheepshead Bay",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 169,
+    "pickups": 2259,
+    "fee_share": 0.0651,
+    "zone": "Mount Hope",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 22,
+    "pickups": 1586,
+    "fee_share": 0.0429,
+    "zone": "Bensonhurst West",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 133,
+    "pickups": 1893,
+    "fee_share": 0.1395,
+    "zone": "Kensington",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 187,
+    "pickups": 9,
+    "fee_share": 0.3333,
+    "zone": "Port Richmond",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 87,
+    "pickups": 58790,
+    "fee_share": 0.9845,
+    "zone": "Financial District North",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 89,
+    "pickups": 7672,
+    "fee_share": 0.0836,
+    "zone": "Flatbush/Ditmas Park",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 233,
+    "pickups": 112862,
+    "fee_share": 0.9904,
+    "zone": "UN/Turtle Bay South",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "inferred_geography",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 265,
+    "pickups": 3556,
+    "fee_share": 0.0503,
+    "zone": "Outside of NYC",
+    "borough": "N/A",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 198,
+    "pickups": 3739,
+    "fee_share": 0.126,
+    "zone": "Ridgewood",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 203,
+    "pickups": 1030,
+    "fee_share": 0.0126,
+    "zone": "Rosedale",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 51,
+    "pickups": 2191,
+    "fee_share": 0.0301,
+    "zone": "Co-Op City",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 39,
+    "pickups": 7071,
+    "fee_share": 0.0178,
+    "zone": "Canarsie",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 163,
+    "pickups": 276561,
+    "fee_share": 0.9954,
+    "zone": "Midtown North",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 224,
+    "pickups": 19248,
+    "fee_share": 0.9885,
+    "zone": "Stuy Town/Peter Cooper Village",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 49,
+    "pickups": 5800,
+    "fee_share": 0.2412,
+    "zone": "Clinton Hill",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 256,
+    "pickups": 10156,
+    "fee_share": 0.3921,
+    "zone": "Williamsburg (South Side)",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 102,
+    "pickups": 1392,
+    "fee_share": 0.0589,
+    "zone": "Glendale",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 188,
+    "pickups": 8411,
+    "fee_share": 0.0806,
+    "zone": "Prospect-Lefferts Gardens",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 58,
+    "pickups": 94,
+    "fee_share": 0.0957,
+    "zone": "Country Club",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 142,
+    "pickups": 308221,
+    "fee_share": 0.5895,
+    "zone": "Lincoln Square East",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 33,
+    "pickups": 9281,
+    "fee_share": 0.4316,
+    "zone": "Brooklyn Heights",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 174,
+    "pickups": 1342,
+    "fee_share": 0.0402,
+    "zone": "Norwood",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 258,
+    "pickups": 2924,
+    "fee_share": 0.0462,
+    "zone": "Woodhaven",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 200,
+    "pickups": 660,
+    "fee_share": 0.0909,
+    "zone": "Riverdale/North Riverdale/Fieldston",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 207,
+    "pickups": 552,
+    "fee_share": 0.1467,
+    "zone": "Saint Michaels Cemetery/Woodside",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 206,
+    "pickups": 32,
+    "fee_share": 0.25,
+    "zone": "Saint George/New Brighton",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 130,
+    "pickups": 9571,
+    "fee_share": 0.057,
+    "zone": "Jamaica",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 101,
+    "pickups": 634,
+    "fee_share": 0.0174,
+    "zone": "Glen Oaks",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 52,
+    "pickups": 2920,
+    "fee_share": 0.389,
+    "zone": "Cobble Hill",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 150,
+    "pickups": 595,
+    "fee_share": 0.0235,
+    "zone": "Manhattan Beach",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 113,
+    "pickups": 151481,
+    "fee_share": 0.9959,
+    "zone": "Greenwich Village North",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 43,
+    "pickups": 133079,
+    "fee_share": 0.5929,
+    "zone": "Central Park",
+    "borough": "Manhattan",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 213,
+    "pickups": 2753,
+    "fee_share": 0.0694,
+    "zone": "Soundview/Castle Hill",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 136,
+    "pickups": 1151,
+    "fee_share": 0.0565,
+    "zone": "Kingsbridge Heights",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 81,
+    "pickups": 1172,
+    "fee_share": 0.0341,
+    "zone": "Eastchester",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 234,
+    "pickups": 291409,
+    "fee_share": 0.9961,
+    "zone": "Union Sq",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "inferred_geography",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 4,
+    "pickups": 27496,
+    "fee_share": 0.9791,
+    "zone": "Alphabet City",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 45,
+    "pickups": 18983,
+    "fee_share": 0.9685,
+    "zone": "Chinatown",
+    "borough": "Manhattan",
+    "is_cbd": true,
+    "cbd_source": "mta_yfdc_w5jh_partial",
+    "verdict": "CONFIRMED_BY_FEES"
+  },
+  {
+    "PULocationID": 208,
+    "pickups": 1152,
+    "fee_share": 0.0773,
+    "zone": "Schuylerville/Edgewater Park",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 60,
+    "pickups": 1299,
+    "fee_share": 0.0754,
+    "zone": "Crotona Park East",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 253,
+    "pickups": 63,
+    "fee_share": 0.0794,
+    "zone": "Willets Point",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 66,
+    "pickups": 7808,
+    "fee_share": 0.5019,
+    "zone": "DUMBO/Vinegar Hill",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 149,
+    "pickups": 1096,
+    "fee_share": 0.0246,
+    "zone": "Madison",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 21,
+    "pickups": 1107,
+    "fee_share": 0.0253,
+    "zone": "Bensonhurst East",
+    "borough": "Brooklyn",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "CONSISTENT_NON_CBD"
+  },
+  {
+    "PULocationID": 2,
+    "pickups": 11,
+    "fee_share": 0.1818,
+    "zone": "Jamaica Bay",
+    "borough": "Queens",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 156,
+    "pickups": 22,
+    "fee_share": 0.1364,
+    "zone": "Mariners Harbor",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 5,
+    "pickups": 2,
+    "fee_share": 0.0,
+    "zone": "Arden Heights",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 199,
+    "pickups": 5,
+    "fee_share": 1.0,
+    "zone": "Rikers Island",
+    "borough": "Bronx",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 84,
+    "pickups": 7,
+    "fee_share": 0.2857,
+    "zone": "Eltingville/Annadale/Prince's Bay",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 109,
+    "pickups": 9,
+    "fee_share": 0.1111,
+    "zone": "Great Kills",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 204,
+    "pickups": 5,
+    "fee_share": 0.2,
+    "zone": "Rossville/Woodrow",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 44,
+    "pickups": 6,
+    "fee_share": 0.0,
+    "zone": "Charleston/Tottenville",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  },
+  {
+    "PULocationID": 99,
+    "pickups": 1,
+    "fee_share": 0.0,
+    "zone": "Freshkills Park",
+    "borough": "Staten Island",
+    "is_cbd": false,
+    "cbd_source": "not_cbd",
+    "verdict": "TOO_FEW_TRIPS"
+  }
+]

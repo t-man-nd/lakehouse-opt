@@ -1,0 +1,463 @@
+{
+  "generated_at": "2026-09-24T16:07:09+00:00",
+  "months": [
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2025-01",
+    "2025-02",
+    "2025-03"
+  ],
+  "trip_files": {
+    "2024-01": {
+      "file": "yellow_tripdata_2024-01.parquet",
+      "relative_path": "data/raw/tlc/yellow_tripdata_2024-01.parquet",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-01.parquet",
+      "bytes": 49961641,
+      "sha256": "c4d59da7bbc8abaeeeb1727947ee93d9891a71acb42854bd80db1571b2030510",
+      "rows": 2964624,
+      "row_groups": 3,
+      "created_by": "parquet-cpp-arrow version 14.0.2",
+      "columns": {
+        "VendorID": "int32",
+        "tpep_pickup_datetime": "timestamp[us]",
+        "tpep_dropoff_datetime": "timestamp[us]",
+        "passenger_count": "int64",
+        "trip_distance": "double",
+        "RatecodeID": "int64",
+        "store_and_fwd_flag": "large_string",
+        "PULocationID": "int32",
+        "DOLocationID": "int32",
+        "payment_type": "int64",
+        "fare_amount": "double",
+        "extra": "double",
+        "mta_tax": "double",
+        "tip_amount": "double",
+        "tolls_amount": "double",
+        "improvement_surcharge": "double",
+        "total_amount": "double",
+        "congestion_surcharge": "double",
+        "Airport_fee": "double"
+      }
+    },
+    "2024-02": {
+      "file": "yellow_tripdata_2024-02.parquet",
+      "relative_path": "data/raw/tlc/yellow_tripdata_2024-02.parquet",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-02.parquet",
+      "bytes": 50349284,
+      "sha256": "c76c43c18c6c6664080dd920baab4928988d5786a6b65980792ca7cd796f9f20",
+      "rows": 3007526,
+      "row_groups": 3,
+      "created_by": "parquet-cpp-arrow version 14.0.2",
+      "columns": {
+        "VendorID": "int32",
+        "tpep_pickup_datetime": "timestamp[us]",
+        "tpep_dropoff_datetime": "timestamp[us]",
+        "passenger_count": "int64",
+        "trip_distance": "double",
+        "RatecodeID": "int64",
+        "store_and_fwd_flag": "large_string",
+        "PULocationID": "int32",
+        "DOLocationID": "int32",
+        "payment_type": "int64",
+        "fare_amount": "double",
+        "extra": "double",
+        "mta_tax": "double",
+        "tip_amount": "double",
+        "tolls_amount": "double",
+        "improvement_surcharge": "double",
+        "total_amount": "double",
+        "congestion_surcharge": "double",
+        "Airport_fee": "double"
+      }
+    },
+    "2024-03": {
+      "file": "yellow_tripdata_2024-03.parquet",
+      "relative_path": "data/raw/tlc/yellow_tripdata_2024-03.parquet",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-03.parquet",
+      "bytes": 60078280,
+      "sha256": "2d4cdc8fb96726cdd3803b13b02d2e61e71d45720aff0ebc693a8bdd1f249823",
+      "rows": 3582628,
+      "row_groups": 4,
+      "created_by": "parquet-cpp-arrow version 14.0.2",
+      "columns": {
+        "VendorID": "int32",
+        "tpep_pickup_datetime": "timestamp[us]",
+        "tpep_dropoff_datetime": "timestamp[us]",
+        "passenger_count": "int64",
+        "trip_distance": "double",
+        "RatecodeID": "int64",
+        "store_and_fwd_flag": "large_string",
+        "PULocationID": "int32",
+        "DOLocationID": "int32",
+        "payment_type": "int64",
+        "fare_amount": "double",
+        "extra": "double",
+        "mta_tax": "double",
+        "tip_amount": "double",
+        "tolls_amount": "double",
+        "improvement_surcharge": "double",
+        "total_amount": "double",
+        "congestion_surcharge": "double",
+        "Airport_fee": "double"
+      }
+    },
+    "2025-01": {
+      "file": "yellow_tripdata_2025-01.parquet",
+      "relative_path": "data/raw/tlc/yellow_tripdata_2025-01.parquet",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2025-01.parquet",
+      "bytes": 59158238,
+      "sha256": "9af277e4c0d3f9deb30644da822981e1e7df6af58313170fd3aa8a474485488a",
+      "rows": 3475226,
+      "row_groups": 4,
+      "created_by": "parquet-cpp-arrow version 16.1.0",
+      "columns": {
+        "VendorID": "int32",
+        "tpep_pickup_datetime": "timestamp[us]",
+        "tpep_dropoff_datetime": "timestamp[us]",
+        "passenger_count": "int64",
+        "trip_distance": "double",
+        "RatecodeID": "int64",
+        "store_and_fwd_flag": "large_string",
+        "PULocationID": "int32",
+        "DOLocationID": "int32",
+        "payment_type": "int64",
+        "fare_amount": "double",
+        "extra": "double",
+        "mta_tax": "double",
+        "tip_amount": "double",
+        "tolls_amount": "double",
+        "improvement_surcharge": "double",
+        "total_amount": "double",
+        "congestion_surcharge": "double",
+        "Airport_fee": "double",
+        "cbd_congestion_fee": "double"
+      }
+    },
+    "2025-02": {
+      "file": "yellow_tripdata_2025-02.parquet",
+      "relative_path": "data/raw/tlc/yellow_tripdata_2025-02.parquet",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2025-02.parquet",
+      "bytes": 60343086,
+      "sha256": "037cba555a73663f3a51a2c27816e40e3feb364769942bdf122b9da31e377bd3",
+      "rows": 3577543,
+      "row_groups": 4,
+      "created_by": "parquet-cpp-arrow version 16.1.0",
+      "columns": {
+        "VendorID": "int32",
+        "tpep_pickup_datetime": "timestamp[us]",
+        "tpep_dropoff_datetime": "timestamp[us]",
+        "passenger_count": "int64",
+        "trip_distance": "double",
+        "RatecodeID": "int64",
+        "store_and_fwd_flag": "large_string",
+        "PULocationID": "int32",
+        "DOLocationID": "int32",
+        "payment_type": "int64",
+        "fare_amount": "double",
+        "extra": "double",
+        "mta_tax": "double",
+        "tip_amount": "double",
+        "tolls_amount": "double",
+        "improvement_surcharge": "double",
+        "total_amount": "double",
+        "congestion_surcharge": "double",
+        "Airport_fee": "double",
+        "cbd_congestion_fee": "double"
+      }
+    },
+    "2025-03": {
+      "file": "yellow_tripdata_2025-03.parquet",
+      "relative_path": "data/raw/tlc/yellow_tripdata_2025-03.parquet",
+      "url": "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2025-03.parquet",
+      "bytes": 69964745,
+      "sha256": "20c4b77cce457b7cfdae77c5069ca7dc91c167f876a41467f4502ab69487a186",
+      "rows": 4145257,
+      "row_groups": 4,
+      "created_by": "parquet-cpp-arrow version 16.1.0",
+      "columns": {
+        "VendorID": "int32",
+        "tpep_pickup_datetime": "timestamp[us]",
+        "tpep_dropoff_datetime": "timestamp[us]",
+        "passenger_count": "int64",
+        "trip_distance": "double",
+        "RatecodeID": "int64",
+        "store_and_fwd_flag": "large_string",
+        "PULocationID": "int32",
+        "DOLocationID": "int32",
+        "payment_type": "int64",
+        "fare_amount": "double",
+        "extra": "double",
+        "mta_tax": "double",
+        "tip_amount": "double",
+        "tolls_amount": "double",
+        "improvement_surcharge": "double",
+        "total_amount": "double",
+        "congestion_surcharge": "double",
+        "Airport_fee": "double",
+        "cbd_congestion_fee": "double"
+      }
+    }
+  },
+  "schema_drift": [
+    {
+      "column": "Airport_fee",
+      "drift": false,
+      "per_file": {
+        "2024-01": "Airport_fee:double",
+        "2024-02": "Airport_fee:double",
+        "2024-03": "Airport_fee:double",
+        "2025-01": "Airport_fee:double",
+        "2025-02": "Airport_fee:double",
+        "2025-03": "Airport_fee:double"
+      }
+    },
+    {
+      "column": "cbd_congestion_fee",
+      "drift": true,
+      "per_file": {
+        "2024-01": "MISSING",
+        "2024-02": "MISSING",
+        "2024-03": "MISSING",
+        "2025-01": "cbd_congestion_fee:double",
+        "2025-02": "cbd_congestion_fee:double",
+        "2025-03": "cbd_congestion_fee:double"
+      }
+    },
+    {
+      "column": "congestion_surcharge",
+      "drift": false,
+      "per_file": {
+        "2024-01": "congestion_surcharge:double",
+        "2024-02": "congestion_surcharge:double",
+        "2024-03": "congestion_surcharge:double",
+        "2025-01": "congestion_surcharge:double",
+        "2025-02": "congestion_surcharge:double",
+        "2025-03": "congestion_surcharge:double"
+      }
+    },
+    {
+      "column": "DOLocationID",
+      "drift": false,
+      "per_file": {
+        "2024-01": "DOLocationID:int32",
+        "2024-02": "DOLocationID:int32",
+        "2024-03": "DOLocationID:int32",
+        "2025-01": "DOLocationID:int32",
+        "2025-02": "DOLocationID:int32",
+        "2025-03": "DOLocationID:int32"
+      }
+    },
+    {
+      "column": "extra",
+      "drift": false,
+      "per_file": {
+        "2024-01": "extra:double",
+        "2024-02": "extra:double",
+        "2024-03": "extra:double",
+        "2025-01": "extra:double",
+        "2025-02": "extra:double",
+        "2025-03": "extra:double"
+      }
+    },
+    {
+      "column": "fare_amount",
+      "drift": false,
+      "per_file": {
+        "2024-01": "fare_amount:double",
+        "2024-02": "fare_amount:double",
+        "2024-03": "fare_amount:double",
+        "2025-01": "fare_amount:double",
+        "2025-02": "fare_amount:double",
+        "2025-03": "fare_amount:double"
+      }
+    },
+    {
+      "column": "improvement_surcharge",
+      "drift": false,
+      "per_file": {
+        "2024-01": "improvement_surcharge:double",
+        "2024-02": "improvement_surcharge:double",
+        "2024-03": "improvement_surcharge:double",
+        "2025-01": "improvement_surcharge:double",
+        "2025-02": "improvement_surcharge:double",
+        "2025-03": "improvement_surcharge:double"
+      }
+    },
+    {
+      "column": "mta_tax",
+      "drift": false,
+      "per_file": {
+        "2024-01": "mta_tax:double",
+        "2024-02": "mta_tax:double",
+        "2024-03": "mta_tax:double",
+        "2025-01": "mta_tax:double",
+        "2025-02": "mta_tax:double",
+        "2025-03": "mta_tax:double"
+      }
+    },
+    {
+      "column": "passenger_count",
+      "drift": false,
+      "per_file": {
+        "2024-01": "passenger_count:int64",
+        "2024-02": "passenger_count:int64",
+        "2024-03": "passenger_count:int64",
+        "2025-01": "passenger_count:int64",
+        "2025-02": "passenger_count:int64",
+        "2025-03": "passenger_count:int64"
+      }
+    },
+    {
+      "column": "payment_type",
+      "drift": false,
+      "per_file": {
+        "2024-01": "payment_type:int64",
+        "2024-02": "payment_type:int64",
+        "2024-03": "payment_type:int64",
+        "2025-01": "payment_type:int64",
+        "2025-02": "payment_type:int64",
+        "2025-03": "payment_type:int64"
+      }
+    },
+    {
+      "column": "PULocationID",
+      "drift": false,
+      "per_file": {
+        "2024-01": "PULocationID:int32",
+        "2024-02": "PULocationID:int32",
+        "2024-03": "PULocationID:int32",
+        "2025-01": "PULocationID:int32",
+        "2025-02": "PULocationID:int32",
+        "2025-03": "PULocationID:int32"
+      }
+    },
+    {
+      "column": "RatecodeID",
+      "drift": false,
+      "per_file": {
+        "2024-01": "RatecodeID:int64",
+        "2024-02": "RatecodeID:int64",
+        "2024-03": "RatecodeID:int64",
+        "2025-01": "RatecodeID:int64",
+        "2025-02": "RatecodeID:int64",
+        "2025-03": "RatecodeID:int64"
+      }
+    },
+    {
+      "column": "store_and_fwd_flag",
+      "drift": false,
+      "per_file": {
+        "2024-01": "store_and_fwd_flag:large_string",
+        "2024-02": "store_and_fwd_flag:large_string",
+        "2024-03": "store_and_fwd_flag:large_string",
+        "2025-01": "store_and_fwd_flag:large_string",
+        "2025-02": "store_and_fwd_flag:large_string",
+        "2025-03": "store_and_fwd_flag:large_string"
+      }
+    },
+    {
+      "column": "tip_amount",
+      "drift": false,
+      "per_file": {
+        "2024-01": "tip_amount:double",
+        "2024-02": "tip_amount:double",
+        "2024-03": "tip_amount:double",
+        "2025-01": "tip_amount:double",
+        "2025-02": "tip_amount:double",
+        "2025-03": "tip_amount:double"
+      }
+    },
+    {
+      "column": "tolls_amount",
+      "drift": false,
+      "per_file": {
+        "2024-01": "tolls_amount:double",
+        "2024-02": "tolls_amount:double",
+        "2024-03": "tolls_amount:double",
+        "2025-01": "tolls_amount:double",
+        "2025-02": "tolls_amount:double",
+        "2025-03": "tolls_amount:double"
+      }
+    },
+    {
+      "column": "total_amount",
+      "drift": false,
+      "per_file": {
+        "2024-01": "total_amount:double",
+        "2024-02": "total_amount:double",
+        "2024-03": "total_amount:double",
+        "2025-01": "total_amount:double",
+        "2025-02": "total_amount:double",
+        "2025-03": "total_amount:double"
+      }
+    },
+    {
+      "column": "tpep_dropoff_datetime",
+      "drift": false,
+      "per_file": {
+        "2024-01": "tpep_dropoff_datetime:timestamp[us]",
+        "2024-02": "tpep_dropoff_datetime:timestamp[us]",
+        "2024-03": "tpep_dropoff_datetime:timestamp[us]",
+        "2025-01": "tpep_dropoff_datetime:timestamp[us]",
+        "2025-02": "tpep_dropoff_datetime:timestamp[us]",
+        "2025-03": "tpep_dropoff_datetime:timestamp[us]"
+      }
+    },
+    {
+      "column": "tpep_pickup_datetime",
+      "drift": false,
+      "per_file": {
+        "2024-01": "tpep_pickup_datetime:timestamp[us]",
+        "2024-02": "tpep_pickup_datetime:timestamp[us]",
+        "2024-03": "tpep_pickup_datetime:timestamp[us]",
+        "2025-01": "tpep_pickup_datetime:timestamp[us]",
+        "2025-02": "tpep_pickup_datetime:timestamp[us]",
+        "2025-03": "tpep_pickup_datetime:timestamp[us]"
+      }
+    },
+    {
+      "column": "trip_distance",
+      "drift": false,
+      "per_file": {
+        "2024-01": "trip_distance:double",
+        "2024-02": "trip_distance:double",
+        "2024-03": "trip_distance:double",
+        "2025-01": "trip_distance:double",
+        "2025-02": "trip_distance:double",
+        "2025-03": "trip_distance:double"
+      }
+    },
+    {
+      "column": "VendorID",
+      "drift": false,
+      "per_file": {
+        "2024-01": "VendorID:int32",
+        "2024-02": "VendorID:int32",
+        "2024-03": "VendorID:int32",
+        "2025-01": "VendorID:int32",
+        "2025-02": "VendorID:int32",
+        "2025-03": "VendorID:int32"
+      }
+    }
+  ],
+  "reference_files": {
+    "taxi_zone_lookup.csv": {
+      "bytes": 12331,
+      "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+      "url": "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
+    },
+    "cbd_zones.csv": {
+      "bytes": 1018,
+      "sha256": "b14cae22480f3aa0bb82abdbe07bf8639cc7926067eafd0b8be23f94d6b6a69d",
+      "note": "fallback list (33 official + 5 inferred)"
+    }
+  },
+  "events": [
+    {
+      "type": "CBD_FALLBACK",
+      "file": "cbd_zones.csv",
+      "detail": "data.ny.gov unreachable; used built-in list (33 official + 5 inferred zones). See docs/evidence/cbd_zone_validation.md"
+    }
+  ]
+}

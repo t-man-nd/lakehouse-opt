@@ -1,0 +1,1746 @@
+{
+  "rows": 20072697,
+  "rounds": 5,
+  "baseline_files": 200,
+  "target_file_mb": 32,
+  "variants": {
+    "baseline": {
+      "prepared_by": "repartition(200) of Silver (random order)",
+      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/baseline",
+      "files": 200,
+      "size_mb": 3184.3,
+      "avg_file_mb": 15.92,
+      "clustering": []
+    },
+    "compacted": {
+      "files_before": 200,
+      "optimize_metrics": {
+        "numFilesAdded": 100,
+        "numFilesRemoved": 200
+      },
+      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/compacted",
+      "files": 100,
+      "size_mb": 3151.6,
+      "avg_file_mb": 31.52,
+      "clustering": []
+    },
+    "zorder_1col": {
+      "files_before": 200,
+      "optimize_metrics": {
+        "numFilesAdded": 99,
+        "numFilesRemoved": 200
+      },
+      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/zorder_1col",
+      "files": 99,
+      "size_mb": 3135.4,
+      "avg_file_mb": 31.67,
+      "clustering": []
+    },
+    "zorder_2col": {
+      "files_before": 200,
+      "optimize_metrics": {
+        "numFilesAdded": 99,
+        "numFilesRemoved": 200
+      },
+      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/zorder_2col",
+      "files": 99,
+      "size_mb": 3115.9,
+      "avg_file_mb": 31.47,
+      "clustering": []
+    },
+    "liquid_cluster": {
+      "files_before": 67,
+      "prepared_by": "CLUSTER BY + OPTIMIZE FULL",
+      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/liquid_cluster",
+      "files": 98,
+      "size_mb": 3111.7,
+      "avg_file_mb": 31.75,
+      "clustering": [
+        "PULocationID",
+        "tpep_pickup_datetime"
+      ]
+    }
+  },
+  "summary": {
+    "per_query": {
+      "q1_zone": {
+        "baseline": {
+          "runs": 5,
+          "median_ms": 172.5,
+          "min_ms": 165.31,
+          "max_ms": 195.55,
+          "files_scanned": 200,
+          "mb_read": 3184.29,
+          "improvement_pct": 0.0
+        },
+        "compacted": {
+          "runs": 5,
+          "median_ms": 167.7,
+          "min_ms": 161.3,
+          "max_ms": 177.57,
+          "files_scanned": 100,
+          "mb_read": 3151.57,
+          "improvement_pct": 2.8
+        },
+        "zorder_1col": {
+          "runs": 5,
+          "median_ms": 108.0,
+          "min_ms": 105.89,
+          "max_ms": 118.37,
+          "files_scanned": 5,
+          "mb_read": 164.38,
+          "improvement_pct": 37.4
+        },
+        "zorder_2col": {
+          "runs": 5,
+          "median_ms": 128.8,
+          "min_ms": 125.05,
+          "max_ms": 133.0,
+          "files_scanned": 42,
+          "mb_read": 1317.59,
+          "improvement_pct": 25.3
+        },
+        "liquid_cluster": {
+          "runs": 5,
+          "median_ms": 125.2,
+          "min_ms": 120.24,
+          "max_ms": 128.71,
+          "files_scanned": 35,
+          "mb_read": 1116.5,
+          "improvement_pct": 27.4
+        }
+      },
+      "q2_zone_week": {
+        "baseline": {
+          "runs": 5,
+          "median_ms": 275.1,
+          "min_ms": 263.71,
+          "max_ms": 285.53,
+          "files_scanned": 200,
+          "mb_read": 3184.29,
+          "improvement_pct": 0.0
+        },
+        "compacted": {
+          "runs": 5,
+          "median_ms": 267.8,
+          "min_ms": 265.23,
+          "max_ms": 277.65,
+          "files_scanned": 100,
+          "mb_read": 3151.57,
+          "improvement_pct": 2.7
+        },
+        "zorder_1col": {
+          "runs": 5,
+          "median_ms": 119.1,
+          "min_ms": 115.53,
+          "max_ms": 128.94,
+          "files_scanned": 5,
+          "mb_read": 165.67,
+          "improvement_pct": 56.7
+        },
+        "zorder_2col": {
+          "runs": 5,
+          "median_ms": 127.1,
+          "min_ms": 115.93,
+          "max_ms": 131.35,
+          "files_scanned": 6,
+          "mb_read": 188.72,
+          "improvement_pct": 53.8
+        },
+        "liquid_cluster": {
+          "runs": 5,
+          "median_ms": 117.7,
+          "min_ms": 112.86,
+          "max_ms": 124.49,
+          "files_scanned": 3,
+          "mb_read": 93.56,
+          "improvement_pct": 57.2
+        }
+      },
+      "q3_control": {
+        "baseline": {
+          "runs": 5,
+          "median_ms": 185.2,
+          "min_ms": 163.14,
+          "max_ms": 195.44,
+          "files_scanned": 200,
+          "mb_read": 3184.29,
+          "improvement_pct": 0.0
+        },
+        "compacted": {
+          "runs": 5,
+          "median_ms": 167.5,
+          "min_ms": 162.54,
+          "max_ms": 186.23,
+          "files_scanned": 100,
+          "mb_read": 3151.57,
+          "improvement_pct": 9.6
+        },
+        "zorder_1col": {
+          "runs": 5,
+          "median_ms": 166.1,
+          "min_ms": 154.61,
+          "max_ms": 178.45,
+          "files_scanned": 99,
+          "mb_read": 3135.4,
+          "improvement_pct": 10.3
+        },
+        "zorder_2col": {
+          "runs": 5,
+          "median_ms": 159.1,
+          "min_ms": 152.69,
+          "max_ms": 174.76,
+          "files_scanned": 99,
+          "mb_read": 3115.91,
+          "improvement_pct": 14.1
+        },
+        "liquid_cluster": {
+          "runs": 5,
+          "median_ms": 166.5,
+          "min_ms": 158.19,
+          "max_ms": 178.19,
+          "files_scanned": 98,
+          "mb_read": 3111.69,
+          "improvement_pct": 10.1
+        }
+      }
+    },
+    "results_identical_across_variants": {
+      "q1_zone": true,
+      "q2_zone_week": true,
+      "q3_control": true
+    }
+  },
+  "runs": [
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q1_zone",
+      "variant": "baseline",
+      "ms": 549.26,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q1_zone",
+      "variant": "compacted",
+      "ms": 351.15,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q1_zone",
+      "variant": "zorder_1col",
+      "ms": 191.4,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 172369318,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q1_zone",
+      "variant": "zorder_2col",
+      "ms": 217.62,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 42,
+      "bytes_read": 1381590868,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q1_zone",
+      "variant": "liquid_cluster",
+      "ms": 199.55,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 35,
+      "bytes_read": 1170738658,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q2_zone_week",
+      "variant": "baseline",
+      "ms": 553.66,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q2_zone_week",
+      "variant": "compacted",
+      "ms": 341.16,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q2_zone_week",
+      "variant": "zorder_1col",
+      "ms": 141.59,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 173721916,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q2_zone_week",
+      "variant": "zorder_2col",
+      "ms": 135.91,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 6,
+      "bytes_read": 197891261,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 127.16,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 3,
+      "bytes_read": 98104911,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q3_control",
+      "variant": "baseline",
+      "ms": 258.12,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q3_control",
+      "variant": "compacted",
+      "ms": 170.5,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q3_control",
+      "variant": "zorder_1col",
+      "ms": 211.59,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3287707217,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q3_control",
+      "variant": "zorder_2col",
+      "ms": 194.98,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3267271625,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q3_control",
+      "variant": "liquid_cluster",
+      "ms": 173.87,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 98,
+      "bytes_read": 3262846623,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "baseline",
+      "ms": 180.62,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "compacted",
+      "ms": 177.57,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_1col",
+      "ms": 118.37,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 172369318,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_2col",
+      "ms": 133.0,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 42,
+      "bytes_read": 1381590868,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "liquid_cluster",
+      "ms": 125.15,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 35,
+      "bytes_read": 1170738658,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "baseline",
+      "ms": 285.53,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "compacted",
+      "ms": 267.81,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_1col",
+      "ms": 126.19,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 173721916,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_2col",
+      "ms": 130.2,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 6,
+      "bytes_read": 197891261,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 124.49,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 3,
+      "bytes_read": 98104911,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "baseline",
+      "ms": 185.19,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "compacted",
+      "ms": 186.23,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_1col",
+      "ms": 178.45,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3287707217,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_2col",
+      "ms": 170.32,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3267271625,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "liquid_cluster",
+      "ms": 178.19,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 98,
+      "bytes_read": 3262846623,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "baseline",
+      "ms": 195.55,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "compacted",
+      "ms": 165.57,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_1col",
+      "ms": 105.89,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 172369318,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_2col",
+      "ms": 128.78,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 42,
+      "bytes_read": 1381590868,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "liquid_cluster",
+      "ms": 127.36,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 35,
+      "bytes_read": 1170738658,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "baseline",
+      "ms": 275.05,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "compacted",
+      "ms": 277.65,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_1col",
+      "ms": 128.94,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 173721916,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_2col",
+      "ms": 131.35,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 6,
+      "bytes_read": 197891261,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 122.58,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 3,
+      "bytes_read": 98104911,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "baseline",
+      "ms": 195.44,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "compacted",
+      "ms": 164.88,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_1col",
+      "ms": 175.69,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3287707217,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_2col",
+      "ms": 174.76,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3267271625,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "liquid_cluster",
+      "ms": 176.55,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 98,
+      "bytes_read": 3262846623,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "baseline",
+      "ms": 172.5,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "compacted",
+      "ms": 173.44,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_1col",
+      "ms": 109.39,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 172369318,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_2col",
+      "ms": 125.05,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 42,
+      "bytes_read": 1381590868,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "liquid_cluster",
+      "ms": 128.71,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 35,
+      "bytes_read": 1170738658,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "baseline",
+      "ms": 275.68,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "compacted",
+      "ms": 265.23,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_1col",
+      "ms": 116.91,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 173721916,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_2col",
+      "ms": 127.13,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 6,
+      "bytes_read": 197891261,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 112.86,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 3,
+      "bytes_read": 98104911,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "baseline",
+      "ms": 186.95,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "compacted",
+      "ms": 172.9,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_1col",
+      "ms": 160.74,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3287707217,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_2col",
+      "ms": 158.24,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3267271625,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "liquid_cluster",
+      "ms": 163.37,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 98,
+      "bytes_read": 3262846623,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "baseline",
+      "ms": 172.51,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "compacted",
+      "ms": 161.3,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_1col",
+      "ms": 108.01,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 172369318,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_2col",
+      "ms": 127.26,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 42,
+      "bytes_read": 1381590868,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "liquid_cluster",
+      "ms": 120.24,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 35,
+      "bytes_read": 1170738658,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "baseline",
+      "ms": 269.18,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "compacted",
+      "ms": 271.74,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_1col",
+      "ms": 115.53,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 173721916,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_2col",
+      "ms": 115.93,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 6,
+      "bytes_read": 197891261,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 116.8,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 3,
+      "bytes_read": 98104911,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "baseline",
+      "ms": 163.14,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "compacted",
+      "ms": 167.47,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_1col",
+      "ms": 166.05,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3287707217,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_2col",
+      "ms": 152.69,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3267271625,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "liquid_cluster",
+      "ms": 166.46,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 98,
+      "bytes_read": 3262846623,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "baseline",
+      "ms": 165.31,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "compacted",
+      "ms": 167.68,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_1col",
+      "ms": 106.54,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 172369318,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_2col",
+      "ms": 129.09,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 42,
+      "bytes_read": 1381590868,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "liquid_cluster",
+      "ms": 124.83,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731192.7,
+          "avg_tip": 9.321899
+        }
+      ],
+      "files_scanned": 35,
+      "bytes_read": 1170738658,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "baseline",
+      "ms": 263.71,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "compacted",
+      "ms": 265.99,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_1col",
+      "ms": 119.11,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 173721916,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_2col",
+      "ms": 117.3,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 6,
+      "bytes_read": 197891261,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 117.66,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 3,
+      "bytes_read": 98104911,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "baseline",
+      "ms": 166.74,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3338967225,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "compacted",
+      "ms": 162.54,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3304657191,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_1col",
+      "ms": 154.61,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3287707217,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_2col",
+      "ms": 159.08,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3267271625,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "liquid_cluster",
+      "ms": 158.19,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 98,
+      "bytes_read": 3262846623,
+      "scan_nodes": 1
+    }
+  ]
+}

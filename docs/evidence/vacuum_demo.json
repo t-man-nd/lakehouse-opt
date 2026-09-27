@@ -1,0 +1,21 @@
+{
+  "copy_path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/_scratch/silver_vacuum_copy",
+  "files_listed_by_dry_run": 1,
+  "oldest_version": 0,
+  "newest_version": 6,
+  "latest_version_rows_after_vacuum": 20072697,
+  "versions_after_vacuum": {
+    "0": "readable",
+    "1": "readable",
+    "2": "readable",
+    "3": "readable",
+    "4": "readable",
+    "5": "FAILED: Py4JJavaError: An error occurred while calling o7653.collectToPython.",
+    "6": "readable"
+  },
+  "broken_versions": [
+    5
+  ],
+  "explanation": "VACUUM deleted data files no longer referenced by the latest version. Any older version that still pointed at those files can no longer be read; this is why the default 7-day retention exists and why the real table was never vacuumed with 0 hours.",
+  "real_table_oldest_version_rows": 2926215
+}

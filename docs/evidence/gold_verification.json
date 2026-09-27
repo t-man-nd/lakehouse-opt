@@ -1,0 +1,289 @@
+{
+  "silver_version_used": 6,
+  "table_versions": {
+    "zone_hourly_metrics": 1,
+    "cbd_flow_monthly": 1,
+    "cbd_flow_yoy": 1,
+    "dq_monthly": 1
+  },
+  "zone_hourly_rows": 553881,
+  "gold_trips": 19808248,
+  "verification": {
+    "cells": [
+      {
+        "cell": {
+          "pickup_date": "2025-02-02",
+          "pickup_hour": 1,
+          "PULocationID": 79
+        },
+        "gold": {
+          "trips": 991,
+          "avg_fare": 15.1256,
+          "avg_tip_pct": 15.9631,
+          "total_driver_earnings": 18048.24
+        },
+        "manual_sql": {
+          "trips": 991,
+          "avg_fare": 15.1256,
+          "avg_tip_pct": 15.9631,
+          "total_driver_earnings": 18048.24
+        },
+        "match": true
+      },
+      {
+        "cell": {
+          "pickup_date": "2025-03-02",
+          "pickup_hour": 0,
+          "PULocationID": 79
+        },
+        "gold": {
+          "trips": 947,
+          "avg_fare": 15.2636,
+          "avg_tip_pct": 19.3064,
+          "total_driver_earnings": 17934.15
+        },
+        "manual_sql": {
+          "trips": 947,
+          "avg_fare": 15.2636,
+          "avg_tip_pct": 19.3064,
+          "total_driver_earnings": 17934.15
+        },
+        "match": true
+      },
+      {
+        "cell": {
+          "pickup_date": "2025-03-09",
+          "pickup_hour": 1,
+          "PULocationID": 79
+        },
+        "gold": {
+          "trips": 916,
+          "avg_fare": 15.4114,
+          "avg_tip_pct": 14.2655,
+          "total_driver_earnings": 16781.55
+        },
+        "manual_sql": {
+          "trips": 916,
+          "avg_fare": 15.4114,
+          "avg_tip_pct": 14.2655,
+          "total_driver_earnings": 16781.55
+        },
+        "match": true
+      }
+    ],
+    "totals": {
+      "gold_trips": 19808248,
+      "manual_trips": 19808248,
+      "gold_earnings": 461016275.03,
+      "manual_earnings": 461016275.03,
+      "match": true
+    },
+    "all_match": true
+  },
+  "external_reconciliation": {
+    "status": "SKIPPED",
+    "reason": "tlc_zone_monthly_raw.csv not downloaded (--with-tlc-aggregates)"
+  },
+  "cbd_zone_validation": {
+    "CONSISTENT_NON_CBD": 187,
+    "TOO_FEW_TRIPS": 36,
+    "CONFIRMED_BY_FEES": 38
+  },
+  "cbd_yoy": [
+    {
+      "year": 2025,
+      "month_of_year": 1,
+      "cbd_flow": "INTO_CBD",
+      "trips_per_day_prev": 13322.06,
+      "trips_per_day": 14442.06,
+      "yoy_trips_per_day_pct": 8.407,
+      "non_cbd_yoy_pct": 12.872,
+      "relative_to_non_cbd_pp": -4.465,
+      "avg_duration_min_prev": 21.906,
+      "avg_duration_min": 21.418,
+      "yoy_duration_pct": -2.23
+    },
+    {
+      "year": 2025,
+      "month_of_year": 1,
+      "cbd_flow": "NON_CBD",
+      "trips_per_day_prev": 25805.52,
+      "trips_per_day": 29127.23,
+      "yoy_trips_per_day_pct": 12.872,
+      "non_cbd_yoy_pct": 12.872,
+      "relative_to_non_cbd_pp": 0.0,
+      "avg_duration_min_prev": 14.632,
+      "avg_duration_min": 14.602,
+      "yoy_duration_pct": -0.203
+    },
+    {
+      "year": 2025,
+      "month_of_year": 1,
+      "cbd_flow": "OUT_OF_CBD",
+      "trips_per_day_prev": 15724.45,
+      "trips_per_day": 16793.45,
+      "yoy_trips_per_day_pct": 6.798,
+      "non_cbd_yoy_pct": 12.872,
+      "relative_to_non_cbd_pp": -6.074,
+      "avg_duration_min_prev": 20.447,
+      "avg_duration_min": 19.239,
+      "yoy_duration_pct": -5.907
+    },
+    {
+      "year": 2025,
+      "month_of_year": 1,
+      "cbd_flow": "UNKNOWN_ZONE",
+      "trips_per_day_prev": 980.29,
+      "trips_per_day": 865.84,
+      "yoy_trips_per_day_pct": -11.675,
+      "non_cbd_yoy_pct": 12.872,
+      "relative_to_non_cbd_pp": -24.547,
+      "avg_duration_min_prev": 22.518,
+      "avg_duration_min": 22.802,
+      "yoy_duration_pct": 1.264
+    },
+    {
+      "year": 2025,
+      "month_of_year": 1,
+      "cbd_flow": "WITHIN_CBD",
+      "trips_per_day_prev": 37557.61,
+      "trips_per_day": 44482.48,
+      "yoy_trips_per_day_pct": 18.438,
+      "non_cbd_yoy_pct": 12.872,
+      "relative_to_non_cbd_pp": 5.566,
+      "avg_duration_min_prev": 12.055,
+      "avg_duration_min": 11.593,
+      "yoy_duration_pct": -3.829
+    },
+    {
+      "year": 2025,
+      "month_of_year": 2,
+      "cbd_flow": "INTO_CBD",
+      "trips_per_day_prev": 14165.03,
+      "trips_per_day": 16112.39,
+      "yoy_trips_per_day_pct": 13.748,
+      "non_cbd_yoy_pct": 23.309,
+      "relative_to_non_cbd_pp": -9.561,
+      "avg_duration_min_prev": 22.5,
+      "avg_duration_min": 21.946,
+      "yoy_duration_pct": -2.461
+    },
+    {
+      "year": 2025,
+      "month_of_year": 2,
+      "cbd_flow": "NON_CBD",
+      "trips_per_day_prev": 26403.21,
+      "trips_per_day": 32557.5,
+      "yoy_trips_per_day_pct": 23.309,
+      "non_cbd_yoy_pct": 23.309,
+      "relative_to_non_cbd_pp": 0.0,
+      "avg_duration_min_prev": 14.852,
+      "avg_duration_min": 14.932,
+      "yoy_duration_pct": 0.54
+    },
+    {
+      "year": 2025,
+      "month_of_year": 2,
+      "cbd_flow": "OUT_OF_CBD",
+      "trips_per_day_prev": 17162.41,
+      "trips_per_day": 18579.75,
+      "yoy_trips_per_day_pct": 8.258,
+      "non_cbd_yoy_pct": 23.309,
+      "relative_to_non_cbd_pp": -15.051,
+      "avg_duration_min_prev": 21.015,
+      "avg_duration_min": 19.845,
+      "yoy_duration_pct": -5.567
+    },
+    {
+      "year": 2025,
+      "month_of_year": 2,
+      "cbd_flow": "UNKNOWN_ZONE",
+      "trips_per_day_prev": 959.86,
+      "trips_per_day": 840.71,
+      "yoy_trips_per_day_pct": -12.413,
+      "non_cbd_yoy_pct": 23.309,
+      "relative_to_non_cbd_pp": -35.722,
+      "avg_duration_min_prev": 23.522,
+      "avg_duration_min": 24.163,
+      "yoy_duration_pct": 2.723
+    },
+    {
+      "year": 2025,
+      "month_of_year": 2,
+      "cbd_flow": "WITHIN_CBD",
+      "trips_per_day_prev": 42493.59,
+      "trips_per_day": 51352.79,
+      "yoy_trips_per_day_pct": 20.848,
+      "non_cbd_yoy_pct": 23.309,
+      "relative_to_non_cbd_pp": -2.461,
+      "avg_duration_min_prev": 12.502,
+      "avg_duration_min": 11.973,
+      "yoy_duration_pct": -4.231
+    },
+    {
+      "year": 2025,
+      "month_of_year": 3,
+      "cbd_flow": "INTO_CBD",
+      "trips_per_day_prev": 16255.81,
+      "trips_per_day": 17325.42,
+      "yoy_trips_per_day_pct": 6.58,
+      "non_cbd_yoy_pct": 20.212,
+      "relative_to_non_cbd_pp": -13.632,
+      "avg_duration_min_prev": 23.712,
+      "avg_duration_min": 22.721,
+      "yoy_duration_pct": -4.183
+    },
+    {
+      "year": 2025,
+      "month_of_year": 3,
+      "cbd_flow": "NON_CBD",
+      "trips_per_day_prev": 28435.77,
+      "trips_per_day": 34183.1,
+      "yoy_trips_per_day_pct": 20.212,
+      "non_cbd_yoy_pct": 20.212,
+      "relative_to_non_cbd_pp": 0.0,
+      "avg_duration_min_prev": 15.569,
+      "avg_duration_min": 15.846,
+      "yoy_duration_pct": 1.777
+    },
+    {
+      "year": 2025,
+      "month_of_year": 3,
+      "cbd_flow": "OUT_OF_CBD",
+      "trips_per_day_prev": 18883.45,
+      "trips_per_day": 19784.29,
+      "yoy_trips_per_day_pct": 4.771,
+      "non_cbd_yoy_pct": 20.212,
+      "relative_to_non_cbd_pp": -15.441,
+      "avg_duration_min_prev": 21.558,
+      "avg_duration_min": 20.442,
+      "yoy_duration_pct": -5.178
+    },
+    {
+      "year": 2025,
+      "month_of_year": 3,
+      "cbd_flow": "UNKNOWN_ZONE",
+      "trips_per_day_prev": 1094.13,
+      "trips_per_day": 853.13,
+      "yoy_trips_per_day_pct": -22.027,
+      "non_cbd_yoy_pct": 20.212,
+      "relative_to_non_cbd_pp": -42.239,
+      "avg_duration_min_prev": 25.524,
+      "avg_duration_min": 26.174,
+      "yoy_duration_pct": 2.547
+    },
+    {
+      "year": 2025,
+      "month_of_year": 3,
+      "cbd_flow": "WITHIN_CBD",
+      "trips_per_day_prev": 47710.32,
+      "trips_per_day": 52809.1,
+      "yoy_trips_per_day_pct": 10.687,
+      "non_cbd_yoy_pct": 20.212,
+      "relative_to_non_cbd_pp": -9.525,
+      "avg_duration_min_prev": 12.997,
+      "avg_duration_min": 12.142,
+      "yoy_duration_pct": -6.58
+    }
+  ]
+}

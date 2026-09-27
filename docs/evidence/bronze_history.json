@@ -1,0 +1,107 @@
+[
+  {
+    "version": 0,
+    "timestamp": "2026-09-24T23:08:07.913000",
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[\"_source_month\"]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "2964624",
+      "numOutputBytes": "64272378",
+      "numFiles": "3"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2024-01_c4d59da7\", \"harmonized\": {\"casted\": [\"VendorID:int->bigint\", \"tpep_pickup_datetime:timestamp_ntz->timestamp\", \"tpep_dropoff_datetime:timestamp_ntz->timestamp\", \"PULocationID:int->bigint\", \"DOLocationID:int->bigint\"], \"renamed\": []}, \"layer\": \"bronze\", \"sha256\": \"c4d59da7bbc8abaeeeb1727947ee93d9891a71acb42854bd80db1571b2030510\", \"source_file\": \"yellow_tripdata_2024-01.parquet\"}"
+  },
+  {
+    "version": 1,
+    "timestamp": "2026-09-24T23:08:12.396000",
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[\"_source_month\"]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "3007526",
+      "numOutputBytes": "64925503",
+      "numFiles": "3"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2024-02_c76c43c1\", \"harmonized\": {\"casted\": [\"VendorID:int->bigint\", \"tpep_pickup_datetime:timestamp_ntz->timestamp\", \"tpep_dropoff_datetime:timestamp_ntz->timestamp\", \"PULocationID:int->bigint\", \"DOLocationID:int->bigint\"], \"renamed\": []}, \"layer\": \"bronze\", \"sha256\": \"c76c43c18c6c6664080dd920baab4928988d5786a6b65980792ca7cd796f9f20\", \"source_file\": \"yellow_tripdata_2024-02.parquet\"}"
+  },
+  {
+    "version": 2,
+    "timestamp": "2026-09-24T23:08:16.782000",
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[\"_source_month\"]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "3582628",
+      "numOutputBytes": "77316152",
+      "numFiles": "4"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2024-03_2d4cdc8f\", \"harmonized\": {\"casted\": [\"VendorID:int->bigint\", \"tpep_pickup_datetime:timestamp_ntz->timestamp\", \"tpep_dropoff_datetime:timestamp_ntz->timestamp\", \"PULocationID:int->bigint\", \"DOLocationID:int->bigint\"], \"renamed\": []}, \"layer\": \"bronze\", \"sha256\": \"2d4cdc8fb96726cdd3803b13b02d2e61e71d45720aff0ebc693a8bdd1f249823\", \"source_file\": \"yellow_tripdata_2024-03.parquet\"}"
+  },
+  {
+    "version": 3,
+    "timestamp": "2026-09-24T23:08:21.176000",
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[\"_source_month\"]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "3475226",
+      "numOutputBytes": "75832041",
+      "numFiles": "4"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2025-01_9af277e4\", \"harmonized\": {\"casted\": [\"VendorID:int->bigint\", \"tpep_pickup_datetime:timestamp_ntz->timestamp\", \"tpep_dropoff_datetime:timestamp_ntz->timestamp\", \"PULocationID:int->bigint\", \"DOLocationID:int->bigint\"], \"renamed\": []}, \"layer\": \"bronze\", \"sha256\": \"9af277e4c0d3f9deb30644da822981e1e7df6af58313170fd3aa8a474485488a\", \"source_file\": \"yellow_tripdata_2025-01.parquet\"}"
+  },
+  {
+    "version": 4,
+    "timestamp": "2026-09-24T23:08:25.387000",
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[\"_source_month\"]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "3577543",
+      "numOutputBytes": "77081441",
+      "numFiles": "4"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2025-02_037cba55\", \"harmonized\": {\"casted\": [\"VendorID:int->bigint\", \"tpep_pickup_datetime:timestamp_ntz->timestamp\", \"tpep_dropoff_datetime:timestamp_ntz->timestamp\", \"PULocationID:int->bigint\", \"DOLocationID:int->bigint\"], \"renamed\": []}, \"layer\": \"bronze\", \"sha256\": \"037cba555a73663f3a51a2c27816e40e3feb364769942bdf122b9da31e377bd3\", \"source_file\": \"yellow_tripdata_2025-02.parquet\"}"
+  },
+  {
+    "version": 5,
+    "timestamp": "2026-09-24T23:08:29.937000",
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[\"_source_month\"]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "4145257",
+      "numOutputBytes": "89556301",
+      "numFiles": "4"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2025-03_20c4b77c\", \"harmonized\": {\"casted\": [\"VendorID:int->bigint\", \"tpep_pickup_datetime:timestamp_ntz->timestamp\", \"tpep_dropoff_datetime:timestamp_ntz->timestamp\", \"PULocationID:int->bigint\", \"DOLocationID:int->bigint\"], \"renamed\": []}, \"layer\": \"bronze\", \"sha256\": \"20c4b77cce457b7cfdae77c5069ca7dc91c167f876a41467f4502ab69487a186\", \"source_file\": \"yellow_tripdata_2025-03.parquet\"}"
+  },
+  {
+    "version": 6,
+    "timestamp": "2026-09-24T23:32:02.227000",
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "Append",
+      "partitionBy": "[\"_source_month\"]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "30",
+      "numOutputBytes": "10211",
+      "numFiles": "1"
+    },
+    "userMetadata": "{\"batch_id\": \"cdc_corrections_seed42\", \"harmonized\": {\"casted\": [], \"renamed\": []}, \"layer\": \"bronze\", \"sha256\": \"4025a0aaa61643e2dc5c248dda14a1d9884be4d91824987fbeb8d8cb4ffcea4c\", \"source_file\": \"synthetic://cdc_corrections_seed42.parquet\"}"
+  }
+]

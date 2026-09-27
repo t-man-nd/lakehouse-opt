@@ -1,0 +1,233 @@
+[
+  {
+    "version": 0,
+    "timestamp": "2026-09-24T23:21:44.357000",
+    "operation": "WRITE",
+    "operationParameters": {
+      "mode": "ErrorIfExists",
+      "partitionBy": "[\"pickup_month\"]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "2926215",
+      "numOutputBytes": "467418062",
+      "numFiles": "28"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2024-01_c4d59da7\", \"bronze_version\": 0, \"layer\": \"silver\"}"
+  },
+  {
+    "version": 1,
+    "timestamp": "2026-09-24T23:22:25.203000",
+    "operation": "MERGE",
+    "operationParameters": {
+      "matchedPredicates": "[{\"predicate\":\"NOT (row_hash#44005 = row_hash#32627)\",\"actionType\":\"update\"}]",
+      "predicate": "[\"((pickup_month#44013 = pickup_month#35276) AND (trip_key#43983 = trip_key#32607))\"]",
+      "notMatchedBySourcePredicates": "[]",
+      "notMatchedPredicates": "[{\"actionType\":\"insert\"}]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "2966014",
+      "numTargetBytesAdded": "469673545",
+      "numTargetRowsInserted": "2966014",
+      "numTargetRowsMatchedDeleted": "0",
+      "numTargetFilesAdded": "3",
+      "materializeSourceTimeMs": "988",
+      "numTargetFilesRemoved": "0",
+      "numTargetRowsMatchedUpdated": "0",
+      "executionTimeMs": "17486",
+      "numTargetDeletionVectorsUpdated": "0",
+      "numTargetRowsCopied": "0",
+      "rewriteTimeMs": "15070",
+      "numTargetRowsUpdated": "0",
+      "numTargetDeletionVectorsRemoved": "0",
+      "numTargetRowsDeleted": "0",
+      "scanTimeMs": "1425",
+      "numSourceRows": "2966014",
+      "numTargetDeletionVectorsAdded": "0",
+      "numTargetChangeFilesAdded": "0",
+      "numTargetRowsNotMatchedBySourceUpdated": "0",
+      "numTargetRowsNotMatchedBySourceDeleted": "0",
+      "numTargetBytesRemoved": "0"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2024-02_c76c43c1\", \"bronze_version\": 1, \"layer\": \"silver\"}"
+  },
+  {
+    "version": 2,
+    "timestamp": "2026-09-24T23:23:12.839000",
+    "operation": "MERGE",
+    "operationParameters": {
+      "matchedPredicates": "[{\"predicate\":\"NOT (row_hash#58556 = row_hash#47194)\",\"actionType\":\"update\"}]",
+      "predicate": "[\"((pickup_month#58564 = pickup_month#49909) AND (trip_key#58534 = trip_key#47174))\"]",
+      "notMatchedBySourcePredicates": "[]",
+      "notMatchedPredicates": "[{\"actionType\":\"insert\"}]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "3522748",
+      "numTargetBytesAdded": "559712239",
+      "numTargetRowsInserted": "3522748",
+      "numTargetRowsMatchedDeleted": "0",
+      "numTargetFilesAdded": "3",
+      "materializeSourceTimeMs": "1223",
+      "numTargetFilesRemoved": "0",
+      "numTargetRowsMatchedUpdated": "0",
+      "executionTimeMs": "22087",
+      "numTargetDeletionVectorsUpdated": "0",
+      "numTargetRowsCopied": "0",
+      "rewriteTimeMs": "18439",
+      "numTargetRowsUpdated": "0",
+      "numTargetDeletionVectorsRemoved": "0",
+      "numTargetRowsDeleted": "0",
+      "scanTimeMs": "2422",
+      "numSourceRows": "3522748",
+      "numTargetDeletionVectorsAdded": "0",
+      "numTargetChangeFilesAdded": "0",
+      "numTargetRowsNotMatchedBySourceUpdated": "0",
+      "numTargetRowsNotMatchedBySourceDeleted": "0",
+      "numTargetBytesRemoved": "0"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2024-03_2d4cdc8f\", \"bronze_version\": 2, \"layer\": \"silver\"}"
+  },
+  {
+    "version": 3,
+    "timestamp": "2026-09-24T23:24:01.693000",
+    "operation": "MERGE",
+    "operationParameters": {
+      "matchedPredicates": "[{\"predicate\":\"NOT (row_hash#73135 = row_hash#61746)\",\"actionType\":\"update\"}]",
+      "predicate": "[\"((pickup_month#73143 = pickup_month#64432) AND (trip_key#73113 = trip_key#61725))\"]",
+      "notMatchedBySourcePredicates": "[]",
+      "notMatchedPredicates": "[{\"actionType\":\"insert\"}]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "3329582",
+      "numTargetBytesAdded": "529758667",
+      "numTargetRowsInserted": "3329582",
+      "numTargetRowsMatchedDeleted": "0",
+      "numTargetFilesAdded": "3",
+      "materializeSourceTimeMs": "1126",
+      "numTargetFilesRemoved": "0",
+      "numTargetRowsMatchedUpdated": "0",
+      "executionTimeMs": "21884",
+      "numTargetDeletionVectorsUpdated": "0",
+      "numTargetRowsCopied": "0",
+      "rewriteTimeMs": "17966",
+      "numTargetRowsUpdated": "0",
+      "numTargetDeletionVectorsRemoved": "0",
+      "numTargetRowsDeleted": "0",
+      "scanTimeMs": "2788",
+      "numSourceRows": "3329582",
+      "numTargetDeletionVectorsAdded": "0",
+      "numTargetChangeFilesAdded": "0",
+      "numTargetRowsNotMatchedBySourceUpdated": "0",
+      "numTargetRowsNotMatchedBySourceDeleted": "0",
+      "numTargetBytesRemoved": "0"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2025-01_9af277e4\", \"bronze_version\": 3, \"layer\": \"silver\"}"
+  },
+  {
+    "version": 4,
+    "timestamp": "2026-09-24T23:24:53.396000",
+    "operation": "MERGE",
+    "operationParameters": {
+      "matchedPredicates": "[{\"predicate\":\"NOT (row_hash#88053 = row_hash#76159)\",\"actionType\":\"update\"}]",
+      "predicate": "[\"((pickup_month#88061 = pickup_month#78845) AND (trip_key#88031 = trip_key#76138))\"]",
+      "notMatchedBySourcePredicates": "[]",
+      "notMatchedPredicates": "[{\"actionType\":\"insert\"}]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "3393348",
+      "numTargetBytesAdded": "540316219",
+      "numTargetRowsInserted": "3393348",
+      "numTargetRowsMatchedDeleted": "0",
+      "numTargetFilesAdded": "3",
+      "materializeSourceTimeMs": "1036",
+      "numTargetFilesRemoved": "0",
+      "numTargetRowsMatchedUpdated": "0",
+      "executionTimeMs": "22722",
+      "numTargetDeletionVectorsUpdated": "0",
+      "numTargetRowsCopied": "0",
+      "rewriteTimeMs": "18230",
+      "numTargetRowsUpdated": "0",
+      "numTargetDeletionVectorsRemoved": "0",
+      "numTargetRowsDeleted": "0",
+      "scanTimeMs": "3454",
+      "numSourceRows": "3393348",
+      "numTargetDeletionVectorsAdded": "0",
+      "numTargetChangeFilesAdded": "0",
+      "numTargetRowsNotMatchedBySourceUpdated": "0",
+      "numTargetRowsNotMatchedBySourceDeleted": "0",
+      "numTargetBytesRemoved": "0"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2025-02_037cba55\", \"bronze_version\": 4, \"layer\": \"silver\"}"
+  },
+  {
+    "version": 5,
+    "timestamp": "2026-09-24T23:25:54.787000",
+    "operation": "MERGE",
+    "operationParameters": {
+      "matchedPredicates": "[{\"predicate\":\"NOT (row_hash#101346 = row_hash#91335)\",\"actionType\":\"update\"}]",
+      "predicate": "[\"((pickup_month#101354 = pickup_month#93831) AND (trip_key#101324 = trip_key#91314))\"]",
+      "notMatchedBySourcePredicates": "[]",
+      "notMatchedPredicates": "[{\"actionType\":\"insert\"}]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "3934785",
+      "numTargetBytesAdded": "626881926",
+      "numTargetRowsInserted": "3934785",
+      "numTargetRowsMatchedDeleted": "0",
+      "numTargetFilesAdded": "3",
+      "materializeSourceTimeMs": "1233",
+      "numTargetFilesRemoved": "0",
+      "numTargetRowsMatchedUpdated": "0",
+      "executionTimeMs": "27620",
+      "numTargetDeletionVectorsUpdated": "0",
+      "numTargetRowsCopied": "0",
+      "rewriteTimeMs": "21393",
+      "numTargetRowsUpdated": "0",
+      "numTargetDeletionVectorsRemoved": "0",
+      "numTargetRowsDeleted": "0",
+      "scanTimeMs": "4991",
+      "numSourceRows": "3934785",
+      "numTargetDeletionVectorsAdded": "0",
+      "numTargetChangeFilesAdded": "0",
+      "numTargetRowsNotMatchedBySourceUpdated": "0",
+      "numTargetRowsNotMatchedBySourceDeleted": "0",
+      "numTargetBytesRemoved": "0"
+    },
+    "userMetadata": "{\"batch_id\": \"yellow_2025-03_20c4b77c\", \"bronze_version\": 5, \"layer\": \"silver\"}"
+  },
+  {
+    "version": 6,
+    "timestamp": "2026-09-24T23:32:34.601000",
+    "operation": "MERGE",
+    "operationParameters": {
+      "matchedPredicates": "[{\"predicate\":\"NOT (row_hash#29639 = row_hash#19819)\",\"actionType\":\"update\"}]",
+      "predicate": "[\"((pickup_month#29647 = pickup_month#22129) AND (trip_key#29617 = trip_key#19798))\"]",
+      "notMatchedBySourcePredicates": "[]",
+      "notMatchedPredicates": "[{\"actionType\":\"insert\"}]"
+    },
+    "operationMetrics": {
+      "numOutputRows": "3934759",
+      "numTargetBytesAdded": "626785236",
+      "numTargetRowsInserted": "5",
+      "numTargetRowsMatchedDeleted": "0",
+      "numTargetFilesAdded": "1",
+      "materializeSourceTimeMs": "86",
+      "numTargetFilesRemoved": "1",
+      "numTargetRowsMatchedUpdated": "25",
+      "executionTimeMs": "26166",
+      "numTargetDeletionVectorsUpdated": "0",
+      "numTargetRowsCopied": "3934729",
+      "rewriteTimeMs": "24973",
+      "numTargetRowsUpdated": "25",
+      "numTargetDeletionVectorsRemoved": "0",
+      "numTargetRowsDeleted": "0",
+      "scanTimeMs": "1103",
+      "numSourceRows": "30",
+      "numTargetDeletionVectorsAdded": "0",
+      "numTargetChangeFilesAdded": "0",
+      "numTargetRowsNotMatchedBySourceUpdated": "0",
+      "numTargetRowsNotMatchedBySourceDeleted": "0",
+      "numTargetBytesRemoved": "626853030"
+    },
+    "userMetadata": "{\"batch_id\": \"cdc_corrections_seed42\", \"bronze_version\": 6, \"layer\": \"silver\"}"
+  }
+]

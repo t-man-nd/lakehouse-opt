@@ -1,0 +1,692 @@
+{
+  "total_mismatch": {
+    "per_month": [
+      {
+        "_source_month": "2024-01",
+        "mismatched_rows": 761838,
+        "gap_p01_p25_p50_p75_p99": [
+          -4.25,
+          -2.5,
+          -2.5,
+          -2.5,
+          2.5
+        ],
+        "gap_min": -4.25,
+        "gap_max": 4.5,
+        "total_exceeds_components": 130190,
+        "with_null_block": 125923
+      },
+      {
+        "_source_month": "2024-02",
+        "mismatched_rows": 801905,
+        "gap_p01_p25_p50_p75_p99": [
+          -4.25,
+          -2.5,
+          -2.5,
+          -2.5,
+          2.5
+        ],
+        "gap_min": -4.25,
+        "gap_max": 4.5,
+        "total_exceeds_components": 174314,
+        "with_null_block": 170472
+      },
+      {
+        "_source_month": "2024-03",
+        "mismatched_rows": 1095865,
+        "gap_p01_p25_p50_p75_p99": [
+          -4.25,
+          -2.5,
+          -2.5,
+          2.5,
+          2.5
+        ],
+        "gap_min": -4.25,
+        "gap_max": 5.5,
+        "total_exceeds_components": 393104,
+        "with_null_block": 387507
+      },
+      {
+        "_source_month": "2025-01",
+        "mismatched_rows": 1111802,
+        "gap_p01_p25_p50_p75_p99": [
+          -5.0,
+          -3.25,
+          -2.5,
+          2.5,
+          8.5
+        ],
+        "gap_min": -10.64,
+        "gap_max": 83.53,
+        "total_exceeds_components": 478777,
+        "with_null_block": 474759
+      },
+      {
+        "_source_month": "2025-02",
+        "mismatched_rows": 1278590,
+        "gap_p01_p25_p50_p75_p99": [
+          -5.0,
+          -3.25,
+          2.5,
+          2.5,
+          9.39
+        ],
+        "gap_min": -10.64,
+        "gap_max": 102.5,
+        "total_exceeds_components": 689613,
+        "with_null_block": 684856
+      },
+      {
+        "_source_month": "2025-03",
+        "mismatched_rows": 1384035,
+        "gap_p01_p25_p50_p75_p99": [
+          -5.0,
+          -3.25,
+          2.5,
+          2.5,
+          10.08
+        ],
+        "gap_min": -10.64,
+        "gap_max": 82.5,
+        "total_exceeds_components": 743261,
+        "with_null_block": 729896
+      }
+    ],
+    "most_common_gaps": [
+      {
+        "gap": "2.5",
+        "count": 2246027
+      },
+      {
+        "gap": "-2.5",
+        "count": 2241009
+      },
+      {
+        "gap": "-3.25",
+        "count": 1311174
+      },
+      {
+        "gap": "-1.75",
+        "count": 98792
+      },
+      {
+        "gap": "-4.25",
+        "count": 88010
+      },
+      {
+        "gap": "-5.0",
+        "count": 48511
+      },
+      {
+        "gap": "-0.75",
+        "count": 37163
+      },
+      {
+        "gap": "5.5",
+        "count": 33725
+      },
+      {
+        "gap": "3.5",
+        "count": 25913
+      },
+      {
+        "gap": "7.5",
+        "count": 15377
+      },
+      {
+        "gap": "1.0",
+        "count": 13816
+      },
+      {
+        "gap": "4.5",
+        "count": 13227
+      },
+      {
+        "gap": "3.0",
+        "count": 8871
+      },
+      {
+        "gap": "5.0",
+        "count": 4610
+      },
+      {
+        "gap": "6.5",
+        "count": 2848
+      }
+    ],
+    "most_common_gaps_by_year": [
+      {
+        "year": "2024",
+        "gap": -2.5,
+        "count": 1836204
+      },
+      {
+        "year": "2024",
+        "gap": 2.5,
+        "count": 694872
+      },
+      {
+        "year": "2024",
+        "gap": -4.25,
+        "count": 72420
+      },
+      {
+        "year": "2024",
+        "gap": -1.75,
+        "count": 53369
+      },
+      {
+        "year": "2024",
+        "gap": 4.5,
+        "count": 2455
+      },
+      {
+        "year": "2025",
+        "gap": 2.5,
+        "count": 1551155
+      },
+      {
+        "year": "2025",
+        "gap": -3.25,
+        "count": 1311174
+      },
+      {
+        "year": "2025",
+        "gap": -2.5,
+        "count": 404805
+      },
+      {
+        "year": "2025",
+        "gap": -5.0,
+        "count": 48511
+      },
+      {
+        "year": "2025",
+        "gap": -1.75,
+        "count": 45423
+      }
+    ]
+  },
+  "zero_duration": [
+    {
+      "_source_month": "2024-01",
+      "VendorID": 1,
+      "count": 707
+    },
+    {
+      "_source_month": "2024-01",
+      "VendorID": 2,
+      "count": 103
+    },
+    {
+      "_source_month": "2024-01",
+      "VendorID": 6,
+      "count": 4
+    },
+    {
+      "_source_month": "2024-02",
+      "VendorID": 1,
+      "count": 729
+    },
+    {
+      "_source_month": "2024-02",
+      "VendorID": 2,
+      "count": 67
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 1,
+      "count": 846
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 2,
+      "count": 160
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 6,
+      "count": 5
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 7,
+      "count": 1206
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 1,
+      "count": 640
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 2,
+      "count": 76
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 6,
+      "count": 5
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 7,
+      "count": 4420
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 1,
+      "count": 573
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 2,
+      "count": 71
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 6,
+      "count": 7
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 7,
+      "count": 21481
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 1,
+      "count": 622
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 2,
+      "count": 93
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 6,
+      "count": 3
+    }
+  ],
+  "negative_fares": [
+    {
+      "_source_month": "2024-01",
+      "VendorID": 2,
+      "payment_type": 4,
+      "rows": 21406,
+      "avg_fare": -20.12,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-01",
+      "VendorID": 2,
+      "payment_type": 2,
+      "rows": 8208,
+      "avg_fare": -21.42,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-01",
+      "VendorID": 2,
+      "payment_type": 3,
+      "rows": 5740,
+      "avg_fare": -18.1,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-01",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 2066,
+      "avg_fare": -1.57,
+      "null_ratecode": 2066
+    },
+    {
+      "_source_month": "2024-01",
+      "VendorID": 2,
+      "payment_type": 1,
+      "rows": 28,
+      "avg_fare": -25.15,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-02",
+      "VendorID": 2,
+      "payment_type": 4,
+      "rows": 21845,
+      "avg_fare": -20.36,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-02",
+      "VendorID": 2,
+      "payment_type": 2,
+      "rows": 8664,
+      "avg_fare": -21.56,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-02",
+      "VendorID": 2,
+      "payment_type": 3,
+      "rows": 5467,
+      "avg_fare": -18.23,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-02",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 4656,
+      "avg_fare": -1.49,
+      "null_ratecode": 4656
+    },
+    {
+      "_source_month": "2024-02",
+      "VendorID": 2,
+      "payment_type": 1,
+      "rows": 23,
+      "avg_fare": -18.47,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 2,
+      "payment_type": 4,
+      "rows": 26700,
+      "avg_fare": -21.6,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 14302,
+      "avg_fare": -1.47,
+      "null_ratecode": 14302
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 2,
+      "payment_type": 2,
+      "rows": 10359,
+      "avg_fare": -22.27,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 2,
+      "payment_type": 3,
+      "rows": 7068,
+      "avg_fare": -18.47,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 2,
+      "payment_type": 1,
+      "rows": 35,
+      "avg_fare": -18.84,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 84822,
+      "avg_fare": -4.57,
+      "null_ratecode": 84822
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 2,
+      "payment_type": 4,
+      "rows": 37405,
+      "avg_fare": -21.88,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 2,
+      "payment_type": 2,
+      "rows": 13802,
+      "avg_fare": -22.66,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 2,
+      "payment_type": 3,
+      "rows": 8075,
+      "avg_fare": -19.4,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 2,
+      "payment_type": 1,
+      "rows": 14,
+      "avg_fare": -19.19,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 127878,
+      "avg_fare": -4.35,
+      "null_ratecode": 127878
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 2,
+      "payment_type": 4,
+      "rows": 34857,
+      "avg_fare": -21.45,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 2,
+      "payment_type": 2,
+      "rows": 12908,
+      "avg_fare": -22.65,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 2,
+      "payment_type": 3,
+      "rows": 7004,
+      "avg_fare": -18.7,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 2,
+      "payment_type": 1,
+      "rows": 8,
+      "avg_fare": -11.84,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 140460,
+      "avg_fare": -4.27,
+      "null_ratecode": 140460
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 2,
+      "payment_type": 4,
+      "rows": 42879,
+      "avg_fare": -22.49,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 2,
+      "payment_type": 2,
+      "rows": 16648,
+      "avg_fare": -23.37,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 2,
+      "payment_type": 3,
+      "rows": 8712,
+      "avg_fare": -19.16,
+      "null_ratecode": 0
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 2,
+      "payment_type": 1,
+      "rows": 25,
+      "avg_fare": -19.87,
+      "null_ratecode": 0
+    }
+  ],
+  "null_block": [
+    {
+      "_source_month": "2024-01",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 91447,
+      "avg_total": 26.54,
+      "avg_fare": 20.71
+    },
+    {
+      "_source_month": "2024-01",
+      "VendorID": 1,
+      "payment_type": 0,
+      "rows": 48455,
+      "avg_total": 24.31,
+      "avg_fare": 18.56
+    },
+    {
+      "_source_month": "2024-01",
+      "VendorID": 6,
+      "payment_type": 0,
+      "rows": 260,
+      "avg_total": 47.7,
+      "avg_fare": 46.9
+    },
+    {
+      "_source_month": "2024-02",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 128238,
+      "avg_total": 24.49,
+      "avg_fare": 19.3
+    },
+    {
+      "_source_month": "2024-02",
+      "VendorID": 1,
+      "payment_type": 0,
+      "rows": 57372,
+      "avg_total": 23.43,
+      "avg_fare": 17.92
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 322331,
+      "avg_total": 23.32,
+      "avg_fare": 18.75
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 1,
+      "payment_type": 0,
+      "rows": 103399,
+      "avg_total": 23.4,
+      "avg_fare": 18.56
+    },
+    {
+      "_source_month": "2024-03",
+      "VendorID": 6,
+      "payment_type": 0,
+      "rows": 460,
+      "avg_total": 47.01,
+      "avg_fare": 46.21
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 451456,
+      "avg_total": 19.44,
+      "avg_fare": 13.96
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 1,
+      "payment_type": 0,
+      "rows": 88204,
+      "avg_total": 23.34,
+      "avg_fare": 17.85
+    },
+    {
+      "_source_month": "2025-01",
+      "VendorID": 6,
+      "payment_type": 0,
+      "rows": 489,
+      "avg_total": 30.65,
+      "avg_fare": 2.97
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 695049,
+      "avg_total": 20.16,
+      "avg_fare": 14.86
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 1,
+      "payment_type": 0,
+      "rows": 111558,
+      "avg_total": 23.41,
+      "avg_fare": 18.25
+    },
+    {
+      "_source_month": "2025-02",
+      "VendorID": 6,
+      "payment_type": 0,
+      "rows": 330,
+      "avg_total": 29.11,
+      "avg_fare": 2.98
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 2,
+      "payment_type": 0,
+      "rows": 784154,
+      "avg_total": 21.94,
+      "avg_fare": 16.66
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 1,
+      "payment_type": 0,
+      "rows": 132175,
+      "avg_total": 25.0,
+      "avg_fare": 20.03
+    },
+    {
+      "_source_month": "2025-03",
+      "VendorID": 6,
+      "payment_type": 0,
+      "rows": 334,
+      "avg_total": 29.5,
+      "avg_fare": 2.92
+    }
+  ]
+}
