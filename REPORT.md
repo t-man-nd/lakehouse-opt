@@ -1,16 +1,12 @@
-# A Production-Oriented Delta Lakehouse for Large-Scale Taxi Trip Analytics
+# Delta Lakehouse on The New York City Taxi and Limousine Commission Data
 
 **Medallion Architecture, Incremental CDC, Schema Evolution, Time Travel, and Storage-Layout Optimization on 20.7 Million NYC Yellow Taxi Records**
 
 **Authors:** Ninh Duy Tuân, Đoàn Tùng Lâm, Hà Quang Minh, Phạm Thị Ngọc Ánh, Phạm Đức Anh, Nguyễn Thị Mai Anh
 
-**Repository:** `github.com/t-man-nd/lakehouse-opt` · branch `main` · evaluated against the current repository state (latest commit: `8c6063ad`)
-
 **Runtime:** Python 3.11/3.12, Java 17/21, PySpark 4.0.1, delta-spark 4.0.1
 
 **Date:** 1 October 2026
-**Report status:** Production draft — evidence and benchmark claims are grounded in the repository artifacts available at the evaluation date; future work is explicitly separated from demonstrated capabilities.
-
 ---
 
 ## Abstract
