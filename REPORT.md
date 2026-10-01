@@ -715,8 +715,6 @@ The three architectures differ in *table semantics* rather than storage location
 
 ## 8. References
 
-*(All citations must be verified before submission.)*
-
 [1] M. Armbrust, A. Ghodsi, R. Xin, and M. Zaharia, "Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics," in *Proc. CIDR*, 2021.
 
 [2] M. Armbrust *et al.*, "Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores," *Proc. VLDB Endow.*, vol. 13, no. 12, 2020.
@@ -725,7 +723,7 @@ The three architectures differ in *table semantics* rather than storage location
 
 [4] Delta Lake documentation: Concurrency Control; Optimizations (Compaction, Data Skipping, Z-Ordering); Table Utility Commands (VACUUM, DESCRIBE HISTORY, RESTORE); Change Data Feed; Liquid Clustering. https\://docs.delta.io
 
-[5] Databricks, "What is the medallion lakehouse architecture?"
+[5] Databricks, "What is the medallion lakehouse architecture?" https\://www.databricks.com/blog/what-is-medallion-architecture
 
 [6] Debezium documentation. https\://debezium.io/documentation/reference/stable/
 
