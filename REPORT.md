@@ -687,7 +687,7 @@ Source: `docs/benchmark/benchmark_results.md`, five measured rounds.
 | Delta JARs required on first run            | Maven Central download                                                                                                  | Cached under `~/.ivy2` after the first run                                                                  |
 | Full-run results overwritten                | `docs/RESULTS.md` and `pipeline_run.json` are rewritten on each run; a benchmark-only run left them describing one step | Use a single `--with-benchmark` run; consider per-run output files (Section 7)                              |
 
-**Remaining limitations (stated plainly).**
+**Remaining limitations.**
 
 1. **The UPDATE path of CDC is not exercised by real data**: only one key appears in two monthly files. Updates come from the seeded synthetic feed (25 + 5 rows); the logic is real, the traffic is not.
 2. **CDC assumes a single writer, handles no DELETEs, and has no event ordering** beyond batch order. No two-writer conflict experiment demonstrates OCC.
@@ -702,7 +702,7 @@ Source: `docs/benchmark/benchmark_results.md`, five measured rounds.
 
 ## 7. Conclusion and Future Work
 
-The three architectures differ in *table semantics* rather than storage location: a lakehouse places a transactional layer over open files, and in Delta that layer is the `_delta_log/`: atomic commits that add and remove immutable Parquet files, snapshots for readers, optimistic concurrency for writers. Applied to real taxi data, the architecture does more than "run the commands":
+The three architectures differ in table semantics rather than storage location: a lakehouse places a transactional layer over open files, and in Delta that layer is the `_delta_log/`: atomic commits that add and remove immutable Parquet files, snapshots for readers, optimistic concurrency for writers. Applied to real taxi data, the architecture does more than "run the commands":
 
 - **Data quality becomes measurable.** The equality `20,752,834 = 680,112 + 20,072,697 + 25` is verified per batch. A faulty rule (31% flagged) was found through diagnosis and corrected with evidence (1.35%) without altering any hard rejection.
 - **The log explains what happened.** Schema changed without a rebuild (`CREATE` at v0, one `SCHEMA_CHANGE` at v3, no `remove`); append-only MERGEs copied zero rows whereas a MERGE with UPDATE copied 3.9 M; VACUUM broke exactly the version that pointed to a removed file.
