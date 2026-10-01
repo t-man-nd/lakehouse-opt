@@ -110,7 +110,7 @@ The three architectures differ less in *where* data is stored than in the *table
 - **Data lake** (HDFS, S3, ADLS, GCS). Any data type is stored in open formats at low cost and is readable by many engines. However, a directory of Parquet files is *not* a transactional table: a failed job leaves partial files visible to readers, concurrent writers are not detected, there is no version history, row-level UPDATE/DELETE requires rewriting entire partitions, and schemas drift across files.
 - **Data lakehouse** (Delta Lake, Apache Iceberg, Apache Hudi). A transactional metadata layer sits between the compute engine and open files. Data remains on decoupled storage while the table format supplies snapshots, history, and read/write rules, so BI and ML workloads share a single copy.
 
-[Figure 1. Position of the table-format layer between compute engines and open file storage.](report/figures/lakehouse_layers.png)
+![Figure 1. Position of the table-format layer between compute engines and open file storage.](report/figures/lakehouse_layers.png)
 
 **Table 4.** Comparison of the three architectures.
 
@@ -216,7 +216,7 @@ Three commonly conflated terms deserve distinction: *CDC* captures changes at a 
 
 Three properties govern use, and all three are verified numerically in Section 5: adding columns **dilutes locality** per column (Q1 scans 5 files with one column but 42 with two); gains accrue only to predicates **correlated with the layout** (a control query on `payment_type` gains nothing); and Z-ORDER is **not incremental**, whereas liquid clustering (`CLUSTER BY`) is incremental and cannot be combined with partitioning.
 
-[Figure 2. Per-file min/max ranges before and after Z-ORDER.](report/figures/file_minmax_grid.png)
+![Figure 2. Per-file min/max ranges before and after Z-ORDER.](report/figures/file_minmax_grid.png)
 
 ---
 
@@ -238,7 +238,7 @@ The system runs on Python 3.11/3.12, Java 17/21, PySpark 4.0.1, and delta-spark 
 
 ### 3.2 Pipeline architecture and operational properties
 
-[Figure 3. The pipeline's ten steps with their principal counts.](report/figures/pipeline_dataflow.png)
+![Figure 3. The pipeline's ten steps with their principal counts.](report/figures/pipeline_dataflow.png)
 
 ```
 lakehouse_pipeline.py      runner: reference → bronze → profile → silver → cdc → evolution → time_travel → gold [→ benchmark]
@@ -323,7 +323,7 @@ For each Bronze batch not yet in `ops/silver_batch_log`, in commit order:
 
 *Why join on `(pickup_month, trip_key)`?* Including the partition column enables partition pruning during MERGE. Late-arriving trips (a February file containing January pickups) are inserted into their true `pickup_month` partition.
 
-[Figure 4. How a single batch (2025-03) splits into accepted and rejected rows.](report/figures/silver_funnel_2025_03.png)
+![Figure 4. How a single batch (2025-03) splits into accepted and rejected rows.](report/figures/silver_funnel_2025_03.png)
 
 **Table 12.** Per-batch row conservation. "Rejected" is computed as Bronze minus inserted, from `bronze_history.json` and `silver_history.json`.
 
@@ -360,7 +360,7 @@ Overall: `20,752,834 = 680,112 (rejected) + 20,072,697 (inserted) + 25 (updated)
 
 **A rule corrected by evidence.** The first full run flagged `TOTAL_MISMATCH` on **6,434,035 rows (31.0%)**, an implausible figure. Rather than loosen the threshold until the number looked acceptable, the team examined the distribution of `gap = total_amount − Σ components` (`scripts/investigate_findings.py`).
 
-[Figure 5. Distribution of TOTAL_MISMATCH gaps: 90.7% fall on a handful of exact surcharge values.](report/figures/total_mismatch_gaps.png)
+![Figure 5. Distribution of TOTAL_MISMATCH gaps: 90.7% fall on a handful of exact surcharge values.](report/figures/total_mismatch_gaps.png)
 
 Of the gaps, 90.7% fell exactly on −2.50, −3.25, −0.75, or +2.50, the congestion surcharges, which TLC records **three different ways within the same file**:
 
@@ -413,7 +413,7 @@ All four checks pass: `updated > 0`, `updated == n_updates`, `inserted == n_inse
 | `2a44ae62…` | 12.80 → 12.80   | 3.71 → **5.71** | 22.26 → **24.26** |
 | `7808a2ed…` | 7.20 → **8.70** | 2.89 → **4.89** | 17.34 → **20.84** |
 
-[Figure 6. The correction MERGE, row by row.](report/figures/cdc_before_after.png)
+![Figure 6. The correction MERGE, row by row.](report/figures/cdc_before_after.png)
 
 **Copy-on-write cost, measured.** Silver's history exposes the cost of an UPDATE-bearing MERGE against append-only MERGEs (`docs/evidence/silver_history.json`):
 
@@ -432,7 +432,7 @@ To change 25 rows and add 5, Delta rewrote the **entire file** containing them, 
 
 The two file groups differ in schema naturally: 2024 files have 19 columns, 2025 files 20 (adding `cbd_congestion_fee`, double). Because Bronze loads 2024 first, the new column appears as a genuine schema-change event.
 
-[Figure 7. The schema change as recorded in the Delta log.](report/figures/schema_evolution_commits.png)
+![Figure 7. The schema change as recorded in the Delta log.](report/figures/schema_evolution_commits.png)
 
 **Table 19.** Schema-change commits.
 
@@ -458,7 +458,7 @@ The two file groups differ in schema naturally: 2024 files have 19 columns, 2025
 
 ### 3.5 Time travel, audit, and VACUUM
 
-[Figure 8. Silver versions and the outcome of VACUUM on a copy.](report/figures/version_timeline.png)
+![Figure 8. Silver versions and the outcome of VACUUM on a copy.](report/figures/version_timeline.png)
 
 Silver has seven versions. Row counts per version were obtained by actually reading each one with `versionAsOf` (`docs/evidence/time_travel.json`).
 
@@ -606,7 +606,7 @@ Each table has seven commits, below the default checkpoint interval of ten, so n
 
 *Why a 200-file random baseline?* It reproduces the small-file state that streaming ingestion or repeated MERGEs leave behind, and ensures every file's min/max range is wide (no locality). *Why a 32 MB target?* OPTIMIZE's default 1 GB target would leave a 3.1 GB table with about three files, nothing to skip, which is precisely what happened at fixture scale. The target was therefore scaled to the data (`--target-file-mb`), and **results depend on this choice**.
 
-[Figure 9. Files scanned per layout.](report/figures/benchmark_files_scanned.png)
+![Figure 9. Files scanned per layout.](report/figures/benchmark_files_scanned.png)
 
 **Queries.**
 
@@ -652,7 +652,7 @@ Source: `docs/benchmark/benchmark_results.md`, five measured rounds.
 
 ### 5.3 Analysis
 
-[Figure 10. The scan node before and after Z-ORDER for Q1.](report/figures/spark_ui_scan_q1.png)
+![Figure 10. The scan node before and after Z-ORDER for Q1.](report/figures/spark_ui_scan_q1.png)
 
 1. **The strongest evidence is I/O.** For Q1, single-column Z-ORDER scans **5 of 200 files (−97.5%)** and reads **164 MB instead of 3,184 MB (−94.8%)**; for Q2, liquid clustering scans **3 files and 94 MB (−97.1%)**. This is data skipping in operation: the log's min/max statistics narrow once data is clustered (Figure 2).
 2. **Compaction alone does not create skipping.** `compacted` halves the file count (200 → 100) yet still scans all 100 files for Q1 and Q2; its 2.7–2.8% time gain is within noise. Compaction corrects file *count*, not row *placement*; placement is the job of Z-ORDER and clustering.
