@@ -1,0 +1,60 @@
+{
+  "base_commit": "18ac8a0b3e446eb4d0dec3d67cb29fe0c2f77b0d",
+  "branch": "feat/c3-time-travel-audit",
+  "note": "Working-tree source hashes identify the code tested; base_commit is not a claim these edits were committed.",
+  "source_evidence": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/c3_demo/official_20260915_final/evidence",
+  "tests": {
+    "tests": 15,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "source_sha256": {
+    "lakehouse_pipeline.py": "f51ffbdd6077eba8dcb679864c4168bc0611f46dd602d7eebe05b434c95d8e1a",
+    "config/pipeline.json": "ea5a49c965d65b37f8a08cab49046c24beb96a568fa4c5839325610c257279b1",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/bronze.py": "5cc4358264bd654ac597a8da660b05dac3d98199f4d1b4b66320de0a01e5a905",
+    "src/cdc_merge.py": "612ed9155619f9ce117c8634d0328c97fd526680e012ba25bc431016739b3642",
+    "src/delta_runtime.py": "1a3bc273f864b514d096bcbb3bd6aa7321911b68e2f42115f474cdfd2e2219b5",
+    "src/generate_batch_c2.py": "8399bf5422197ab65646679458dd9f77920812467b8231f6593843fdd2d90955",
+    "src/generator.py": "f00a473668c6d405a7bcd88bc421bd97434a9dda59d652fd09559a88a66a0bef",
+    "src/schema_evolution.py": "1fcc520956e6a03d73b790b4d45ae8afc00d8dea7c791ed1852aa06aff5990b9",
+    "src/silver.py": "d7dcb49831feeb4c8b67b4a097d802b73c54d1eaa6de0b6134a66e1aadeed94d",
+    "src/time_travel.py": "4dc2878f35ba91ecaeefc0061239589a8e6dfc0c35fe9e4a7fcf7b297491dc2c",
+    "tests/test_delta_core.py": "28332c578b14b42f76c66755ac854f51d76597fd69bcde75ae27f3595856ef4a",
+    "tests/test_silver.py": "2001730e37c3195cf08b98111547445b45d8da5de468d754c1f5534eccccfd81",
+    "scripts/render_c3_evidence.py": "4e655075a488c5eddd3e64f5bd3e845eff61af02755bcb417328acd55cdebea7",
+    "requirements.txt": "50e43854e5b223747603a28f636d685a1b6cb0a9f03a5cce990ccc0897ee907d",
+    "requirements-dev.txt": "b2cf40cfde63ffcd654d233d12aebeb06ea2092d1cbd22aa25c34efacfcfd804"
+  },
+  "evidence_sha256": {
+    "audit.json": "8ddca8e61eb8f49667cb6680532f88aa8a6adbd1b26d4be8086dec82cc26e1bd",
+    "bronze_history.json": "9891d3a2eb01218b1504015ddd602fd5ea60bde7c6b5e0685d99f39c12bf973f",
+    "cdc_fixture.json": "13c54f3d99f4aa0cac56d37126b6f822469a360434626d427059db66b5f93cca",
+    "delta_log/bronze/00000000000000000002.json": "9fab34cb086d402e5c893b5734404e38474342d0770a55122829a7f646351ab9",
+    "delta_log/bronze/00000000000000000003.json": "5b3fd922011e992dbeaca4b27f149cf1d5f2123081da6d36941d8bf6771558a6",
+    "delta_log/silver/00000000000000000000.json": "f5a6a46248ccbf4410ac6fb58db48e19c54ccf69180a5c6edf331014569dc665",
+    "delta_log/silver/00000000000000000001.json": "8efedbf80fd3cde187e5d7bfb05d6b504666141f0ab16257a71b1a99f34ae2d8",
+    "delta_log/silver/00000000000000000002.json": "e6968aeb150ad2d9a75c918de7c6bbe443c1fdee9fec4f250ec46c59e533cfb1",
+    "delta_log.html": "b2335d41a4c70c9a89635286eaaf80fd1afe1e9549fa79ccbc55538d6ed3e767",
+    "pipeline_run.json": "933ef3fc43b858c14763f9957c1fc4f7ab74653140ef00c36a3568ca5c862417",
+    "silver_history.json": "21a92cb3a96892693e1c8e6fdd30f3af9f1349af2304fbf362daf969ff15bc9b",
+    "summary.html": "72ab76eaffe8e613469e2fd88715143e9a736bbf2233fb870291dbc85800db12",
+    "tests.xml": "da2d892a0a80730b80fbfc0526932acc8dbcb086d4e040404e4a9fa5854e95a2",
+    "vacuum.json": "5b366a60f18bbcf4b316664bde8cb097f46f734cffea09e20e8cf9570294e5e9",
+    "summary.png": "5f12b305e8f74adb507a4cba5b59767f963b6e8c5ab09b8ea9d42eb1cb0af5e9",
+    "delta_log.png": "2fff2b04dda6682ce8fc88f58c0dadb7e0965a5f0fa7d3411e9b1db150e5b8c9"
+  },
+  "visual_capture": {
+    "method": "Headless Google Chrome screenshots of locally rendered HTML containing actual run evidence",
+    "summary.png": {
+      "width": 1400,
+      "height": 1260
+    },
+    "delta_log.png": {
+      "width": 1400,
+      "height": 1320
+    },
+    "visually_reviewed": true
+  }
+}

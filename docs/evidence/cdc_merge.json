@@ -2,7 +2,7 @@
   "batch_id": "cdc_corrections_seed42",
   "seed": 42,
   "target_month": "2025-03",
-  "feed_file": "/home/lam/Bigdata/lakehouse-opt/data/raw/cdc/cdc_corrections_seed42.parquet",
+  "feed_file": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/raw/cdc/cdc_corrections_seed42.parquet",
   "silver_version_before": 5,
   "silver_version_after": 6,
   "count_before": 20072692,
@@ -25,19 +25,64 @@
   "checks_ok": true,
   "samples": [
     {
-      "trip_key": "2a44ae62ff67126e44614bdd31353c697430e7ffcc58939ab0478e251a410304",
+      "trip_key": "22b3416ebbc77fd9da1aedf0df63eefacfc0127c48af9feaac60f0d08351d645",
       "before": {
-        "trip_key": "2a44ae62ff67126e44614bdd31353c697430e7ffcc58939ab0478e251a410304",
-        "fare_amount": 12.8,
-        "tip_amount": 3.71,
-        "total_amount": 22.26,
+        "trip_key": "22b3416ebbc77fd9da1aedf0df63eefacfc0127c48af9feaac60f0d08351d645",
+        "fare_amount": 5.8,
+        "tip_amount": 2.3,
+        "total_amount": 13.85,
         "_batch_id": "yellow_2025-03_20c4b77c"
       },
       "after": {
-        "trip_key": "2a44ae62ff67126e44614bdd31353c697430e7ffcc58939ab0478e251a410304",
-        "fare_amount": 12.8,
-        "tip_amount": 5.71,
-        "total_amount": 24.26,
+        "trip_key": "22b3416ebbc77fd9da1aedf0df63eefacfc0127c48af9feaac60f0d08351d645",
+        "fare_amount": 7.3,
+        "tip_amount": 4.3,
+        "total_amount": 17.35,
+        "_batch_id": "cdc_corrections_seed42"
+      }
+    },
+    {
+      "trip_key": "37043156eaf1defa9337a28b2d7c84867ec88eaad3b1c7dc0c094a3f166ae269",
+      "before": {
+        "trip_key": "37043156eaf1defa9337a28b2d7c84867ec88eaad3b1c7dc0c094a3f166ae269",
+        "fare_amount": 9.3,
+        "tip_amount": 2.65,
+        "total_amount": 15.95,
+        "_batch_id": "yellow_2025-03_20c4b77c"
+      },
+      "after": {
+        "trip_key": "37043156eaf1defa9337a28b2d7c84867ec88eaad3b1c7dc0c094a3f166ae269",
+        "fare_amount": 9.3,
+        "tip_amount": 4.65,
+        "total_amount": 17.95,
+        "_batch_id": "cdc_corrections_seed42"
+      }
+    },
+    {
+      "trip_key": "57d3eaaca96c90abd6e82cbfcd53f6affff3771fd15ffe60ae850103988f3948",
+      "before": {
+        "trip_key": "57d3eaaca96c90abd6e82cbfcd53f6affff3771fd15ffe60ae850103988f3948",
+        "fare_amount": 5.8,
+        "tip_amount": 2.61,
+        "total_amount": 15.66,
+        "_batch_id": "yellow_2025-03_20c4b77c"
+      },
+      "after": {
+        "trip_key": "57d3eaaca96c90abd6e82cbfcd53f6affff3771fd15ffe60ae850103988f3948",
+        "fare_amount": 5.8,
+        "tip_amount": 4.61,
+        "total_amount": 17.66,
+        "_batch_id": "cdc_corrections_seed42"
+      }
+    },
+    {
+      "trip_key": "76b5070b67f932409d183875ae675ad5f1e71f783f75164396772f5881bb7c9d",
+      "before": null,
+      "after": {
+        "trip_key": "76b5070b67f932409d183875ae675ad5f1e71f783f75164396772f5881bb7c9d",
+        "fare_amount": 7.2,
+        "tip_amount": 2.39,
+        "total_amount": 14.34,
         "_batch_id": "cdc_corrections_seed42"
       }
     },
@@ -55,51 +100,6 @@
         "fare_amount": 8.7,
         "tip_amount": 4.89,
         "total_amount": 20.84,
-        "_batch_id": "cdc_corrections_seed42"
-      }
-    },
-    {
-      "trip_key": "8316e82adf2a144162cd115c0f48a223823d2348be911f0404ca7447ceedd167",
-      "before": {
-        "trip_key": "8316e82adf2a144162cd115c0f48a223823d2348be911f0404ca7447ceedd167",
-        "fare_amount": 10.7,
-        "tip_amount": 0.0,
-        "total_amount": 15.45,
-        "_batch_id": "yellow_2025-03_20c4b77c"
-      },
-      "after": {
-        "trip_key": "8316e82adf2a144162cd115c0f48a223823d2348be911f0404ca7447ceedd167",
-        "fare_amount": 12.2,
-        "tip_amount": 2.0,
-        "total_amount": 18.95,
-        "_batch_id": "cdc_corrections_seed42"
-      }
-    },
-    {
-      "trip_key": "a1faea3dd975142847def89b797b89cf8824c54a556203c3fa68664c33aa5fc5",
-      "before": null,
-      "after": {
-        "trip_key": "a1faea3dd975142847def89b797b89cf8824c54a556203c3fa68664c33aa5fc5",
-        "fare_amount": 7.2,
-        "tip_amount": 2.44,
-        "total_amount": 14.64,
-        "_batch_id": "cdc_corrections_seed42"
-      }
-    },
-    {
-      "trip_key": "d0fc0e6821b154364b8f8d797b5859bed37298b0d608bf6a6ccc17e76f35e8d0",
-      "before": {
-        "trip_key": "d0fc0e6821b154364b8f8d797b5859bed37298b0d608bf6a6ccc17e76f35e8d0",
-        "fare_amount": 14.9,
-        "tip_amount": 4.13,
-        "total_amount": 24.78,
-        "_batch_id": "yellow_2025-03_20c4b77c"
-      },
-      "after": {
-        "trip_key": "d0fc0e6821b154364b8f8d797b5859bed37298b0d608bf6a6ccc17e76f35e8d0",
-        "fare_amount": 16.4,
-        "tip_amount": 6.13,
-        "total_amount": 28.28,
         "_batch_id": "cdc_corrections_seed42"
       }
     }

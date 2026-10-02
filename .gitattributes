@@ -1,0 +1,2 @@
+# Keep measured CSV evidence byte-identical to its recorded SHA-256 hashes.
+docs/evidence/scaling/**/*.samples.csv -text whitespace=trailing-space,space-before-tab,cr-at-eol

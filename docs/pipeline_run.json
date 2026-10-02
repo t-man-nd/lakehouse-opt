@@ -1,5 +1,5 @@
 {
-  "started_at": "2026-09-27T07:13:47+00:00",
+  "started_at": "2026-10-02T01:05:49+00:00",
   "source": "tlc",
   "months": [
     "2024-01",
@@ -9,9 +9,975 @@
     "2025-02",
     "2025-03"
   ],
-  "lake": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse",
+  "lake": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse",
   "spark": "4.0.1",
   "steps": [
+    {
+      "step": "reference",
+      "result": {
+        "zones": 265,
+        "cbd_zones": 38,
+        "cbd_zones_by_source": {
+          "mta_yfdc_w5jh_partial": 33,
+          "inferred_geography": 5
+        },
+        "unknown_zones": 2,
+        "cbd_reference_available": true,
+        "dim_zone_version": 0
+      },
+      "status": "OK",
+      "seconds": 5.7
+    },
+    {
+      "step": "bronze",
+      "result": {
+        "bronze_count": 20752804,
+        "bronze_version": 5,
+        "rows_per_batch": {
+          "yellow_2024-01_c4d59da7": 2964624,
+          "yellow_2024-02_c76c43c1": 3007526,
+          "yellow_2024-03_2d4cdc8f": 3582628,
+          "yellow_2025-01_9af277e4": 3475226,
+          "yellow_2025-02_037cba55": 3577543,
+          "yellow_2025-03_20c4b77c": 4145257
+        },
+        "ingested": [
+          {
+            "batch_id": "yellow_2024-01_c4d59da7",
+            "source_file": "yellow_tripdata_2024-01.parquet",
+            "rows": 2964624,
+            "bronze_version": 0,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2024-02_c76c43c1",
+            "source_file": "yellow_tripdata_2024-02.parquet",
+            "rows": 3007526,
+            "bronze_version": 1,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2024-03_2d4cdc8f",
+            "source_file": "yellow_tripdata_2024-03.parquet",
+            "rows": 3582628,
+            "bronze_version": 2,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2025-01_9af277e4",
+            "source_file": "yellow_tripdata_2025-01.parquet",
+            "rows": 3475226,
+            "bronze_version": 3,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2025-02_037cba55",
+            "source_file": "yellow_tripdata_2025-02.parquet",
+            "rows": 3577543,
+            "bronze_version": 4,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          },
+          {
+            "batch_id": "yellow_2025-03_20c4b77c",
+            "source_file": "yellow_tripdata_2025-03.parquet",
+            "rows": 4145257,
+            "bronze_version": 5,
+            "harmonized": {
+              "renamed": [],
+              "casted": [
+                "VendorID:int->bigint",
+                "tpep_pickup_datetime:timestamp_ntz->timestamp",
+                "tpep_dropoff_datetime:timestamp_ntz->timestamp",
+                "PULocationID:int->bigint",
+                "DOLocationID:int->bigint"
+              ]
+            }
+          }
+        ],
+        "skipped": [],
+        "null_metadata_rows": 0,
+        "dev_sample_pct": null
+      },
+      "status": "OK",
+      "seconds": 20.9
+    },
+    {
+      "step": "profile",
+      "result": {
+        "bronze_version": 5,
+        "months": [
+          "2024-01",
+          "2024-02",
+          "2024-03",
+          "2025-01",
+          "2025-02",
+          "2025-03"
+        ],
+        "report": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/profile/bronze_profile.md",
+        "keys_seen_in_more_than_one_file": 1
+      },
+      "status": "OK",
+      "seconds": 185.6
+    },
+    {
+      "step": "silver",
+      "result": {
+        "bronze_count": 20752804,
+        "silver_count": 20072692,
+        "rejected_count": 680112,
+        "totals": {
+          "bronze_rows": 20752804,
+          "accepted_rows": 20072692,
+          "rejected_rows": 680112,
+          "expected_inserts": 20072692,
+          "expected_updates": 0,
+          "expected_noop": 0
+        },
+        "reject_reason_counts": {
+          "INVALID_FARE": 679586,
+          "NEGATIVE_DURATION": 476,
+          "OUT_OF_PERIOD": 10,
+          "DUPLICATE_TRIP": 1,
+          "KEY_COLLISION": 39
+        },
+        "late_arrivals_in_silver": 119,
+        "silver_version": 5,
+        "batches": [
+          {
+            "batch_id": "yellow_2024-01_c4d59da7",
+            "source_month": "2024-01",
+            "bronze_version": 0,
+            "bronze_rows": 2964624,
+            "accepted_rows": 2926215,
+            "rejected_rows": 38409,
+            "expected_inserts": 2926215,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 2926215,
+            "updated": 0,
+            "silver_version": 0,
+            "reject_reason_counts": "{\"INVALID_FARE\": 38341, \"KEY_COLLISION\": 8, \"NEGATIVE_DURATION\": 56, \"OUT_OF_PERIOD\": 4}",
+            "flag_counts": "{\"AFTER_SOURCE_MONTH\": 3, \"EXTREME_DISTANCE\": 56, \"IMPLAUSIBLE_SPEED\": 122, \"LATE_ARRIVAL\": 10, \"LONG_DURATION\": 1868, \"NEGATIVE_COMPONENT\": 10, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 169424, \"REVERSED\": 30979, \"TOTAL_MISMATCH\": 45619, \"UNKNOWN_RATECODE\": 166619, \"UNKNOWN_ZONE\": 30872, \"ZERO_DISTANCE\": 56569, \"ZERO_DURATION\": 744}",
+            "processed_ts": "2026-10-02T01:09:53.927339"
+          },
+          {
+            "batch_id": "yellow_2024-02_c76c43c1",
+            "source_month": "2024-02",
+            "bronze_version": 1,
+            "bronze_rows": 3007526,
+            "accepted_rows": 2966014,
+            "rejected_rows": 41512,
+            "expected_inserts": 2966014,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 2966014,
+            "updated": 0,
+            "silver_version": 1,
+            "reject_reason_counts": "{\"DUPLICATE_TRIP\": 1, \"INVALID_FARE\": 41499, \"KEY_COLLISION\": 3, \"NEGATIVE_DURATION\": 7, \"OUT_OF_PERIOD\": 2}",
+            "flag_counts": "{\"AFTER_SOURCE_MONTH\": 2, \"EXTREME_DISTANCE\": 69, \"IMPLAUSIBLE_SPEED\": 114, \"LATE_ARRIVAL\": 10, \"LONG_DURATION\": 1796, \"NEGATIVE_COMPONENT\": 7, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 214912, \"REVERSED\": 31546, \"TOTAL_MISMATCH\": 42622, \"UNKNOWN_RATECODE\": 210932, \"UNKNOWN_ZONE\": 28330, \"ZERO_DISTANCE\": 64554, \"ZERO_DURATION\": 700}",
+            "processed_ts": "2026-10-02T01:10:44.659244"
+          },
+          {
+            "batch_id": "yellow_2024-03_2d4cdc8f",
+            "source_month": "2024-03",
+            "bronze_version": 2,
+            "bronze_rows": 3582628,
+            "accepted_rows": 3522748,
+            "rejected_rows": 59880,
+            "expected_inserts": 3522748,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 3522748,
+            "updated": 0,
+            "silver_version": 2,
+            "reject_reason_counts": "{\"INVALID_FARE\": 59756, \"KEY_COLLISION\": 5, \"NEGATIVE_DURATION\": 117, \"OUT_OF_PERIOD\": 2}",
+            "flag_counts": "{\"AFTER_SOURCE_MONTH\": 2, \"EXTREME_DISTANCE\": 116, \"IMPLAUSIBLE_SPEED\": 182, \"LATE_ARRIVAL\": 19, \"LONG_DURATION\": 2017, \"NEGATIVE_COMPONENT\": 19, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 451768, \"REVERSED\": 38766, \"TOTAL_MISMATCH\": 53599, \"UNKNOWN_RATECODE\": 449315, \"UNKNOWN_ZONE\": 34517, \"ZERO_DISTANCE\": 82807, \"ZERO_DURATION\": 916}",
+            "processed_ts": "2026-10-02T01:11:45.376928"
+          },
+          {
+            "batch_id": "yellow_2025-01_9af277e4",
+            "source_month": "2025-01",
+            "bronze_version": 3,
+            "bronze_rows": 3475226,
+            "accepted_rows": 3329582,
+            "rejected_rows": 145644,
+            "expected_inserts": 3329582,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 3329582,
+            "updated": 0,
+            "silver_version": 3,
+            "reject_reason_counts": "{\"INVALID_FARE\": 145516, \"KEY_COLLISION\": 5, \"NEGATIVE_DURATION\": 123}",
+            "flag_counts": "{\"AFTER_SOURCE_MONTH\": 1, \"EXTREME_DISTANCE\": 138, \"IMPLAUSIBLE_SPEED\": 285, \"LATE_ARRIVAL\": 21, \"LONG_DURATION\": 1259, \"NEGATIVE_COMPONENT\": 394, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 479784, \"REVERSED\": 52231, \"TOTAL_MISMATCH\": 41972, \"UNKNOWN_RATECODE\": 496933, \"UNKNOWN_ZONE\": 27548, \"ZERO_DISTANCE\": 75846, \"ZERO_DURATION\": 1874}",
+            "processed_ts": "2026-10-02T01:12:47.065607"
+          },
+          {
+            "batch_id": "yellow_2025-02_037cba55",
+            "source_month": "2025-02",
+            "bronze_version": 4,
+            "bronze_rows": 3577543,
+            "accepted_rows": 3393348,
+            "rejected_rows": 184195,
+            "expected_inserts": 3393348,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 3393348,
+            "updated": 0,
+            "silver_version": 4,
+            "reject_reason_counts": "{\"INVALID_FARE\": 184096, \"KEY_COLLISION\": 6, \"NEGATIVE_DURATION\": 93}",
+            "flag_counts": "{\"AFTER_SOURCE_MONTH\": 1, \"EXTREME_DISTANCE\": 145, \"IMPLAUSIBLE_SPEED\": 309, \"LATE_ARRIVAL\": 30, \"LONG_DURATION\": 1199, \"NEGATIVE_COMPONENT\": 97, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 700689, \"REVERSED\": 48613, \"TOTAL_MISMATCH\": 39313, \"UNKNOWN_RATECODE\": 717873, \"UNKNOWN_ZONE\": 24211, \"ZERO_DISTANCE\": 82634, \"ZERO_DURATION\": 5021}",
+            "processed_ts": "2026-10-02T01:13:47.279579"
+          },
+          {
+            "batch_id": "yellow_2025-03_20c4b77c",
+            "source_month": "2025-03",
+            "bronze_version": 5,
+            "bronze_rows": 4145257,
+            "accepted_rows": 3934785,
+            "rejected_rows": 210472,
+            "expected_inserts": 3934785,
+            "expected_updates": 0,
+            "expected_noop": 0,
+            "inserted": 3934785,
+            "updated": 0,
+            "silver_version": 5,
+            "reject_reason_counts": "{\"INVALID_FARE\": 210378, \"KEY_COLLISION\": 12, \"NEGATIVE_DURATION\": 80, \"OUT_OF_PERIOD\": 2}",
+            "flag_counts": "{\"AFTER_SOURCE_MONTH\": 2, \"EXTREME_DISTANCE\": 178, \"IMPLAUSIBLE_SPEED\": 352, \"LATE_ARRIVAL\": 29, \"LONG_DURATION\": 1459, \"NEGATIVE_COMPONENT\": 129, \"PASSENGER_COUNT_MISSING_OR_ZERO\": 798787, \"REVERSED\": 60768, \"TOTAL_MISMATCH\": 56469, \"UNKNOWN_RATECODE\": 819861, \"UNKNOWN_ZONE\": 27321, \"ZERO_DISTANCE\": 86204, \"ZERO_DURATION\": 22145}",
+            "processed_ts": "2026-10-02T01:15:09.403444"
+          }
+        ],
+        "conservation": {
+          "bronze_rows_processed == bronze_count": true,
+          "bronze == rejected + inserts + updates + noop": true,
+          "silver_count == total inserts": true,
+          "rejected_count == total rejected": true,
+          "trip_key unique in silver": true,
+          "every rejected row has a reason": true
+        },
+        "conservation_ok": true,
+        "processed_this_run": [
+          "yellow_2024-01_c4d59da7",
+          "yellow_2024-02_c76c43c1",
+          "yellow_2024-03_2d4cdc8f",
+          "yellow_2025-01_9af277e4",
+          "yellow_2025-02_037cba55",
+          "yellow_2025-03_20c4b77c"
+        ]
+      },
+      "status": "OK",
+      "seconds": 359.9
+    },
+    {
+      "step": "cdc",
+      "result": {
+        "batch_id": "cdc_corrections_seed42",
+        "seed": 42,
+        "target_month": "2025-03",
+        "feed_file": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/raw/cdc/cdc_corrections_seed42.parquet",
+        "silver_version_before": 5,
+        "silver_version_after": 6,
+        "count_before": 20072692,
+        "count_after": 20072697,
+        "planned": {
+          "inserts": 5,
+          "updates": 25,
+          "noop": 0
+        },
+        "merge_metrics": {
+          "inserted": 5,
+          "updated": 25
+        },
+        "checks": {
+          "matched rows were updated (updated > 0)": true,
+          "updated == n_updates": true,
+          "inserted == n_inserts": true,
+          "after == before + inserted": true
+        },
+        "checks_ok": true,
+        "samples": [
+          {
+            "trip_key": "22b3416ebbc77fd9da1aedf0df63eefacfc0127c48af9feaac60f0d08351d645",
+            "before": {
+              "trip_key": "22b3416ebbc77fd9da1aedf0df63eefacfc0127c48af9feaac60f0d08351d645",
+              "fare_amount": 5.8,
+              "tip_amount": 2.3,
+              "total_amount": 13.85,
+              "_batch_id": "yellow_2025-03_20c4b77c"
+            },
+            "after": {
+              "trip_key": "22b3416ebbc77fd9da1aedf0df63eefacfc0127c48af9feaac60f0d08351d645",
+              "fare_amount": 7.3,
+              "tip_amount": 4.3,
+              "total_amount": 17.35,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          },
+          {
+            "trip_key": "37043156eaf1defa9337a28b2d7c84867ec88eaad3b1c7dc0c094a3f166ae269",
+            "before": {
+              "trip_key": "37043156eaf1defa9337a28b2d7c84867ec88eaad3b1c7dc0c094a3f166ae269",
+              "fare_amount": 9.3,
+              "tip_amount": 2.65,
+              "total_amount": 15.95,
+              "_batch_id": "yellow_2025-03_20c4b77c"
+            },
+            "after": {
+              "trip_key": "37043156eaf1defa9337a28b2d7c84867ec88eaad3b1c7dc0c094a3f166ae269",
+              "fare_amount": 9.3,
+              "tip_amount": 4.65,
+              "total_amount": 17.95,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          },
+          {
+            "trip_key": "57d3eaaca96c90abd6e82cbfcd53f6affff3771fd15ffe60ae850103988f3948",
+            "before": {
+              "trip_key": "57d3eaaca96c90abd6e82cbfcd53f6affff3771fd15ffe60ae850103988f3948",
+              "fare_amount": 5.8,
+              "tip_amount": 2.61,
+              "total_amount": 15.66,
+              "_batch_id": "yellow_2025-03_20c4b77c"
+            },
+            "after": {
+              "trip_key": "57d3eaaca96c90abd6e82cbfcd53f6affff3771fd15ffe60ae850103988f3948",
+              "fare_amount": 5.8,
+              "tip_amount": 4.61,
+              "total_amount": 17.66,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          },
+          {
+            "trip_key": "76b5070b67f932409d183875ae675ad5f1e71f783f75164396772f5881bb7c9d",
+            "before": null,
+            "after": {
+              "trip_key": "76b5070b67f932409d183875ae675ad5f1e71f783f75164396772f5881bb7c9d",
+              "fare_amount": 7.2,
+              "tip_amount": 2.39,
+              "total_amount": 14.34,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          },
+          {
+            "trip_key": "7808a2ed4041746a8727ab12298bff65fc0921b99724d0c54810a401037bee42",
+            "before": {
+              "trip_key": "7808a2ed4041746a8727ab12298bff65fc0921b99724d0c54810a401037bee42",
+              "fare_amount": 7.2,
+              "tip_amount": 2.89,
+              "total_amount": 17.34,
+              "_batch_id": "yellow_2025-03_20c4b77c"
+            },
+            "after": {
+              "trip_key": "7808a2ed4041746a8727ab12298bff65fc0921b99724d0c54810a401037bee42",
+              "fare_amount": 8.7,
+              "tip_amount": 4.89,
+              "total_amount": 20.84,
+              "_batch_id": "cdc_corrections_seed42"
+            }
+          }
+        ],
+        "real_cdc_from_monthly_files": {
+          "cross_file_updates": 0,
+          "cross_file_noop_resubmissions": 0,
+          "late_arrivals_inserted": 119
+        }
+      },
+      "status": "OK",
+      "seconds": 51.8
+    },
+    {
+      "step": "evolution",
+      "result": {
+        "column": "cbd_congestion_fee",
+        "bronze": {
+          "schema_changes": [
+            {
+              "version": 0,
+              "operation": "WRITE",
+              "event": "CREATE",
+              "columns": [
+                "VendorID",
+                "tpep_pickup_datetime",
+                "tpep_dropoff_datetime",
+                "passenger_count",
+                "trip_distance",
+                "RatecodeID",
+                "store_and_fwd_flag",
+                "PULocationID",
+                "DOLocationID",
+                "payment_type",
+                "fare_amount",
+                "extra",
+                "mta_tax",
+                "tip_amount",
+                "tolls_amount",
+                "improvement_surcharge",
+                "total_amount",
+                "congestion_surcharge",
+                "Airport_fee",
+                "_ingest_ts",
+                "_source_file",
+                "_batch_id",
+                "_source_month",
+                "_file_sha256"
+              ]
+            },
+            {
+              "version": 3,
+              "operation": "WRITE",
+              "event": "SCHEMA_CHANGE",
+              "added": [
+                "cbd_congestion_fee"
+              ],
+              "removed": [],
+              "retyped": []
+            }
+          ],
+          "evolution_event": {
+            "version": 3,
+            "operation": "WRITE",
+            "event": "SCHEMA_CHANGE",
+            "added": [
+              "cbd_congestion_fee"
+            ],
+            "removed": [],
+            "retyped": []
+          },
+          "column_absent_before": true,
+          "column_present_after": true,
+          "operation": "WRITE",
+          "not_a_rebuild": true
+        },
+        "silver": {
+          "schema_changes": [
+            {
+              "version": 0,
+              "operation": "WRITE",
+              "event": "CREATE",
+              "columns": [
+                "trip_key",
+                "VendorID",
+                "tpep_pickup_datetime",
+                "tpep_dropoff_datetime",
+                "passenger_count",
+                "trip_distance",
+                "RatecodeID",
+                "store_and_fwd_flag",
+                "PULocationID",
+                "DOLocationID",
+                "payment_type",
+                "fare_amount",
+                "extra",
+                "mta_tax",
+                "tip_amount",
+                "tolls_amount",
+                "improvement_surcharge",
+                "total_amount",
+                "congestion_surcharge",
+                "Airport_fee",
+                "trip_duration_sec",
+                "dq_flags",
+                "row_hash",
+                "_ingest_ts",
+                "_source_file",
+                "_batch_id",
+                "_source_month",
+                "_file_sha256",
+                "pickup_date",
+                "pickup_hour",
+                "pickup_month",
+                "is_late_arrival",
+                "_silver_ts"
+              ]
+            },
+            {
+              "version": 3,
+              "operation": "MERGE",
+              "event": "SCHEMA_CHANGE",
+              "added": [
+                "cbd_congestion_fee"
+              ],
+              "removed": [],
+              "retyped": []
+            }
+          ],
+          "evolution_event": {
+            "version": 3,
+            "operation": "MERGE",
+            "event": "SCHEMA_CHANGE",
+            "added": [
+              "cbd_congestion_fee"
+            ],
+            "removed": [],
+            "retyped": []
+          },
+          "column_absent_before": true,
+          "column_present_after": true,
+          "operation": "MERGE",
+          "not_a_rebuild": true
+        },
+        "silver_rejected": {
+          "schema_changes": [
+            {
+              "version": 0,
+              "operation": "WRITE",
+              "event": "CREATE",
+              "columns": [
+                "VendorID",
+                "tpep_pickup_datetime",
+                "tpep_dropoff_datetime",
+                "passenger_count",
+                "trip_distance",
+                "RatecodeID",
+                "store_and_fwd_flag",
+                "PULocationID",
+                "DOLocationID",
+                "payment_type",
+                "fare_amount",
+                "extra",
+                "mta_tax",
+                "tip_amount",
+                "tolls_amount",
+                "improvement_surcharge",
+                "total_amount",
+                "congestion_surcharge",
+                "Airport_fee",
+                "_ingest_ts",
+                "_source_file",
+                "_batch_id",
+                "_source_month",
+                "_file_sha256",
+                "trip_key",
+                "reject_reason",
+                "reject_detail",
+                "_rejected_ts"
+              ]
+            },
+            {
+              "version": 3,
+              "operation": "WRITE",
+              "event": "SCHEMA_CHANGE",
+              "added": [
+                "cbd_congestion_fee"
+              ],
+              "removed": [],
+              "retyped": []
+            }
+          ],
+          "evolution_event": {
+            "version": 3,
+            "operation": "WRITE",
+            "event": "SCHEMA_CHANGE",
+            "added": [
+              "cbd_congestion_fee"
+            ],
+            "removed": [],
+            "retyped": []
+          },
+          "column_absent_before": true,
+          "column_present_after": true,
+          "operation": "WRITE",
+          "not_a_rebuild": true
+        },
+        "silver_null_check": {
+          "2024-03": {
+            "rows": 3522748,
+            "null": 3522748
+          },
+          "2025-02": {
+            "rows": 3393348,
+            "null": 0
+          },
+          "2025-01": {
+            "rows": 3329582,
+            "null": 0
+          },
+          "2024-02": {
+            "rows": 2966014,
+            "null": 2966014
+          },
+          "2025-03": {
+            "rows": 3934790,
+            "null": 0
+          },
+          "2024-01": {
+            "rows": 2926215,
+            "null": 2926215
+          }
+        },
+        "old_rows_null": true,
+        "status": "SCHEMA_EVOLVED"
+      },
+      "status": "OK",
+      "seconds": 0.8
+    },
+    {
+      "step": "time_travel",
+      "result": {
+        "silver_versions": 7,
+        "silver_latest_version": 6,
+        "merge_commits": 6,
+        "old_versions_queried": 6,
+        "cdc_rows_changed_or_added": 30,
+        "vacuum_demo": {
+          "broken_versions": [
+            5
+          ],
+          "real_table_oldest_version_rows": 2926215
+        },
+        "delta_log_annotation": {
+          "file": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/docs/evidence/delta_log_annotated.md",
+          "version": 6,
+          "action_counts": {
+            "add": 1,
+            "remove": 0,
+            "metaData": 0,
+            "protocol": 0
+          }
+        },
+        "silver_checkpoints": []
+      },
+      "status": "OK",
+      "seconds": 62.5
+    },
+    {
+      "step": "gold",
+      "result": {
+        "silver_version_used": 6,
+        "table_versions": {
+          "zone_hourly_metrics": 0,
+          "cbd_flow_monthly": 0,
+          "cbd_flow_yoy": 0,
+          "dq_monthly": 0
+        },
+        "zone_hourly_rows": 553881,
+        "gold_trips": 19808248,
+        "verification": {
+          "cells": [
+            {
+              "cell": {
+                "pickup_date": "2025-02-02",
+                "pickup_hour": 1,
+                "PULocationID": 79
+              },
+              "gold": {
+                "trips": 991,
+                "avg_fare": 15.1256,
+                "avg_tip_pct": 15.9631,
+                "total_driver_earnings": 18048.24
+              },
+              "manual_sql": {
+                "trips": 991,
+                "avg_fare": 15.1256,
+                "avg_tip_pct": 15.9631,
+                "total_driver_earnings": 18048.24
+              },
+              "match": true
+            },
+            {
+              "cell": {
+                "pickup_date": "2025-03-02",
+                "pickup_hour": 0,
+                "PULocationID": 79
+              },
+              "gold": {
+                "trips": 947,
+                "avg_fare": 15.2636,
+                "avg_tip_pct": 19.3064,
+                "total_driver_earnings": 17934.15
+              },
+              "manual_sql": {
+                "trips": 947,
+                "avg_fare": 15.2636,
+                "avg_tip_pct": 19.3064,
+                "total_driver_earnings": 17934.15
+              },
+              "match": true
+            },
+            {
+              "cell": {
+                "pickup_date": "2025-03-09",
+                "pickup_hour": 1,
+                "PULocationID": 79
+              },
+              "gold": {
+                "trips": 916,
+                "avg_fare": 15.4114,
+                "avg_tip_pct": 14.2655,
+                "total_driver_earnings": 16781.55
+              },
+              "manual_sql": {
+                "trips": 916,
+                "avg_fare": 15.4114,
+                "avg_tip_pct": 14.2655,
+                "total_driver_earnings": 16781.55
+              },
+              "match": true
+            }
+          ],
+          "totals": {
+            "gold_trips": 19808248,
+            "manual_trips": 19808248,
+            "gold_earnings": 461016211.89,
+            "manual_earnings": 461016211.89,
+            "match": true
+          },
+          "all_match": true
+        },
+        "external_reconciliation": {
+          "status": "SKIPPED",
+          "reason": "tlc_zone_monthly_raw.csv not downloaded (--with-tlc-aggregates)"
+        },
+        "cbd_zone_validation": {
+          "CONSISTENT_NON_CBD": 187,
+          "TOO_FEW_TRIPS": 36,
+          "CONFIRMED_BY_FEES": 38
+        },
+        "cbd_yoy": [
+          {
+            "year": 2025,
+            "month_of_year": 1,
+            "cbd_flow": "INTO_CBD",
+            "trips_per_day_prev": 13322.06,
+            "trips_per_day": 14442.06,
+            "yoy_trips_per_day_pct": 8.407,
+            "non_cbd_yoy_pct": 12.872,
+            "relative_to_non_cbd_pp": -4.465,
+            "avg_duration_min_prev": 21.906,
+            "avg_duration_min": 21.418,
+            "yoy_duration_pct": -2.23
+          },
+          {
+            "year": 2025,
+            "month_of_year": 1,
+            "cbd_flow": "NON_CBD",
+            "trips_per_day_prev": 25805.52,
+            "trips_per_day": 29127.23,
+            "yoy_trips_per_day_pct": 12.872,
+            "non_cbd_yoy_pct": 12.872,
+            "relative_to_non_cbd_pp": 0.0,
+            "avg_duration_min_prev": 14.632,
+            "avg_duration_min": 14.602,
+            "yoy_duration_pct": -0.203
+          },
+          {
+            "year": 2025,
+            "month_of_year": 1,
+            "cbd_flow": "OUT_OF_CBD",
+            "trips_per_day_prev": 15724.45,
+            "trips_per_day": 16793.45,
+            "yoy_trips_per_day_pct": 6.798,
+            "non_cbd_yoy_pct": 12.872,
+            "relative_to_non_cbd_pp": -6.074,
+            "avg_duration_min_prev": 20.447,
+            "avg_duration_min": 19.239,
+            "yoy_duration_pct": -5.907
+          },
+          {
+            "year": 2025,
+            "month_of_year": 1,
+            "cbd_flow": "UNKNOWN_ZONE",
+            "trips_per_day_prev": 980.29,
+            "trips_per_day": 865.84,
+            "yoy_trips_per_day_pct": -11.675,
+            "non_cbd_yoy_pct": 12.872,
+            "relative_to_non_cbd_pp": -24.547,
+            "avg_duration_min_prev": 22.518,
+            "avg_duration_min": 22.802,
+            "yoy_duration_pct": 1.264
+          },
+          {
+            "year": 2025,
+            "month_of_year": 1,
+            "cbd_flow": "WITHIN_CBD",
+            "trips_per_day_prev": 37557.61,
+            "trips_per_day": 44482.48,
+            "yoy_trips_per_day_pct": 18.438,
+            "non_cbd_yoy_pct": 12.872,
+            "relative_to_non_cbd_pp": 5.566,
+            "avg_duration_min_prev": 12.055,
+            "avg_duration_min": 11.593,
+            "yoy_duration_pct": -3.829
+          },
+          {
+            "year": 2025,
+            "month_of_year": 2,
+            "cbd_flow": "INTO_CBD",
+            "trips_per_day_prev": 14165.03,
+            "trips_per_day": 16112.39,
+            "yoy_trips_per_day_pct": 13.748,
+            "non_cbd_yoy_pct": 23.309,
+            "relative_to_non_cbd_pp": -9.561,
+            "avg_duration_min_prev": 22.5,
+            "avg_duration_min": 21.946,
+            "yoy_duration_pct": -2.461
+          },
+          {
+            "year": 2025,
+            "month_of_year": 2,
+            "cbd_flow": "NON_CBD",
+            "trips_per_day_prev": 26403.21,
+            "trips_per_day": 32557.5,
+            "yoy_trips_per_day_pct": 23.309,
+            "non_cbd_yoy_pct": 23.309,
+            "relative_to_non_cbd_pp": 0.0,
+            "avg_duration_min_prev": 14.852,
+            "avg_duration_min": 14.932,
+            "yoy_duration_pct": 0.54
+          },
+          {
+            "year": 2025,
+            "month_of_year": 2,
+            "cbd_flow": "OUT_OF_CBD",
+            "trips_per_day_prev": 17162.41,
+            "trips_per_day": 18579.75,
+            "yoy_trips_per_day_pct": 8.258,
+            "non_cbd_yoy_pct": 23.309,
+            "relative_to_non_cbd_pp": -15.051,
+            "avg_duration_min_prev": 21.015,
+            "avg_duration_min": 19.845,
+            "yoy_duration_pct": -5.567
+          },
+          {
+            "year": 2025,
+            "month_of_year": 2,
+            "cbd_flow": "UNKNOWN_ZONE",
+            "trips_per_day_prev": 959.86,
+            "trips_per_day": 840.71,
+            "yoy_trips_per_day_pct": -12.413,
+            "non_cbd_yoy_pct": 23.309,
+            "relative_to_non_cbd_pp": -35.722,
+            "avg_duration_min_prev": 23.522,
+            "avg_duration_min": 24.163,
+            "yoy_duration_pct": 2.723
+          },
+          {
+            "year": 2025,
+            "month_of_year": 2,
+            "cbd_flow": "WITHIN_CBD",
+            "trips_per_day_prev": 42493.59,
+            "trips_per_day": 51352.79,
+            "yoy_trips_per_day_pct": 20.848,
+            "non_cbd_yoy_pct": 23.309,
+            "relative_to_non_cbd_pp": -2.461,
+            "avg_duration_min_prev": 12.502,
+            "avg_duration_min": 11.973,
+            "yoy_duration_pct": -4.231
+          },
+          {
+            "year": 2025,
+            "month_of_year": 3,
+            "cbd_flow": "INTO_CBD",
+            "trips_per_day_prev": 16255.81,
+            "trips_per_day": 17325.42,
+            "yoy_trips_per_day_pct": 6.58,
+            "non_cbd_yoy_pct": 20.212,
+            "relative_to_non_cbd_pp": -13.632,
+            "avg_duration_min_prev": 23.712,
+            "avg_duration_min": 22.72,
+            "yoy_duration_pct": -4.183
+          },
+          {
+            "year": 2025,
+            "month_of_year": 3,
+            "cbd_flow": "NON_CBD",
+            "trips_per_day_prev": 28435.77,
+            "trips_per_day": 34183.1,
+            "yoy_trips_per_day_pct": 20.212,
+            "non_cbd_yoy_pct": 20.212,
+            "relative_to_non_cbd_pp": 0.0,
+            "avg_duration_min_prev": 15.569,
+            "avg_duration_min": 15.846,
+            "yoy_duration_pct": 1.777
+          },
+          {
+            "year": 2025,
+            "month_of_year": 3,
+            "cbd_flow": "OUT_OF_CBD",
+            "trips_per_day_prev": 18883.45,
+            "trips_per_day": 19784.23,
+            "yoy_trips_per_day_pct": 4.77,
+            "non_cbd_yoy_pct": 20.212,
+            "relative_to_non_cbd_pp": -15.442,
+            "avg_duration_min_prev": 21.558,
+            "avg_duration_min": 20.442,
+            "yoy_duration_pct": -5.178
+          },
+          {
+            "year": 2025,
+            "month_of_year": 3,
+            "cbd_flow": "UNKNOWN_ZONE",
+            "trips_per_day_prev": 1094.13,
+            "trips_per_day": 853.13,
+            "yoy_trips_per_day_pct": -22.027,
+            "non_cbd_yoy_pct": 20.212,
+            "relative_to_non_cbd_pp": -42.239,
+            "avg_duration_min_prev": 25.524,
+            "avg_duration_min": 26.174,
+            "yoy_duration_pct": 2.547
+          },
+          {
+            "year": 2025,
+            "month_of_year": 3,
+            "cbd_flow": "WITHIN_CBD",
+            "trips_per_day_prev": 47710.32,
+            "trips_per_day": 52809.16,
+            "yoy_trips_per_day_pct": 10.687,
+            "non_cbd_yoy_pct": 20.212,
+            "relative_to_non_cbd_pp": -9.525,
+            "avg_duration_min_prev": 12.997,
+            "avg_duration_min": 12.142,
+            "yoy_duration_pct": -6.58
+          }
+        ]
+      },
+      "status": "OK",
+      "seconds": 39.2
+    },
     {
       "step": "benchmark",
       "result": {
@@ -20,10 +986,10 @@
         "variants": {
           "baseline": {
             "prepared_by": "repartition(200) of Silver (random order)",
-            "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/baseline",
+            "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/baseline",
             "files": 200,
-            "size_mb": 3184.3,
-            "avg_file_mb": 15.92,
+            "size_mb": 3182.2,
+            "avg_file_mb": 15.91,
             "clustering": []
           },
           "compacted": {
@@ -32,10 +998,10 @@
               "numFilesAdded": 100,
               "numFilesRemoved": 200
             },
-            "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/compacted",
+            "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/compacted",
             "files": 100,
-            "size_mb": 3151.6,
-            "avg_file_mb": 31.52,
+            "size_mb": 3149.3,
+            "avg_file_mb": 31.49,
             "clustering": []
           },
           "zorder_1col": {
@@ -44,10 +1010,10 @@
               "numFilesAdded": 99,
               "numFilesRemoved": 200
             },
-            "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/zorder_1col",
+            "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/zorder_1col",
             "files": 99,
-            "size_mb": 3135.4,
-            "avg_file_mb": 31.67,
+            "size_mb": 3132.2,
+            "avg_file_mb": 31.64,
             "clustering": []
           },
           "zorder_2col": {
@@ -56,19 +1022,19 @@
               "numFilesAdded": 99,
               "numFilesRemoved": 200
             },
-            "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/zorder_2col",
+            "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/zorder_2col",
             "files": 99,
-            "size_mb": 3115.9,
-            "avg_file_mb": 31.47,
+            "size_mb": 3113.7,
+            "avg_file_mb": 31.45,
             "clustering": []
           },
           "liquid_cluster": {
             "files_before": 67,
             "prepared_by": "CLUSTER BY + OPTIMIZE FULL",
-            "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/liquid_cluster",
+            "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/liquid_cluster",
             "files": 98,
-            "size_mb": 3111.7,
-            "avg_file_mb": 31.75,
+            "size_mb": 3109.1,
+            "avg_file_mb": 31.73,
             "clustering": [
               "PULocationID",
               "tpep_pickup_datetime"
@@ -80,142 +1046,142 @@
             "q1_zone": {
               "baseline": {
                 "runs": 5,
-                "median_ms": 172.5,
-                "min_ms": 165.31,
-                "max_ms": 195.55,
+                "median_ms": 302.8,
+                "min_ms": 253.31,
+                "max_ms": 1703.86,
                 "files_scanned": 200,
-                "mb_read": 3184.29,
+                "mb_read": 3182.15,
                 "improvement_pct": 0.0
               },
               "compacted": {
                 "runs": 5,
-                "median_ms": 167.7,
-                "min_ms": 161.3,
-                "max_ms": 177.57,
+                "median_ms": 298.7,
+                "min_ms": 235.8,
+                "max_ms": 1118.31,
                 "files_scanned": 100,
-                "mb_read": 3151.57,
-                "improvement_pct": 2.8
+                "mb_read": 3149.29,
+                "improvement_pct": 1.4
               },
               "zorder_1col": {
                 "runs": 5,
-                "median_ms": 108.0,
-                "min_ms": 105.89,
-                "max_ms": 118.37,
+                "median_ms": 120.8,
+                "min_ms": 116.64,
+                "max_ms": 347.0,
                 "files_scanned": 5,
-                "mb_read": 164.38,
-                "improvement_pct": 37.4
+                "mb_read": 162.93,
+                "improvement_pct": 60.1
               },
               "zorder_2col": {
                 "runs": 5,
-                "median_ms": 128.8,
-                "min_ms": 125.05,
-                "max_ms": 133.0,
-                "files_scanned": 42,
-                "mb_read": 1317.59,
-                "improvement_pct": 25.3
+                "median_ms": 151.5,
+                "min_ms": 141.46,
+                "max_ms": 412.52,
+                "files_scanned": 33,
+                "mb_read": 1039.04,
+                "improvement_pct": 50.0
               },
               "liquid_cluster": {
                 "runs": 5,
-                "median_ms": 125.2,
-                "min_ms": 120.24,
-                "max_ms": 128.71,
-                "files_scanned": 35,
-                "mb_read": 1116.5,
-                "improvement_pct": 27.4
+                "median_ms": 180.8,
+                "min_ms": 141.22,
+                "max_ms": 401.28,
+                "files_scanned": 29,
+                "mb_read": 908.33,
+                "improvement_pct": 40.3
               }
             },
             "q2_zone_week": {
               "baseline": {
                 "runs": 5,
-                "median_ms": 275.1,
-                "min_ms": 263.71,
-                "max_ms": 285.53,
+                "median_ms": 624.5,
+                "min_ms": 452.87,
+                "max_ms": 1258.35,
                 "files_scanned": 200,
-                "mb_read": 3184.29,
+                "mb_read": 3182.15,
                 "improvement_pct": 0.0
               },
               "compacted": {
                 "runs": 5,
-                "median_ms": 267.8,
-                "min_ms": 265.23,
-                "max_ms": 277.65,
+                "median_ms": 412.1,
+                "min_ms": 344.18,
+                "max_ms": 1446.12,
                 "files_scanned": 100,
-                "mb_read": 3151.57,
-                "improvement_pct": 2.7
+                "mb_read": 3149.29,
+                "improvement_pct": 34.0
               },
               "zorder_1col": {
                 "runs": 5,
-                "median_ms": 119.1,
-                "min_ms": 115.53,
-                "max_ms": 128.94,
-                "files_scanned": 5,
-                "mb_read": 165.67,
-                "improvement_pct": 56.7
+                "median_ms": 151.8,
+                "min_ms": 131.67,
+                "max_ms": 502.39,
+                "files_scanned": 6,
+                "mb_read": 189.92,
+                "improvement_pct": 75.7
               },
               "zorder_2col": {
                 "runs": 5,
-                "median_ms": 127.1,
-                "min_ms": 115.93,
-                "max_ms": 131.35,
-                "files_scanned": 6,
-                "mb_read": 188.72,
-                "improvement_pct": 53.8
+                "median_ms": 158.1,
+                "min_ms": 120.93,
+                "max_ms": 326.55,
+                "files_scanned": 5,
+                "mb_read": 152.61,
+                "improvement_pct": 74.7
               },
               "liquid_cluster": {
                 "runs": 5,
-                "median_ms": 117.7,
-                "min_ms": 112.86,
-                "max_ms": 124.49,
-                "files_scanned": 3,
-                "mb_read": 93.56,
-                "improvement_pct": 57.2
+                "median_ms": 127.3,
+                "min_ms": 117.1,
+                "max_ms": 319.34,
+                "files_scanned": 2,
+                "mb_read": 57.53,
+                "improvement_pct": 79.6
               }
             },
             "q3_control": {
               "baseline": {
                 "runs": 5,
-                "median_ms": 185.2,
-                "min_ms": 163.14,
-                "max_ms": 195.44,
+                "median_ms": 302.6,
+                "min_ms": 248.82,
+                "max_ms": 699.05,
                 "files_scanned": 200,
-                "mb_read": 3184.29,
+                "mb_read": 3182.15,
                 "improvement_pct": 0.0
               },
               "compacted": {
                 "runs": 5,
-                "median_ms": 167.5,
-                "min_ms": 162.54,
-                "max_ms": 186.23,
+                "median_ms": 254.7,
+                "min_ms": 236.01,
+                "max_ms": 869.81,
                 "files_scanned": 100,
-                "mb_read": 3151.57,
-                "improvement_pct": 9.6
+                "mb_read": 3149.29,
+                "improvement_pct": 15.8
               },
               "zorder_1col": {
                 "runs": 5,
-                "median_ms": 166.1,
-                "min_ms": 154.61,
-                "max_ms": 178.45,
+                "median_ms": 274.8,
+                "min_ms": 246.89,
+                "max_ms": 712.08,
                 "files_scanned": 99,
-                "mb_read": 3135.4,
-                "improvement_pct": 10.3
+                "mb_read": 3132.22,
+                "improvement_pct": 9.2
               },
               "zorder_2col": {
                 "runs": 5,
-                "median_ms": 159.1,
-                "min_ms": 152.69,
-                "max_ms": 174.76,
+                "median_ms": 298.7,
+                "min_ms": 254.65,
+                "max_ms": 1095.92,
                 "files_scanned": 99,
-                "mb_read": 3115.91,
-                "improvement_pct": 14.1
+                "mb_read": 3113.75,
+                "improvement_pct": 1.3
               },
               "liquid_cluster": {
                 "runs": 5,
-                "median_ms": 166.5,
-                "min_ms": 158.19,
-                "max_ms": 178.19,
+                "median_ms": 260.9,
+                "min_ms": 250.96,
+                "max_ms": 1182.46,
                 "files_scanned": 98,
-                "mb_read": 3111.69,
-                "improvement_pct": 10.1
+                "mb_read": 3109.08,
+                "improvement_pct": 13.8
               }
             }
           },
@@ -227,9 +1193,9 @@
         }
       },
       "status": "OK",
-      "seconds": 176.2
+      "seconds": 319.9
     }
   ],
   "status": "SUCCESS",
-  "finished_at": "2026-09-27T07:16:44+00:00"
+  "finished_at": "2026-10-02T01:23:16+00:00"
 }

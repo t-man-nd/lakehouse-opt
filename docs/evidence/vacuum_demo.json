@@ -1,5 +1,5 @@
 {
-  "copy_path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/_scratch/silver_vacuum_copy",
+  "copy_path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/_scratch/silver_vacuum_copy",
   "files_listed_by_dry_run": 1,
   "oldest_version": 0,
   "newest_version": 6,
@@ -10,7 +10,7 @@
     "2": "readable",
     "3": "readable",
     "4": "readable",
-    "5": "FAILED: Py4JJavaError: An error occurred while calling o7653.collectToPython.",
+    "5": "FAILED: Py4JJavaError: An error occurred while calling o17573.collectToPython.",
     "6": "readable"
   },
   "broken_versions": [

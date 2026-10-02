@@ -19,7 +19,7 @@ Verdict counts: CONFIRMED_BY_FEES 38, TOO_FEW_TRIPS 36, CONSISTENT_NON_CBD 187
 | 162 | Midtown East | True | mta_yfdc_w5jh_partial | 338,944 | 0.9951 | CONFIRMED_BY_FEES |
 | 148 | Lower East Side | True | mta_yfdc_w5jh_partial | 121,722 | 0.9945 | CONFIRMED_BY_FEES |
 | 229 | Sutton Place/Turtle Bay North | True | mta_yfdc_w5jh_partial | 167,645 | 0.9942 | CONFIRMED_BY_FEES |
-| 230 | Times Sq/Theatre District | True | mta_yfdc_w5jh_partial | 344,229 | 0.9941 | CONFIRMED_BY_FEES |
+| 230 | Times Sq/Theatre District | True | mta_yfdc_w5jh_partial | 344,227 | 0.9941 | CONFIRMED_BY_FEES |
 | 48 | Clinton East | True | mta_yfdc_w5jh_partial | 248,611 | 0.9941 | CONFIRMED_BY_FEES |
 | 68 | East Chelsea | True | mta_yfdc_w5jh_partial | 272,588 | 0.9939 | CONFIRMED_BY_FEES |
 | 186 | Penn Station/Madison Sq West | True | mta_yfdc_w5jh_partial | 339,854 | 0.9938 | CONFIRMED_BY_FEES |
@@ -27,9 +27,9 @@ Verdict counts: CONFIRMED_BY_FEES 38, TOO_FEW_TRIPS 36, CONSISTENT_NON_CBD 187
 | 100 | Garment District | True | mta_yfdc_w5jh_partial | 147,741 | 0.9924 | CONFIRMED_BY_FEES |
 | 125 | Hudson Sq | True | mta_yfdc_w5jh_partial | 53,807 | 0.9923 | CONFIRMED_BY_FEES |
 | 170 | Murray Hill | True | mta_yfdc_w5jh_partial | 281,620 | 0.9921 | CONFIRMED_BY_FEES |
-| 107 | Gramercy | True | mta_yfdc_w5jh_partial | 206,303 | 0.9921 | CONFIRMED_BY_FEES |
+| 107 | Gramercy | True | mta_yfdc_w5jh_partial | 206,304 | 0.9921 | CONFIRMED_BY_FEES |
 | 158 | Meatpacking/West Village West | True | mta_yfdc_w5jh_partial | 103,454 | 0.9915 | CONFIRMED_BY_FEES |
-| 233 | UN/Turtle Bay South | True | inferred_geography | 112,862 | 0.9904 | CONFIRMED_BY_FEES |
+| 233 | UN/Turtle Bay South | True | inferred_geography | 112,863 | 0.9904 | CONFIRMED_BY_FEES |
 | 224 | Stuy Town/Peter Cooper Village | True | mta_yfdc_w5jh_partial | 19,248 | 0.9885 | CONFIRMED_BY_FEES |
 | 87 | Financial District North | True | mta_yfdc_w5jh_partial | 58,790 | 0.9845 | CONFIRMED_BY_FEES |
 | 231 | TriBeCa/Civic Center | True | mta_yfdc_w5jh_partial | 142,222 | 0.9842 | CONFIRMED_BY_FEES |

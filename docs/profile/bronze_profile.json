@@ -1,5 +1,5 @@
 {
-  "bronze_version": 6,
+  "bronze_version": 5,
   "thresholds": {
     "late_window_days": 31,
     "lead_tolerance_hours": 24,
@@ -179,7 +179,7 @@
       "distance_over_max": 122,
       "distance_p50_p99_p999": [
         1.75,
-        19.9,
+        19.91,
         176836.3
       ],
       "distance_max": 176836.3,
@@ -187,9 +187,9 @@
       "fare_negative": 58464,
       "fare_zero": 1292,
       "fare_p01_p50_p99": [
-        -5.1,
+        -5.8,
         13.5,
-        74.4
+        75.8
       ],
       "fare_max": 900.0,
       "total_negative": 44311,
@@ -323,7 +323,7 @@
       "cbd_fee_median_when_positive": 0.75
     },
     "2025-03": {
-      "rows": 4145287,
+      "rows": 4145257,
       "null__VendorID": 0,
       "null__tpep_pickup_datetime": 0,
       "null__tpep_dropoff_datetime": 0,
@@ -376,10 +376,10 @@
       "passengers_zero": 22715,
       "ratecode_99": 43988,
       "unknown_zone_264_265": 28415,
-      "card_trips_with_tip": 2534414,
-      "card_trips": 2704196,
+      "card_trips_with_tip": 2534384,
+      "card_trips": 2704166,
       "cash_trips_with_recorded_tip": 184,
-      "cbd_fee_positive": 3011939,
+      "cbd_fee_positive": 3011914,
       "cbd_fee_median_when_positive": 0.75
     }
   },
@@ -422,7 +422,7 @@
         "3": 21849
       },
       "2025-03": {
-        "1": 2704196,
+        "1": 2704166,
         "0": 916663,
         "2": 405847,
         "4": 91657,
@@ -457,7 +457,7 @@
         "6": 330
       },
       "2025-03": {
-        "2": 3289078,
+        "2": 3289048,
         "1": 834394,
         "7": 21481,
         "6": 334
@@ -515,9 +515,9 @@
         "6": 1
       },
       "2025-03": {
-        "1": 3021895,
+        "1": 3021866,
         "None": 916663,
-        "2": 112288,
+        "2": 112287,
         "99": 43988,
         "5": 32008,
         "3": 10605,
@@ -559,10 +559,10 @@
         "keys_with_conflicting_content": 48990
       },
       "2025-03": {
-        "rows": 4145287,
-        "distinct_keys": 4084099,
+        "rows": 4145257,
+        "distinct_keys": 4084094,
         "exact_duplicate_excess_rows": 0,
-        "keys_with_conflicting_content": 61188
+        "keys_with_conflicting_content": 61163
       }
     },
     "keys_seen_in_more_than_one_file": 1,
@@ -596,9 +596,9 @@
   "rule_preview": {
     "reject_reason": {
       "2024-01": {
-        "KEY_COLLISION": 8,
         "NEGATIVE_DURATION": 56,
         "INVALID_FARE": 38341,
+        "KEY_COLLISION": 8,
         "OUT_OF_PERIOD": 4
       },
       "2024-02": {
@@ -609,9 +609,9 @@
         "OUT_OF_PERIOD": 2
       },
       "2024-03": {
-        "KEY_COLLISION": 5,
         "NEGATIVE_DURATION": 117,
         "INVALID_FARE": 59756,
+        "KEY_COLLISION": 5,
         "OUT_OF_PERIOD": 2
       },
       "2025-01": {
@@ -620,14 +620,14 @@
         "INVALID_FARE": 145516
       },
       "2025-02": {
-        "KEY_COLLISION": 6,
+        "INVALID_FARE": 184096,
         "NEGATIVE_DURATION": 93,
-        "INVALID_FARE": 184096
+        "KEY_COLLISION": 6
       },
       "2025-03": {
         "NEGATIVE_DURATION": 80,
         "INVALID_FARE": 210378,
-        "KEY_COLLISION": 37,
+        "KEY_COLLISION": 12,
         "OUT_OF_PERIOD": 2
       }
     },
@@ -636,7 +636,7 @@
         "UNKNOWN_RATECODE": 166619,
         "LATE_ARRIVAL": 10,
         "EXTREME_DISTANCE": 56,
-        "TOTAL_MISMATCH": 759650,
+        "TOTAL_MISMATCH": 45619,
         "ZERO_DURATION": 744,
         "REVERSED": 30979,
         "ZERO_DISTANCE": 56569,
@@ -650,7 +650,7 @@
       "2024-02": {
         "UNKNOWN_RATECODE": 210932,
         "EXTREME_DISTANCE": 69,
-        "TOTAL_MISMATCH": 797125,
+        "TOTAL_MISMATCH": 42622,
         "ZERO_DURATION": 700,
         "REVERSED": 31546,
         "ZERO_DISTANCE": 64554,
@@ -665,7 +665,7 @@
       "2024-03": {
         "UNKNOWN_RATECODE": 449315,
         "EXTREME_DISTANCE": 116,
-        "TOTAL_MISMATCH": 1081355,
+        "TOTAL_MISMATCH": 53595,
         "ZERO_DURATION": 916,
         "REVERSED": 38766,
         "ZERO_DISTANCE": 82807,
@@ -680,7 +680,7 @@
       "2025-01": {
         "UNKNOWN_RATECODE": 496933,
         "EXTREME_DISTANCE": 138,
-        "TOTAL_MISMATCH": 1001795,
+        "TOTAL_MISMATCH": 41972,
         "ZERO_DURATION": 1874,
         "REVERSED": 52231,
         "NEGATIVE_COMPONENT": 394,
@@ -695,7 +695,7 @@
       "2025-02": {
         "UNKNOWN_RATECODE": 717873,
         "EXTREME_DISTANCE": 145,
-        "TOTAL_MISMATCH": 1150472,
+        "TOTAL_MISMATCH": 39313,
         "ZERO_DURATION": 5021,
         "REVERSED": 48613,
         "NEGATIVE_COMPONENT": 97,
@@ -711,7 +711,7 @@
         "UNKNOWN_RATECODE": 819861,
         "LATE_ARRIVAL": 29,
         "EXTREME_DISTANCE": 178,
-        "TOTAL_MISMATCH": 1243300,
+        "TOTAL_MISMATCH": 56469,
         "ZERO_DURATION": 22145,
         "REVERSED": 60768,
         "NEGATIVE_COMPONENT": 129,

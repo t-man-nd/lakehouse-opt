@@ -6,10 +6,10 @@
   "variants": {
     "baseline": {
       "prepared_by": "repartition(200) of Silver (random order)",
-      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/baseline",
+      "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/baseline",
       "files": 200,
-      "size_mb": 3184.3,
-      "avg_file_mb": 15.92,
+      "size_mb": 3182.2,
+      "avg_file_mb": 15.91,
       "clustering": []
     },
     "compacted": {
@@ -18,10 +18,10 @@
         "numFilesAdded": 100,
         "numFilesRemoved": 200
       },
-      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/compacted",
+      "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/compacted",
       "files": 100,
-      "size_mb": 3151.6,
-      "avg_file_mb": 31.52,
+      "size_mb": 3149.3,
+      "avg_file_mb": 31.49,
       "clustering": []
     },
     "zorder_1col": {
@@ -30,10 +30,10 @@
         "numFilesAdded": 99,
         "numFilesRemoved": 200
       },
-      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/zorder_1col",
+      "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/zorder_1col",
       "files": 99,
-      "size_mb": 3135.4,
-      "avg_file_mb": 31.67,
+      "size_mb": 3132.2,
+      "avg_file_mb": 31.64,
       "clustering": []
     },
     "zorder_2col": {
@@ -42,19 +42,19 @@
         "numFilesAdded": 99,
         "numFilesRemoved": 200
       },
-      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/zorder_2col",
+      "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/zorder_2col",
       "files": 99,
-      "size_mb": 3115.9,
-      "avg_file_mb": 31.47,
+      "size_mb": 3113.7,
+      "avg_file_mb": 31.45,
       "clustering": []
     },
     "liquid_cluster": {
       "files_before": 67,
       "prepared_by": "CLUSTER BY + OPTIMIZE FULL",
-      "path": "/home/lam/Bigdata/lakehouse-opt/data/lakehouse/benchmark/liquid_cluster",
+      "path": "/Users/haaminh109/Desktop/Minh/Tài liệu học tập (DSEB)/Kì 7/Big Data/lakehouse-opt/data/lakehouse/benchmark/liquid_cluster",
       "files": 98,
-      "size_mb": 3111.7,
-      "avg_file_mb": 31.75,
+      "size_mb": 3109.1,
+      "avg_file_mb": 31.73,
       "clustering": [
         "PULocationID",
         "tpep_pickup_datetime"
@@ -66,142 +66,142 @@
       "q1_zone": {
         "baseline": {
           "runs": 5,
-          "median_ms": 172.5,
-          "min_ms": 165.31,
-          "max_ms": 195.55,
+          "median_ms": 302.8,
+          "min_ms": 253.31,
+          "max_ms": 1703.86,
           "files_scanned": 200,
-          "mb_read": 3184.29,
+          "mb_read": 3182.15,
           "improvement_pct": 0.0
         },
         "compacted": {
           "runs": 5,
-          "median_ms": 167.7,
-          "min_ms": 161.3,
-          "max_ms": 177.57,
+          "median_ms": 298.7,
+          "min_ms": 235.8,
+          "max_ms": 1118.31,
           "files_scanned": 100,
-          "mb_read": 3151.57,
-          "improvement_pct": 2.8
+          "mb_read": 3149.29,
+          "improvement_pct": 1.4
         },
         "zorder_1col": {
           "runs": 5,
-          "median_ms": 108.0,
-          "min_ms": 105.89,
-          "max_ms": 118.37,
+          "median_ms": 120.8,
+          "min_ms": 116.64,
+          "max_ms": 347.0,
           "files_scanned": 5,
-          "mb_read": 164.38,
-          "improvement_pct": 37.4
+          "mb_read": 162.93,
+          "improvement_pct": 60.1
         },
         "zorder_2col": {
           "runs": 5,
-          "median_ms": 128.8,
-          "min_ms": 125.05,
-          "max_ms": 133.0,
-          "files_scanned": 42,
-          "mb_read": 1317.59,
-          "improvement_pct": 25.3
+          "median_ms": 151.5,
+          "min_ms": 141.46,
+          "max_ms": 412.52,
+          "files_scanned": 33,
+          "mb_read": 1039.04,
+          "improvement_pct": 50.0
         },
         "liquid_cluster": {
           "runs": 5,
-          "median_ms": 125.2,
-          "min_ms": 120.24,
-          "max_ms": 128.71,
-          "files_scanned": 35,
-          "mb_read": 1116.5,
-          "improvement_pct": 27.4
+          "median_ms": 180.8,
+          "min_ms": 141.22,
+          "max_ms": 401.28,
+          "files_scanned": 29,
+          "mb_read": 908.33,
+          "improvement_pct": 40.3
         }
       },
       "q2_zone_week": {
         "baseline": {
           "runs": 5,
-          "median_ms": 275.1,
-          "min_ms": 263.71,
-          "max_ms": 285.53,
+          "median_ms": 624.5,
+          "min_ms": 452.87,
+          "max_ms": 1258.35,
           "files_scanned": 200,
-          "mb_read": 3184.29,
+          "mb_read": 3182.15,
           "improvement_pct": 0.0
         },
         "compacted": {
           "runs": 5,
-          "median_ms": 267.8,
-          "min_ms": 265.23,
-          "max_ms": 277.65,
+          "median_ms": 412.1,
+          "min_ms": 344.18,
+          "max_ms": 1446.12,
           "files_scanned": 100,
-          "mb_read": 3151.57,
-          "improvement_pct": 2.7
+          "mb_read": 3149.29,
+          "improvement_pct": 34.0
         },
         "zorder_1col": {
           "runs": 5,
-          "median_ms": 119.1,
-          "min_ms": 115.53,
-          "max_ms": 128.94,
-          "files_scanned": 5,
-          "mb_read": 165.67,
-          "improvement_pct": 56.7
+          "median_ms": 151.8,
+          "min_ms": 131.67,
+          "max_ms": 502.39,
+          "files_scanned": 6,
+          "mb_read": 189.92,
+          "improvement_pct": 75.7
         },
         "zorder_2col": {
           "runs": 5,
-          "median_ms": 127.1,
-          "min_ms": 115.93,
-          "max_ms": 131.35,
-          "files_scanned": 6,
-          "mb_read": 188.72,
-          "improvement_pct": 53.8
+          "median_ms": 158.1,
+          "min_ms": 120.93,
+          "max_ms": 326.55,
+          "files_scanned": 5,
+          "mb_read": 152.61,
+          "improvement_pct": 74.7
         },
         "liquid_cluster": {
           "runs": 5,
-          "median_ms": 117.7,
-          "min_ms": 112.86,
-          "max_ms": 124.49,
-          "files_scanned": 3,
-          "mb_read": 93.56,
-          "improvement_pct": 57.2
+          "median_ms": 127.3,
+          "min_ms": 117.1,
+          "max_ms": 319.34,
+          "files_scanned": 2,
+          "mb_read": 57.53,
+          "improvement_pct": 79.6
         }
       },
       "q3_control": {
         "baseline": {
           "runs": 5,
-          "median_ms": 185.2,
-          "min_ms": 163.14,
-          "max_ms": 195.44,
+          "median_ms": 302.6,
+          "min_ms": 248.82,
+          "max_ms": 699.05,
           "files_scanned": 200,
-          "mb_read": 3184.29,
+          "mb_read": 3182.15,
           "improvement_pct": 0.0
         },
         "compacted": {
           "runs": 5,
-          "median_ms": 167.5,
-          "min_ms": 162.54,
-          "max_ms": 186.23,
+          "median_ms": 254.7,
+          "min_ms": 236.01,
+          "max_ms": 869.81,
           "files_scanned": 100,
-          "mb_read": 3151.57,
-          "improvement_pct": 9.6
+          "mb_read": 3149.29,
+          "improvement_pct": 15.8
         },
         "zorder_1col": {
           "runs": 5,
-          "median_ms": 166.1,
-          "min_ms": 154.61,
-          "max_ms": 178.45,
+          "median_ms": 274.8,
+          "min_ms": 246.89,
+          "max_ms": 712.08,
           "files_scanned": 99,
-          "mb_read": 3135.4,
-          "improvement_pct": 10.3
+          "mb_read": 3132.22,
+          "improvement_pct": 9.2
         },
         "zorder_2col": {
           "runs": 5,
-          "median_ms": 159.1,
-          "min_ms": 152.69,
-          "max_ms": 174.76,
+          "median_ms": 298.7,
+          "min_ms": 254.65,
+          "max_ms": 1095.92,
           "files_scanned": 99,
-          "mb_read": 3115.91,
-          "improvement_pct": 14.1
+          "mb_read": 3113.75,
+          "improvement_pct": 1.3
         },
         "liquid_cluster": {
           "runs": 5,
-          "median_ms": 166.5,
-          "min_ms": 158.19,
-          "max_ms": 178.19,
+          "median_ms": 260.9,
+          "min_ms": 250.96,
+          "max_ms": 1182.46,
           "files_scanned": 98,
-          "mb_read": 3111.69,
-          "improvement_pct": 10.1
+          "mb_read": 3109.08,
+          "improvement_pct": 13.8
         }
       }
     },
@@ -217,16 +217,16 @@
       "warmup": true,
       "query": "q1_zone",
       "variant": "baseline",
-      "ms": 549.26,
+      "ms": 1304.32,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -234,16 +234,16 @@
       "warmup": true,
       "query": "q1_zone",
       "variant": "compacted",
-      "ms": 351.15,
+      "ms": 853.34,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -251,16 +251,16 @@
       "warmup": true,
       "query": "q1_zone",
       "variant": "zorder_1col",
-      "ms": 191.4,
+      "ms": 520.4,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 5,
-      "bytes_read": 172369318,
+      "bytes_read": 170845685,
       "scan_nodes": 1
     },
     {
@@ -268,16 +268,16 @@
       "warmup": true,
       "query": "q1_zone",
       "variant": "zorder_2col",
-      "ms": 217.62,
+      "ms": 473.67,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 42,
-      "bytes_read": 1381590868,
+      "files_scanned": 33,
+      "bytes_read": 1089508462,
       "scan_nodes": 1
     },
     {
@@ -285,16 +285,16 @@
       "warmup": true,
       "query": "q1_zone",
       "variant": "liquid_cluster",
-      "ms": 199.55,
+      "ms": 554.05,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 35,
-      "bytes_read": 1170738658,
+      "files_scanned": 29,
+      "bytes_read": 952454292,
       "scan_nodes": 1
     },
     {
@@ -302,7 +302,7 @@
       "warmup": true,
       "query": "q2_zone_week",
       "variant": "baseline",
-      "ms": 553.66,
+      "ms": 744.05,
       "result": [
         {
           "trips": 41541,
@@ -311,7 +311,7 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -319,7 +319,7 @@
       "warmup": true,
       "query": "q2_zone_week",
       "variant": "compacted",
-      "ms": 341.16,
+      "ms": 430.56,
       "result": [
         {
           "trips": 41541,
@@ -328,7 +328,7 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -336,24 +336,7 @@
       "warmup": true,
       "query": "q2_zone_week",
       "variant": "zorder_1col",
-      "ms": 141.59,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 5,
-      "bytes_read": 173721916,
-      "scan_nodes": 1
-    },
-    {
-      "round": 0,
-      "warmup": true,
-      "query": "q2_zone_week",
-      "variant": "zorder_2col",
-      "ms": 135.91,
+      "ms": 184.11,
       "result": [
         {
           "trips": 41541,
@@ -362,15 +345,15 @@
         }
       ],
       "files_scanned": 6,
-      "bytes_read": 197891261,
+      "bytes_read": 199142785,
       "scan_nodes": 1
     },
     {
       "round": 0,
       "warmup": true,
       "query": "q2_zone_week",
-      "variant": "liquid_cluster",
-      "ms": 127.16,
+      "variant": "zorder_2col",
+      "ms": 200.38,
       "result": [
         {
           "trips": 41541,
@@ -378,8 +361,25 @@
           "avg_tip": 2.993173
         }
       ],
-      "files_scanned": 3,
-      "bytes_read": 98104911,
+      "files_scanned": 5,
+      "bytes_read": 160019497,
+      "scan_nodes": 1
+    },
+    {
+      "round": 0,
+      "warmup": true,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 192.02,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 2,
+      "bytes_read": 60321735,
       "scan_nodes": 1
     },
     {
@@ -387,7 +387,7 @@
       "warmup": true,
       "query": "q3_control",
       "variant": "baseline",
-      "ms": 258.12,
+      "ms": 494.2,
       "result": [
         {
           "trips": 2391524,
@@ -396,7 +396,7 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -404,7 +404,7 @@
       "warmup": true,
       "query": "q3_control",
       "variant": "compacted",
-      "ms": 170.5,
+      "ms": 650.78,
       "result": [
         {
           "trips": 2391524,
@@ -413,7 +413,7 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -421,7 +421,7 @@
       "warmup": true,
       "query": "q3_control",
       "variant": "zorder_1col",
-      "ms": 211.59,
+      "ms": 676.32,
       "result": [
         {
           "trips": 2391524,
@@ -430,7 +430,7 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3287707217,
+      "bytes_read": 3284369883,
       "scan_nodes": 1
     },
     {
@@ -438,7 +438,7 @@
       "warmup": true,
       "query": "q3_control",
       "variant": "zorder_2col",
-      "ms": 194.98,
+      "ms": 389.56,
       "result": [
         {
           "trips": 2391524,
@@ -447,7 +447,7 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3267271625,
+      "bytes_read": 3265001223,
       "scan_nodes": 1
     },
     {
@@ -455,7 +455,7 @@
       "warmup": true,
       "query": "q3_control",
       "variant": "liquid_cluster",
-      "ms": 173.87,
+      "ms": 293.66,
       "result": [
         {
           "trips": 2391524,
@@ -464,7 +464,7 @@
         }
       ],
       "files_scanned": 98,
-      "bytes_read": 3262846623,
+      "bytes_read": 3260107186,
       "scan_nodes": 1
     },
     {
@@ -472,16 +472,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "baseline",
-      "ms": 180.62,
+      "ms": 302.78,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -489,16 +489,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "compacted",
-      "ms": 177.57,
+      "ms": 298.68,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -506,16 +506,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "zorder_1col",
-      "ms": 118.37,
+      "ms": 120.8,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 5,
-      "bytes_read": 172369318,
+      "bytes_read": 170845685,
       "scan_nodes": 1
     },
     {
@@ -523,16 +523,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "zorder_2col",
-      "ms": 133.0,
+      "ms": 151.47,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 42,
-      "bytes_read": 1381590868,
+      "files_scanned": 33,
+      "bytes_read": 1089508462,
       "scan_nodes": 1
     },
     {
@@ -540,16 +540,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "liquid_cluster",
-      "ms": 125.15,
+      "ms": 224.56,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 35,
-      "bytes_read": 1170738658,
+      "files_scanned": 29,
+      "bytes_read": 952454292,
       "scan_nodes": 1
     },
     {
@@ -557,7 +557,7 @@
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "baseline",
-      "ms": 285.53,
+      "ms": 1061.94,
       "result": [
         {
           "trips": 41541,
@@ -566,7 +566,7 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -574,7 +574,7 @@
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "compacted",
-      "ms": 267.81,
+      "ms": 575.06,
       "result": [
         {
           "trips": 41541,
@@ -583,7 +583,7 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -591,24 +591,7 @@
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "zorder_1col",
-      "ms": 126.19,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 5,
-      "bytes_read": 173721916,
-      "scan_nodes": 1
-    },
-    {
-      "round": 1,
-      "warmup": false,
-      "query": "q2_zone_week",
-      "variant": "zorder_2col",
-      "ms": 130.2,
+      "ms": 341.12,
       "result": [
         {
           "trips": 41541,
@@ -617,15 +600,15 @@
         }
       ],
       "files_scanned": 6,
-      "bytes_read": 197891261,
+      "bytes_read": 199142785,
       "scan_nodes": 1
     },
     {
       "round": 1,
       "warmup": false,
       "query": "q2_zone_week",
-      "variant": "liquid_cluster",
-      "ms": 124.49,
+      "variant": "zorder_2col",
+      "ms": 326.55,
       "result": [
         {
           "trips": 41541,
@@ -633,8 +616,25 @@
           "avg_tip": 2.993173
         }
       ],
-      "files_scanned": 3,
-      "bytes_read": 98104911,
+      "files_scanned": 5,
+      "bytes_read": 160019497,
+      "scan_nodes": 1
+    },
+    {
+      "round": 1,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 319.34,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 2,
+      "bytes_read": 60321735,
       "scan_nodes": 1
     },
     {
@@ -642,7 +642,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "baseline",
-      "ms": 185.19,
+      "ms": 302.64,
       "result": [
         {
           "trips": 2391524,
@@ -651,7 +651,7 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -659,7 +659,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "compacted",
-      "ms": 186.23,
+      "ms": 254.67,
       "result": [
         {
           "trips": 2391524,
@@ -668,7 +668,7 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -676,7 +676,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "zorder_1col",
-      "ms": 178.45,
+      "ms": 246.89,
       "result": [
         {
           "trips": 2391524,
@@ -685,7 +685,7 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3287707217,
+      "bytes_read": 3284369883,
       "scan_nodes": 1
     },
     {
@@ -693,7 +693,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "zorder_2col",
-      "ms": 170.32,
+      "ms": 254.65,
       "result": [
         {
           "trips": 2391524,
@@ -702,7 +702,7 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3267271625,
+      "bytes_read": 3265001223,
       "scan_nodes": 1
     },
     {
@@ -710,7 +710,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "liquid_cluster",
-      "ms": 178.19,
+      "ms": 258.97,
       "result": [
         {
           "trips": 2391524,
@@ -719,7 +719,7 @@
         }
       ],
       "files_scanned": 98,
-      "bytes_read": 3262846623,
+      "bytes_read": 3260107186,
       "scan_nodes": 1
     },
     {
@@ -727,16 +727,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "baseline",
-      "ms": 195.55,
+      "ms": 253.31,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -744,16 +744,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "compacted",
-      "ms": 165.57,
+      "ms": 245.5,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -761,16 +761,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "zorder_1col",
-      "ms": 105.89,
+      "ms": 118.64,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 5,
-      "bytes_read": 172369318,
+      "bytes_read": 170845685,
       "scan_nodes": 1
     },
     {
@@ -778,16 +778,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "zorder_2col",
-      "ms": 128.78,
+      "ms": 141.46,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 42,
-      "bytes_read": 1381590868,
+      "files_scanned": 33,
+      "bytes_read": 1089508462,
       "scan_nodes": 1
     },
     {
@@ -795,16 +795,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "liquid_cluster",
-      "ms": 127.36,
+      "ms": 163.07,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 35,
-      "bytes_read": 1170738658,
+      "files_scanned": 29,
+      "bytes_read": 952454292,
       "scan_nodes": 1
     },
     {
@@ -812,7 +812,7 @@
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "baseline",
-      "ms": 275.05,
+      "ms": 452.87,
       "result": [
         {
           "trips": 41541,
@@ -821,7 +821,7 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -829,7 +829,7 @@
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "compacted",
-      "ms": 277.65,
+      "ms": 344.18,
       "result": [
         {
           "trips": 41541,
@@ -838,7 +838,7 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -846,24 +846,7 @@
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "zorder_1col",
-      "ms": 128.94,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 5,
-      "bytes_read": 173721916,
-      "scan_nodes": 1
-    },
-    {
-      "round": 2,
-      "warmup": false,
-      "query": "q2_zone_week",
-      "variant": "zorder_2col",
-      "ms": 131.35,
+      "ms": 131.67,
       "result": [
         {
           "trips": 41541,
@@ -872,15 +855,15 @@
         }
       ],
       "files_scanned": 6,
-      "bytes_read": 197891261,
+      "bytes_read": 199142785,
       "scan_nodes": 1
     },
     {
       "round": 2,
       "warmup": false,
       "query": "q2_zone_week",
-      "variant": "liquid_cluster",
-      "ms": 122.58,
+      "variant": "zorder_2col",
+      "ms": 120.93,
       "result": [
         {
           "trips": 41541,
@@ -888,8 +871,25 @@
           "avg_tip": 2.993173
         }
       ],
-      "files_scanned": 3,
-      "bytes_read": 98104911,
+      "files_scanned": 5,
+      "bytes_read": 160019497,
+      "scan_nodes": 1
+    },
+    {
+      "round": 2,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 117.1,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 2,
+      "bytes_read": 60321735,
       "scan_nodes": 1
     },
     {
@@ -897,7 +897,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "baseline",
-      "ms": 195.44,
+      "ms": 248.82,
       "result": [
         {
           "trips": 2391524,
@@ -906,7 +906,7 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -914,7 +914,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "compacted",
-      "ms": 164.88,
+      "ms": 236.01,
       "result": [
         {
           "trips": 2391524,
@@ -923,7 +923,7 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -931,7 +931,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "zorder_1col",
-      "ms": 175.69,
+      "ms": 552.78,
       "result": [
         {
           "trips": 2391524,
@@ -940,7 +940,7 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3287707217,
+      "bytes_read": 3284369883,
       "scan_nodes": 1
     },
     {
@@ -948,7 +948,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "zorder_2col",
-      "ms": 174.76,
+      "ms": 572.38,
       "result": [
         {
           "trips": 2391524,
@@ -957,7 +957,7 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3267271625,
+      "bytes_read": 3265001223,
       "scan_nodes": 1
     },
     {
@@ -965,7 +965,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "liquid_cluster",
-      "ms": 176.55,
+      "ms": 1182.46,
       "result": [
         {
           "trips": 2391524,
@@ -974,7 +974,7 @@
         }
       ],
       "files_scanned": 98,
-      "bytes_read": 3262846623,
+      "bytes_read": 3260107186,
       "scan_nodes": 1
     },
     {
@@ -982,16 +982,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "baseline",
-      "ms": 172.5,
+      "ms": 1703.86,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -999,16 +999,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "compacted",
-      "ms": 173.44,
+      "ms": 1118.31,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -1016,16 +1016,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "zorder_1col",
-      "ms": 109.39,
+      "ms": 347.0,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 5,
-      "bytes_read": 172369318,
+      "bytes_read": 170845685,
       "scan_nodes": 1
     },
     {
@@ -1033,16 +1033,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "zorder_2col",
-      "ms": 125.05,
+      "ms": 412.52,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 42,
-      "bytes_read": 1381590868,
+      "files_scanned": 33,
+      "bytes_read": 1089508462,
       "scan_nodes": 1
     },
     {
@@ -1050,16 +1050,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "liquid_cluster",
-      "ms": 128.71,
+      "ms": 401.28,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 35,
-      "bytes_read": 1170738658,
+      "files_scanned": 29,
+      "bytes_read": 952454292,
       "scan_nodes": 1
     },
     {
@@ -1067,7 +1067,7 @@
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "baseline",
-      "ms": 275.68,
+      "ms": 1258.35,
       "result": [
         {
           "trips": 41541,
@@ -1076,7 +1076,7 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -1084,7 +1084,7 @@
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "compacted",
-      "ms": 265.23,
+      "ms": 1446.12,
       "result": [
         {
           "trips": 41541,
@@ -1093,7 +1093,7 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -1101,24 +1101,7 @@
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "zorder_1col",
-      "ms": 116.91,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 5,
-      "bytes_read": 173721916,
-      "scan_nodes": 1
-    },
-    {
-      "round": 3,
-      "warmup": false,
-      "query": "q2_zone_week",
-      "variant": "zorder_2col",
-      "ms": 127.13,
+      "ms": 502.39,
       "result": [
         {
           "trips": 41541,
@@ -1127,15 +1110,15 @@
         }
       ],
       "files_scanned": 6,
-      "bytes_read": 197891261,
+      "bytes_read": 199142785,
       "scan_nodes": 1
     },
     {
       "round": 3,
       "warmup": false,
       "query": "q2_zone_week",
-      "variant": "liquid_cluster",
-      "ms": 112.86,
+      "variant": "zorder_2col",
+      "ms": 234.56,
       "result": [
         {
           "trips": 41541,
@@ -1143,8 +1126,25 @@
           "avg_tip": 2.993173
         }
       ],
-      "files_scanned": 3,
-      "bytes_read": 98104911,
+      "files_scanned": 5,
+      "bytes_read": 160019497,
+      "scan_nodes": 1
+    },
+    {
+      "round": 3,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 283.58,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 2,
+      "bytes_read": 60321735,
       "scan_nodes": 1
     },
     {
@@ -1152,7 +1152,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "baseline",
-      "ms": 186.95,
+      "ms": 699.05,
       "result": [
         {
           "trips": 2391524,
@@ -1161,7 +1161,7 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -1169,7 +1169,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "compacted",
-      "ms": 172.9,
+      "ms": 869.81,
       "result": [
         {
           "trips": 2391524,
@@ -1178,7 +1178,7 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -1186,7 +1186,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "zorder_1col",
-      "ms": 160.74,
+      "ms": 712.08,
       "result": [
         {
           "trips": 2391524,
@@ -1195,7 +1195,7 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3287707217,
+      "bytes_read": 3284369883,
       "scan_nodes": 1
     },
     {
@@ -1203,7 +1203,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "zorder_2col",
-      "ms": 158.24,
+      "ms": 1095.92,
       "result": [
         {
           "trips": 2391524,
@@ -1212,7 +1212,7 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3267271625,
+      "bytes_read": 3265001223,
       "scan_nodes": 1
     },
     {
@@ -1220,7 +1220,7 @@
       "warmup": false,
       "query": "q3_control",
       "variant": "liquid_cluster",
-      "ms": 163.37,
+      "ms": 788.06,
       "result": [
         {
           "trips": 2391524,
@@ -1229,7 +1229,7 @@
         }
       ],
       "files_scanned": 98,
-      "bytes_read": 3262846623,
+      "bytes_read": 3260107186,
       "scan_nodes": 1
     },
     {
@@ -1237,16 +1237,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "baseline",
-      "ms": 172.51,
+      "ms": 716.09,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
@@ -1254,16 +1254,16 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "compacted",
-      "ms": 161.3,
+      "ms": 650.26,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
@@ -1271,313 +1271,58 @@
       "warmup": false,
       "query": "q1_zone",
       "variant": "zorder_1col",
-      "ms": 108.01,
-      "result": [
-        {
-          "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
-        }
-      ],
-      "files_scanned": 5,
-      "bytes_read": 172369318,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q1_zone",
-      "variant": "zorder_2col",
-      "ms": 127.26,
-      "result": [
-        {
-          "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
-        }
-      ],
-      "files_scanned": 42,
-      "bytes_read": 1381590868,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q1_zone",
-      "variant": "liquid_cluster",
-      "ms": 120.24,
-      "result": [
-        {
-          "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
-        }
-      ],
-      "files_scanned": 35,
-      "bytes_read": 1170738658,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q2_zone_week",
-      "variant": "baseline",
-      "ms": 269.18,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 200,
-      "bytes_read": 3338967225,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q2_zone_week",
-      "variant": "compacted",
-      "ms": 271.74,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 100,
-      "bytes_read": 3304657191,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q2_zone_week",
-      "variant": "zorder_1col",
-      "ms": 115.53,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 5,
-      "bytes_read": 173721916,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q2_zone_week",
-      "variant": "zorder_2col",
-      "ms": 115.93,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 6,
-      "bytes_read": 197891261,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q2_zone_week",
-      "variant": "liquid_cluster",
-      "ms": 116.8,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 3,
-      "bytes_read": 98104911,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q3_control",
-      "variant": "baseline",
-      "ms": 163.14,
-      "result": [
-        {
-          "trips": 2391524,
-          "fare_sum": 44151200.68,
-          "avg_tip": 0.000207
-        }
-      ],
-      "files_scanned": 200,
-      "bytes_read": 3338967225,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q3_control",
-      "variant": "compacted",
-      "ms": 167.47,
-      "result": [
-        {
-          "trips": 2391524,
-          "fare_sum": 44151200.68,
-          "avg_tip": 0.000207
-        }
-      ],
-      "files_scanned": 100,
-      "bytes_read": 3304657191,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q3_control",
-      "variant": "zorder_1col",
-      "ms": 166.05,
-      "result": [
-        {
-          "trips": 2391524,
-          "fare_sum": 44151200.68,
-          "avg_tip": 0.000207
-        }
-      ],
-      "files_scanned": 99,
-      "bytes_read": 3287707217,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q3_control",
-      "variant": "zorder_2col",
-      "ms": 152.69,
-      "result": [
-        {
-          "trips": 2391524,
-          "fare_sum": 44151200.68,
-          "avg_tip": 0.000207
-        }
-      ],
-      "files_scanned": 99,
-      "bytes_read": 3267271625,
-      "scan_nodes": 1
-    },
-    {
-      "round": 4,
-      "warmup": false,
-      "query": "q3_control",
-      "variant": "liquid_cluster",
-      "ms": 166.46,
-      "result": [
-        {
-          "trips": 2391524,
-          "fare_sum": 44151200.68,
-          "avg_tip": 0.000207
-        }
-      ],
-      "files_scanned": 98,
-      "bytes_read": 3262846623,
-      "scan_nodes": 1
-    },
-    {
-      "round": 5,
-      "warmup": false,
-      "query": "q1_zone",
-      "variant": "baseline",
-      "ms": 165.31,
-      "result": [
-        {
-          "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
-        }
-      ],
-      "files_scanned": 200,
-      "bytes_read": 3338967225,
-      "scan_nodes": 1
-    },
-    {
-      "round": 5,
-      "warmup": false,
-      "query": "q1_zone",
-      "variant": "compacted",
-      "ms": 167.68,
-      "result": [
-        {
-          "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
-        }
-      ],
-      "files_scanned": 100,
-      "bytes_read": 3304657191,
-      "scan_nodes": 1
-    },
-    {
-      "round": 5,
-      "warmup": false,
-      "query": "q1_zone",
-      "variant": "zorder_1col",
-      "ms": 106.54,
-      "result": [
-        {
-          "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
-        }
-      ],
-      "files_scanned": 5,
-      "bytes_read": 172369318,
-      "scan_nodes": 1
-    },
-    {
-      "round": 5,
-      "warmup": false,
-      "query": "q1_zone",
-      "variant": "zorder_2col",
       "ms": 129.09,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 42,
-      "bytes_read": 1381590868,
+      "files_scanned": 5,
+      "bytes_read": 170845685,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
       "warmup": false,
       "query": "q1_zone",
-      "variant": "liquid_cluster",
-      "ms": 124.83,
+      "variant": "zorder_2col",
+      "ms": 166.12,
       "result": [
         {
           "trips": 822815,
-          "fare_sum": 51731192.7,
-          "avg_tip": 9.321899
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
         }
       ],
-      "files_scanned": 35,
-      "bytes_read": 1170738658,
+      "files_scanned": 33,
+      "bytes_read": 1089508462,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "liquid_cluster",
+      "ms": 180.79,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
+        }
+      ],
+      "files_scanned": 29,
+      "bytes_read": 952454292,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "baseline",
-      "ms": 263.71,
+      "ms": 624.51,
       "result": [
         {
           "trips": 41541,
@@ -1586,15 +1331,15 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "compacted",
-      "ms": 265.99,
+      "ms": 401.61,
       "result": [
         {
           "trips": 41541,
@@ -1603,32 +1348,15 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
       "warmup": false,
       "query": "q2_zone_week",
       "variant": "zorder_1col",
-      "ms": 119.11,
-      "result": [
-        {
-          "trips": 41541,
-          "fare_sum": 647723.13,
-          "avg_tip": 2.993173
-        }
-      ],
-      "files_scanned": 5,
-      "bytes_read": 173721916,
-      "scan_nodes": 1
-    },
-    {
-      "round": 5,
-      "warmup": false,
-      "query": "q2_zone_week",
-      "variant": "zorder_2col",
-      "ms": 117.3,
+      "ms": 134.08,
       "result": [
         {
           "trips": 41541,
@@ -1637,15 +1365,15 @@
         }
       ],
       "files_scanned": 6,
-      "bytes_read": 197891261,
+      "bytes_read": 199142785,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
       "warmup": false,
       "query": "q2_zone_week",
-      "variant": "liquid_cluster",
-      "ms": 117.66,
+      "variant": "zorder_2col",
+      "ms": 158.09,
       "result": [
         {
           "trips": 41541,
@@ -1653,16 +1381,33 @@
           "avg_tip": 2.993173
         }
       ],
-      "files_scanned": 3,
-      "bytes_read": 98104911,
+      "files_scanned": 5,
+      "bytes_read": 160019497,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 117.49,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 2,
+      "bytes_read": 60321735,
+      "scan_nodes": 1
+    },
+    {
+      "round": 4,
       "warmup": false,
       "query": "q3_control",
       "variant": "baseline",
-      "ms": 166.74,
+      "ms": 291.87,
       "result": [
         {
           "trips": 2391524,
@@ -1671,15 +1416,15 @@
         }
       ],
       "files_scanned": 200,
-      "bytes_read": 3338967225,
+      "bytes_read": 3336727290,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
       "warmup": false,
       "query": "q3_control",
       "variant": "compacted",
-      "ms": 162.54,
+      "ms": 252.47,
       "result": [
         {
           "trips": 2391524,
@@ -1688,15 +1433,15 @@
         }
       ],
       "files_scanned": 100,
-      "bytes_read": 3304657191,
+      "bytes_read": 3302273323,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
       "warmup": false,
       "query": "q3_control",
       "variant": "zorder_1col",
-      "ms": 154.61,
+      "ms": 274.79,
       "result": [
         {
           "trips": 2391524,
@@ -1705,15 +1450,15 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3287707217,
+      "bytes_read": 3284369883,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
       "warmup": false,
       "query": "q3_control",
       "variant": "zorder_2col",
-      "ms": 159.08,
+      "ms": 298.68,
       "result": [
         {
           "trips": 2391524,
@@ -1722,15 +1467,15 @@
         }
       ],
       "files_scanned": 99,
-      "bytes_read": 3267271625,
+      "bytes_read": 3265001223,
       "scan_nodes": 1
     },
     {
-      "round": 5,
+      "round": 4,
       "warmup": false,
       "query": "q3_control",
       "variant": "liquid_cluster",
-      "ms": 158.19,
+      "ms": 250.96,
       "result": [
         {
           "trips": 2391524,
@@ -1739,7 +1484,262 @@
         }
       ],
       "files_scanned": 98,
-      "bytes_read": 3262846623,
+      "bytes_read": 3260107186,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "baseline",
+      "ms": 284.76,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3336727290,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "compacted",
+      "ms": 235.8,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3302273323,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_1col",
+      "ms": 116.64,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 170845685,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "zorder_2col",
+      "ms": 148.65,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
+        }
+      ],
+      "files_scanned": 33,
+      "bytes_read": 1089508462,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q1_zone",
+      "variant": "liquid_cluster",
+      "ms": 141.22,
+      "result": [
+        {
+          "trips": 822815,
+          "fare_sum": 51731136.1,
+          "avg_tip": 9.321894
+        }
+      ],
+      "files_scanned": 29,
+      "bytes_read": 952454292,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "baseline",
+      "ms": 457.57,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3336727290,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "compacted",
+      "ms": 412.09,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3302273323,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_1col",
+      "ms": 151.79,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 6,
+      "bytes_read": 199142785,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "zorder_2col",
+      "ms": 123.06,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 5,
+      "bytes_read": 160019497,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q2_zone_week",
+      "variant": "liquid_cluster",
+      "ms": 127.26,
+      "result": [
+        {
+          "trips": 41541,
+          "fare_sum": 647723.13,
+          "avg_tip": 2.993173
+        }
+      ],
+      "files_scanned": 2,
+      "bytes_read": 60321735,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "baseline",
+      "ms": 533.32,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 200,
+      "bytes_read": 3336727290,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "compacted",
+      "ms": 361.35,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 100,
+      "bytes_read": 3302273323,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_1col",
+      "ms": 262.16,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3284369883,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "zorder_2col",
+      "ms": 275.42,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 99,
+      "bytes_read": 3265001223,
+      "scan_nodes": 1
+    },
+    {
+      "round": 5,
+      "warmup": false,
+      "query": "q3_control",
+      "variant": "liquid_cluster",
+      "ms": 260.87,
+      "result": [
+        {
+          "trips": 2391524,
+          "fare_sum": 44151200.68,
+          "avg_tip": 0.000207
+        }
+      ],
+      "files_scanned": 98,
+      "bytes_read": 3260107186,
       "scan_nodes": 1
     }
   ]

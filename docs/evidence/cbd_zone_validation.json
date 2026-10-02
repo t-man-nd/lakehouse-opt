@@ -461,7 +461,7 @@
   },
   {
     "PULocationID": 238,
-    "pickups": 194806,
+    "pickups": 194805,
     "fee_share": 0.242,
     "zone": "Upper West Side North",
     "borough": "Manhattan",
@@ -1031,7 +1031,7 @@
   },
   {
     "PULocationID": 230,
-    "pickups": 344229,
+    "pickups": 344227,
     "fee_share": 0.9941,
     "zone": "Times Sq/Theatre District",
     "borough": "Manhattan",
@@ -1401,7 +1401,7 @@
   },
   {
     "PULocationID": 107,
-    "pickups": 206303,
+    "pickups": 206304,
     "fee_share": 0.9921,
     "zone": "Gramercy",
     "borough": "Manhattan",
@@ -1992,7 +1992,7 @@
   {
     "PULocationID": 132,
     "pickups": 386302,
-    "fee_share": 0.4071,
+    "fee_share": 0.407,
     "zone": "JFK Airport",
     "borough": "Queens",
     "is_cbd": false,
@@ -2061,7 +2061,7 @@
   },
   {
     "PULocationID": 262,
-    "pickups": 139873,
+    "pickups": 139874,
     "fee_share": 0.3473,
     "zone": "Yorkville East",
     "borough": "Manhattan",
@@ -2141,7 +2141,7 @@
   },
   {
     "PULocationID": 233,
-    "pickups": 112862,
+    "pickups": 112863,
     "fee_share": 0.9904,
     "zone": "UN/Turtle Bay South",
     "borough": "Manhattan",

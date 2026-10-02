@@ -59,49 +59,49 @@
     "rows_added": 5,
     "sample": [
       {
+        "trip_key": "41e0a7a344ca2c7a9a007ed4192168c2816a7f8b49541349a75097694f531d3f",
+        "old_fare_amount": 6.5,
+        "old_tip_amount": 1.0,
+        "old_total_amount": 11.5,
+        "new_fare_amount": 8.0,
+        "new_tip_amount": 3.0,
+        "new_total_amount": 15.0
+      },
+      {
+        "trip_key": "6e9be6e5021caaa659a96817bb9a15dc7c4a4ec6c493392340e3f8e46fbd3fef",
+        "old_fare_amount": 17.0,
+        "old_tip_amount": 4.55,
+        "old_total_amount": 27.3,
+        "new_fare_amount": 18.5,
+        "new_tip_amount": 6.55,
+        "new_total_amount": 30.8
+      },
+      {
         "trip_key": "d3f577ce57fc2355680af262b06a590e3eaf2bac489aef2f890be181dc97e51d",
         "old_fare_amount": 24.0,
         "old_tip_amount": 6.25,
         "old_total_amount": 37.5,
-        "new_fare_amount": 24.0,
+        "new_fare_amount": 25.5,
         "new_tip_amount": 8.25,
-        "new_total_amount": 39.5
+        "new_total_amount": 41.0
       },
       {
-        "trip_key": "52bf28b8652715fc4f36c70b45c2e7753eb85ce28581f81aadac20186afba61a",
-        "old_fare_amount": 14.2,
-        "old_tip_amount": 2.0,
-        "old_total_amount": 20.95,
-        "new_fare_amount": 15.7,
-        "new_tip_amount": 4.0,
-        "new_total_amount": 24.45
+        "trip_key": "6b8d73c7f65cc2f80ab1c6d06ccb274a56f6b83ad61d7bafd377d577aeb262fe",
+        "old_fare_amount": 6.5,
+        "old_tip_amount": 2.45,
+        "old_total_amount": 14.7,
+        "new_fare_amount": 6.5,
+        "new_tip_amount": 4.45,
+        "new_total_amount": 16.7
       },
       {
         "trip_key": "3210d8f53eb8e159b1e08936cc4e7f88bfa18bb02435e75dcf0fa1de06ee9193",
         "old_fare_amount": 6.5,
         "old_tip_amount": 2.1,
         "old_total_amount": 12.6,
-        "new_fare_amount": 8.0,
+        "new_fare_amount": 6.5,
         "new_tip_amount": 4.1,
-        "new_total_amount": 16.1
-      },
-      {
-        "trip_key": "8316e82adf2a144162cd115c0f48a223823d2348be911f0404ca7447ceedd167",
-        "old_fare_amount": 10.7,
-        "old_tip_amount": 0.0,
-        "old_total_amount": 15.45,
-        "new_fare_amount": 12.2,
-        "new_tip_amount": 2.0,
-        "new_total_amount": 18.95
-      },
-      {
-        "trip_key": "425720eed2d44992fd1ecd02ba6ecd08b95d0f8e0eb28c960dc73c0f5f5215b7",
-        "old_fare_amount": 5.1,
-        "old_tip_amount": 1.82,
-        "old_total_amount": 10.92,
-        "new_fare_amount": 5.1,
-        "new_tip_amount": 3.82,
-        "new_total_amount": 12.92
+        "new_total_amount": 14.6
       }
     ]
   },

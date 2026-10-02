@@ -1,6 +1,6 @@
 # Source data manifest
 
-Generated: 2026-09-24T16:07:09+00:00  
+Generated: 2026-09-27T16:23:41+00:00  
 Source: NYC TLC Trip Record Data (official CloudFront links) and NY/NYC Open Data.
 
 ## Trip files
